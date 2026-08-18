@@ -1,0 +1,438 @@
+/* Global Styling and Color Variables */
+:root {
+    --bg-color: #f4f7f5;
+    --border-color: #1a1a1a;
+    --card-bg: #ffffff;
+    --accent-green: #a3e635;
+    --dark-green: #15803d;
+    --text-color: #1a1a1a;
+    --radius-main: 16px;
+    --shadow-main: 4px 4px 0px #1a1a1a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    line-height: 1.4;
+}
+
+.workspace-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Top Nav Styling */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid var(--border-color);
+    background-color: var(--card-bg);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-main);
+    font-weight: 600;
+}
+
+.main-title {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+/* Grid Layout setup */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2.2fr 1.5fr 1.5fr;
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dashboard-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cute Neo-Brutalism Cards Layout */
+.card {
+    background: var(--card-bg);
+    border: 3px solid var(--border-color);
+    border-radius: var(--radius-main);
+    box-shadow: var(--shadow-main);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #fafafa;
+    border-bottom: 3px solid var(--border-color);
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Status Badges */
+.badge {
+    border: 2px solid var(--border-color);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    background: var(--accent-green);
+    font-weight: bold;
+}
+
+.badge-idle { background-color: #cbd5e1; }
+.badge-active {
+    background-color: #fbbf24;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+/* Standardized Buttons */
+.btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    border: 2px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--border-color);
+}
+
+.btn-primary { background: #60a5fa; }
+.btn-secondary { background: #e2e8f0; }
+.btn-success { background: #4ade80; }
+.btn-danger { background: #f87171; color: white; }
+.btn-dark { background: #1e293b; color: white; }
+.btn-audio { background: #c084fc; width: 100%; margin-top: 10px; }
+.btn-sm { padding: 4px 10px; font-size: 0.85rem; }
+
+.btn.active {
+    background: var(--accent-green);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--border-color);
+}
+.btn-block { width: 100%; }
+
+/* Ecosystem Workspace Body Layout */
+.garden-body {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.plant-display {
+    width: 130px;
+    height: 160px;
+    border: 3px solid var(--border-color);
+    background-color: #ecfdf5;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.timer-display {
+    font-family: 'VT323', monospace;
+    font-size: 3.5rem;
+    text-align: center;
+    border: 3px solid var(--border-color);
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 2px 0;
+}
+
+.timer-presets {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.timer-controls { display: flex; gap: 10px; }
+.timer-controls button { flex: 1; }
+
+.target-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+.target-selector select, .chore-row select, .audio-dropdown {
+    font-family: 'Fredoka', sans-serif;
+    padding: 4px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    background: white;
+}
+
+/* Checklist Styling */
+.checklist-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-input-row { display: flex; gap: 10px; }
+.task-input-row input {
+    font-family: 'Fredoka', sans-serif;
+    flex: 1;
+    padding: 8px 12px;
+    border: 3px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+}
+
+.task-list {
+    list-style: none;
+    max-height: 180px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    padding: 8px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.task-left { display: flex; align-items: center; gap: 10px; }
+.task-item.completed span { text-decoration: line-through; color: #64748b; }
+.task-remove { background: none; border: none; cursor: pointer; font-size: 1rem; }
+/* Hamster Station Mechanics Layout */
+.hamster-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.wheel-container { width: 110px; height: 110px; position: relative; }
+.hamster-wheel {
+    width: 100%;
+    height: 100%;
+    border: 6px dashed var(--border-color);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+}
+
+.hamster-wheel.spinning { animation: spin 2s linear infinite; }
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hamster-avatar { font-size: 2.2rem; position: absolute; bottom: 8px; }
+.hamster-wheel.spinning .hamster-avatar { animation: stayUpright 2s linear infinite; }
+@keyframes stayUpright {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+.chore-tracker { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+.chore-balance { font-size: 0.95rem; text-align: center; margin-bottom: 4px; }
+.chore-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; gap: 10px; }
+
+/* Audio Mixer Area */
+.audio-body { padding: 16px; }
+.audio-label { font-size: 0.9rem; margin-bottom: 6px; display: block; }
+
+/* Font Engine Packing Layout */
+.font-engine-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.pack-title { font-size: 0.9rem; font-weight: bold; margin-bottom: 6px; }
+.kaomoji-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.kaomoji-item {
+    background: #f1f5f9;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.kaomoji-item:hover, .preview-box:hover { background: #e2e8f0; }
+.font-tester-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 2px dashed #cbd5e1;
+    padding-top: 12px;
+}
+
+.font-input-box {
+    font-family: 'Fredoka', sans-serif;
+    padding: 6px 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    outline: none;
+}
+
+.preview-box {
+    background: #fafafa;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    min-height: 38px;
+}
+
+.font-style-1 { font-family: 'Fredoka', sans-serif; font-weight: bold; }
+.font-style-2 { font-family: serif; font-style: italic; font-weight: bold; }
+.font-style-3 { font-family: monospace; font-weight: bold; }
+
+/* Interactive Sandbox Container Fixing Bounds Rules */
+.sandbox-card { margin-top: 10px; }
+.sandbox-area {
+    height: 140px;
+    background: #fdfbf7;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.sandbox-hint {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+/* Particle items tracking properties */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fef08a;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fadeOutSparkle 0.6s forwards ease-out;
+}
+
+@keyframes fadeOutSparkle {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.2); opacity: 0; }
+}
+
+.sandbox-animal {
+    position: absolute;
+    font-size: 2rem;
+    user-select: none;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease-out;
+    cursor: grab;
+}
+
+/* Strategic Activity History Container (CRITICAL CORE SCROLL BAR FIX) */
+.history-card { margin-top: 5px; }
+.history-container {
+    height: 150px; /* Locked bounding box constraint */
+    background: #fafafa;
+    padding: 12px;
+    overflow-y: scroll; /* CORE SCROLLBAR FIX FORCE ACTIVATION */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.history-item {
+    padding: 4px 8px;
+    border-left: 4px solid var(--dark-green);
+    background: #f0fdf4;
+    border-radius: 0 4px 4px 0;
+    animation: slideInLog 0.2s ease-out;
+}
+
+@keyframes slideInLog {
+    from { transform: translateX(-5px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.history-empty { color: #64748b; font-style: italic; text-align: center; margin-top: 40px; }
+
+/* Notification Toast Alert Box Overlay */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1e293b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.toast-notification.show { opacity: 1; transform: translateY(0); }
