@@ -72,7 +72,8 @@
                     <div class="ecosystem-impact-profile-box">
                         <div class="impact-header-row">
                             <h3>📋 Botanical Ecosystem Impact Statement</h3>
-                            <button class="action-btn btn-secondary btn-sm" onclick="renderProceduralPixelSproutSVG()">🔄 Refresh Sprout Canvas</button>
+                            <!-- ✨ RE-MAPPED FUNCTION: Now triggers completely erasing progress back to Stage 1 ✨ -->
+                            <button class="action-btn btn-danger btn-sm" onclick="wipePlantProgressBackToSeedling()">🚨 Reset Plant Progress</button>
                         </div>
                         <p id="ecosystem-paragraph-text">
                             The current seedling structure anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances inside the workstation.
@@ -187,7 +188,6 @@
                                     <option value="30">30 mins</option>
                                 </select>
                             </div>
-                            <!-- ✨ FIXED ACTION ROW: Added layout wrapping class to avoid overlapping button borders ✨ -->
                             <div class="chore-buttons-row">
                                 <button class="action-btn btn-dark" onclick="executeChoreTimeLog()">⚡ Log Chores</button>
                                 <button class="action-btn btn-secondary" onclick="resetChoreTracker()">Reset Chores</button>
