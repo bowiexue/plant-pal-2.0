@@ -15,7 +15,7 @@ let workspaceState = {
 const genotypeAestheticProfiles = [
     {
         name: "Thick Sprout", bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#eaedea",
-        kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ值"],
+        kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"],
         fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾𝒸 𝒮𝓅𝓇ℴ𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
     },
     {
@@ -26,17 +26,17 @@ const genotypeAestheticProfiles = [
     {
         name: "Cosmic Clover", bg: "#f3effa", primary: "#d3bee6", shadow: "#e8e1f2",
         kaomojis: ["(✨🍀.🍀)", "(🌌°o°)", "(🔮•̀ᴗ•́)", "(🚀🌟‿🌟)", "✧(⚙ 𖦹 ⚙)✧"],
-        fonts: { s2: "𝒞ℴ...𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝔪𝔦𝔠ℭ𝔩𝔬𝔳𝔢r" }
+        fonts: { s2: "𝒞ℴ𝓈𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝓂𝔦𝔠ℭ𝔩𝔬𝔳𝔢𝔯" }
     },
     {
         name: "Ruby Succulent", bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
         kaomojis: ["(🌸•‿•)", "(🪷´▿`)", "(๑>ᴗ<๑)💕", "(🌵`･ω･´)", "(☀️_☀️)🌵"],
-        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩ℯ𝓃𝓉" }
+        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩ℯ𝓃𝔱" }
     },
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃<b>𝓈𝒶𝒾</b> ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞imap𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
@@ -45,7 +45,6 @@ const genotypeAestheticProfiles = [
     }
 ];
 
-// --- 📻 ✨ HIGHLY STABLE HIGH-TIME BROADCAST STREAMS (CORS POLICY BYPASSED EXPLICITLY) ✨ ---
 const broadcastStationProfiles = [
     { title: "Lofi Chill Beats", genre: "Chillhop / Instrumental Focus Stream", url: "https://syntheticfm.com" },
     { title: "Classical Piano Solo Feeds", genre: "Soft Instrumental / Academic Calm Study", url: "https://wcrb.org" },
@@ -147,6 +146,29 @@ function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) 
 As your node grows to Stage ${stageLevel}/10, its expanded structural roots optimize water absorption and fortify organic cellular links. This baseline growth provides a calming visual focus point that balances focus timers with physical task completions. Keep working through your checklist targets to expand branch frameworks and unlock advanced biological nodes!`;
 }
 
+// ✨ ADVANCED WIPE TRIGGER FUNCTION: Clears active botanical state structures down to a baby seedling sprout! ✨
+window.wipePlantProgressBackToSeedling = function() {
+    workspaceState.plantStage = 1;
+    workspaceState.completedTaskCount = 0;
+    
+    const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
+    
+    // Redraw canvas frame instantly
+    renderProceduralPixelSproutSVG();
+    
+    // Reset counter nodes
+    const doneCounterNode = document.getElementById('done-counter');
+    if(doneCounterNode) doneCounterNode.innerText = "0";
+    
+    // Sync text labels
+    const paragraphBox = document.getElementById('ecosystem-paragraph-text');
+    if(paragraphBox) {
+        paragraphBox.innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, 1);
+    }
+    
+    logWorkspaceEvent(`🚨 <strong>PLANT PROGRESS PURGED</strong>: "${profile.name}" has been returned to a Stage 1 newborn sprout canvas node.`);
+};
+
 window.handlePlantGenotypeChange = function() {
     const selectElement = document.getElementById('plant-select');
     if(selectElement) {
@@ -190,11 +212,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v11', JSON.stringify(dataObj));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v12', JSON.stringify(dataObj));
 }
 
 function synchronizeLocalStorageData() {
-    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v11');
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v12');
     if (saved) {
         try {
             const data = JSON.parse(saved);
@@ -347,7 +369,6 @@ window.executeChoreTimeLog = function() {
     }, 1200);
 };
 
-// ✨ FIXED RESET CHORES TARGET LINKAGE: Cleans class references correctly to ensure wheel track stops instantly! ✨
 window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
     updateChoreTrackingDashboardUI();
@@ -365,13 +386,11 @@ window.resetChoreTracker = function() {
     logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
 };
 
-// --- 📻 ✨ RESTORED AUDIO ENGINE: Direct Broadcast Streaming Links ✨ ---
 function initializeRadioStreamEndpointSource() {
     const audioStream = document.getElementById('lofi-stream');
     if (audioStream) {
         audioStream.volume = 0.5;
-        // Sets default stream connection index cleanly
-        audioStream.src = broadcastStationProfiles[0].url; 
+        audioStream.src = broadcastStationProfiles.url; 
     }
 }
 
@@ -500,7 +519,7 @@ window.copyStringToClipboard = function(el) {
 };
 
 window.clearWorkspaceLogStorage = function() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v11');
+    localStorage.removeItem('sproutOS_calibratedDataMemory_v12');
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     workspaceState.choreMinutesAccumulated = 0;
