@@ -1,6 +1,6 @@
 /* --- PROPORTIONAL AESTHETIC DESIGN VARIABLES --- */
 :root {
-    --bg-slate: #f4f6f4; /* Overwritten dynamically by genotype state selections */
+    --bg-slate: #f4f6f4;
     --border-charcoal: #3d423d;
     --card-surface: #ffffff;
     
@@ -29,7 +29,7 @@ body {
     color: var(--text-primary);
     padding: 24px;
     line-height: 1.5;
-    transition: background-color 0.4s ease; /* Fluid transitions on genotype mutations */
+    transition: background-color 0.4s ease;
 }
 
 /* Centered Wrapper Framework Container */
@@ -56,12 +56,12 @@ body {
 
 .time-divider { margin: 0 8px; color: var(--text-muted); }
 
-/* Grid Proportions Engineered to Eradicate Empty Spaces */
+/* ✨ FIXED PROPORTIONAL COLUMN STRETCH TO ERADICATE BLANK SPACES ✨ */
 .dashboard-layout-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 24px;
-    align-items: start;
+    align-items: stretch; /* Cards fill down their column lines equally */
 }
 
 @media (max-width: 900px) {
@@ -72,6 +72,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+
+/* Main left panel stretches its cards to eliminate remaining air spaces */
+.main-panel .workspace-card {
+    flex: 1;
 }
 
 /* Standardized Proportional Card Node Blocks */
@@ -143,9 +148,10 @@ body {
 
 .garden-workspace-body { display: flex; gap: 16px; align-items: center; }
 
+/* ✨ FIXED PROPORTIONS: ENHANCED PLANT CANVAS VIEWPORT CONTAINER FRAME ✨ */
 .plant-viewport-frame {
-    width: 110px;
-    height: 130px;
+    width: 150px;
+    height: 170px;
     border: 2.5px solid var(--border-charcoal);
     background-color: #f7faf7;
     border-radius: 12px;
@@ -185,8 +191,8 @@ body {
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
 
-/* ✨ Interactive Sandbox Core Engine Configuration ✨ */
-.sandbox-area { height: 120px; background-color: #fffefa; position: relative; overflow: hidden; cursor: crosshair; }
+/* Interactive Sandbox Area */
+.sandbox-area { height: 140px; background-color: #fffefa; position: relative; overflow: hidden; cursor: crosshair; }
 .sandbox-hint { position: absolute; width: 100%; text-align: center; top: 50%; transform: translateY(-50%); color: #8fa08e; font-size: 0.85rem; font-weight: 600; pointer-events: none; z-index: 10; }
 .sparkle { position: absolute; width: 8px; height: 8px; background-color: var(--text-primary); border-radius: 50%; pointer-events: none; z-index: 5; animation: fadeOutSparkle 0.5s forwards ease-out; }
 @keyframes fadeOutSparkle { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.1); opacity: 0; } }
@@ -205,7 +211,7 @@ body {
 .chore-buttons-row { display: flex; gap: 6px; }
 .chore-buttons-row button { flex: 1; font-size: 0.85rem; padding: 6px; }
 
-/* 📻 Lo-Fi Deck UI Sheet Formatting Engine */
+/* Lo-Fi Deck UI Sheet Formatting Engine */
 .audio-player-workspace-body { display: flex; flex-direction: column; gap: 10px; background-color: #fafdfa; }
 .audio-station-meta-row { display: flex; align-items: center; gap: 12px; }
 .station-avatar-icon { font-size: 2rem; background: var(--sage-green); padding: 6px; border: 2px solid var(--border-charcoal); border-radius: 8px; transition: background-color 0.3s ease; }
@@ -224,9 +230,9 @@ body {
 .style-gothic { font-family: monospace; font-weight: 700; }
 
 /* System Activity Log History Framework Box */
-.history-scroll-viewport-box { height: 110px; background-color: #fafafa; padding: 10px; overflow-y: scroll; display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.8rem; }
-.history-log-item-row { padding: 2px 6px; border-left: 4px solid var(--border-charcoal); background-color: #f3f4f3; border-radius: 0 4px 4px 0; }
-.history-empty-placeholder { color: var(--text-muted); font-style: italic; text-align: center; margin-top: 25px; }
+.history-scroll-viewport-box { height: 120px; background-color: #fafafa; padding: 10px; overflow-y: scroll; display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.8rem; }
+.history-log-item-row { padding: 2px 6px; border-left: 4px solid var(--border-charcoal); background-color: #f3f4f3; border-radius: 0 4px 4px 0; font-weight: 600; text-align: left; }
+.history-empty-placeholder { color: var(--text-muted); font-style: italic; text-align: center; margin-top: 35px; }
 
 .toast-popup-notification { position: fixed; bottom: 20px; right: 20px; background-color: var(--border-charcoal); color: white; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; opacity: 0; transform: translateY(5px); transition: all 0.2s ease; pointer-events: none; z-index: 999999; }
 .toast-popup-notification.display-active { opacity: 1; transform: translateY(0); }
