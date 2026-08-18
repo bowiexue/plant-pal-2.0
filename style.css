@@ -31,7 +31,6 @@ body {
     transition: background-color 0.4s ease;
 }
 
-/* Centered Wrapper Framework Container */
 .app-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -40,7 +39,6 @@ body {
     gap: 24px;
 }
 
-/* Proportional Status Navbar */
 .status-navbar {
     display: flex;
     justify-content: space-between;
@@ -55,7 +53,6 @@ body {
 
 .time-divider { margin: 0 8px; color: var(--text-muted); }
 
-/* GRID LAYOUT CONSTRAINTS OVERHAUL: STAYS COMPACT TO REMOVE SPACE VOIDS */
 .dashboard-layout-grid {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -74,7 +71,6 @@ body {
     height: auto;
 }
 
-/* Standardized Proportional Card Node Blocks */
 .workspace-card {
     background-color: var(--card-surface);
     border: 2.5px solid var(--border-charcoal);
@@ -93,12 +89,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.3s ease;
 }
 
 .card-header-bar h2 { font-size: 1.15rem; font-weight: 700; }
 
-/* Dynamic Theme Accent Background Colors */
 .theme-sage .card-header-bar { background-color: var(--sage-green); }
 .theme-linen .card-header-bar { background-color: var(--linen-white); }
 .theme-peach .card-header-bar { background-color: var(--peach-cream); }
@@ -116,7 +110,6 @@ body {
 .status-badge.state-idle { background-color: #e2e8f0; color: #64748b; }
 .status-badge.state-active { background-color: #fca5a5; color: #b91c1c; }
 
-/* Control Interface Action Pill Elements */
 .action-btn {
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
@@ -137,14 +130,12 @@ body {
 .btn-danger { background-color: #fecaca; }
 .btn-dark { background-color: var(--border-charcoal); color: white; }
 .btn-sm { padding: 4px 10px; font-size: 0.8rem; }
-/* Interior Content Box Framework Padding Blocks */
 .garden-workspace-body, .checklist-workspace-body, .hamster-workspace-body, .audio-player-workspace-body, .fonts-workspace-body {
     padding: 16px;
 }
 
 .garden-workspace-body { display: flex; gap: 16px; align-items: center; }
 
-/* Garden Frame Dimensions Constants */
 .plant-viewport-frame {
     width: 150px;
     height: 170px;
@@ -180,22 +171,24 @@ body {
 .ecosystem-impact-profile-box h3 { font-size: 0.9rem; }
 .ecosystem-impact-profile-box p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; text-align: justify; }
 
-/* Checklist Inputs Formatting Map */
 .checklist-interactive-input-row { display: flex; gap: 8px; }
 .clean-text-input { font-family: 'Fredoka', sans-serif; font-weight: 600; flex: 1; padding: 8px; border: 2.5px solid var(--border-charcoal); border-radius: 6px; outline: none; background: white; }
+
+/* Styling for tiny numbers box typing area */
+.small-num-input { max-width: 80px; text-align: center; padding: 5px; }
+
 .task-list-node-container { list-style: none; margin-top: 10px; max-height: 140px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
 .task-item-row-node { display: flex; align-items: center; justify-content: space-between; background-color: #fbfcfb; padding: 8px; border: 2px solid var(--border-charcoal); border-radius: 8px; }
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
 
-/* Sandbox Panel Play Area Bounds */
 .sandbox-area { height: 75px; background-color: #fffefa; position: relative; overflow: hidden; cursor: crosshair; }
 .sandbox-hint { position: absolute; width: 100%; text-align: center; top: 50%; transform: translateY(-50%); color: #8fa08e; font-size: 0.85rem; font-weight: 600; pointer-events: none; z-index: 10; }
 .sparkle { position: absolute; width: 8px; height: 8px; background-color: var(--text-primary); border-radius: 50%; pointer-events: none; z-index: 5; animation: fadeOutSparkle 0.5s forwards ease-out; }
 @keyframes fadeOutSparkle { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.1); opacity: 0; } }
 .sandbox-companion { position: absolute; font-size: 1.8rem; user-select: none; transform: translate(-50%, -50%); z-index: 6; }
 
-/* ANIMATION ENGINE: WHEEL SPINS BUT HAMSTER FLAT BOBS ONLY */
+/* ANIMATION TRACK CORES */
 .wheel-outer-bounding-box { 
     width: 90px; 
     height: 90px; 
@@ -236,9 +229,7 @@ body {
     0% { transform: translateX(-50%) translateY(0px); }
     100% { transform: translateX(-50%) translateY(-3px); }
 }
-.pixel-hamster-vector-graphic { image-rendering: pixelated; }
 
-/* Chore Selection Lists Layout Node */
 .chore-logging-tracker-box { display: flex; flex-direction: column; gap: 8px; }
 .chore-summary-readout { font-size: 0.9rem; text-align: center; font-weight: 600; margin-bottom: 2px; }
 .chore-control-select-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; }
@@ -256,7 +247,6 @@ body {
     white-space: nowrap;
 }
 
-/* Native HTML5 Audio Deck Sheet Styles */
 .audio-player-workspace-body { display: flex; flex-direction: column; gap: 10px; background-color: #fafdfa; }
 .audio-station-meta-row { display: flex; align-items: center; gap: 12px; }
 .station-avatar-icon { font-size: 2rem; background: var(--sage-green); padding: 6px; border: 2px solid var(--border-charcoal); border-radius: 8px; }
@@ -266,7 +256,6 @@ body {
 .audio-control-action-row { display: flex; align-items: center; gap: 12px; }
 .clean-range-slider { flex: 1; accent-color: var(--border-charcoal); cursor: pointer; }
 
-/* Dynamic Font Previews Layout Panels */
 .kaomoji-grid-layout { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
 .kaomoji-pill { background: white; border: 2px solid var(--border-charcoal); border-radius: 20px; padding: 4px 10px; font-size: 0.8rem; cursor: pointer; user-select: none; }
 .font-previewer-input-column { display: flex; flex-direction: column; gap: 6px; }
@@ -275,7 +264,6 @@ body {
 .style-script { font-family: serif; font-style: italic; font-weight: 700; }
 .style-gothic { font-family: monospace; font-weight: 700; }
 
-/* System Activity Log History Framework Box */
 .history-scroll-viewport-box { height: 120px; background-color: #fafafa; padding: 10px; overflow-y: scroll; display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.8rem; }
 .history-log-item-row { padding: 2px 6px; border-left: 4px solid var(--border-charcoal); background-color: #f3f4f3; border-radius: 0 4px 4px 0; font-weight: 600; text-align: left; }
 .history-empty-placeholder { color: var(--text-muted); font-style: italic; text-align: center; margin-top: 35px; }
