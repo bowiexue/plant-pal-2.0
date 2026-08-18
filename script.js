@@ -36,7 +36,7 @@ const genotypeAestheticProfiles = [
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝓈𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
@@ -45,24 +45,18 @@ const genotypeAestheticProfiles = [
     }
 ];
 
-// --- ✨ NO EXTERNAL LINKS: OFFLINE SYNTHESIZER AUDIO MELODY ARRAYS ENGINE MATRIX ✨ ---
-const synthTrackPresetsMemoryStore = [
-    { title: "Calm Study Chords", genre: "Offline Synth Melodies / 100% Code Generated", notes: [261.63, 329.63, 392.00, 523.25, 392.00, 329.63], type: "sine" },
-    { title: "Upbeat Cozy Café Rhythm", genre: "Cheerful 8-Bit Pixel Square Waves", notes: [293.66, 349.23, 440.00, 587.33, 440.00, 349.23], type: "square" },
-    { title: "Deep Space Ambient Drone", genre: "Low Frequency Cosmical Triangle Waves", notes: [196.00, 220.00, 261.63, 196.00, 146.83, 164.81], type: "triangle" }
+// --- 📻 ✨ FOUR STABLE NON-YOUTUBE INTERNET MUSIC RADIO FEEDS CORES ✨ ---
+const broadcastStationProfiles = [
+    { title: "Lofi Study Beats", genre: "Chillhop / Focus Work / 24-7 Feed", url: "https://streamaudio.de" },
+    { title: "Coffee Lounge Smooth Jazz", genre: "Soft Acoustic / Vintage Lounge", url: "https://bossanovainternet.com" },
+    { title: "Pixel Arcade Retro Synth", genre: "Synthwave / Arcade / 8-Bit Chiptunes", url: "https://scorpius.stream" },
+    { title: "Cozy Rain & Thunder Storms", genre: "Nature ASMR / Soundscapes White Noise", url: "https://workers.dev" }
 ];
-
-// Browser Audio Hardware Thread Pointer Ref
-let localBrowserAudioContextInstance = null;
-let currentSynthLoopIntervalThread = null;
-let syntheticMasterVolumeGainNode = null;
-let activePlayingTrackIndex = 0;
-let isAudioSynthCurrentlyPlaying = false;
 
 const stringFontTransformationMappers = {
     styleScript: {
         'A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒬','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵',
-        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
+        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'🇺🇸','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
     },
     styleGothic: {
         'A':'𝔄','B':'𝔅','C':'ℭ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'𝔏','I':'ℑ','J':'𝔍','K':'𝔎','L':'𝔏','M':'𝔐','N':'𝔓','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'  ',
@@ -75,6 +69,7 @@ const playgroundCreatures = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐣", "�
 window.addEventListener('DOMContentLoaded', () => {
     synchronizeLocalStorageData();
     executeLiveTimestampClockSync();
+    initializeRadioStreamEndpointSource();
     handlePlantGenotypeChange();
     syncChecklistDOMDisplay();
     setupSandboxEngine();
@@ -95,32 +90,32 @@ function renderProceduralPixelSproutSVG() {
     let stage = workspaceState.plantStage;
     let type = workspaceState.plantTypeIndex;
     
-    if (type === 0) { // Thick Sprout Core Vector Process
+    if (type === 0) { // Thick Sprout Core Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
         if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
         if (stage >= 7) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
-    } else if (type === 1) { // Pixie Fern Core Vector Process
+    } else if (type === 1) { // Pixie Fern Core Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 7) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
-    } else if (type === 2) { // Cosmic Clover Core Vector Process
+    } else if (type === 2) { // Cosmic Clover Core Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#704d9c" />`;
         if (stage >= 4) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
         if (stage >= 7) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
-    } else if (type === 3) { // Ruby Succulent Core Vector Process
+    } else if (type === 3) { // Ruby Succulent Core Processing
         if (stage >= 1) plantHTML += `<rect x="14" y="22" width="4" height="2" fill="#d96262" />`;
         if (stage >= 4) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
-    } else if (type === 4) { // Bonsai Buddy Core Vector Process
+    } else if (type === 4) { // Bonsai Buddy Core Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#7a5230" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
         if (stage >= 10) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
-    } else if (type === 5) { // Lunar Moss Core Vector Process
+    } else if (type === 5) { // Lunar Moss Core Processing
         if (stage >= 1) plantHTML += `<rect x="12" y="23" width="8" height="1" fill="#444163" />`;
         if (stage >= 4) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
         if (stage >= 7) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
@@ -160,7 +155,7 @@ window.handlePlantGenotypeChange = function() {
     document.documentElement.style.setProperty('--sage-green', profile.primary);
     document.documentElement.style.setProperty('--peach-cream', profile.shadow);
 
-    logWorkspaceEvent(`Environment morphed to: <strong>${profile.name} Framework</strong>`);
+    logWorkspaceEvent(`Environment mutated to: <strong>${profile.name} Framework</strong>`);
     renderProceduralPixelSproutSVG();
     populateKaomojisPack(profile.kaomojis);
     runFontTransformationPreviews();
@@ -264,7 +259,7 @@ window.processTaskCompletionTrigger = function(idx, checkbox) {
             workspaceState.completedTaskCount = 0;
             if (workspaceState.plantStage < 10) {
                 workspaceState.plantStage++;
-                logWorkspaceEvent(`🎉 <strong>GROWTH RANK BOOST!</strong> Flora advanced to Stage <strong>${workspaceState.plantStage} / 10</strong>!`);
+                logWorkspaceEvent(`🎉 <strong>GROWTH RANK BOOST!</strong> Flora advanced to: Stage <strong>${workspaceState.plantStage} / 10</strong>!`);
             }
             renderProceduralPixelSproutSVG();
             const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
@@ -322,21 +317,28 @@ window.adjustChoreGoalTarget = function() {
     logWorkspaceEvent(`Chore goal requirement updated to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
 };
 
+// ✨ MECHANICAL ADJUSTMENT: SEPARATED SELECTION ROUTINES FOR WHEEL VS HAMSTER BODY CORES ✨
 window.executeChoreTimeLog = function() {
     const mins = parseInt(document.getElementById('log-select').value);
-    const wheel = document.getElementById('wheel-element');
+    const wheelTrackNode = document.getElementById('wheel-element');
+    const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
     
     workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
     
-    wheel.classList.add('spinning');
+    // 1. Dashed circular boundary turns completely around
+    if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
+    // 2. Hamster body sprite strictly locks position and bobs up and down on feet lines
+    if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
+    
     status.innerText = "RUNNING";
     status.className = "status-badge state-active";
     logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of active chores.`);
     
     setTimeout(() => {
-        wheel.classList.remove('spinning');
+        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
         status.innerText = "IDLE";
         status.className = "status-badge state-idle";
     }, 1200);
@@ -345,105 +347,70 @@ window.executeChoreTimeLog = function() {
 window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
     updateChoreTrackingDashboardUI();
-    const wheel = document.getElementById('wheel-element');
+    const wheelTrackNode = document.getElementById('wheel-element');
+    const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
-    if (wheel) wheel.classList.remove('spinning');
+    
+    if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+    if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
     if (status) { status.innerText = "IDLE"; status.className = "status-badge state-idle"; }
     logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
 };
 
-// --- 📻 ✨ NATIVE BROWSER AUDIO HARDWARE SYNTHESIZER LOOPS FEATURE MECHANICS ✨ ---
-function createAudioHardwareNodesSafely() {
-    if (!localBrowserAudioContextInstance) {
-        localBrowserAudioContextInstance = new (window.AudioContext || window.webkitAudioContext)();
-        syntheticMasterVolumeGainNode = localBrowserAudioContextInstance.createGain();
-        syntheticMasterVolumeGainNode.gain.value = 0.15; // Balanced line baseline volume
-        syntheticMasterVolumeGainNode.connect(localBrowserAudioContextInstance.destination);
+// --- 📻 FIXED MULTI-STATION NATIVE AUDIO CONTROLLERS ---
+function initializeRadioStreamEndpointSource() {
+    const audioStream = document.getElementById('lofi-stream');
+    if (audioStream) {
+        audioStream.volume = 0.5;
+        audioStream.src = broadcastStationProfiles[0].url; // Pre-loads Lofi Beats default link
     }
 }
 
 window.switchRadioStationChannel = function() {
-    activePlayingTrackIndex = parseInt(document.getElementById('radio-channel-select').value);
-    const currentTrack = synthTrackPresetsMemoryStore[activePlayingTrackIndex];
+    const selectorIndex = parseInt(document.getElementById('radio-channel-select').value);
+    const station = broadcastStationProfiles[selectorIndex];
+    const audioStream = document.getElementById('lofi-stream');
     
-    document.getElementById('radio-station-title').innerText = currentTrack.title;
-    document.getElementById('radio-station-genre').innerText = currentTrack.genre;
+    document.getElementById('radio-station-title').innerText = station.title;
+    document.getElementById('radio-station-genre').innerText = station.genre;
     
-    logWorkspaceEvent(`Synthesizer waveform set to: <strong>${currentTrack.title}</strong>`);
+    const wasPlaying = !audioStream.paused;
+    audioStream.src = station.url;
+    audioStream.load();
     
-    if (isAudioSynthCurrentlyPlaying) {
-        stopSynthMelodyLoopEngine();
-        startSynthMelodyLoopEngine();
+    if (wasPlaying) {
+        audioStream.play().catch(err => console.log("Stream hot-swap note ignored.", err));
     }
+    logWorkspaceEvent(`Radio tuners shifted to channel: <strong>${station.title}</strong>`);
 };
 
 window.toggleLoFiRadioPlayback = function() {
+    const audioStream = document.getElementById('lofi-stream');
     const btn = document.getElementById('play-audio-btn');
-    const badge = document.getElementById('audio-status');
-    const avatar = document.getElementById('synth-visual-node');
+    const statusBadge = document.getElementById('audio-status');
     
-    createAudioHardwareNodesSafely();
-    
-    if (!isAudioSynthCurrentlyPlaying) {
-        isAudioSynthCurrentlyPlaying = true;
-        btn.innerText = "⏸️ Pause Synth";
-        badge.innerText = "SYNTH ACTIVE";
-        badge.className = "status-badge state-active";
-        avatar.classList.add('playing');
-        startSynthMelodyLoopEngine();
-        logWorkspaceEvent("📻 Offline 8-Bit audio melody oscillator initialized successfully.");
+    if (audioStream.paused) {
+        audioStream.play().then(() => {
+            btn.innerText = "⏸️ Pause Radio";
+            statusBadge.innerText = "LIVE STREAM";
+            statusBadge.className = "status-badge state-active";
+            logWorkspaceEvent("📻 Ambient Live Radio deck connection established online.");
+        }).catch(err => {
+            console.error("Audio block", err);
+            logWorkspaceEvent("⚠️ Audio stream requires clicking inside the page frame directly first.");
+        });
     } else {
-        isAudioSynthCurrentlyPlaying = false;
-        btn.innerText = "▶️ Play Synth";
-        badge.innerText = "MUTED";
-        badge.className = "status-badge state-idle";
-        avatar.classList.remove('playing');
-        stopSynthMelodyLoopEngine();
-        logWorkspaceEvent("📻 Offline synthesizer audio waves silenced.");
+        audioStream.pause();
+        btn.innerText = "▶️ Play Radio";
+        statusBadge.innerText = "MUTED";
+        statusBadge.className = "status-badge state-idle";
+        logWorkspaceEvent("📻 Ambient Audio streaming feed paused.");
     }
 };
 
-function startSynthMelodyLoopEngine() {
-    let internalNodeCounter = 0;
-    const currentTrack = synthTrackPresetsMemoryStore[activePlayingTrackIndex];
-    
-    currentSynthLoopIntervalThread = setInterval(() => {
-        if (!isAudioSynthCurrentlyPlaying || !localBrowserAudioContextInstance) return;
-        
-        let freq = currentTrack.notes[internalNodeCounter % currentTrack.notes.length];
-        
-        // Formulates pure dynamic sound wave oscillator hardware ticks
-        let oscillatorNode = localBrowserAudioContextInstance.createOscillator();
-        let individualNoteGain = localBrowserAudioContextInstance.createGain();
-        
-        oscillatorNode.type = currentTrack.type;
-        oscillatorNode.frequency.value = freq;
-        
-        individualNoteGain.gain.setValueAtTime(1, localBrowserAudioContextInstance.currentTime);
-        // Soft audio decline trail to sound smooth
-        individualNoteGain.gain.exponentialRampToValueAtTime(0.001, localBrowserAudioContextInstance.currentTime + 0.4);
-        
-        oscillatorNode.connect(individualNoteGain);
-        individualNoteGain.connect(syntheticMasterVolumeGainNode);
-        
-        oscillatorNode.start();
-        oscillatorNode.stop(localBrowserAudioContextInstance.currentTime + 0.4);
-        
-        internalNodeCounter++;
-    }, 500); // Speeds tempo ticks rhythmically
-}
-
-function stopSynthMelodyLoopEngine() {
-    if (currentSynthLoopIntervalThread) {
-        clearInterval(currentSynthLoopIntervalThread);
-        currentSynthLoopIntervalThread = null;
-    }
-}
-
 window.adjustLoFiRadioVolume = function(volumeValue) {
-    if (syntheticMasterVolumeGainNode && localBrowserAudioContextInstance) {
-        syntheticMasterVolumeGainNode.gain.setValueAtTime(volumeValue, localBrowserAudioContextInstance.currentTime);
-    }
+    const audioStream = document.getElementById('lofi-stream');
+    if (audioStream) audioStream.volume = volumeValue;
 };
 
 function refreshNumericalTimerDisplayReadout() {
@@ -533,5 +500,5 @@ window.clearWorkspaceLogStorage = function() {
     syncChecklistDOMDisplay();
     updateChoreTrackingDashboardUI();
     document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());
-logWorkspaceEvent("Storage system state wiped to baseline profiles.");
+    logWorkspaceEvent("Storage system state wiped to baseline profiles.");
 };
