@@ -32,7 +32,6 @@
                         <h2>🌱 Ecosystem Workspace Garden</h2>
                         <span id="level-badge" class="level-indicator-badge">Stage 1 / 5</span>
                     </div>
-                    
                     <div class="garden-workspace-body">
                         <div class="plant-viewport-frame">
                             <svg id="plant-svg" viewBox="0 0 32 32" width="100%" height="100%"></svg>
@@ -83,40 +82,19 @@
                     </div>
                 </div>
 
-                <!-- Bypassed Audio Deck -->
+                <!-- Spotify Web Player Integration Card -->
                 <div class="workspace-card theme-linen" id="audio-card">
                     <div class="card-header-bar">
-                        <h2>📻 Multi-Station Ambient Radio Deck</h2>
-                        <span id="audio-status" class="status-badge state-idle">MUTED</span>
+                        <h2>🎵 Connected Spotify Focus Portal</h2>
+                        <span id="audio-status" class="status-badge state-active">READY</span>
                     </div>
                     <div class="audio-player-workspace-body">
-                        <div class="audio-station-meta-row">
-                            <div class="station-avatar-icon">🎵</div>
-                            <div class="station-details-block">
-                                <p class="station-title" id="radio-station-title">Lofi Chill Beats</p>
-                                <p class="station-genre" id="radio-station-genre">Instrumental Focus Stream</p>
-                            </div>
+                        <div class="spotify-embed-container">
+                            <iframe src="https://spotify.com" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                         </div>
-                        
-                        <div class="audio-channel-selector-row">
-                            <label for="radio-channel-select">🎵 Change Station:</label>
-                            <select id="radio-channel-select" class="clean-select-menu" onchange="switchRadioStationChannel()">
-                                <option value="0">🎯 Lofi Chill Beats (Aesthetic Focus)</option>
-                                <option value="1">☕ Smooth Piano Loops (Calm Ambient)</option>
-                                <option value="2">👾 Vintage Chiptune 8-Bit Beats</option>
-                                <option value="3">🌧️ Ambient Deep Space Drone</option>
-                            </select>
-                        </div>
-
-                        <div class="audio-control-action-row">
-                            <button class="action-btn btn-primary" id="play-audio-btn" onclick="toggleLoFiRadioPlayback()">▶️ Play Radio</button>
-                            <input type="range" id="volume-slider" class="clean-range-slider" min="0" max="1" step="0.1" value="0.5" oninput="adjustLoFiRadioVolume(this.value)">
-                        </div>
-                        <audio id="lofi-stream" loop></audio>
                     </div>
                 </div>
             </div>
-
             <!-- RIGHT COLUMN: Checklist, Hamster Wheel, Font Tools -->
             <div class="layout-column right-side-panel">
                 <!-- Checklist Panel -->
@@ -134,7 +112,7 @@
                     </div>
                 </div>
 
-                <!-- Hamster Runner & Custom Dual Controls Input Node -->
+                <!-- Hamster Runner & Custom Dual Controls -->
                 <div class="workspace-card theme-peach" id="hamster-card">
                     <div class="card-header-bar">
                         <h2>🐹 Hamster Runner Node</h2>
@@ -157,6 +135,74 @@
                         <div class="chore-logging-tracker-box">
                             <p class="chore-summary-readout">Chore Track: <strong id="chore-current">0</strong>m / <strong id="chore-goal">15</strong>m</p>
                             
-                            <!-- Target Goal Dual Row -->
                             <div class="chore-control-select-row">
-Target Goal:15 mins30 mins45 mins60 minsCustomLog Minutes:5 mins15 mins30 minsCustom⚡ Log ChoresReset Chores✨ Font Variance Engine & KaomojisPlant Pal𝒫𝓁𝒶𝓃𝓉 𝒫𝒶𝓁𝔓𝔩𝔞𝔫𝔱 𝔓𝔞𝔩📔 Workspace Activity Log Registry⚠️ Wipe StorageNo logged activities present. System standby.Copied to clipboard!
+                                <label>Target Goal:</label>
+                                <div class="dual-input-wrapper">
+                                    <select id="goal-select" class="clean-select-menu" onchange="syncGoalDropdownToInput(this)">
+                                        <option value="15">15 mins</option>
+                                        <option value="30">30 mins</option>
+                                        <option value="45">45 mins</option>
+                                        <option value="60">60 mins</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                    <input type="number" id="goal-custom-input" class="clean-text-input small-num-input" value="15" min="1" oninput="syncGoalInputToDropdown(this)">
+                                </div>
+                            </div>
+                            
+                            <div class="chore-control-select-row">
+                                <label>Log Minutes:</label>
+                                <div class="dual-input-wrapper">
+                                    <select id="log-select" class="clean-select-menu" onchange="syncLogDropdownToInput(this)">
+                                        <option value="5">5 mins</option>
+                                        <option value="15">15 mins</option>
+                                        <option value="30">30 mins</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                    <input type="number" id="chore-custom-input" class="clean-text-input small-num-input" value="5" min="1" oninput="syncLogInputToDropdown(this)">
+                                </div>
+                            </div>
+                            
+                            <div class="chore-buttons-row">
+                                <button class="action-btn btn-dark" onclick="executeChoreTimeLog()">⚡ Log Chores</button>
+                                <button class="action-btn btn-secondary" onclick="resetChoreTracker()">Reset Chores</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Font Preview Section -->
+                <div class="workspace-card theme-lavender" id="font-card">
+                    <div class="card-header-bar">
+                        <h2>✨ Font Variance Engine & Kaomojis</h2>
+                    </div>
+                    <div class="fonts-workspace-body">
+                        <div class="kaomoji-quick-pack-wrapper">
+                            <div class="kaomoji-grid-layout"></div>
+                        </div>
+                        <div class="font-previewer-input-column">
+                            <input type="text" id="font-input" class="clean-text-input" value="Plant Pal" oninput="runFontTransformationPreviews()">
+                            <div class="font-rendered-preview-box style-standard" id="preview-1" onclick="copyStringToClipboard(this)">Plant Pal</div>
+                            <div class="font-rendered-preview-box style-script" id="preview-2" onclick="copyStringToClipboard(this)">𝒫𝓁𝒶𝓃𝓉 𝒫𝒶𝓁</div>
+                            <div class="font-rendered-preview-box style-gothic" id="preview-3" onclick="copyStringToClipboard(this)">𝔓𝔩𝔞𝔫𝔱 𝔓𝔞𝔩</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="workspace-card theme-dark history-footer-card">
+            <div class="card-header-bar">
+                <h2>📔 Workspace Activity Log Registry</h2>
+                <button class="action-btn btn-danger btn-sm" onclick="clearWorkspaceLogStorage()">⚠️ Wipe Storage</button>
+            </div>
+            <div class="history-scroll-viewport-box" id="history-log-box">
+                <div class="history-empty-placeholder">No logged activities present. System standby.</div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="toast-popup-notification" id="toast-element">Copied to clipboard!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
