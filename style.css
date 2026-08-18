@@ -282,7 +282,7 @@ body {
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
 
-/* ✨ Playground Area Styling Rules ✨ */
+/* ✨ High-Visibility Sandbox Styling ✨ */
 .sandbox-area {
     height: 130px;
     background-color: #fffefa;
@@ -297,20 +297,22 @@ body {
     text-align: center;
     top: 50%;
     transform: translateY(-50%);
-    color: #b0bdae;
+    color: #8fa08e;
     font-size: 0.85rem;
     pointer-events: none;
     font-weight: 600;
+    z-index: 10;
 }
 
 .sparkle {
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: #fae1d4;
+    width: 8px;
+    height: 8px;
+    background-color: #d97706; /* Highly visible dark amber orange tone */
     border-radius: 50%;
     pointer-events: none;
-    animation: fadeOutSparkle 0.4s forwards ease-out;
+    z-index: 5;
+    animation: fadeOutSparkle 0.5s forwards ease-out;
 }
 
 @keyframes fadeOutSparkle {
@@ -323,6 +325,7 @@ body {
     font-size: 1.8rem;
     user-select: none;
     transform: translate(-50%, -50%);
+    z-index: 6;
 }
 
 /* Hamster Wheel Layout Configs */
@@ -394,7 +397,7 @@ body {
 .style-script { font-family: serif; font-style: italic; font-weight: 700; }
 .style-gothic { font-family: monospace; font-weight: 700; }
 
-/* Logs Viewport calculations layout framework */
+/* Logs Viewport layout */
 .history-footer-card { margin-top: 10px; }
 .history-scroll-viewport-box {
     height: 130px;
