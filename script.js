@@ -16,7 +16,7 @@ const genotypeAestheticProfiles = [
     {
         name: "Thick Sprout", bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#eaedea",
         kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"],
-        fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾𝒸 𝒮𝓅𝓇ℴ𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
+        fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾𝒸 𝒮𝓅𝓇ℴ...𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
     },
     {
         name: "Pixie Fern", bg: "#edf5f0", primary: "#b3cbb4", shadow: "#dae5db",
@@ -31,12 +31,12 @@ const genotypeAestheticProfiles = [
     {
         name: "Ruby Succulent", bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
         kaomojis: ["(🌸•‿•)", "(🪷´▿`)", "(๑>ᴗ<๑)💕", "(🌵`･ω･´)", "(☀️_☀️)🌵"],
-        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩ℯ𝓃𝔱" }
+        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩ℯ𝓃𝓉" }
     },
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞_𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
@@ -45,7 +45,7 @@ const genotypeAestheticProfiles = [
     }
 ];
 
-// --- 📻 ✨ BROADCAST STREAMS (CORS SECURE AUDIO FEEDS) ✨ ---
+// --- 📻 SECURITY DIRECT STREAMS MATRIX ---
 const broadcastStationProfiles = [
     { title: "Lofi Chill Beats", genre: "Chillhop / Instrumental Focus Stream", url: "https://syntheticfm.com" },
     { title: "Smooth Piano Loops", genre: "Soft Instrumental / Academic Calm Study", url: "https://wcrb.org" },
@@ -147,11 +147,9 @@ function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) 
 As your node grows to Stage ${stageLevel}/10, its expanded structural roots optimize water absorption and fortify organic cellular links. This baseline growth provides a calming visual focus point that balances focus timers with physical task completions. Keep working through your checklist targets to expand branch frameworks and unlock advanced biological nodes!`;
 }
 
-// ✨ NEW PROGRESS WIPE OPTION: Completely resets sprout layers to stage 1 outline! ✨
 window.wipeAllPlantProgressMemory = function() {
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
-    
     renderProceduralPixelSproutSVG();
     
     const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
@@ -205,11 +203,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v12', JSON.stringify(dataObj));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v13', JSON.stringify(dataObj));
 }
 
 function synchronizeLocalStorageData() {
-    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v12');
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v13');
     if (saved) {
         try {
             const data = JSON.parse(saved);
@@ -332,19 +330,57 @@ function updateChoreTrackingDashboardUI() {
     document.getElementById('chore-goal').innerText = workspaceState.choreGoalTarget;
 }
 
-window.adjustChoreGoalTarget = function() {
-    workspaceState.choreGoalTarget = parseInt(document.getElementById('goal-select').value);
-    updateChoreTrackingDashboardUI();
-    logWorkspaceEvent(`Chore goal requirement updated to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
+// ✨ UPDATED DUAL GOAL ALIGNMENT: Keeps dropdown selection and text typing synced perfectly ✨
+window.syncGoalDropdownToInput = function(dropdownEl) {
+    const customInput = document.getElementById('goal-custom-input');
+    if (dropdownEl.value !== "custom") {
+        customInput.value = dropdownEl.value;
+        workspaceState.choreGoalTarget = parseInt(dropdownEl.value);
+        updateChoreTrackingDashboardUI();
+        logWorkspaceEvent(`Chore goal requirement updated to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
+    }
 };
 
-// ✨ MUTATED ROUTINE: Reads typed text input block instead of fixed dropdown menus ✨
+window.syncGoalInputToDropdown = function(inputEl) {
+    let val = parseInt(inputEl.value);
+    if (isNaN(val) || val <= 0) val = 15;
+    workspaceState.choreGoalTarget = val;
+    updateChoreTrackingDashboardUI();
+    
+    const select = document.getElementById('goal-select');
+    if (["15", "30", "45", "60"].includes(val.toString())) {
+        select.value = val.toString();
+    } else {
+        select.value = "custom";
+    }
+};
+
+// ✨ UPDATED DUAL LOG ALIGNMENT: Keeps dropdown selection and text typing synced perfectly ✨
+window.syncLogDropdownToInput = function(dropdownEl) {
+    const customInput = document.getElementById('chore-custom-input');
+    if (dropdownEl.value !== "custom") {
+        customInput.value = dropdownEl.value;
+    }
+};
+
+window.syncLogInputToDropdown = function(inputEl) {
+    let val = parseInt(inputEl.value);
+    if (isNaN(val) || val <= 0) val = 5;
+    
+    const select = document.getElementById('log-select');
+    if (["5", "15", "30"].includes(val.toString())) {
+        select.value = val.toString();
+    } else {
+        select.value = "custom";
+    }
+};
+
 window.executeChoreTimeLog = function() {
     const customInputNode = document.getElementById('chore-custom-input');
     let mins = parseInt(customInputNode.value);
     
     if (isNaN(mins) || mins <= 0) {
-        mins = 5; // Safe default guard link
+        mins = 5; 
     }
     
     const wheelTrackNode = document.getElementById('wheel-element');
@@ -387,6 +423,7 @@ window.resetChoreTracker = function() {
 };
 
 // --- 📻 SECURITY BYPASSED LIVE STREAM TUNER ENGINE ---
+// ✨ FIX: Set default initialization directly to valid matrix index index instead of .url object error pointer ✨
 function initializeRadioStreamEndpointSource() {
     const audioStream = document.getElementById('lofi-stream');
     if (audioStream) {
@@ -426,7 +463,7 @@ window.toggleLoFiRadioPlayback = function() {
             logWorkspaceEvent("📻 Ambient Live Radio deck connection established online.");
         }).catch(err => {
             console.error("Audio block caught", err);
-            logWorkspaceEvent("⚠️ Interactive audio trigger requires explicit webpage focus selection first.");
+            logWorkspaceEvent("⚠️ Click anywhere inside the page first, then press Play Radio!");
         });
     } else {
         audioStream.pause();
@@ -523,11 +560,4 @@ window.clearWorkspaceLogStorage = function() {
     localStorage.removeItem('sproutOS_calibratedDataMemory_v12');
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
-    workspaceState.choreMinutesAccumulated = 0;
-    document.getElementById('history-log-box').innerHTML = '<div class="history-empty-placeholder">No logged activities present. System standby.</div>';
-    renderProceduralPixelSproutSVG();
-    syncChecklistDOMDisplay();
-    updateChoreTrackingDashboardUI();
-    document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());
-    logWorkspaceEvent("Storage system state wiped to baseline profiles.");
-};
+workspaceState.choreMinutesAccumulated = 0;document.getElementById('history-log-box').innerHTML = 'No logged activities present. System standby.';renderProceduralPixelSproutSVG();syncChecklistDOMDisplay();updateChoreTrackingDashboardUI();document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());logWorkspaceEvent("Storage system state wiped to baseline profiles.");};
