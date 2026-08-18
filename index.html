@@ -24,11 +24,11 @@
         <!-- Main Structured Dashboard Layout -->
         <main class="dashboard-layout-grid">
             
-            <!-- Left Primary Column: Garden Ecosystem Node -->
+            <!-- Left Primary Column: Garden Ecosystem Node & Sandbox -->
             <div class="layout-column main-panel">
                 <!-- Ecosystem Core Card -->
-                <div class="workspace-card theme-accent-card" id="main-garden-card">
-                    <div class="card-header-bar" id="garden-header">
+                <div class="workspace-card theme-sage" id="garden-card">
+                    <div class="card-header-bar">
                         <h2>🌱 Ecosystem Workspace Garden</h2>
                         <span id="level-badge" class="level-indicator-badge">Stage 1 / 10</span>
                     </div>
@@ -55,14 +55,14 @@
                                 <button class="action-btn btn-secondary" onclick="executeTimerReset()">Reset</button>
                             </div>
                             <div class="seedling-dropdown-row">
-                                <label for="plant-select">Target Profile:</label>
+                                <label for="plant-select">Target Genotype:</label>
                                 <select id="plant-select" class="clean-select-menu" onchange="handlePlantGenotypeChange()">
-                                    <option value="0">Thick Sprout (Sage)</option>
-                                    <option value="1">Pixie Fern (Forest)</option>
-                                    <option value="2">Cosmic Clover (Galaxy)</option>
-                                    <option value="3">Ruby Succulent (Desert)</option>
-                                    <option value="4">Bonsai Buddy (Zen)</option>
-                                    <option value="5">Lunar Moss (Neon)</option>
+                                    <option value="0">Thick Sprout</option>
+                                    <option value="1">Pixie Fern</option>
+                                    <option value="2">Cosmic Clover</option>
+                                    <option value="3">Ruby Succulent</option>
+                                    <option value="4">Bonsai Buddy</option>
+                                    <option value="5">Lunar Moss</option>
                                 </select>
                             </div>
                         </div>
@@ -72,30 +72,14 @@
                     <div class="ecosystem-impact-profile-box">
                         <h3>📋 Botanical Ecosystem Impact Statement</h3>
                         <p id="ecosystem-paragraph-text">
-                            The current seedling structure anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture level balances inside the workstation.
+                            The current seedling structure anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances inside the workstation.
                         </p>
                     </div>
                 </div>
-                <!-- Connected Task Checklist -->
-                <div class="workspace-card theme-linen">
-                    <div class="card-header-bar">
-                        <h2>📝 Connected Tasks Check-node</h2>
-                        <span class="level-indicator-badge"><span id="done-counter">0</span> / 3 Tasks</span>
-                    </div>
-                    <div class="checklist-workspace-body">
-                        <div class="checklist-interactive-input-row">
-                            <input type="text" id="new-task-input" class="clean-text-input" placeholder="Type a new workspace task target...">
-                            <button class="action-btn btn-success" onclick="createNewTaskItem()">Add Task</button>
-                        </div>
-                        <ul class="task-list-node-container" id="task-list-container">
-                            <!-- Injected dynamically by logic loops -->
-                        </ul>
-                    </div>
-                </div>
 
-                <!-- Interactive Sandbox Playground Area -->
-                <div class="workspace-card theme-accent-card">
-                    <div class="card-header-bar" id="sandbox-header">
+                <!-- Interactive Cursor Sandbox Playground Area -->
+                <div class="workspace-card theme-sage sandbox-card" id="sandbox-card">
+                    <div class="card-header-bar">
                         <h2>✨ Interactive Sandbox Playground</h2>
                     </div>
                     <div class="sandbox-area" id="sandbox-container">
@@ -106,6 +90,22 @@
 
             <!-- Right Column: Secondary Utilities Sidecar -->
             <div class="layout-column side-panel">
+                <!-- Connected Task Checklist -->
+                <div class="workspace-card theme-linen" id="checklist-card">
+                    <div class="card-header-bar">
+                        <h2>📝 Connected Tasks Check-node</h2>
+                        <span class="level-indicator-badge"><span id="done-counter">0</span> / 3 Tasks</span>
+                    </div>
+                    <div class="checklist-workspace-body">
+                        <div class="checklist-interactive-input-row">
+                            <input type="text" id="new-task-input" class="clean-text-input" placeholder="Type a new workspace task target...">
+                            <button class="action-btn btn-success" onclick="createNewTaskItem()">Add Task</button>
+                        </div>
+                        <ul class="task-list-node-container" id="task-list-container">
+                            <!-- Injected dynamically by loop initialization logs -->
+                        </ul>
+                    </div>
+                </div>
                 <!-- Hamster Active Run Track Station -->
                 <div class="workspace-card theme-peach" id="hamster-card">
                     <div class="card-header-bar">
@@ -115,7 +115,6 @@
                     <div class="hamster-workspace-body">
                         <div class="wheel-outer-bounding-box">
                             <div class="mechanical-spinning-wheel" id="wheel-element">
-                                <!-- Pixel Art Hamster Vector Graphic -->
                                 <svg class="pixel-hamster-vector-graphic" viewBox="0 0 24 24" width="64" height="64">
                                     <path d="M5 4h2v2H5V4zm12 0h2v2h-2V4z" fill="#f4abb3"/>
                                     <path d="M4 6h16v2H4V6zm-1 2h18v10H3V8z" fill="#e0a385"/>
@@ -153,22 +152,45 @@
                     </div>
                 </div>
 
-                <!-- Font Transformation Sandbox engine -->
+                <!-- 📻 Lo-Fi Ambient Radio Player Deck Component Box -->
+                <div class="workspace-card theme-linen" id="audio-card">
+                    <div class="card-header-bar">
+                        <h2>📻 Lo-Fi Ambient Radio Station</h2>
+                        <span id="audio-status" class="status-badge state-idle">MUTED</span>
+                    </div>
+                    <div class="audio-player-workspace-body">
+                        <div class="audio-station-meta-row">
+                            <div class="station-avatar-icon">🎵</div>
+                            <div class="station-details-block">
+                                <p class="station-title">Synth Sprout FM</p>
+                                <p class="station-genre">Chillhop / Focus Beats / 24/7</p>
+                            </div>
+                        </div>
+                        <div class="audio-control-action-row">
+                            <button class="action-btn btn-primary" id="play-audio-btn" onclick="toggleLoFiRadioPlayback()">▶️ Play Radio</button>
+                            <input type="range" id="volume-slider" class="clean-range-slider" min="0" max="1" step="0.1" value="0.5" oninput="adjustLoFiRadioVolume(this.value)">
+                        </div>
+                        <!-- Hidden Audio Stream Endpoint Anchor -->
+                        <audio id="lofi-stream" loop src="https://workers.dev" crossorigin="anonymous"></audio>
+                    </div>
+                </div>
+
+                <!-- Font Transformation Sandbox Engine & Dynamic Kaomojis Pack -->
                 <div class="workspace-card theme-lavender" id="font-card">
                     <div class="card-header-bar">
-                        <h2 id="font-engine-title">✨ Font Variance Engine</h2>
+                        <h2>✨ Font Variance Engine & Kaomojis</h2>
                     </div>
                     <div class="fonts-workspace-body">
                         <div class="kaomoji-quick-pack-wrapper">
-                            <div class="kaomoji-grid-layout" id="kaomoji-container">
-                                <!-- Dynamic Kaomojis injected by profile script -->
+                            <div class="kaomoji-grid-layout">
+                                <!-- Re-populated automatically by state engine switchers -->
                             </div>
                         </div>
                         <div class="font-previewer-input-column">
                             <input type="text" id="font-input" class="clean-text-input" value="Plant Pal" oninput="runFontTransformationPreviews()">
                             <div class="font-rendered-preview-box style-standard" id="preview-1" onclick="copyStringToClipboard(this)">Plant Pal</div>
-                            <div class="font-rendered-preview-box style-custom-1" id="preview-2" onclick="copyStringToClipboard(this)">𝒫𝓁𝒶𝓃𝓉 𝒫𝒶𝓁</div>
-                            <div class="font-rendered-preview-box style-custom-2" id="preview-3" onclick="copyStringToClipboard(this)">𝔓𝔩𝔞𝔫𝔱 𝔓𝔞𝔩</div>
+                            <div class="font-rendered-preview-box style-script" id="preview-2" onclick="copyStringToClipboard(this)">𝒫𝓁𝒶𝓃𝓉 𝒫𝒶𝓁</div>
+                            <div class="font-rendered-preview-box style-gothic" id="preview-3" onclick="copyStringToClipboard(this)">𝔓𝔩𝔞𝔫𝔱 𝔓𝔞𝔩</div>
                         </div>
                     </div>
                 </div>
@@ -182,12 +204,12 @@
                 <button class="action-btn btn-danger btn-sm" onclick="clearWorkspaceLogStorage()">⚠️ Wipe Storage</button>
             </div>
             <div class="history-scroll-viewport-box" id="history-log-box">
-                <!-- Log streams appended here dynamically -->
+                <!-- Logs entry logs injected dynamically -->
             </div>
         </footer>
     </div>
 
-    <!-- Alert Clipboards notification box -->
+    <!-- Toast Notification Popup Alert -->
     <div class="toast-popup-notification" id="toast-element">Copied to clipboard!</div>
 
     <script src="script.js"></script>
