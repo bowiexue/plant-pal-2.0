@@ -129,22 +129,6 @@ body {
 .status-badge.state-active { background-color: #fca5a5; color: #b91c1c; }
 
 /* Elegant Pill-Shaped Control Interface Buttons */
-.btn {
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border: 2px solid var(--border-charcoal);
-    padding: 6px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    background: white;
-    transition: all 0.1s ease;
-}
-.btn.active {
-    background-color: var(--border-charcoal) !important;
-    color: white !important;
-}
-
 .action-btn {
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
@@ -189,11 +173,8 @@ body {
     justify-content: center;
 }
 
-#plant-svg {
-    image-rendering: pixelated; /* Forces absolute rendering sharp pixel clarity boundaries */
-}
+#plant-svg { image-rendering: pixelated; }
 
-/* Proportional Subnode Layout Setup Elements */
 .focus-timer-subnode {
     flex: 1;
     display: flex;
@@ -213,12 +194,7 @@ body {
     line-height: 1;
 }
 
-.timer-preset-row {
-    display: flex;
-    gap: 4px;
-    justify-content: space-between;
-}
-
+.timer-preset-row { display: flex; gap: 4px; justify-content: space-between; }
 .preset-btn {
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
@@ -230,18 +206,10 @@ body {
     cursor: pointer;
     background: white;
 }
-.preset-btn.active {
-    background-color: var(--sage-green);
-    font-weight: 700;
-}
+.preset-btn.active { background-color: var(--sage-green); font-weight: 700; }
 
-.timer-action-row {
-    display: flex;
-    gap: 8px;
-}
-.timer-action-row button {
-    flex: 1;
-}
+.timer-action-row { display: flex; gap: 8px; }
+.timer-action-row button { flex: 1; }
 
 .seedling-dropdown-row {
     display: flex;
@@ -263,27 +231,16 @@ body {
     flex: 1;
 }
 
-/* Proportional Paragraph Box Injection Rule bounds */
 .ecosystem-impact-profile-box {
     border-top: 2.5px dashed var(--border-charcoal);
     padding: 14px 18px;
     background-color: #fbfcfb;
 }
 
-.ecosystem-impact-profile-box h3 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: var(--text-primary);
-}
+.ecosystem-impact-profile-box h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; color: var(--text-primary); }
+.ecosystem-impact-profile-box p { font-size: 0.85rem; color: var(--text-muted); text-align: justify; }
 
-.ecosystem-impact-profile-box p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    text-align: justify;
-}
-
-/* Checklist Panel Structure rules */
+/* Checklist Panel Structure */
 .checklist-workspace-body {
     padding: 16px;
     display: flex;
@@ -291,11 +248,7 @@ body {
     gap: 12px;
 }
 
-.checklist-interactive-input-row {
-    display: flex;
-    gap: 8px;
-}
-
+.checklist-interactive-input-row { display: flex; gap: 8px; }
 .clean-text-input {
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
@@ -326,19 +279,53 @@ body {
     border-radius: 8px;
 }
 
-.task-item-left-block {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
+.task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
+
+/* ✨ Playground Area Styling Rules ✨ */
+.sandbox-area {
+    height: 130px;
+    background-color: #fffefa;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
 }
 
-.task-item-row-node.completed span {
-    text-decoration: line-through;
-    color: #9ca3af;
+.sandbox-hint {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b0bdae;
+    font-size: 0.85rem;
+    pointer-events: none;
+    font-weight: 600;
 }
 
-/* Hamster Wheel Interface Rules */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #fae1d4;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fadeOutSparkle 0.4s forwards ease-out;
+}
+
+@keyframes fadeOutSparkle {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.1); opacity: 0; }
+}
+
+.sandbox-companion {
+    position: absolute;
+    font-size: 1.8rem;
+    user-select: none;
+    transform: translate(-50%, -50%);
+}
+
+/* Hamster Wheel Layout Configs */
 .hamster-workspace-body {
     padding: 16px;
     display: flex;
@@ -347,12 +334,7 @@ body {
     gap: 12px;
 }
 
-.wheel-outer-bounding-box {
-    width: 100px;
-    height: 100px;
-    position: relative;
-}
-
+.wheel-outer-bounding-box { width: 100px; height: 100px; position: relative; }
 .mechanical-spinning-wheel {
     width: 100%;
     height: 100%;
@@ -365,65 +347,28 @@ body {
     background-color: #fafafa;
 }
 
-.mechanical-spinning-wheel.spinning {
-    animation: rotateWheel 1.2s linear infinite;
-}
-
+.mechanical-spinning-wheel.spinning { animation: rotateWheel 1.2s linear infinite; }
 @keyframes rotateWheel {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
-.pixel-hamster-vector-graphic {
-    position: absolute;
-    bottom: 8px;
-    image-rendering: pixelated;
-}
-
-.mechanical-spinning-wheel.spinning .pixel-hamster-vector-graphic {
-    animation: counterRotateHamster 1.2s linear infinite;
-}
-
+.pixel-hamster-vector-graphic { position: absolute; bottom: 8px; image-rendering: pixelated; }
+.mechanical-spinning-wheel.spinning .pixel-hamster-vector-graphic { animation: counterRotateHamster 1.2s linear infinite; }
 @keyframes counterRotateHamster {
     from { transform: rotate(0deg); }
     to { transform: rotate(-360deg); }
 }
 
-.chore-logging-tracker-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
+.chore-logging-tracker-box { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.chore-summary-readout { font-size: 0.9rem; text-align: center; font-weight: 600; }
+.chore-control-select-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; }
+.chore-buttons-row { display: flex; gap: 8px; margin-top: 4px; }
+.chore-buttons-row button { flex: 1; font-size: 0.85rem; padding: 6px; }
 
-.chore-summary-readout {
-    font-size: 0.9rem;
-    text-align: center;
-    font-weight: 600;
-}
-
-.chore-control-select-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-/* Font Variance Engine rules layout */
-.fonts-workspace-body {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.kaomoji-grid-layout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-}
-
+/* Font Variance Engine Layout rules */
+.fonts-workspace-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.kaomoji-grid-layout { display: flex; flex-wrap: wrap; gap: 4px; }
 .kaomoji-pill {
     background: white;
     border: 2px solid var(--border-charcoal);
@@ -434,12 +379,7 @@ body {
     user-select: none;
 }
 
-.font-previewer-input-column {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
+.font-previewer-input-column { display: flex; flex-direction: column; gap: 6px; }
 .font-rendered-preview-box {
     background-color: #fafafa;
     border: 2px solid var(--border-charcoal);
@@ -454,13 +394,13 @@ body {
 .style-script { font-family: serif; font-style: italic; font-weight: 700; }
 .style-gothic { font-family: monospace; font-weight: 700; }
 
-/* CRITICAL: Strategic Rigid History Scrollbar Viewport Calculations Framework */
+/* Logs Viewport calculations layout framework */
 .history-footer-card { margin-top: 10px; }
 .history-scroll-viewport-box {
-    height: 130px; /* Locked bounding constraint */
+    height: 130px;
     background-color: #fafafa;
     padding: 12px;
-    overflow-y: scroll; /* CORE FORCE ACTIVATION OF INDEPENDENT SCROLL LAYER */
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -475,14 +415,8 @@ body {
     border-radius: 0 4px 4px 0;
 }
 
-.history-empty-placeholder {
-    color: var(--text-muted);
-    font-style: italic;
-    text-align: center;
-    margin-top: 35px;
-}
+.history-empty-placeholder { color: var(--text-muted); font-style: italic; text-align: center; margin-top: 35px; }
 
-/* Toast Notifications Overlays */
 .toast-popup-notification {
     position: fixed;
     bottom: 20px;
