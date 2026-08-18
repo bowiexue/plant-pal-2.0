@@ -1,4 +1,4 @@
-// --- RUNTIME APPLICATION MATRIX STATE ---
+// --- RUNTIME SCHEDULER STATE MATRICES ---
 let workspaceState = {
     plantStage: 1,
     plantTypeIndex: 0,
@@ -11,53 +11,54 @@ let workspaceState = {
     activeTimerPresetMode: 'focus'
 };
 
-// --- DYNAMIC TARGET ECOSYSTEM VIBE ARRAY CONFIGURATIONS ---
+// --- DYNAMIC FLORA ECOSYSTEM PARAMETERS ---
 const genotypeAestheticProfiles = [
     {
-        name: "Thick Sprout",
-        bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#eaedea",
+        name: "Thick Sprout", bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#eaedea",
         kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"],
         fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾𝒸 𝒮𝓅𝓇ℴ𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
     },
     {
-        name: "Pixie Fern",
-        bg: "#edf5f0", primary: "#b3cbb4", shadow: "#dae5db",
+        name: "Pixie Fern", bg: "#edf5f0", primary: "#b3cbb4", shadow: "#dae5db",
         kaomojis: ["(🧚•̤ᴗ•̤)", "(*ﾟ▽ﾟ*)🌿", "(🌿ᵕᴗᵕ)", "(*>﹏<*)🍃", "(🍃'ᵕ'🍃)"],
         fonts: { s2: "𝒫𝒾𝓍𝒾ℯ ℱℯ𝓇𝓃 𝒮𝓉𝓎𝓁ℯ", s3: "𝔓𝔦𝔵𝔦𝔢𝔉𝔢𝔯𝔫" }
     },
     {
-        name: "Cosmic Clover",
-        bg: "#f3effa", primary: "#d3bee6", shadow: "#e8e1f2",
+        name: "Cosmic Clover", bg: "#f3effa", primary: "#d3bee6", shadow: "#e8e1f2",
         kaomojis: ["(✨🍀.🍀)", "(🌌°o°)", "(🔮•̀ᴗ•́)", "(🚀🌟‿🌟)", "✧(⚙ 𖦹 ⚙)✧"],
         fonts: { s2: "𝒞ℴ𝓈𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝔪𝔦𝔠ℭ𝔩𝔬𝔳𝔢𝔯" }
     },
     {
-        name: "Ruby Succulent",
-        bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
+        name: "Ruby Succulent", bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
         kaomojis: ["(🌸•‿•)", "(🪷´▿`)", "(๑>ᴗ<๑)💕", "(🌵`･ω･´)", "(☀️_☀️)🌵"],
-        fonts: { s2: "ℛ𝓊𝒷𝓎 𝒮𝓊𝒸𝒸𝓊𝓁ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩𝔢𝔫𝔱" }
+        fonts: { s2: "ℛ𝓊𝒷𝓎 𝒮...𝒸𝒸𝓊𝓁ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩𝔢𝔫𝔱" }
     },
     {
-        name: "Bonsai Buddy",
-        bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
+        name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
         fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
     },
     {
-        name: "Lunar Moss",
-        bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
+        name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
         kaomojis: ["(🌙💤.💤)", "(🛸★.★)", "(🌖𖦹⤙𖦹)", "(👾♫𖦹♫)", "✧(☄️.☄️)✧"],
-        fonts: { s2: "ℒ𝓊𝓃𝒶𝓇 ℳℴ𝓈𝓈 𝒩𝒾ℊ𝒽𝓉", s3: "𝔏𝔲𝔫𝔞𝔯𝔐𝔬𝔰𝔰" }
+        fonts: { s2: "ℒ...𝓃𝒶𝓇 ℳℴ𝓈𝓈 𝒩𝒾ℊ𝒽𝓉", s3: "𝔏𝔲𝔫𝔞𝔯𝔐𝔬𝔰𝔰" }
     }
+];
+
+// --- ✨ FIXED MULTI-STATION LIVE AUDIO FEED PATH MATRIX ENGINE ✨ ---
+const broadcastStationProfiles = [
+    { title: "Lofi Focus Beats", genre: "Chillhop / Study / 24-7 Live Node", url: "https://binauralbeats.stream" },
+    { title: "Coffee Shop Smooth Jazz", genre: "Soft Acoustic / Vintage Lounge", url: "https://radionomy.com" },
+    { title: "Retro 8-Bit Chiptune Radio", genre: "Synthwave / Arcade / Pixel Music", url: "https://scorpius.stream" }
 ];
 
 const stringFontTransformationMappers = {
     styleScript: {
         'A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒬','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵',
-        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'/**/*.{𝓃}','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
+        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
     },
     styleGothic: {
-        'A':'𝔄','B':'𝔅','C':'ℭ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'𝔏','I':'ℑ','J':'𝔍','K':'𝔎','L':'','M':'𝔐','N':'𝔓','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'  ',
+        'A':'𝔄','B':'𝔅','C':'ℭ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'𝔏','I':'ℑ','J':'𝔍','K':'𝔎','L':'𝔏','M':'𝔐','N':'𝔓','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'  ',
         'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦','j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯','s':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷'
     }
 };
@@ -67,6 +68,7 @@ const playgroundCreatures = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐣", "�
 window.addEventListener('DOMContentLoaded', () => {
     synchronizeLocalStorageData();
     executeLiveTimestampClockSync();
+    initializeRadioStreamEndpointSource(); // Pre-sets direct audio url references cleanly
     handlePlantGenotypeChange();
     syncChecklistDOMDisplay();
     setupSandboxEngine();
@@ -87,32 +89,32 @@ function renderProceduralPixelSproutSVG() {
     let stage = workspaceState.plantStage;
     let type = workspaceState.plantTypeIndex;
     
-    if (type === 0) { // Thick Sprout Core Vector Processing
+    if (type === 0) { // Thick Sprout Engine Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
         if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
         if (stage >= 7) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
-    } else if (type === 1) { // Pixie Fern Core Vector Processing
+    } else if (type === 1) { // Pixie Fern Engine Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 7) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
-    } else if (type === 2) { // Cosmic Clover Core Vector Processing
+    } else if (type === 2) { // Cosmic Clover Engine Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#704d9c" />`;
         if (stage >= 4) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
         if (stage >= 7) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
-    } else if (type === 3) { // Ruby Succulent Core Vector Processing
+    } else if (type === 3) { // Ruby Succulent Engine Processing
         if (stage >= 1) plantHTML += `<rect x="14" y="22" width="4" height="2" fill="#d96262" />`;
         if (stage >= 4) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
-    } else if (type === 4) { // Bonsai Buddy Core Vector Processing
+    } else if (type === 4) { // Bonsai Buddy Engine Processing
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#7a5230" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
         if (stage >= 10) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
-    } else if (type === 5) { // Lunar Moss Core Vector Processing
+    } else if (type === 5) { // Lunar Moss Engine Processing
         if (stage >= 1) plantHTML += `<rect x="12" y="23" width="8" height="1" fill="#444163" />`;
         if (stage >= 4) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
         if (stage >= 7) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
@@ -121,12 +123,10 @@ function renderProceduralPixelSproutSVG() {
     
     targetSvgCanvas.innerHTML = potHTML + plantHTML;
 }
-// ✨ FIXED CRITICAL BINDING: WORKSPACE HISTORY REGISTRY EVENT CAPTURE LOOPS ✨
 function logWorkspaceEvent(logStringText) {
     const historicalBoxNode = document.getElementById('history-log-box');
     if (!historicalBoxNode) return;
     
-    // Clear standby empty placeholder accurately
     const placeholder = historicalBoxNode.querySelector('.history-empty-placeholder');
     if (placeholder) placeholder.remove();
 
@@ -136,7 +136,7 @@ function logWorkspaceEvent(logStringText) {
     logRow.innerHTML = `<strong>[${timeStr}]</strong> ${logStringText}`;
     
     historicalBoxNode.appendChild(logRow);
-    historicalBoxNode.scrollTop = historicalBoxNode.scrollHeight; // Force scroll focus down instantly
+    historicalBoxNode.scrollTop = historicalBoxNode.scrollHeight; 
     writeStateToLocalStorageMemory();
 }
 
@@ -175,11 +175,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v6', JSON.stringify(dataObj));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v7', JSON.stringify(dataObj));
 }
 
 function synchronizeLocalStorageData() {
-    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v6');
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v7');
     if (saved) {
         try {
             const data = JSON.parse(saved);
@@ -188,7 +188,7 @@ function synchronizeLocalStorageData() {
             workspaceState.completedTaskCount = data.completedTaskCount || 0;
             workspaceState.choreMinutesAccumulated = data.choreMinutesAccumulated || 0;
             workspaceState.choreGoalTarget = data.choreGoalTarget || 15;
-        } catch(e) { console.error("Storage module parsed crash error state recovery bypassed.", e); }
+        } catch(e) { console.error("Storage load bypassed.", e); }
     }
 }
 
@@ -229,13 +229,13 @@ window.createNewTaskItem = function() {
     underlyingActiveTaskMemoryStore.push(text);
     input.value = '';
     syncChecklistDOMDisplay();
-    logWorkspaceEvent(`Injected custom checklist target parameter note: "${text}"`);
+    logWorkspaceEvent(`Injected checklist task node: "${text}"`);
 };
 
 window.removeExistingTaskItem = function(idx) {
     const deleted = underlyingActiveTaskMemoryStore.splice(idx, 1);
     syncChecklistDOMDisplay();
-    logWorkspaceEvent(`Purged checklist data index link: "${deleted}"`);
+    logWorkspaceEvent(`Purged checklist link: "${deleted}"`);
 };
 
 window.processTaskCompletionTrigger = function(idx, checkbox) {
@@ -250,7 +250,7 @@ window.processTaskCompletionTrigger = function(idx, checkbox) {
             workspaceState.completedTaskCount = 0;
             if (workspaceState.plantStage < 10) {
                 workspaceState.plantStage++;
-                logWorkspaceEvent(`🎉 <strong>GROWTH RANK UPGRADED!</strong> Current flora scale layer: Stage <strong>${workspaceState.plantStage} / 10</strong>!`);
+                logWorkspaceEvent(`🎉 <strong>GROWTH CEILING TRIGGERED!</strong> Flora scale rank level: Stage <strong>${workspaceState.plantStage} / 10</strong>!`);
             }
             renderProceduralPixelSproutSVG();
         }
@@ -292,7 +292,7 @@ function setupSandboxEngine() {
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
         activeSandbox.appendChild(node);
-        logWorkspaceEvent(`Hatched playground companion creature: <strong>${animal}</strong>`);
+        logWorkspaceEvent(`Hatched companion creature: <strong>${animal}</strong>`);
     });
 }
 function updateChoreTrackingDashboardUI() {
@@ -303,7 +303,7 @@ function updateChoreTrackingDashboardUI() {
 window.adjustChoreGoalTarget = function() {
     workspaceState.choreGoalTarget = parseInt(document.getElementById('goal-select').value);
     updateChoreTrackingDashboardUI();
-    logWorkspaceEvent(`Chore objective requirement updated to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
+    logWorkspaceEvent(`Chore goal requirement updated to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
 };
 
 window.executeChoreTimeLog = function() {
@@ -314,13 +314,11 @@ window.executeChoreTimeLog = function() {
     workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
     
-    // Core spin loop initialization 
     wheel.classList.add('spinning');
     status.innerText = "RUNNING";
     status.className = "status-badge state-active";
-    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of active household chores.`);
+    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of active chores.`);
     
-    // ✨ FIX: Forces the hamster spin loop to terminate accurately after 1.2s run completes ✨
     setTimeout(() => {
         wheel.classList.remove('spinning');
         status.innerText = "IDLE";
@@ -328,19 +326,42 @@ window.executeChoreTimeLog = function() {
     }, 1200);
 };
 
-// ✨ FIX: Hamster Station metrics tracker completely clears and halts wheel animations instantly ✨
 window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
     updateChoreTrackingDashboardUI();
-    
     const wheel = document.getElementById('wheel-element');
     const status = document.getElementById('hamster-status');
     if (wheel) wheel.classList.remove('spinning');
-    if (status) {
-        status.innerText = "IDLE";
-        status.className = "status-badge state-idle";
+    if (status) { status.innerText = "IDLE"; status.className = "status-badge state-idle"; }
+    logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
+};
+
+// --- 📻 FIXED MULTI-STATION RADIO PLAYER CONTROLLER ACTIONS ---
+function initializeRadioStreamEndpointSource() {
+    const audioStream = document.getElementById('lofi-stream');
+    if (audioStream) {
+        audioStream.volume = 0.5;
+        // Sets initial stream default node path
+        audioStream.src = broadcastStationProfiles[0].url;
     }
-    logWorkspaceEvent("🐹 Hamster tracking loop forced down to zero minutes.");
+}
+
+window.switchRadioStationChannel = function() {
+    const selectorIndex = parseInt(document.getElementById('radio-channel-select').value);
+    const station = broadcastStationProfiles[selectorIndex];
+    const audioStream = document.getElementById('lofi-stream');
+    
+    document.getElementById('radio-station-title').innerText = station.title;
+    document.getElementById('radio-station-genre').innerText = station.genre;
+    
+    const wasPlaying = !audioStream.paused;
+    audioStream.src = station.url;
+    audioStream.load();
+    
+    if (wasPlaying) {
+        audioStream.play().catch(err => console.log("Stream hot-swap delay factor ignored.", err));
+    }
+    logWorkspaceEvent(`Radio tuners shifted to channel: <strong>${station.title}</strong>`);
 };
 
 window.toggleLoFiRadioPlayback = function() {
@@ -353,17 +374,17 @@ window.toggleLoFiRadioPlayback = function() {
             btn.innerText = "⏸️ Pause Radio";
             statusBadge.innerText = "LIVE STREAM";
             statusBadge.className = "status-badge state-active";
-            logWorkspaceEvent("📻 Ambient Lo-Fi Radio deck connection operational.");
+            logWorkspaceEvent("📻 Ambient Live Radio deck connection established online.");
         }).catch(err => {
-            console.error("Audio stream blocking factor bypass required.", err);
-            logWorkspaceEvent("⚠️ Radio execution requires interacting with the window directly first.");
+            console.error("Audio block", err);
+            logWorkspaceEvent("⚠️ Audio stream requires clicking inside the page frame directly first.");
         });
     } else {
         audioStream.pause();
         btn.innerText = "▶️ Play Radio";
         statusBadge.innerText = "MUTED";
         statusBadge.className = "status-badge state-idle";
-        logWorkspaceEvent("📻 Lo-Fi Audio stream paused.");
+        logWorkspaceEvent("📻 Ambient Audio streaming feed paused.");
     }
 };
 
@@ -450,7 +471,7 @@ window.copyStringToClipboard = function(el) {
 };
 
 window.clearWorkspaceLogStorage = function() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v6');
+    localStorage.removeItem('sproutOS_calibratedDataMemory_v7');
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     workspaceState.choreMinutesAccumulated = 0;
