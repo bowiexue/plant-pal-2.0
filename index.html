@@ -5,53 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SproutOS Personal Space Engine</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for cute aesthetics -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Fredoka:wght@300..700&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="workspace-container">
-        <!-- Top Navigation Bar -->
+        <!-- Cute Cloud Navigation Header -->
         <header class="top-nav">
-            <div class="nav-left">🌱 SproutOS Workspace Node</div>
-            <div class="nav-right" id="live-clock">04:52:19 PM</div>
+            <div class="nav-left">🌸 SproutOS Personal Space Engine</div>
+            <div class="nav-right" id="live-clock">00:00:00 AM</div>
         </header>
 
-        <h1 class="main-title">🌿 SproutOS Personal Space Engine</h1>
-
-        <!-- Main Dashboard Grid -->
+        <!-- Main Dashboard Dashboard Layout Structure -->
         <div class="dashboard-grid">
             
             <!-- Column 1: Ecosystem Workspace Garden & Checklist -->
             <div class="dashboard-col col-main">
-                <!-- Garden Card -->
-                <div class="card">
+                <!-- Ecosystem Workspace Garden -->
+                <div class="card card-pink">
                     <div class="card-header">
                         <span>🌱 Ecosystem Workspace Garden</span>
-                        <span id="level-badge" class="badge">1/15</span>
+                        <span id="level-badge" class="badge">1 / 15</span>
                     </div>
                     <div class="garden-body">
                         <div class="plant-display" id="plant-container">
-                            <!-- SVG Animated Plant Canvas -->
-                            <svg id="plant-svg" viewBox="0 0 100 100" width="100%" height="100%">
-                                <!-- Dynamic plant graphics rendered by JS -->
+                            <!-- Pure Responsive SVG Pixel Sprout -->
+                            <svg id="plant-svg" viewBox="0 0 32 32" width="100%" height="100%">
+                                <!-- Rendered completely dynamically by JavaScript engine loops -->
                             </svg>
                         </div>
                         <div class="timer-container">
                             <div class="timer-display" id="timer-text">25:00</div>
                             <div class="timer-presets">
-                                <button class="btn btn-sm active" onclick="setTimerPreset('focus')">🎯 Focus</button>
-                                <button class="btn btn-sm" onclick="setTimerPreset('break')">☕ Break</button>
-                                <button class="btn btn-sm" onclick="setTimerPreset('short')">⏱️ Short</button>
-                                <button class="btn btn-sm" onclick="setTimerPreset('long')">⏳ Long</button>
+                                <button class="btn active" onclick="setTimerPreset('focus', this)">🎯 Focus</button>
+                                <button class="btn" onclick="setTimerPreset('break', this)">☕ Break</button>
+                                <button class="btn" onclick="setTimerPreset('short', this)">⏱️ Short</button>
+                                <button class="btn" onclick="setTimerPreset('long', this)">⏳ Long</button>
                             </div>
                             <div class="timer-controls">
                                 <button class="btn btn-primary" id="start-btn" onclick="toggleTimer()">Start</button>
                                 <button class="btn btn-secondary" onclick="resetTimer()">Reset</button>
                             </div>
                             <div class="target-selector">
-                                <label for="plant-select">Target Seedling:</label>
+                                <label>Target Seedling:</label>
                                 <select id="plant-select" onchange="changePlantType()">
                                     <option value="0">Thick Sprout</option>
                                     <option value="1">Pixie Fern</option>
@@ -73,27 +70,27 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Tasks Connected Checklist -->
-                <div class="card">
+                <div class="card card-blue">
                     <div class="card-header">
-                        <span>📝 Tasks Connected Checklist (<span id="done-counter">0</span>/9 for Growth)</span>
+                        <span>📝 Tasks Connected Checklist (<span id="done-counter">0</span>/9 Checks)</span>
                     </div>
                     <div class="checklist-body">
                         <div class="task-input-row">
-                            <input type="text" id="new-task-input" placeholder="Add a task note...">
+                            <input type="text" id="new-task-input" placeholder="Add a sweet task note...">
                             <button class="btn btn-success" onclick="addTask()">Add</button>
                         </div>
                         <ul class="task-list" id="task-list-container">
-                            <!-- Tasks appear here -->
+                            <!-- Injected by script engine initialization loops -->
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- Column 2: Hamster Runner & Audio Soundscapes -->
+
+            <!-- Column 2: Hamster Runner Station & Sound Mixer -->
             <div class="dashboard-col col-side">
                 <!-- Hamster Runner Station -->
-                <div class="card">
+                <div class="card card-purple">
                     <div class="card-header">
                         <span>🐹 Hamster Runner Station</span>
                         <span id="hamster-status" class="badge badge-idle">IDLE</span>
@@ -101,7 +98,15 @@
                     <div class="hamster-body">
                         <div class="wheel-container">
                             <div class="hamster-wheel" id="wheel-element">
-                                <div class="hamster-avatar" id="hamster-element">🐹</div>
+                                <!-- Hand-drawn High-Fidelity SVG Pixel-Art Hamster Sprite -->
+                                <svg class="hamster-avatar" id="hamster-element" viewBox="0 0 24 24" width="64" height="64">
+                                    <path d="M6 4h3v2H6V4zm9 0h3v2h-3V4z" fill="#f43f5e"/> <!-- Cute Pink Ears -->
+                                    <path d="M5 6h14v2H5V6zm-1 2h16v10H4V8z" fill="#fb923c"/> <!-- Soft Fluffy Orange Coat -->
+                                    <path d="M7 10h2v2H7v-2zm8 0h2v2h-2v-2z" fill="#1e293b"/> <!-- Shiny Beady Eyes -->
+                                    <path d="M11 12h2v1h-2v-1z" fill="#f43f5e"/> <!-- Little Snout Pink Nose -->
+                                    <path d="M8 14h8v2H8v-2z" fill="#ffffff"/> <!-- Plump White Cheeks -->
+                                    <path d="M6 18h2v1H6v-1zm10 0h2v1h-2v-1z" fill="#f43f5e"/> <!-- Tiny Feet -->
+                                </svg>
                             </div>
                         </div>
                         <div class="chore-tracker">
@@ -129,7 +134,7 @@
                 </div>
 
                 <!-- Background Sound Mixer -->
-                <div class="card">
+                <div class="card card-mint">
                     <div class="card-header">
                         <span>🎵 Background Sound Mixer</span>
                     </div>
@@ -148,9 +153,9 @@
                 </div>
             </div>
 
-            <!-- Column 3: Font Variance & Kaomojis -->
+            <!-- Column 3: Font Variance Engine -->
             <div class="dashboard-col col-side">
-                <div class="card">
+                <div class="card card-cream">
                     <div class="card-header">
                         <span>✨ Font Variance Engine</span>
                     </div>
@@ -183,7 +188,8 @@
             </div>
         </div>
 
-        <div class="card sandbox-card">
+        <!-- Interactive Sandbox Playground -->
+        <div class="card card-pink sandbox-card">
             <div class="card-header">
                 <span>✨ Interactive Sandbox Playground</span>
             </div>
@@ -192,16 +198,19 @@
             </div>
         </div>
 
-        <div class="card history-card">
+        <!-- Strategic Workspace Activity History Notebook -->
+        <div class="card card-lavender history-card">
             <div class="card-header">
                 <span>📔 Strategic Workspace Activity History Notebook</span>
                 <button class="btn btn-danger btn-sm" onclick="resetWorkspaceStorage()">⚠️ Reset Storage</button>
             </div>
             <div class="history-container" id="history-log-box">
+                <!-- Scrolling milestones injected here -->
             </div>
         </div>
     </div>
 
+    <!-- Toast Component Notification Box -->
     <div class="toast-notification" id="toast-element">Copied to clipboard!</div>
 
     <script src="script.js"></script>
