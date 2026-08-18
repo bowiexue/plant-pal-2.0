@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
     updateChoreTrackingDashboardUI();
     refreshNumericalTimerDisplayReadout();
     runFontTransformationPreviews();
-    logWorkspaceEvent("Workspace configuration array initiated successfully.");
+    logWorkspaceEvent("Workspace configuration initiated successfully.");
 });
 
 function logWorkspaceEvent(logStringText) {
@@ -54,7 +54,6 @@ function logWorkspaceEvent(logStringText) {
     writeStateToLocalStorageMemory();
 }
 
-// --- LOCAL SYSTEM MEMORY STORAGE ---
 function writeStateToLocalStorageMemory() {
     const statePackageObject = {
         plantStage: workspaceState.plantStage,
@@ -63,11 +62,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v2', JSON.stringify(statePackageObject));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v3', JSON.stringify(statePackageObject));
 }
 
 function synchronizeLocalStorageData() {
-    const storedMemoryArrayValue = localStorage.getItem('sproutOS_calibratedDataMemory_v2');
+    const storedMemoryArrayValue = localStorage.getItem('sproutOS_calibratedDataMemory_v3');
     if (storedMemoryArrayValue) {
         try {
             const decompiledDataStructure = JSON.parse(storedMemoryArrayValue);
@@ -81,7 +80,7 @@ function synchronizeLocalStorageData() {
 }
 
 function clearWorkspaceLogStorage() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v2');
+    localStorage.removeItem('sproutOS_calibratedDataMemory_v3');
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     workspaceState.choreMinutesAccumulated = 0;
@@ -92,7 +91,7 @@ function clearWorkspaceLogStorage() {
     syncChecklistDOMDisplay();
     updateChoreTrackingDashboardUI();
     document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());
-    logWorkspaceEvent("System storage matrix cleared out and values reset to default states.");
+    logWorkspaceEvent("System storage matrix reset to default states.");
 }
 
 function executeLiveTimestampClockSync() {
@@ -103,8 +102,6 @@ function executeLiveTimestampClockSync() {
     syncTimeTick();
     setInterval(syncTimeTick, 1000);
 }
-
-// --- PROCEDURAL 10-STAGE VECTOR PIXEL ART SPROUT DRIVER ---
 function renderProceduralPixelSproutSVG() {
     const targetSvgCanvas = document.getElementById('plant-svg');
     const levelDisplayBadgeNode = document.getElementById('level-badge');
@@ -112,7 +109,7 @@ function renderProceduralPixelSproutSVG() {
     if (!targetSvgCanvas) return;
     
     menuDropdownSelector.value = workspaceState.plantTypeIndex;
-    levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 10`; // ✨ Caps Display at Stage 10 ✨
+    levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 10`;
     targetSvgCanvas.innerHTML = '';
     
     let compiledPotVectorHTML = `
@@ -145,7 +142,7 @@ function renderProceduralPixelSproutSVG() {
     
     if (stageLevelRank >= 8) calculatedPlantVectorHTML += `<rect x="15" y="11" width="2" height="4" fill="#4e8c4e" />`;
     
-    if (stageLevelRank >= 10) { // ✨ Ultimate bloom occurs at stage 10 now ✨
+    if (stageLevelRank >= 10) {
         calculatedPlantVectorHTML += `
             <rect x="14" y="8" width="4" height="3" fill="#f28a9b" />
             <rect x="15" y="9" width="2" height="1" fill="#fae896" />
@@ -163,7 +160,7 @@ function handlePlantGenotypeChange() {
     renderProceduralPixelSproutSVG();
     document.getElementById('ecosystem-paragraph-text').innerText = `Your selected ${genotypeNamesList[workspaceState.plantTypeIndex]} genotype profile coordinates carbon capture operations within this specific grid partition. Complete task milestones to expand leaf structures and maximize digital environmental filtering efficiency.`;
 }
-// --- DATA INTERFACE CHECKLIST MATRIX (3-CHECK RULE) ---
+
 const underlyingActiveTaskMemoryStore = ["Verify project layout constraints", "Refactor system workspace variables", "Analyze environmental grid blueprints", "Audit core compilation modules"];
 
 function syncChecklistDOMDisplay() {
@@ -188,7 +185,7 @@ function syncChecklistDOMDisplay() {
     });
 }
 
-function createNewTaskItem() {
+window.createNewTaskItem = function() {
     const textInputNodeField = document.getElementById('new-task-input');
     const extractedTaskString = textInputNodeField.value.trim();
     if (!extractedTaskString) return;
@@ -196,16 +193,16 @@ function createNewTaskItem() {
     underlyingActiveTaskMemoryStore.push(extractedTaskString);
     textInputNodeField.value = '';
     syncChecklistDOMDisplay();
-    logWorkspaceEvent(`Injected target task parameter node: "${extractedTaskString}"`);
-}
+    logWorkspaceEvent(`Injected task note: "${extractedTaskString}"`);
+};
 
-function removeExistingTaskItem(targetIndex) {
+window.removeExistingTaskItem = function(targetIndex) {
     const deletedTaskStringValue = underlyingActiveTaskMemoryStore.splice(targetIndex, 1);
     syncChecklistDOMDisplay();
-    logWorkspaceEvent(`Removed task reference data element: "${deletedTaskStringValue}"`);
-}
+    logWorkspaceEvent(`Removed task data element: "${deletedTaskStringValue}"`);
+};
 
-function processTaskCompletionTrigger(targetIndex, checkboxInputElement) {
+window.processTaskCompletionTrigger = function(targetIndex, checkboxInputElement) {
     if (checkboxInputElement.checked) {
         checkboxInputElement.disabled = true;
         checkboxInputElement.parentElement.parentElement.classList.add('completed');
@@ -213,11 +210,11 @@ function processTaskCompletionTrigger(targetIndex, checkboxInputElement) {
         
         logWorkspaceEvent(`Task verified! Progress tracking: <strong>${workspaceState.completedTaskCount} / 3 Checks</strong>`);
         
-        if (workspaceState.completedTaskCount >= 3) { // ✨ Changed from 9 to 3 checks to level up! ✨
+        if (workspaceState.completedTaskCount >= 3) {
             workspaceState.completedTaskCount = 0;
-            if (workspaceState.plantStage < 10) { // ✨ Capped at 10 max stages ✨
+            if (workspaceState.plantStage < 10) {
                 workspaceState.plantStage++;
-                logWorkspaceEvent(`🎉 <strong>GROWTH LEVEL INCREASED!</strong> Sprout genotype expanded to Stage Rank: <strong>${workspaceState.plantStage} / 10</strong>!`);
+                logWorkspaceEvent(`🎉 <strong>GROWTH LEVEL INCREASED!</strong> Sprout rank: <strong>${workspaceState.plantStage} / 10</strong>!`);
             }
             renderProceduralPixelSproutSVG();
         }
@@ -227,31 +224,32 @@ function processTaskCompletionTrigger(targetIndex, checkboxInputElement) {
             syncChecklistDOMDisplay();
         }, 500);
     }
-}
-
-// --- ✨ INTERACTIVE CURSOR SANDBOX CONTROLLER ENGINE ✨ ---
+};
 function setupSandboxEngine() {
     const sandbox = document.getElementById('sandbox-container');
     if (!sandbox) return;
     
-    sandbox.addEventListener('mousemove', (e) => {
-        const rect = sandbox.getBoundingClientRect();
+    sandbox.replaceWith(sandbox.cloneNode(true));
+    const activeSandbox = document.getElementById('sandbox-container');
+    
+    activeSandbox.addEventListener('mousemove', (e) => {
+        const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
-        if (Math.random() > 0.8) { 
+        if (Math.random() > 0.85) { 
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
             sparkle.style.left = `${x}px`;
             sparkle.style.top = `${y}px`;
-            sandbox.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 400);
+            activeSandbox.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 500);
         }
     });
     
-    sandbox.addEventListener('click', (e) => {
+    activeSandbox.addEventListener('click', (e) => {
         if (e.target.classList.contains('sandbox-companion')) return;
-        const rect = sandbox.getBoundingClientRect();
+        const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
@@ -262,24 +260,23 @@ function setupSandboxEngine() {
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
         
-        sandbox.appendChild(node);
+        activeSandbox.appendChild(node);
         logWorkspaceEvent(`Hatched sandbox companion creature: <strong>${animal}</strong>`);
     });
 }
 
-// --- HAMSTER RUN WHEEL ENGINE & RESET ENGINE ---
 function updateChoreTrackingDashboardUI() {
     document.getElementById('chore-current').innerText = workspaceState.choreMinutesAccumulated;
     document.getElementById('chore-goal').innerText = workspaceState.choreGoalTarget;
 }
 
-function adjustChoreGoalTarget() {
+window.adjustChoreGoalTarget = function() {
     workspaceState.choreGoalTarget = parseInt(document.getElementById('goal-select').value);
     updateChoreTrackingDashboardUI();
     logWorkspaceEvent(`Chore balance target altered to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
-}
+};
 
-function executeChoreTimeLog() {
+window.executeChoreTimeLog = function() {
     const selectionLogQuantity = parseInt(document.getElementById('log-select').value);
     const mechanicalWheelElementNode = document.getElementById('wheel-element');
     const runningStatusBarBadgeNode = document.getElementById('hamster-status');
@@ -290,29 +287,28 @@ function executeChoreTimeLog() {
     mechanicalWheelElementNode.classList.add('spinning');
     runningStatusBarBadgeNode.innerText = "RUNNING";
     runningStatusBarBadgeNode.className = "status-badge state-active";
-    logWorkspaceEvent(`Active tracking loop logged <strong>${selectionLogQuantity} minutes</strong>.`);
+    logWorkspaceEvent(`Logged <strong>${selectionLogQuantity} minutes</strong> of chores.`);
     
     setTimeout(() => {
         mechanicalWheelElementNode.classList.remove('spinning');
         runningStatusBarBadgeNode.innerText = "IDLE";
         runningStatusBarBadgeNode.className = "status-badge state-idle";
     }, 1200);
-}
+};
 
-function resetChoreTracker() { // ✨ Added Independent Reset Chore Tracker Engine ✨
+window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
     updateChoreTrackingDashboardUI();
     logWorkspaceEvent("🐹 Hamster station chore tracking balance wiped back to zero mins.");
-}
+};
 
-// --- CLOCK AND POMODORO TIMERS ---
 function refreshNumericalTimerDisplayReadout() {
     const floorMinsValue = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
     const boundarySecsValue = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
     document.getElementById('timer-text').innerText = `${floorMinsValue}:${boundarySecsValue}`;
 }
 
-function applyTimerPreset(presetModeString, buttonContextReference) {
+window.applyTimerPreset = function(presetModeString, buttonContextReference) {
     workspaceState.activeTimerPresetMode = presetModeString;
     document.querySelectorAll('.timer-preset-row .preset-btn').forEach(buttonNode => buttonNode.classList.remove('active'));
     buttonContextReference.classList.add('active');
@@ -323,10 +319,10 @@ function applyTimerPreset(presetModeString, buttonContextReference) {
     else if (presetModeString === 'long') workspaceState.timerSecondsRemaining = 1800;
     
     refreshNumericalTimerDisplayReadout();
-    logWorkspaceEvent(`Chrono registry shifted to: <strong>${presetModeString}</strong>.`);
-}
+    logWorkspaceEvent(`Chrono preset shifted to: <strong>${presetModeString}</strong>.`);
+};
 
-function triggerTimerToggle() {
+window.triggerTimerToggle = function() {
     const initiationButtonToggleNode = document.getElementById('start-btn');
     if (workspaceState.timerActiveState) {
         clearInterval(workspaceState.timerIntervalThread);
@@ -351,9 +347,9 @@ function triggerTimerToggle() {
             }
         }, 1000);
     }
-}
+};
 
-function executeTimerReset() {
+window.executeTimerReset = function() {
     clearInterval(workspaceState.timerIntervalThread);
     workspaceState.timerActiveState = false;
     document.getElementById('start-btn').innerText = "Start";
@@ -366,11 +362,25 @@ function executeTimerReset() {
     else if (currentMode === 'long') workspaceState.timerSecondsRemaining = 1800;
     
     refreshNumericalTimerDisplayReadout();
-}
+};
 
-// --- COPIER SYSTEMS ---
-function runFontTransformationPreviews() {
+window.runFontTransformationPreviews = function() {
     const underlyingStringValue = document.getElementById('font-input').value || "Plant Pal";
     document.getElementById('preview-1').innerText = underlyingStringValue;
     document.getElementById('preview-2').innerText = parseStringThroughFontCharacterMapping(underlyingStringValue, stringFontTransformationMappers.styleScript);
-Use code with caution.document.getElementById('preview-3').innerText = parseStringThroughFontCharacterMapping(underlyingStringValue, stringFontTransformationMappers.styleGothic);}function parseStringThroughFontCharacterMapping(initialStringValue, targetMappingAsset) {return initialStringValue.split('').map(characterKey => targetMappingAsset[characterKey] || characterKey).join('');}function copyStringToClipboard(domElementNodeReference) {const targetStringLiteralText = domElementNodeReference.innerText;navigator.clipboard.writeText(targetStringLiteralText).then(() => {const toastNotificationOverlayNode = document.getElementById('toast-element');toastNotificationOverlayNode.innerText = Copied to clipboard: "${targetStringLiteralText}";toastNotificationOverlayNode.classList.add('display-active');setTimeout(() => toastNotificationOverlayNode.classList.remove('display-active'), 2000);});}
+    document.getElementById('preview-3').innerText = parseStringThroughFontCharacterMapping(underlyingStringValue, stringFontTransformationMappers.styleGothic);
+};
+
+function parseStringThroughFontCharacterMapping(initialStringValue, targetMappingAsset) {
+    return initialStringValue.split('').map(characterKey => targetMappingAsset[characterKey] || characterKey).join('');
+}
+
+window.copyStringToClipboard = function(domElementNodeReference) {
+    const targetStringLiteralText = domElementNodeReference.innerText;
+    navigator.clipboard.writeText(targetStringLiteralText).then(() => {
+        const toastNotificationOverlayNode = document.getElementById('toast-element');
+        toastNotificationOverlayNode.innerText = `Copied to clipboard: "${targetStringLiteralText}"`;
+        toastNotificationOverlayNode.classList.add('display-active');
+        setTimeout(() => toastNotificationOverlayNode.classList.remove('display-active'), 2000);
+    });
+};
