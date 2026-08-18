@@ -243,7 +243,6 @@ body {
 .chore-summary-readout { font-size: 0.9rem; text-align: center; font-weight: 600; margin-bottom: 2px; }
 .chore-control-select-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; }
 
-/* ✨ BEAUTIFUL BUTTONS FIX: Full width, explicit spacing, layout padding gap to stop smushing ✨ */
 .chore-buttons-row { 
     display: flex; 
     gap: 12px; 
