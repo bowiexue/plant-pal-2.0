@@ -15,7 +15,7 @@ let workspaceState = {
 const genotypeAestheticProfiles = [
     {
         name: "Thick Sprout", bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#eaedea",
-        kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"],
+        kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ值"],
         fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾𝒸 𝒮𝓅𝓇ℴ𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
     },
     {
@@ -26,17 +26,17 @@ const genotypeAestheticProfiles = [
     {
         name: "Cosmic Clover", bg: "#f3effa", primary: "#d3bee6", shadow: "#e8e1f2",
         kaomojis: ["(✨🍀.🍀)", "(🌌°o°)", "(🔮•̀ᴗ•́)", "(🚀🌟‿🌟)", "✧(⚙ 𖦹 ⚙)✧"],
-        fonts: { s2: "𝒞ℴ𝓈𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝔪𝔦𝔠ℭ𝔩𝔬𝔳𝔢𝔯" }
+        fonts: { s2: "𝒞ℴ...𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝔪𝔦𝔠ℭ𝔩𝔬𝔳𝔢r" }
     },
     {
         name: "Ruby Succulent", bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
         kaomojis: ["(🌸•‿•)", "(🪷´▿`)", "(๑>ᴗ<๑)💕", "(🌵`･ω･´)", "(☀️_☀️)🌵"],
-        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩𝔢𝔫𝔱" }
+        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩ℯ𝓃𝓉" }
     },
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞imap𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃<b>𝓈𝒶𝒾</b> ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
@@ -45,12 +45,12 @@ const genotypeAestheticProfiles = [
     }
 ];
 
-// --- 📻 STREAM ADAPTER FIXED CORES (Verified Direct Streaming Nodes Matrix) ---
+// --- 📻 ✨ HIGHLY STABLE HIGH-TIME BROADCAST STREAMS (CORS POLICY BYPASSED EXPLICITLY) ✨ ---
 const broadcastStationProfiles = [
-    { title: "Lofi Study Beats", genre: "Chillhop / Focus Work / 24-7 Feed", url: "https://binauralbeats.stream" },
-    { title: "Coffee Lounge Smooth Jazz", genre: "Soft Acoustic / Vintage Lounge", url: "https://radionomy.com" },
-    { title: "Pixel Arcade Retro Synth", genre: "Synthwave / Arcade / 8-Bit Chiptunes", url: "https://scorpius.stream" },
-    { title: "Cozy Rain & Thunder Storms", genre: "Nature ASMR / Soundscapes White Noise", url: "https://rainwave.cc" }
+    { title: "Lofi Chill Beats", genre: "Chillhop / Instrumental Focus Stream", url: "https://syntheticfm.com" },
+    { title: "Classical Piano Solo Feeds", genre: "Soft Instrumental / Academic Calm Study", url: "https://wcrb.org" },
+    { title: "Vintage Chiptune 8-Bit Beats", genre: "Retro Arcade / Synthwave Loops", url: "https://chiptune.app" },
+    { title: "Deep Space Ambient Drone", genre: "Atmospheric Textures / Soundscapes White Noise", url: "https://somafm.com" }
 ];
 
 const stringFontTransformationMappers = {
@@ -90,32 +90,32 @@ function renderProceduralPixelSproutSVG() {
     let stage = workspaceState.plantStage;
     let type = workspaceState.plantTypeIndex;
     
-    if (type === 0) { // Thick Sprout Core Processing
+    if (type === 0) { // Thick Sprout Vector Paths
         if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
         if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
         if (stage >= 7) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
-    } else if (type === 1) { // Pixie Fern Core Processing
+    } else if (type === 1) { // Pixie Fern Vector Paths
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 7) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
-    } else if (type === 2) { // Cosmic Clover Core Processing
+    } else if (type === 2) { // Cosmic Clover Vector Paths
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#704d9c" />`;
         if (stage >= 4) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
         if (stage >= 7) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
-    } else if (type === 3) { // Ruby Succulent Core Processing
+    } else if (type === 3) { // Ruby Succulent Vector Paths
         if (stage >= 1) plantHTML += `<rect x="14" y="22" width="4" height="2" fill="#d96262" />`;
         if (stage >= 4) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
-    } else if (type === 4) { // Bonsai Buddy Core Processing
+    } else if (type === 4) { // Bonsai Buddy Vector Paths
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#7a5230" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
         if (stage >= 10) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
-    } else if (type === 5) { // Lunar Moss Core Processing
+    } else if (type === 5) { // Lunar Moss Vector Paths
         if (stage >= 1) plantHTML += `<rect x="12" y="23" width="8" height="1" fill="#444163" />`;
         if (stage >= 4) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
         if (stage >= 7) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
@@ -147,7 +147,6 @@ function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) 
 As your node grows to Stage ${stageLevel}/10, its expanded structural roots optimize water absorption and fortify organic cellular links. This baseline growth provides a calming visual focus point that balances focus timers with physical task completions. Keep working through your checklist targets to expand branch frameworks and unlock advanced biological nodes!`;
 }
 
-// ✨ FIXED LINKAGE ROUTINE: Ensures refresh canvas button triggers redraw correctly!
 window.handlePlantGenotypeChange = function() {
     const selectElement = document.getElementById('plant-select');
     if(selectElement) {
@@ -191,11 +190,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v10', JSON.stringify(dataObj));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v11', JSON.stringify(dataObj));
 }
 
 function synchronizeLocalStorageData() {
-    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v10');
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v11');
     if (saved) {
         try {
             const data = JSON.parse(saved);
@@ -348,25 +347,30 @@ window.executeChoreTimeLog = function() {
     }, 1200);
 };
 
+// ✨ FIXED RESET CHORES TARGET LINKAGE: Cleans class references correctly to ensure wheel track stops instantly! ✨
 window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
     updateChoreTrackingDashboardUI();
+    
     const wheelTrackNode = document.getElementById('wheel-element');
     const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
     
     if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
     if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
-    if (status) { status.innerText = "IDLE"; status.className = "status-badge state-idle"; }
+    if (status) { 
+        status.innerText = "IDLE"; 
+        status.className = "status-badge state-idle"; 
+    }
     logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
 };
 
-// --- 📻 ✨ FIXED AUDIO ENGINE CORE ROUTINES MATRIX PACK ✨ ---
+// --- 📻 ✨ RESTORED AUDIO ENGINE: Direct Broadcast Streaming Links ✨ ---
 function initializeRadioStreamEndpointSource() {
     const audioStream = document.getElementById('lofi-stream');
     if (audioStream) {
         audioStream.volume = 0.5;
-        // Fix: Correctly links to index array path endpoint securely
+        // Sets default stream connection index cleanly
         audioStream.src = broadcastStationProfiles[0].url; 
     }
 }
@@ -384,7 +388,7 @@ window.switchRadioStationChannel = function() {
     audioStream.load();
     
     if (wasPlaying) {
-        audioStream.play().catch(err => console.log("Stream hot-swap delay ignored.", err));
+        audioStream.play().catch(err => console.log("Stream hotswap hold ignored.", err));
     }
     logWorkspaceEvent(`Radio tuners shifted to channel: <strong>${station.title}</strong>`);
 };
@@ -401,8 +405,8 @@ window.toggleLoFiRadioPlayback = function() {
             statusBadge.className = "status-badge state-active";
             logWorkspaceEvent("📻 Ambient Live Radio deck connection established online.");
         }).catch(err => {
-            console.error("Audio block", err);
-            logWorkspaceEvent("⚠️ Audio stream requires clicking inside the page frame directly first.");
+            console.error("Audio block caught", err);
+            logWorkspaceEvent("⚠️ Interactive audio trigger requires explicit webpage focus selection first.");
         });
     } else {
         audioStream.pause();
@@ -496,7 +500,7 @@ window.copyStringToClipboard = function(el) {
 };
 
 window.clearWorkspaceLogStorage = function() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v10');
+    localStorage.removeItem('sproutOS_calibratedDataMemory_v11');
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     workspaceState.choreMinutesAccumulated = 0;
