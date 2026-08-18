@@ -174,9 +174,6 @@ body {
 .checklist-interactive-input-row { display: flex; gap: 8px; }
 .clean-text-input { font-family: 'Fredoka', sans-serif; font-weight: 600; flex: 1; padding: 8px; border: 2.5px solid var(--border-charcoal); border-radius: 6px; outline: none; background: white; }
 
-/* Styling for tiny numbers box typing area */
-.small-num-input { max-width: 80px; text-align: center; padding: 5px; }
-
 .task-list-node-container { list-style: none; margin-top: 10px; max-height: 140px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
 .task-item-row-node { display: flex; align-items: center; justify-content: space-between; background-color: #fbfcfb; padding: 8px; border: 2px solid var(--border-charcoal); border-radius: 8px; }
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
@@ -233,6 +230,37 @@ body {
 .chore-logging-tracker-box { display: flex; flex-direction: column; gap: 8px; }
 .chore-summary-readout { font-size: 0.9rem; text-align: center; font-weight: 600; margin-bottom: 2px; }
 .chore-control-select-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; }
+
+/* ✨ COMBO FIELD STYLES: Glues number type fields next to dropdown elements perfectly ✨ */
+.combo-input-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 180px;
+    border: 2px solid var(--border-charcoal);
+    border-radius: 6px;
+    overflow: hidden;
+    background: white;
+}
+.combo-field {
+    border: none !important;
+    border-radius: 0 !important;
+    width: 70px;
+    padding: 6px !important;
+    text-align: center;
+    font-size: 0.9rem;
+    outline: none;
+}
+.combo-dropdown {
+    border: none !important;
+    border-left: 2px solid var(--border-charcoal) !important;
+    border-radius: 0 !important;
+    padding: 5px !important;
+    font-size: 0.85rem;
+    background: #fdfdfd;
+    cursor: pointer;
+    outline: none;
+    width: 105px;
+}
 
 .chore-buttons-row { 
     display: flex; 
