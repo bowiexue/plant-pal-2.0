@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SproutOS Personal Space Engine</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for cute aesthetics -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Fredoka:wght@300..700&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="workspace-container">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <div class="nav-left">🌱 SproutOS Workspace Node</div>
+            <div class="nav-right" id="live-clock">04:52:19 PM</div>
+        </header>
+
+        <h1 class="main-title">🌿 SproutOS Personal Space Engine</h1>
+
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Column 1: Ecosystem Workspace Garden & Checklist -->
+            <div class="dashboard-col col-main">
+                <!-- Garden Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <span>🌱 Ecosystem Workspace Garden</span>
+                        <span id="level-badge" class="badge">1/15</span>
+                    </div>
+                    <div class="garden-body">
+                        <div class="plant-display" id="plant-container">
+                            <!-- SVG Animated Plant Canvas -->
+                            <svg id="plant-svg" viewBox="0 0 100 100" width="100%" height="100%">
+                                <!-- Dynamic plant graphics rendered by JS -->
+                            </svg>
+                        </div>
+                        <div class="timer-container">
+                            <div class="timer-display" id="timer-text">25:00</div>
+                            <div class="timer-presets">
+                                <button class="btn btn-sm active" onclick="setTimerPreset('focus')">🎯 Focus</button>
+                                <button class="btn btn-sm" onclick="setTimerPreset('break')">☕ Break</button>
+                                <button class="btn btn-sm" onclick="setTimerPreset('short')">⏱️ Short</button>
+                                <button class="btn btn-sm" onclick="setTimerPreset('long')">⏳ Long</button>
+                            </div>
+                            <div class="timer-controls">
+                                <button class="btn btn-primary" id="start-btn" onclick="toggleTimer()">Start</button>
+                                <button class="btn btn-secondary" onclick="resetTimer()">Reset</button>
+                            </div>
+                            <div class="target-selector">
+                                <label for="plant-select">Target Seedling:</label>
+                                <select id="plant-select" onchange="changePlantType()">
+                                    <option value="0">Thick Sprout</option>
+                                    <option value="1">Pixie Fern</option>
+                                    <option value="2">Cosmic Clover</option>
+                                    <option value="3">Ruby Succulent</option>
+                                    <option value="4">Bonsai Buddy</option>
+                                    <option value="5">Lunar Moss</option>
+                                    <option value="6">Golden Pothos</option>
+                                    <option value="7">Dream Cactus</option>
+                                    <option value="8">Star Flower</option>
+                                    <option value="9">Aero Ivy</option>
+                                    <option value="10">Amber Blossom</option>
+                                    <option value="11">Neon Shroom</option>
+                                    <option value="12">Zen Bamboo</option>
+                                    <option value="13">Aqua Lily</option>
+                                    <option value="14">Omega Bloom</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks Connected Checklist -->
+                <div class="card">
+                    <div class="card-header">
+                        <span>📝 Tasks Connected Checklist (<span id="done-counter">0</span>/9 for Growth)</span>
+                    </div>
+                    <div class="checklist-body">
+                        <div class="task-input-row">
+                            <input type="text" id="new-task-input" placeholder="Add a task note...">
+                            <button class="btn btn-success" onclick="addTask()">Add</button>
+                        </div>
+                        <ul class="task-list" id="task-list-container">
+                            <!-- Tasks appear here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Column 2: Hamster Runner & Audio Soundscapes -->
+            <div class="dashboard-col col-side">
+                <!-- Hamster Runner Station -->
+                <div class="card">
+                    <div class="card-header">
+                        <span>🐹 Hamster Runner Station</span>
+                        <span id="hamster-status" class="badge badge-idle">IDLE</span>
+                    </div>
+                    <div class="hamster-body">
+                        <div class="wheel-container">
+                            <div class="hamster-wheel" id="wheel-element">
+                                <div class="hamster-avatar" id="hamster-element">🐹</div>
+                            </div>
+                        </div>
+                        <div class="chore-tracker">
+                            <p class="chore-balance">Chore Balance: <strong id="chore-current">0</strong> mins / <strong id="chore-goal">15</strong> mins</p>
+                            <div class="chore-row">
+                                <label>Run Goal:</label>
+                                <select id="goal-select" onchange="updateChoreGoal()">
+                                    <option value="15">15 mins</option>
+                                    <option value="30">30 mins</option>
+                                    <option value="45">45 mins</option>
+                                    <option value="60">60 mins</option>
+                                </select>
+                            </div>
+                            <div class="chore-row">
+                                <label>Log Session:</label>
+                                <select id="log-select">
+                                    <option value="5">5 mins</option>
+                                    <option value="15">15 mins</option>
+                                    <option value="30">30 mins</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-block btn-dark" onclick="logChoreTime()">⚡ Log Active Chore Time</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Background Sound Mixer -->
+                <div class="card">
+                    <div class="card-header">
+                        <span>🎵 Background Sound Mixer</span>
+                    </div>
+                    <div class="audio-body">
+                        <label class="audio-label">Select Audio Soundscape Base Layer:</label>
+                        <select id="audio-select" class="audio-dropdown" onchange="handleAudioChange()">
+                            <option value="rain">🌧️ Rainy Beats</option>
+                            <option value="cafe">☕ Cozy Cafe Jazz</option>
+                            <option value="forest">🌲 Forest Streams</option>
+                            <option value="space">🌌 Cosmic Lofi Ambient</option>
+                        </select>
+                        <button class="btn btn-block btn-audio" id="audio-toggle-btn" onclick="toggleAudioEngine()">
+                            🔊 Play Web-Audio Soundscape
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3: Font Variance & Kaomojis -->
+            <div class="dashboard-col col-side">
+                <div class="card">
+                    <div class="card-header">
+                        <span>✨ Font Variance Engine</span>
+                    </div>
+                    <div class="font-engine-body">
+                        <div class="kaomoji-pack">
+                            <div class="pack-title">✨ Theme Kaomojis Pack:</div>
+                            <div class="kaomoji-grid">
+                                <span class="kaomoji-item" onclick="copyText(this)">( •.•)♥</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(⁀ᗢ⁀)</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(O^∇^O)</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(•̤ᴗ•̤)</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(◕‿◕)</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(⊃｡•́‿•̀｡)⊃</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">( ▽ ` )</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(๑•́ ₃ •̀๑)</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(･ω･)v</span>
+                                <span class="kaomoji-item" onclick="copyText(this)">(★^O^★)</span>
+                            </div>
+                        </div>
+
+                        <div class="font-tester-section">
+                            <input type="text" id="font-input" class="font-input-box" value="Plant Pal" oninput="updateFontPreviews()">
+                            <div class="preview-box font-style-1" id="preview-1" onclick="copyText(this)">Plant Pal</div>
+                            <div class="preview-box font-style-2" id="preview-2" onclick="copyText(this)">𝒫𝓁𝒶𝓃𝓉 𝒫𝒶𝓁</div>
+                            <div class="preview-box font-style-3" id="preview-3" onclick="copyText(this)">𝔓𝔩𝔞𝔫𝔱 𝔓𝔞𝔩</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card sandbox-card">
+            <div class="card-header">
+                <span>✨ Interactive Sandbox Playground</span>
+            </div>
+            <div class="sandbox-area" id="sandbox-container">
+                <div class="sandbox-hint">✨ Move cursor here for sparkly trails! Click inside to hatch animals! ✨</div>
+            </div>
+        </div>
+
+        <div class="card history-card">
+            <div class="card-header">
+                <span>📔 Strategic Workspace Activity History Notebook</span>
+                <button class="btn btn-danger btn-sm" onclick="resetWorkspaceStorage()">⚠️ Reset Storage</button>
+            </div>
+            <div class="history-container" id="history-log-box">
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-notification" id="toast-element">Copied to clipboard!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
