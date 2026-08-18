@@ -55,12 +55,12 @@ body {
 
 .time-divider { margin: 0 8px; color: var(--text-muted); }
 
-/* ✨ RE-ALIGNED CONTAINER CORES: SHIFTED CARDS BALANCED AUTO TO REMOVE WHITE SPACES ✨ */
+/* GRID LAYOUT CONSTRAINTS OVERHAUL: STAYS COMPACT TO REMOVE SPACE VOIDS */
 .dashboard-layout-grid {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     gap: 24px;
-    align-items: start; /* Eradicates long empty structural extensions */
+    align-items: start;
 }
 
 @media (max-width: 900px) {
@@ -195,14 +195,13 @@ body {
 @keyframes fadeOutSparkle { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.1); opacity: 0; } }
 .sandbox-companion { position: absolute; font-size: 1.8rem; user-select: none; transform: translate(-50%, -50%); z-index: 6; }
 
-/* ✨ ANIMATION ENGINE UPGRADE: SEPARATED ROTATION LAYER FROM CHARACTER LAYER ✨ */
+/* ANIMATION ENGINE: WHEEL SPINS BUT HAMSTER FLAT BOBS ONLY */
 .wheel-outer-bounding-box { 
     width: 90px; 
     height: 90px; 
     margin: 0 auto 10px auto; 
     position: relative;
 }
-/* The wheel circle track spins entirely alone */
 .mechanical-spinning-wheel-track { 
     width: 100%; 
     height: 100%; 
@@ -221,7 +220,6 @@ body {
     to { transform: rotate(360deg); } 
 }
 
-/* The hamster sprite remains centered at the bottom, ONLY bobbing up and down */
 .independent-bobbing-hamster {
     position: absolute;
     bottom: 4px;
@@ -236,15 +234,9 @@ body {
 }
 @keyframes hamsterBobAnimation {
     0% { transform: translateX(-50%) translateY(0px); }
-    100% { transform: translateX(-50%) translateY(-3px); } /* Subtle high speed running foot bobs */
+    100% { transform: translateX(-50%) translateY(-3px); }
 }
 .pixel-hamster-vector-graphic { image-rendering: pixelated; }
-
-.chore-logging-tracker-box { display: flex; flex-direction: column; gap: 6px; }
-.chore-summary-readout { font-size: 0.9rem; text-align: center; font-weight: 600; }
-.chore-control-select-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; }
-.chore-buttons-row { display: flex; gap: 6px; }
-.chore-buttons-row button { flex: 1; font-size: 0.85rem; padding: 6px; }
 
 /* Native HTML5 Audio Deck Sheet Styles */
 .audio-player-workspace-body { display: flex; flex-direction: column; gap: 10px; background-color: #fafdfa; }
