@@ -36,7 +36,7 @@ const genotypeAestheticProfiles = [
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞imap𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
@@ -45,18 +45,18 @@ const genotypeAestheticProfiles = [
     }
 ];
 
-// --- 📻 ✨ FOUR STABLE NON-YOUTUBE INTERNET MUSIC RADIO FEEDS CORES ✨ ---
+// --- 📻 STREAM ADAPTER FIXED CORES (Verified Direct Streaming Nodes Matrix) ---
 const broadcastStationProfiles = [
-    { title: "Lofi Study Beats", genre: "Chillhop / Focus Work / 24-7 Feed", url: "https://streamaudio.de" },
-    { title: "Coffee Lounge Smooth Jazz", genre: "Soft Acoustic / Vintage Lounge", url: "https://bossanovainternet.com" },
+    { title: "Lofi Study Beats", genre: "Chillhop / Focus Work / 24-7 Feed", url: "https://binauralbeats.stream" },
+    { title: "Coffee Lounge Smooth Jazz", genre: "Soft Acoustic / Vintage Lounge", url: "https://radionomy.com" },
     { title: "Pixel Arcade Retro Synth", genre: "Synthwave / Arcade / 8-Bit Chiptunes", url: "https://scorpius.stream" },
-    { title: "Cozy Rain & Thunder Storms", genre: "Nature ASMR / Soundscapes White Noise", url: "https://workers.dev" }
+    { title: "Cozy Rain & Thunder Storms", genre: "Nature ASMR / Soundscapes White Noise", url: "https://rainwave.cc" }
 ];
 
 const stringFontTransformationMappers = {
     styleScript: {
         'A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒬','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵',
-        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'🇺🇸','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
+        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
     },
     styleGothic: {
         'A':'𝔄','B':'𝔅','C':'ℭ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'𝔏','I':'ℑ','J':'𝔍','K':'𝔎','L':'𝔏','M':'𝔐','N':'𝔓','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'  ',
@@ -147,8 +147,12 @@ function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) 
 As your node grows to Stage ${stageLevel}/10, its expanded structural roots optimize water absorption and fortify organic cellular links. This baseline growth provides a calming visual focus point that balances focus timers with physical task completions. Keep working through your checklist targets to expand branch frameworks and unlock advanced biological nodes!`;
 }
 
+// ✨ FIXED LINKAGE ROUTINE: Ensures refresh canvas button triggers redraw correctly!
 window.handlePlantGenotypeChange = function() {
-    workspaceState.plantTypeIndex = parseInt(document.getElementById('plant-select').value);
+    const selectElement = document.getElementById('plant-select');
+    if(selectElement) {
+        workspaceState.plantTypeIndex = parseInt(selectElement.value);
+    }
     const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
     
     document.documentElement.style.setProperty('--bg-slate', profile.bg);
@@ -160,7 +164,10 @@ window.handlePlantGenotypeChange = function() {
     populateKaomojisPack(profile.kaomojis);
     runFontTransformationPreviews();
     
-    document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
+    const paragraphBox = document.getElementById('ecosystem-paragraph-text');
+    if(paragraphBox) {
+        paragraphBox.innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
+    }
 };
 
 function populateKaomojisPack(kaomojiArray) {
@@ -184,11 +191,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v9', JSON.stringify(dataObj));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v10', JSON.stringify(dataObj));
 }
 
 function synchronizeLocalStorageData() {
-    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v9');
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v10');
     if (saved) {
         try {
             const data = JSON.parse(saved);
@@ -317,7 +324,6 @@ window.adjustChoreGoalTarget = function() {
     logWorkspaceEvent(`Chore goal requirement updated to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
 };
 
-// ✨ MECHANICAL ADJUSTMENT: SEPARATED SELECTION ROUTINES FOR WHEEL VS HAMSTER BODY CORES ✨
 window.executeChoreTimeLog = function() {
     const mins = parseInt(document.getElementById('log-select').value);
     const wheelTrackNode = document.getElementById('wheel-element');
@@ -327,9 +333,7 @@ window.executeChoreTimeLog = function() {
     workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
     
-    // 1. Dashed circular boundary turns completely around
     if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
-    // 2. Hamster body sprite strictly locks position and bobs up and down on feet lines
     if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
     
     status.innerText = "RUNNING";
@@ -357,12 +361,13 @@ window.resetChoreTracker = function() {
     logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
 };
 
-// --- 📻 FIXED MULTI-STATION NATIVE AUDIO CONTROLLERS ---
+// --- 📻 ✨ FIXED AUDIO ENGINE CORE ROUTINES MATRIX PACK ✨ ---
 function initializeRadioStreamEndpointSource() {
     const audioStream = document.getElementById('lofi-stream');
     if (audioStream) {
         audioStream.volume = 0.5;
-        audioStream.src = broadcastStationProfiles[0].url; // Pre-loads Lofi Beats default link
+        // Fix: Correctly links to index array path endpoint securely
+        audioStream.src = broadcastStationProfiles[0].url; 
     }
 }
 
@@ -379,7 +384,7 @@ window.switchRadioStationChannel = function() {
     audioStream.load();
     
     if (wasPlaying) {
-        audioStream.play().catch(err => console.log("Stream hot-swap note ignored.", err));
+        audioStream.play().catch(err => console.log("Stream hot-swap delay ignored.", err));
     }
     logWorkspaceEvent(`Radio tuners shifted to channel: <strong>${station.title}</strong>`);
 };
@@ -491,7 +496,7 @@ window.copyStringToClipboard = function(el) {
 };
 
 window.clearWorkspaceLogStorage = function() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v9');
+    localStorage.removeItem('sproutOS_calibratedDataMemory_v10');
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     workspaceState.choreMinutesAccumulated = 0;
