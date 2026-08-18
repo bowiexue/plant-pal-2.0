@@ -21,22 +21,27 @@
             </div>
         </header>
 
-        <!-- Main Structured Dashboard Layout Grid -->
+        <!-- Main Structured Dashboard Layout -->
         <main class="dashboard-layout-grid">
             
-            <!-- LEFT COLUMN: Garden, Sandbox, and Radio Deck -->
+            <!-- LEFT COLUMN: Garden, Interactive Sandbox, AND Audio Radio Deck -->
             <div class="layout-column left-main-panel">
                 <!-- Ecosystem Core Card -->
                 <div class="workspace-card theme-sage" id="garden-card">
                     <div class="card-header-bar">
                         <h2>🌱 Ecosystem Workspace Garden</h2>
-                        <span id="level-badge" class="level-indicator-badge">Stage 1 / 5</span>
+                        <span id="level-badge" class="level-indicator-badge">Stage 1 / 10</span>
                     </div>
+                    
                     <div class="garden-workspace-body">
+                        <!-- Left Element: Enhanced Plant Viewport Canvas Frame -->
                         <div class="plant-viewport-frame">
-                            <svg id="plant-svg" viewBox="0 0 32 32" width="100%" height="100%"></svg>
+                            <svg id="plant-svg" viewBox="0 0 32 32" width="100%" height="100%">
+                                <!-- Rendered dynamically by script.js -->
+                            </svg>
                         </div>
                         
+                        <!-- Right Element: Calibrated Focus Clock -->
                         <div class="focus-timer-subnode">
                             <div class="timer-numerical-display" id="timer-text">25:00</div>
                             <div class="timer-preset-row">
@@ -63,41 +68,68 @@
                         </div>
                     </div>
 
+                    <!-- Ecosystem Impact Expanded Paragraph Profile Box -->
                     <div class="ecosystem-impact-profile-box">
                         <div class="impact-header-row">
                             <h3>📋 Botanical Ecosystem Impact Statement</h3>
                             <button class="action-btn btn-danger btn-sm" onclick="wipeAllPlantProgressMemory()">🗑️ Reset Plant Progress</button>
                         </div>
-                        <p id="ecosystem-paragraph-text">Loading workstation statistics...</p>
+                        <p id="ecosystem-paragraph-text">
+                            The current seedling structure anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances inside the workstation.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Interactive Sparkle Sandbox -->
+                <!-- Interactive Cursor Sandbox Playground Area -->
                 <div class="workspace-card theme-sage sandbox-card" id="sandbox-card">
                     <div class="card-header-bar">
                         <h2>✨ Interactive Sandbox Playground</h2>
                     </div>
                     <div class="sandbox-area" id="sandbox-container">
-                        <div class="sandbox-hint">✨ Move mouse for starry magic! Click to hatch buddies! ✨</div>
+                        <div class="sandbox-hint">✨ Hover for sparkly trails! Click to hatch companions! ✨</div>
                     </div>
                 </div>
 
-                <!-- Spotify Web Player Integration Card -->
+                <!-- MOVED AUDIO DECK CARD: Shifted to Left Column to eliminate right column air voids -->
                 <div class="workspace-card theme-linen" id="audio-card">
                     <div class="card-header-bar">
-                        <h2>🎵 Connected Spotify Focus Portal</h2>
-                        <span id="audio-status" class="status-badge state-active">READY</span>
+                        <h2>📻 Multi-Station Ambient Radio Deck</h2>
+                        <span id="audio-status" class="status-badge state-idle">MUTED</span>
                     </div>
                     <div class="audio-player-workspace-body">
-                        <div class="spotify-embed-container">
-                            <iframe src="https://spotify.com" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <div class="audio-station-meta-row">
+                            <div class="station-avatar-icon">🎵</div>
+                            <div class="station-details-block">
+                                <p class="station-title" id="radio-station-title">Lofi Chill Beats</p>
+                                <p class="station-genre" id="radio-station-genre">Chillhop / Instrumental Focus Stream</p>
+                            </div>
                         </div>
+                        
+                        <!-- Live Audio Channel Switching Router Dropdown Deck -->
+                        <div class="audio-channel-selector-row">
+                            <label for="radio-channel-select">🎵 Change Station:</label>
+                            <select id="radio-channel-select" class="clean-select-menu" onchange="switchRadioStationChannel()">
+                                <option value="0">🎯 Lofi Chill Beats (Aesthetic Focus)</option>
+                                <option value="1">☕ Smooth Piano Loops (Calm Ambient)</option>
+                                <option value="2">👾 Vintage Chiptune 8-Bit Beats</option>
+                                <option value="3">🌧️ Ambient Deep Space Drone</option>
+                            </select>
+                        </div>
+
+                        <div class="audio-control-action-row">
+                            <button class="action-btn btn-primary" id="play-audio-btn" onclick="toggleLoFiRadioPlayback()">▶️ Play Radio</button>
+                            <input type="range" id="volume-slider" class="clean-range-slider" min="0" max="1" step="0.1" value="0.5" oninput="adjustLoFiRadioVolume(this.value)">
+                        </div>
+                        
+                        <!-- HTML5 Native Stream Engine Core Endpoint Link -->
+                        <audio id="lofi-stream" loop></audio>
                     </div>
                 </div>
             </div>
-            <!-- RIGHT COLUMN: Checklist, Hamster Wheel, Font Tools -->
+
+            <!-- RIGHT COLUMN: Clean Task Checklist, Hamster Wheel, Font Variance Tools -->
             <div class="layout-column right-side-panel">
-                <!-- Checklist Panel -->
+                <!-- Connected Task Checklist -->
                 <div class="workspace-card theme-linen" id="checklist-card">
                     <div class="card-header-bar">
                         <h2>📝 Connected Tasks Check-node</h2>
@@ -105,20 +137,22 @@
                     </div>
                     <div class="checklist-workspace-body">
                         <div class="checklist-interactive-input-row">
-                            <input type="text" id="new-task-input" class="clean-text-input" placeholder="Type task & press Enter..." onkeydown="if(event.key === 'Enter') createNewTaskItem()">
+                            <input type="text" id="new-task-input" class="clean-text-input" placeholder="Type task & press 'Return' or Enter..." onkeydown="if(event.key === 'Enter') createNewTaskItem()">
                             <button class="action-btn btn-success" onclick="createNewTaskItem()">Add Task</button>
                         </div>
-                        <ul class="task-list-node-container" id="task-list-container"></ul>
+                        <ul class="task-list-node-container" id="task-list-container">
+                            <!-- Injected dynamically by loop initialization logs -->
+                        </ul>
                     </div>
                 </div>
-
-                <!-- Hamster Runner & Custom Dual Controls -->
+                <!-- Hamster Active Run Track Station -->
                 <div class="workspace-card theme-peach" id="hamster-card">
                     <div class="card-header-bar">
                         <h2>🐹 Hamster Runner Node</h2>
                         <span id="hamster-status" class="status-badge state-idle">IDLE</span>
                     </div>
                     <div class="hamster-workspace-body">
+                        <!-- MECHANICAL ANCHOR SEPARATION -->
                         <div class="wheel-outer-bounding-box">
                             <div class="mechanical-spinning-wheel-track" id="wheel-element"></div>
                             <div class="independent-bobbing-hamster" id="hamster-element">
@@ -132,33 +166,36 @@
                                 </svg>
                             </div>
                         </div>
+                        
                         <div class="chore-logging-tracker-box">
                             <p class="chore-summary-readout">Chore Track: <strong id="chore-current">0</strong>m / <strong id="chore-goal">15</strong>m</p>
                             
+                            <!-- ✨ COMBINED SYSTEM 1: Target Goal Combo Layout row ✨ -->
                             <div class="chore-control-select-row">
                                 <label>Target Goal:</label>
-                                <div class="dual-input-wrapper">
-                                    <select id="goal-select" class="clean-select-menu" onchange="syncGoalDropdownToInput(this)">
-                                        <option value="15">15 mins</option>
+                                <div class="combo-input-wrapper">
+                                    <input type="number" id="goal-custom-input" class="clean-text-input combo-field" value="15" min="1" max="999" oninput="syncChoreGoalFromInput(this.value)">
+                                    <select id="goal-select" class="clean-select-menu combo-dropdown" onchange="syncChoreGoalFromDropdown(this.value)">
+                                        <option value="15" selected>15 mins</option>
                                         <option value="30">30 mins</option>
                                         <option value="45">45 mins</option>
                                         <option value="60">60 mins</option>
                                         <option value="custom">Custom</option>
                                     </select>
-                                    <input type="number" id="goal-custom-input" class="clean-text-input small-num-input" value="15" min="1" oninput="syncGoalInputToDropdown(this)">
                                 </div>
                             </div>
                             
+                            <!-- ✨ COMBINED SYSTEM 2: Log Block Minutes Combo Layout row ✨ -->
                             <div class="chore-control-select-row">
                                 <label>Log Minutes:</label>
-                                <div class="dual-input-wrapper">
-                                    <select id="log-select" class="clean-select-menu" onchange="syncLogDropdownToInput(this)">
-                                        <option value="5">5 mins</option>
+                                <div class="combo-input-wrapper">
+                                    <input type="number" id="chore-custom-input" class="clean-text-input combo-field" value="5" min="1" max="999" oninput="syncChoreLogFromInput(this.value)">
+                                    <select id="log-select" class="clean-select-menu combo-dropdown" onchange="syncChoreLogFromDropdown(this.value)">
+                                        <option value="5" selected>5 mins</option>
                                         <option value="15">15 mins</option>
                                         <option value="30">30 mins</option>
                                         <option value="custom">Custom</option>
                                     </select>
-                                    <input type="number" id="chore-custom-input" class="clean-text-input small-num-input" value="5" min="1" oninput="syncLogInputToDropdown(this)">
                                 </div>
                             </div>
                             
@@ -170,14 +207,16 @@
                     </div>
                 </div>
 
-                <!-- Font Preview Section -->
+                <!-- Font Transformation Sandbox Engine & Dynamic Kaomojis Pack -->
                 <div class="workspace-card theme-lavender" id="font-card">
                     <div class="card-header-bar">
                         <h2>✨ Font Variance Engine & Kaomojis</h2>
                     </div>
                     <div class="fonts-workspace-body">
                         <div class="kaomoji-quick-pack-wrapper">
-                            <div class="kaomoji-grid-layout"></div>
+                            <div class="kaomoji-grid-layout">
+                                <!-- Re-populated automatically by state engine switchers -->
+                            </div>
                         </div>
                         <div class="font-previewer-input-column">
                             <input type="text" id="font-input" class="clean-text-input" value="Plant Pal" oninput="runFontTransformationPreviews()">
@@ -190,6 +229,7 @@
             </div>
         </main>
 
+        <!-- Full-Width Activity Tracking History Substructure Box -->
         <footer class="workspace-card theme-dark history-footer-card">
             <div class="card-header-bar">
                 <h2>📔 Workspace Activity Log Registry</h2>
@@ -201,6 +241,7 @@
         </footer>
     </div>
 
+    <!-- Toast Notification Popup Alert -->
     <div class="toast-popup-notification" id="toast-element">Copied to clipboard!</div>
 
     <script src="script.js"></script>
