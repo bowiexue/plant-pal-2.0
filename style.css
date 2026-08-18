@@ -55,12 +55,12 @@ body {
 
 .time-divider { margin: 0 8px; color: var(--text-muted); }
 
-/* GRID ALIGNMENT: COLUMN STRETCHES TO FILL VOIDS FLUIDLY */
+/* GRID VOID REPAIR BLOCK: CARDS STACK AUTOMATICALLY WITHOUT WHITE GAP HOLES */
 .dashboard-layout-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 24px;
-    align-items: stretch;
+    align-items: start;
 }
 
 @media (max-width: 900px) {
@@ -71,11 +71,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    height: auto;
 }
-
-/* Proportional stretch mechanics overrides */
-.main-panel { display: flex; flex-direction: column; }
-#garden-card { flex: 1; display: flex; flex-direction: column; }
 
 /* Standardized Proportional Card Node Blocks */
 .workspace-card {
@@ -86,6 +83,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    height: auto;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -146,7 +144,7 @@ body {
 
 .garden-workspace-body { display: flex; gap: 16px; align-items: center; }
 
-/* CHORE ENGINE PROPORTIONS: ENHANCED PLANT CANVAS VIEWPORT CONTAINER FRAME */
+/* Proportional Garden Canvas Alignment Viewport */
 .plant-viewport-frame {
     width: 150px;
     height: 170px;
@@ -178,9 +176,9 @@ body {
 .clean-select-menu { font-family: 'Fredoka', sans-serif; font-weight: 600; padding: 6px; border: 2px solid var(--border-charcoal); border-radius: 6px; flex: 1; background: white; outline: none; }
 
 .ecosystem-impact-profile-box { border-top: 2.5px dashed var(--border-charcoal); padding: 12px 16px; background-color: #fbfcfb; }
-.impact-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.impact-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
 .ecosystem-impact-profile-box h3 { font-size: 0.9rem; }
-.ecosystem-impact-profile-box p { font-size: 0.85rem; color: var(--text-muted); }
+.ecosystem-impact-profile-box p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; text-align: justify; }
 
 /* Checklist Component Formatting Matrix */
 .checklist-interactive-input-row { display: flex; gap: 8px; }
@@ -190,7 +188,7 @@ body {
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
 
-/* ✨ DIMENSIONS COMPACTED FIXED: Interactive Sandbox Frame Compressed down to 75px ✨ */
+/* Sandbox Playground Dimension Limits (75px Height Cap) */
 .sandbox-area { height: 75px; background-color: #fffefa; position: relative; overflow: hidden; cursor: crosshair; }
 .sandbox-hint { position: absolute; width: 100%; text-align: center; top: 50%; transform: translateY(-50%); color: #8fa08e; font-size: 0.85rem; font-weight: 600; pointer-events: none; z-index: 10; }
 .sparkle { position: absolute; width: 8px; height: 8px; background-color: var(--text-primary); border-radius: 50%; pointer-events: none; z-index: 5; animation: fadeOutSparkle 0.5s forwards ease-out; }
@@ -210,14 +208,17 @@ body {
 .chore-buttons-row { display: flex; gap: 6px; }
 .chore-buttons-row button { flex: 1; font-size: 0.85rem; padding: 6px; }
 
-/* Radio Deck Channel Sheet Component Formatting Engine */
-.audio-player-workspace-body { display: flex; flex-direction: column; gap: 10px; background-color: #fafdfa; }
+/* Synthesizer Deck Framework Layout Elements */
+.audio-player-workspace-body { display: flex; flex-direction: column; gap: 12px; background-color: #fafdfa; }
 .audio-station-meta-row { display: flex; align-items: center; gap: 12px; }
-.station-avatar-icon { font-size: 2rem; background: var(--sage-green); padding: 6px; border: 2px solid var(--border-charcoal); border-radius: 8px; transition: background-color 0.3s ease; }
+.station-avatar-icon { font-size: 2rem; background: var(--sage-green); padding: 6px; border: 2px solid var(--border-charcoal); border-radius: 8px; text-align: center; width: 54px; }
+/* Music Synthesizer Active Note Vibration Pulse Animation Loop */
+.station-avatar-icon.playing { animation: pulseSynthIcon 0.6s infinite alternate ease-in-out; background-color: #fbcaca; }
+@keyframes pulseSynthIcon { from { transform: scale(1); } to { transform: scale(1.08); } }
+
 .station-title { font-weight: 700; font-size: 1rem; }
 .station-genre { font-size: 0.8rem; color: var(--text-muted); }
-.audio-channel-selector-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; padding: 2px 0; border-top: 1px dashed var(--border-charcoal); border-bottom: 1px dashed var(--border-charcoal); }
-
+.audio-channel-selector-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; padding: 4px 0; border-top: 1px dashed var(--border-charcoal); border-bottom: 1px dashed var(--border-charcoal); }
 .audio-control-action-row { display: flex; align-items: center; gap: 12px; }
 .clean-range-slider { flex: 1; accent-color: var(--border-charcoal); cursor: pointer; }
 
