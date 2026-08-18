@@ -30,7 +30,7 @@
                 <div class="workspace-card theme-sage">
                     <div class="card-header-bar">
                         <h2>🌱 Ecosystem Workspace Garden</h2>
-                        <span id="level-badge" class="level-indicator-badge">Stage 1 / 15</span>
+                        <span id="level-badge" class="level-indicator-badge">Stage 1 / 10</span>
                     </div>
                     
                     <div class="garden-workspace-body">
@@ -76,11 +76,12 @@
                         </p>
                     </div>
                 </div>
+
                 <!-- Connected Task Checklist -->
                 <div class="workspace-card theme-linen">
                     <div class="card-header-bar">
                         <h2>📝 Connected Tasks Check-node</h2>
-                        <span class="level-indicator-badge"><span id="done-counter">0</span> / 9 Tasks</span>
+                        <span class="level-indicator-badge"><span id="done-counter">0</span> / 3 Tasks</span>
                     </div>
                     <div class="checklist-workspace-body">
                         <div class="checklist-interactive-input-row">
@@ -90,6 +91,15 @@
                         <ul class="task-list-node-container" id="task-list-container">
                             <!-- Injected dynamically by logic initialization loops -->
                         </ul>
+                    </div>
+                </div>
+                <!-- ✨ Added Playground Back in the Circled Spot ✨ -->
+                <div class="workspace-card theme-sage sandbox-card">
+                    <div class="card-header-bar">
+                        <h2>✨ Interactive Sandbox Playground</h2>
+                    </div>
+                    <div class="sandbox-area" id="sandbox-container">
+                        <div class="sandbox-hint">✨ Move cursor here for sparkly trails! Click inside to hatch companions! ✨</div>
                     </div>
                 </div>
             </div>
@@ -105,7 +115,7 @@
                     <div class="hamster-workspace-body">
                         <div class="wheel-outer-bounding-box">
                             <div class="mechanical-spinning-wheel" id="wheel-element">
-                                <!-- Pixel Art Hamster drawn directly on a 24x24 Vector Grid -->
+                                <!-- Pixel Art Hamster Vector Graphic -->
                                 <svg class="pixel-hamster-vector-graphic" viewBox="0 0 24 24" width="64" height="64">
                                     <path d="M5 4h2v2H5V4zm12 0h2v2h-2V4z" fill="#f4abb3"/>
                                     <path d="M4 6h16v2H4V6zm-1 2h18v10H3V8z" fill="#e0a385"/>
@@ -135,7 +145,10 @@
                                     <option value="30">30 mins</option>
                                 </select>
                             </div>
-                            <button class="action-btn btn-dark btn-block" onclick="executeChoreTimeLog()">⚡ Log Completed Chore Time</button>
+                            <div class="chore-buttons-row">
+                                <button class="action-btn btn-dark" onclick="executeChoreTimeLog()">⚡ Log Chores</button>
+                                <button class="action-btn btn-secondary" onclick="resetChoreTracker()">Reset Chores</button>
+                            </div>
                         </div>
                     </div>
                 </div>
