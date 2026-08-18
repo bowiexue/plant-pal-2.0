@@ -24,8 +24,8 @@
         <!-- Main Structured Dashboard Layout -->
         <main class="dashboard-layout-grid">
             
-            <!-- Left Primary Column: Garden Ecosystem Node & Sandbox -->
-            <div class="layout-column main-panel">
+            <!-- ✨ LEFT COLUMN: Garden, Interactive Sandbox, AND Audio Radio Deck ✨ -->
+            <div class="layout-column left-main-panel">
                 <!-- Ecosystem Core Card -->
                 <div class="workspace-card theme-sage" id="garden-card">
                     <div class="card-header-bar">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
 
-                    <!-- Ecosystem Impact Paragraph Profile Block -->
+                    <!-- Ecosystem Impact Expanded Paragraph Profile Box -->
                     <div class="ecosystem-impact-profile-box">
                         <div class="impact-header-row">
                             <h3>📋 Botanical Ecosystem Impact Statement</h3>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                <!-- Interactive Cursor Sandbox Playground Area (Fixed Height) -->
+                <!-- Interactive Cursor Sandbox Playground Area (Fixed Constraints) -->
                 <div class="workspace-card theme-sage sandbox-card" id="sandbox-card">
                     <div class="card-header-bar">
                         <h2>✨ Interactive Sandbox Playground</h2>
@@ -89,10 +89,46 @@
                         <div class="sandbox-hint">✨ Hover for sparkly trails! Click to hatch companions! ✨</div>
                     </div>
                 </div>
+
+                <!-- ✨ MOVED AUDIO DECK CARD: Shifted to Left Column to eliminate right column air voids ✨ -->
+                <div class="workspace-card theme-linen" id="audio-card">
+                    <div class="card-header-bar">
+                        <h2>📻 Multi-Station Ambient Radio Deck</h2>
+                        <span id="audio-status" class="status-badge state-idle">MUTED</span>
+                    </div>
+                    <div class="audio-player-workspace-body">
+                        <div class="audio-station-meta-row">
+                            <div class="station-avatar-icon">🎵</div>
+                            <div class="station-details-block">
+                                <p class="station-title" id="radio-station-title">Lofi Study Beats</p>
+                                <p class="station-genre" id="radio-station-genre">Chillhop / Focus Work / 24-7 Feed</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Live Audio Channel Switching Router Dropdown Deck -->
+                        <div class="audio-channel-selector-row">
+                            <label for="radio-channel-select">🎵 Change Station:</label>
+                            <select id="radio-channel-select" class="clean-select-menu" onchange="switchRadioStationChannel()">
+                                <option value="0">🎯 Lofi Study Beats (Chillhop Node)</option>
+                                <option value="1">☕ Coffee Lounge Smooth Jazz</option>
+                                <option value="2">👾 Pixel Arcade Retro Synth (Chiptune)</option>
+                                <option value="3">🌧️ Cozy Rain & Ambient Thunder Storms</option>
+                            </select>
+                        </div>
+
+                        <div class="audio-control-action-row">
+                            <button class="action-btn btn-primary" id="play-audio-btn" onclick="toggleLoFiRadioPlayback()">▶️ Play Radio</button>
+                            <input type="range" id="volume-slider" class="clean-range-slider" min="0" max="1" step="0.1" value="0.5" oninput="adjustLoFiRadioVolume(this.value)">
+                        </div>
+                        
+                        <!-- HTML5 Native Stream Engine Core Endpoint Link -->
+                        <audio id="lofi-stream" loop crossorigin="anonymous"></audio>
+                    </div>
+                </div>
             </div>
 
-            <!-- Right Column: Secondary Utilities Sidecar -->
-            <div class="layout-column side-panel">
+            <!-- ✨ RIGHT COLUMN: Clean Task Checklist, Hamster Wheel, Font Variance Tools ✨ -->
+            <div class="layout-column right-side-panel">
                 <!-- Connected Task Checklist -->
                 <div class="workspace-card theme-linen" id="checklist-card">
                     <div class="card-header-bar">
@@ -116,8 +152,12 @@
                         <span id="hamster-status" class="status-badge state-idle">IDLE</span>
                     </div>
                     <div class="hamster-workspace-body">
+                        <!-- MECHANICAL ANCHOR SEPARATION: Outer track separates from interior bobbing hamster -->
                         <div class="wheel-outer-bounding-box">
-                            <div class="mechanical-spinning-wheel" id="wheel-element">
+                            <div class="mechanical-spinning-wheel-track" id="wheel-element">
+                                <!-- Outer wheel wire loops spun by rotateWheel style rules -->
+                            </div>
+                            <div class="independent-bobbing-hamster" id="hamster-element">
                                 <svg class="pixel-hamster-vector-graphic" viewBox="0 0 24 24" width="64" height="64">
                                     <path d="M5 4h2v2H5V4zm12 0h2v2h-2V4z" fill="#f4abb3"/>
                                     <path d="M4 6h16v2H4V6zm-1 2h18v10H3V8z" fill="#e0a385"/>
@@ -150,42 +190,6 @@
                             <div class="chore-buttons-row">
                                 <button class="action-btn btn-dark" onclick="executeChoreTimeLog()">⚡ Log Chores</button>
                                 <button class="action-btn btn-secondary" onclick="resetChoreTracker()">Reset Chores</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 📻 UPGRADED NO YOUTUBE: Native Browser Audio Synthesizer Engine Deck -->
-                <div class="workspace-card theme-linen" id="audio-card">
-                    <div class="card-header-bar">
-                        <h2>📻 8-Bit Workspace Chiptune Synth</h2>
-                        <span id="audio-status" class="status-badge state-idle">MUTED</span>
-                    </div>
-                    <div class="audio-player-workspace-body">
-                        <div class="audio-station-meta-row">
-                            <div class="station-avatar-icon" id="synth-visual-node">🎹</div>
-                            <div class="station-details-block">
-                                <p class="station-title" id="radio-station-title">Calm Study Chords</p>
-                                <p class="station-genre" id="radio-station-genre">Offline Synth Melodies / 100% Code Generated</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Track Switcher Dropdown Menu Router Option -->
-                        <div class="audio-channel-selector-row">
-                            <label for="radio-channel-select">🎵 Change Track:</label>
-                            <select id="radio-channel-select" class="clean-select-menu" onchange="switchRadioStationChannel()">
-                                <option value="0">🎯 Calm Study Chords (Relaxing Melodic Roll)</option>
-                                <option value="1">☕ Upbeat Cozy Café Rhythm</option>
-                                <option value="2">👾 Deep Space Ambient Drone Echoes</option>
-                            </select>
-                        </div>
-
-                        <div class="audio-control-action-row">
-                            <button class="action-btn btn-primary" id="play-audio-btn" onclick="toggleLoFiRadioPlayback()">▶️ Play Synth</button>
-                            <div class="slider-volume-wrapper" style="flex:1; display:flex; align-items:center; gap:8px;">
-                                <span>🔈</span>
-                                <input type="range" id="volume-slider" class="clean-range-slider" min="0" max="0.3" step="0.05" value="0.15" oninput="adjustLoFiRadioVolume(this.value)">
-                                <span>🔊</span>
                             </div>
                         </div>
                     </div>
