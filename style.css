@@ -55,12 +55,12 @@ body {
 
 .time-divider { margin: 0 8px; color: var(--text-muted); }
 
-/* GRID VOID REPAIR BLOCK: CARDS STACK AUTOMATICALLY WITHOUT WHITE GAP HOLES */
+/* ✨ RE-ALIGNED CONTAINER CORES: SHIFTED CARDS BALANCED AUTO TO REMOVE WHITE SPACES ✨ */
 .dashboard-layout-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1.1fr 1fr;
     gap: 24px;
-    align-items: start;
+    align-items: start; /* Eradicates long empty structural extensions */
 }
 
 @media (max-width: 900px) {
@@ -144,7 +144,7 @@ body {
 
 .garden-workspace-body { display: flex; gap: 16px; align-items: center; }
 
-/* Proportional Garden Canvas Alignment Viewport */
+/* Garden Frame Dimensions Constants */
 .plant-viewport-frame {
     width: 150px;
     height: 170px;
@@ -180,7 +180,7 @@ body {
 .ecosystem-impact-profile-box h3 { font-size: 0.9rem; }
 .ecosystem-impact-profile-box p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; text-align: justify; }
 
-/* Checklist Component Formatting Matrix */
+/* Checklist Inputs Formatting Map */
 .checklist-interactive-input-row { display: flex; gap: 8px; }
 .clean-text-input { font-family: 'Fredoka', sans-serif; font-weight: 600; flex: 1; padding: 8px; border: 2.5px solid var(--border-charcoal); border-radius: 6px; outline: none; background: white; }
 .task-list-node-container { list-style: none; margin-top: 10px; max-height: 140px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
@@ -188,19 +188,57 @@ body {
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
 
-/* Sandbox Playground Dimension Limits (75px Height Cap) */
+/* Sandbox Panel Play Area Bounds */
 .sandbox-area { height: 75px; background-color: #fffefa; position: relative; overflow: hidden; cursor: crosshair; }
 .sandbox-hint { position: absolute; width: 100%; text-align: center; top: 50%; transform: translateY(-50%); color: #8fa08e; font-size: 0.85rem; font-weight: 600; pointer-events: none; z-index: 10; }
 .sparkle { position: absolute; width: 8px; height: 8px; background-color: var(--text-primary); border-radius: 50%; pointer-events: none; z-index: 5; animation: fadeOutSparkle 0.5s forwards ease-out; }
 @keyframes fadeOutSparkle { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.1); opacity: 0; } }
 .sandbox-companion { position: absolute; font-size: 1.8rem; user-select: none; transform: translate(-50%, -50%); z-index: 6; }
 
-/* Active Hamster Runner Interface Layouts */
-.wheel-outer-bounding-box { width: 90px; height: 90px; margin: 0 auto 10px auto; }
-.mechanical-spinning-wheel { width: 100%; height: 100%; border: 4px dashed var(--border-charcoal); border-radius: 50%; position: relative; display: flex; align-items: center; justify-content: center; background-color: #fafafa; }
-.mechanical-spinning-wheel.spinning { animation: rotateWheel 1.2s linear infinite; }
-@keyframes rotateWheel { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.pixel-hamster-vector-graphic { position: absolute; bottom: 6px; image-rendering: pixelated; }
+/* ✨ ANIMATION ENGINE UPGRADE: SEPARATED ROTATION LAYER FROM CHARACTER LAYER ✨ */
+.wheel-outer-bounding-box { 
+    width: 90px; 
+    height: 90px; 
+    margin: 0 auto 10px auto; 
+    position: relative;
+}
+/* The wheel circle track spins entirely alone */
+.mechanical-spinning-wheel-track { 
+    width: 100%; 
+    height: 100%; 
+    border: 4px dashed var(--border-charcoal); 
+    border-radius: 50%; 
+    background-color: #fafafa;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.mechanical-spinning-wheel-track.spinning { 
+    animation: rotateWheelOnly 1.2s linear infinite; 
+}
+@keyframes rotateWheelOnly { 
+    from { transform: rotate(0deg); } 
+    to { transform: rotate(360deg); } 
+}
+
+/* The hamster sprite remains centered at the bottom, ONLY bobbing up and down */
+.independent-bobbing-hamster {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 64px;
+    pointer-events: none;
+}
+.independent-bobbing-hamster.active-running {
+    animation: hamsterBobAnimation 0.15s ease-in-out infinite alternate;
+}
+@keyframes hamsterBobAnimation {
+    0% { transform: translateX(-50%) translateY(0px); }
+    100% { transform: translateX(-50%) translateY(-3px); } /* Subtle high speed running foot bobs */
+}
+.pixel-hamster-vector-graphic { image-rendering: pixelated; }
 
 .chore-logging-tracker-box { display: flex; flex-direction: column; gap: 6px; }
 .chore-summary-readout { font-size: 0.9rem; text-align: center; font-weight: 600; }
@@ -208,17 +246,13 @@ body {
 .chore-buttons-row { display: flex; gap: 6px; }
 .chore-buttons-row button { flex: 1; font-size: 0.85rem; padding: 6px; }
 
-/* Synthesizer Deck Framework Layout Elements */
-.audio-player-workspace-body { display: flex; flex-direction: column; gap: 12px; background-color: #fafdfa; }
+/* Native HTML5 Audio Deck Sheet Styles */
+.audio-player-workspace-body { display: flex; flex-direction: column; gap: 10px; background-color: #fafdfa; }
 .audio-station-meta-row { display: flex; align-items: center; gap: 12px; }
-.station-avatar-icon { font-size: 2rem; background: var(--sage-green); padding: 6px; border: 2px solid var(--border-charcoal); border-radius: 8px; text-align: center; width: 54px; }
-/* Music Synthesizer Active Note Vibration Pulse Animation Loop */
-.station-avatar-icon.playing { animation: pulseSynthIcon 0.6s infinite alternate ease-in-out; background-color: #fbcaca; }
-@keyframes pulseSynthIcon { from { transform: scale(1); } to { transform: scale(1.08); } }
-
+.station-avatar-icon { font-size: 2rem; background: var(--sage-green); padding: 6px; border: 2px solid var(--border-charcoal); border-radius: 8px; }
 .station-title { font-weight: 700; font-size: 1rem; }
 .station-genre { font-size: 0.8rem; color: var(--text-muted); }
-.audio-channel-selector-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; padding: 4px 0; border-top: 1px dashed var(--border-charcoal); border-bottom: 1px dashed var(--border-charcoal); }
+.audio-channel-selector-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; padding: 6px 0; border-top: 1px dashed var(--border-charcoal); border-bottom: 1px dashed var(--border-charcoal); }
 .audio-control-action-row { display: flex; align-items: center; gap: 12px; }
 .clean-range-slider { flex: 1; accent-color: var(--border-charcoal); cursor: pointer; }
 
