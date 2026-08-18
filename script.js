@@ -26,7 +26,7 @@ const genotypeAestheticProfiles = [
     {
         name: "Cosmic Clover", bg: "#f3effa", primary: "#d3bee6", shadow: "#e8e1f2",
         kaomojis: ["(✨🍀.🍀)", "(🌌°o°)", "(🔮•̀ᴗ•́)", "(🚀🌟‿🌟)", "✧(⚙ 𖦹 ⚙)✧"],
-        fonts: { s2: "𝒞ℴ𝓈𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝓂𝔦𝔠ℭ𝔩𝔬𝔳𝔢𝔯" }
+        fonts: { s2: "𝒞ℴ𝓈𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝔪𝔦𝔠ℭ𝔩𝔬𝔳𝔢𝔯" }
     },
     {
         name: "Ruby Succulent", bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
@@ -36,7 +36,7 @@ const genotypeAestheticProfiles = [
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞imap𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
@@ -45,11 +45,12 @@ const genotypeAestheticProfiles = [
     }
 ];
 
+// --- 📻 ✨ BROADCAST STREAMS (CORS SECURE AUDIO FEEDS) ✨ ---
 const broadcastStationProfiles = [
     { title: "Lofi Chill Beats", genre: "Chillhop / Instrumental Focus Stream", url: "https://syntheticfm.com" },
-    { title: "Classical Piano Solo Feeds", genre: "Soft Instrumental / Academic Calm Study", url: "https://wcrb.org" },
+    { title: "Smooth Piano Loops", genre: "Soft Instrumental / Academic Calm Study", url: "https://wcrb.org" },
     { title: "Vintage Chiptune 8-Bit Beats", genre: "Retro Arcade / Synthwave Loops", url: "https://chiptune.app" },
-    { title: "Deep Space Ambient Drone", genre: "Atmospheric Textures / Soundscapes White Noise", url: "https://somafm.com" }
+    { title: "Ambient Deep Space Drone", genre: "Atmospheric Textures / Soundscapes White Noise", url: "https://somafm.com" }
 ];
 
 const stringFontTransformationMappers = {
@@ -89,32 +90,32 @@ function renderProceduralPixelSproutSVG() {
     let stage = workspaceState.plantStage;
     let type = workspaceState.plantTypeIndex;
     
-    if (type === 0) { // Thick Sprout Vector Paths
+    if (type === 0) {
         if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
         if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
         if (stage >= 7) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
-    } else if (type === 1) { // Pixie Fern Vector Paths
+    } else if (type === 1) {
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 7) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
-    } else if (type === 2) { // Cosmic Clover Vector Paths
+    } else if (type === 2) {
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#704d9c" />`;
         if (stage >= 4) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
         if (stage >= 7) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
-    } else if (type === 3) { // Ruby Succulent Vector Paths
+    } else if (type === 3) {
         if (stage >= 1) plantHTML += `<rect x="14" y="22" width="4" height="2" fill="#d96262" />`;
         if (stage >= 4) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
-    } else if (type === 4) { // Bonsai Buddy Vector Paths
+    } else if (type === 4) {
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#7a5230" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
         if (stage >= 10) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
-    } else if (type === 5) { // Lunar Moss Vector Paths
+    } else if (type === 5) {
         if (stage >= 1) plantHTML += `<rect x="12" y="23" width="8" height="1" fill="#444163" />`;
         if (stage >= 4) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
         if (stage >= 7) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
@@ -146,27 +147,19 @@ function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) 
 As your node grows to Stage ${stageLevel}/10, its expanded structural roots optimize water absorption and fortify organic cellular links. This baseline growth provides a calming visual focus point that balances focus timers with physical task completions. Keep working through your checklist targets to expand branch frameworks and unlock advanced biological nodes!`;
 }
 
-// ✨ ADVANCED WIPE TRIGGER FUNCTION: Clears active botanical state structures down to a baby seedling sprout! ✨
-window.wipePlantProgressBackToSeedling = function() {
+// ✨ NEW PROGRESS WIPE OPTION: Completely resets sprout layers to stage 1 outline! ✨
+window.wipeAllPlantProgressMemory = function() {
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     
-    const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
-    
-    // Redraw canvas frame instantly
     renderProceduralPixelSproutSVG();
     
-    // Reset counter nodes
-    const doneCounterNode = document.getElementById('done-counter');
-    if(doneCounterNode) doneCounterNode.innerText = "0";
-    
-    // Sync text labels
+    const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
     const paragraphBox = document.getElementById('ecosystem-paragraph-text');
     if(paragraphBox) {
-        paragraphBox.innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, 1);
+        paragraphBox.innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
     }
-    
-    logWorkspaceEvent(`🚨 <strong>PLANT PROGRESS PURGED</strong>: "${profile.name}" has been returned to a Stage 1 newborn sprout canvas node.`);
+    logWorkspaceEvent("🚨 <strong>Plant growth wiped!</strong> Progressive sprout metrics reset back to Stage 1 canvas outline.");
 };
 
 window.handlePlantGenotypeChange = function() {
@@ -345,8 +338,15 @@ window.adjustChoreGoalTarget = function() {
     logWorkspaceEvent(`Chore goal requirement updated to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
 };
 
+// ✨ MUTATED ROUTINE: Reads typed text input block instead of fixed dropdown menus ✨
 window.executeChoreTimeLog = function() {
-    const mins = parseInt(document.getElementById('log-select').value);
+    const customInputNode = document.getElementById('chore-custom-input');
+    let mins = parseInt(customInputNode.value);
+    
+    if (isNaN(mins) || mins <= 0) {
+        mins = 5; // Safe default guard link
+    }
+    
     const wheelTrackNode = document.getElementById('wheel-element');
     const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
@@ -386,11 +386,12 @@ window.resetChoreTracker = function() {
     logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
 };
 
+// --- 📻 SECURITY BYPASSED LIVE STREAM TUNER ENGINE ---
 function initializeRadioStreamEndpointSource() {
     const audioStream = document.getElementById('lofi-stream');
     if (audioStream) {
         audioStream.volume = 0.5;
-        audioStream.src = broadcastStationProfiles.url; 
+        audioStream.src = broadcastStationProfiles[0].url; 
     }
 }
 
@@ -407,7 +408,7 @@ window.switchRadioStationChannel = function() {
     audioStream.load();
     
     if (wasPlaying) {
-        audioStream.play().catch(err => console.log("Stream hotswap hold ignored.", err));
+        audioStream.play().catch(err => console.log("Stream sync hold bypassed.", err));
     }
     logWorkspaceEvent(`Radio tuners shifted to channel: <strong>${station.title}</strong>`);
 };
