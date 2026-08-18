@@ -21,7 +21,7 @@ const genotypeAestheticProfiles = [
     {
         name: "Pixie Fern", bg: "#edf5f0", primary: "#b3cbb4", shadow: "#dae5db",
         kaomojis: ["(🧚•̤ᴗ•̤)", "(*ﾟ▽ﾟ*)🌿", "(🌿ᵕᴗᵕ)", "(*>﹏<*)🍃", "(🍃'ᵕ'🍃)"],
-        fonts: { s2: "𝒫𝒾𝓍𝒾ℯ ℱℯ𝓇𝓃 𝒮𝓉𝓎𝓁ℯ", s3: "𝔓𝔦𝔵𝔦𝔢𝔉𝔢𝔯𝔫" }
+        fonts: { s2: "𝒫𝒾𝓍𝒾ℯ ℱℯ𝓇𝓃 𝒮𝓉𝓎𝓁ℯ", s3: "𝔓𝔦𝔵𝔦ℯ𝔉𝔢𝔯𝔫" }
     },
     {
         name: "Cosmic Clover", bg: "#f3effa", primary: "#d3bee6", shadow: "#e8e1f2",
@@ -31,12 +31,12 @@ const genotypeAestheticProfiles = [
     {
         name: "Ruby Succulent", bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
         kaomojis: ["(🌸•‿•)", "(🪷´▿`)", "(๑>ᴗ<๑)💕", "(🌵`･ω･´)", "(☀️_☀️)🌵"],
-        fonts: { s2: "ℛ𝓊𝒷𝓎 𝒮...𝒸𝒸𝓊𝓁ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩𝔢𝔫𝔱" }
+        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩𝔢𝔫𝔱" }
     },
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝓈𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
@@ -45,12 +45,19 @@ const genotypeAestheticProfiles = [
     }
 ];
 
-// --- ✨ FIXED MULTI-STATION LIVE AUDIO FEED PATH MATRIX ENGINE ✨ ---
-const broadcastStationProfiles = [
-    { title: "Lofi Focus Beats", genre: "Chillhop / Study / 24-7 Live Node", url: "https://binauralbeats.stream" },
-    { title: "Coffee Shop Smooth Jazz", genre: "Soft Acoustic / Vintage Lounge", url: "https://radionomy.com" },
-    { title: "Retro 8-Bit Chiptune Radio", genre: "Synthwave / Arcade / Pixel Music", url: "https://scorpius.stream" }
+// --- ✨ NO EXTERNAL LINKS: OFFLINE SYNTHESIZER AUDIO MELODY ARRAYS ENGINE MATRIX ✨ ---
+const synthTrackPresetsMemoryStore = [
+    { title: "Calm Study Chords", genre: "Offline Synth Melodies / 100% Code Generated", notes: [261.63, 329.63, 392.00, 523.25, 392.00, 329.63], type: "sine" },
+    { title: "Upbeat Cozy Café Rhythm", genre: "Cheerful 8-Bit Pixel Square Waves", notes: [293.66, 349.23, 440.00, 587.33, 440.00, 349.23], type: "square" },
+    { title: "Deep Space Ambient Drone", genre: "Low Frequency Cosmical Triangle Waves", notes: [196.00, 220.00, 261.63, 196.00, 146.83, 164.81], type: "triangle" }
 ];
+
+// Browser Audio Hardware Thread Pointer Ref
+let localBrowserAudioContextInstance = null;
+let currentSynthLoopIntervalThread = null;
+let syntheticMasterVolumeGainNode = null;
+let activePlayingTrackIndex = 0;
+let isAudioSynthCurrentlyPlaying = false;
 
 const stringFontTransformationMappers = {
     styleScript: {
@@ -68,7 +75,6 @@ const playgroundCreatures = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐣", "�
 window.addEventListener('DOMContentLoaded', () => {
     synchronizeLocalStorageData();
     executeLiveTimestampClockSync();
-    initializeRadioStreamEndpointSource(); // Pre-sets direct audio url references cleanly
     handlePlantGenotypeChange();
     syncChecklistDOMDisplay();
     setupSandboxEngine();
@@ -89,32 +95,32 @@ function renderProceduralPixelSproutSVG() {
     let stage = workspaceState.plantStage;
     let type = workspaceState.plantTypeIndex;
     
-    if (type === 0) { // Thick Sprout Engine Processing
+    if (type === 0) { // Thick Sprout Core Vector Process
         if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
         if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
         if (stage >= 7) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
-    } else if (type === 1) { // Pixie Fern Engine Processing
+    } else if (type === 1) { // Pixie Fern Core Vector Process
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
         if (stage >= 7) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
-    } else if (type === 2) { // Cosmic Clover Engine Processing
+    } else if (type === 2) { // Cosmic Clover Core Vector Process
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#704d9c" />`;
         if (stage >= 4) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
         if (stage >= 7) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
         if (stage >= 10) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
-    } else if (type === 3) { // Ruby Succulent Engine Processing
+    } else if (type === 3) { // Ruby Succulent Core Vector Process
         if (stage >= 1) plantHTML += `<rect x="14" y="22" width="4" height="2" fill="#d96262" />`;
         if (stage >= 4) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
         if (stage >= 10) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
-    } else if (type === 4) { // Bonsai Buddy Engine Processing
+    } else if (type === 4) { // Bonsai Buddy Core Vector Process
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#7a5230" />`;
         if (stage >= 4) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
         if (stage >= 7) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
         if (stage >= 10) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
-    } else if (type === 5) { // Lunar Moss Engine Processing
+    } else if (type === 5) { // Lunar Moss Core Vector Process
         if (stage >= 1) plantHTML += `<rect x="12" y="23" width="8" height="1" fill="#444163" />`;
         if (stage >= 4) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
         if (stage >= 7) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
@@ -140,6 +146,12 @@ function logWorkspaceEvent(logStringText) {
     writeStateToLocalStorageMemory();
 }
 
+function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) {
+    return `The active ${profileName} node anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances inside the workstation. By maintaining a steady level of photosynthetic respiration, this genotype helps offset system-generated thermal metrics, improving air filter freshness near your workspace layout sheet. 
+
+As your node grows to Stage ${stageLevel}/10, its expanded structural roots optimize water absorption and fortify organic cellular links. This baseline growth provides a calming visual focus point that balances focus timers with physical task completions. Keep working through your checklist targets to expand branch frameworks and unlock advanced biological nodes!`;
+}
+
 window.handlePlantGenotypeChange = function() {
     workspaceState.plantTypeIndex = parseInt(document.getElementById('plant-select').value);
     const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
@@ -152,6 +164,8 @@ window.handlePlantGenotypeChange = function() {
     renderProceduralPixelSproutSVG();
     populateKaomojisPack(profile.kaomojis);
     runFontTransformationPreviews();
+    
+    document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
 };
 
 function populateKaomojisPack(kaomojiArray) {
@@ -175,11 +189,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v7', JSON.stringify(dataObj));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v9', JSON.stringify(dataObj));
 }
 
 function synchronizeLocalStorageData() {
-    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v7');
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v9');
     if (saved) {
         try {
             const data = JSON.parse(saved);
@@ -250,9 +264,11 @@ window.processTaskCompletionTrigger = function(idx, checkbox) {
             workspaceState.completedTaskCount = 0;
             if (workspaceState.plantStage < 10) {
                 workspaceState.plantStage++;
-                logWorkspaceEvent(`🎉 <strong>GROWTH CEILING TRIGGERED!</strong> Flora scale rank level: Stage <strong>${workspaceState.plantStage} / 10</strong>!`);
+                logWorkspaceEvent(`🎉 <strong>GROWTH RANK BOOST!</strong> Flora advanced to Stage <strong>${workspaceState.plantStage} / 10</strong>!`);
             }
             renderProceduralPixelSproutSVG();
+            const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
+            document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
         }
         setTimeout(() => { underlyingActiveTaskMemoryStore.splice(idx, 1); syncChecklistDOMDisplay(); }, 500);
     }
@@ -336,61 +352,98 @@ window.resetChoreTracker = function() {
     logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
 };
 
-// --- 📻 FIXED MULTI-STATION RADIO PLAYER CONTROLLER ACTIONS ---
-function initializeRadioStreamEndpointSource() {
-    const audioStream = document.getElementById('lofi-stream');
-    if (audioStream) {
-        audioStream.volume = 0.5;
-        // Sets initial stream default node path
-        audioStream.src = broadcastStationProfiles[0].url;
+// --- 📻 ✨ NATIVE BROWSER AUDIO HARDWARE SYNTHESIZER LOOPS FEATURE MECHANICS ✨ ---
+function createAudioHardwareNodesSafely() {
+    if (!localBrowserAudioContextInstance) {
+        localBrowserAudioContextInstance = new (window.AudioContext || window.webkitAudioContext)();
+        syntheticMasterVolumeGainNode = localBrowserAudioContextInstance.createGain();
+        syntheticMasterVolumeGainNode.gain.value = 0.15; // Balanced line baseline volume
+        syntheticMasterVolumeGainNode.connect(localBrowserAudioContextInstance.destination);
     }
 }
 
 window.switchRadioStationChannel = function() {
-    const selectorIndex = parseInt(document.getElementById('radio-channel-select').value);
-    const station = broadcastStationProfiles[selectorIndex];
-    const audioStream = document.getElementById('lofi-stream');
+    activePlayingTrackIndex = parseInt(document.getElementById('radio-channel-select').value);
+    const currentTrack = synthTrackPresetsMemoryStore[activePlayingTrackIndex];
     
-    document.getElementById('radio-station-title').innerText = station.title;
-    document.getElementById('radio-station-genre').innerText = station.genre;
+    document.getElementById('radio-station-title').innerText = currentTrack.title;
+    document.getElementById('radio-station-genre').innerText = currentTrack.genre;
     
-    const wasPlaying = !audioStream.paused;
-    audioStream.src = station.url;
-    audioStream.load();
+    logWorkspaceEvent(`Synthesizer waveform set to: <strong>${currentTrack.title}</strong>`);
     
-    if (wasPlaying) {
-        audioStream.play().catch(err => console.log("Stream hot-swap delay factor ignored.", err));
+    if (isAudioSynthCurrentlyPlaying) {
+        stopSynthMelodyLoopEngine();
+        startSynthMelodyLoopEngine();
     }
-    logWorkspaceEvent(`Radio tuners shifted to channel: <strong>${station.title}</strong>`);
 };
 
 window.toggleLoFiRadioPlayback = function() {
-    const audioStream = document.getElementById('lofi-stream');
     const btn = document.getElementById('play-audio-btn');
-    const statusBadge = document.getElementById('audio-status');
+    const badge = document.getElementById('audio-status');
+    const avatar = document.getElementById('synth-visual-node');
     
-    if (audioStream.paused) {
-        audioStream.play().then(() => {
-            btn.innerText = "⏸️ Pause Radio";
-            statusBadge.innerText = "LIVE STREAM";
-            statusBadge.className = "status-badge state-active";
-            logWorkspaceEvent("📻 Ambient Live Radio deck connection established online.");
-        }).catch(err => {
-            console.error("Audio block", err);
-            logWorkspaceEvent("⚠️ Audio stream requires clicking inside the page frame directly first.");
-        });
+    createAudioHardwareNodesSafely();
+    
+    if (!isAudioSynthCurrentlyPlaying) {
+        isAudioSynthCurrentlyPlaying = true;
+        btn.innerText = "⏸️ Pause Synth";
+        badge.innerText = "SYNTH ACTIVE";
+        badge.className = "status-badge state-active";
+        avatar.classList.add('playing');
+        startSynthMelodyLoopEngine();
+        logWorkspaceEvent("📻 Offline 8-Bit audio melody oscillator initialized successfully.");
     } else {
-        audioStream.pause();
-        btn.innerText = "▶️ Play Radio";
-        statusBadge.innerText = "MUTED";
-        statusBadge.className = "status-badge state-idle";
-        logWorkspaceEvent("📻 Ambient Audio streaming feed paused.");
+        isAudioSynthCurrentlyPlaying = false;
+        btn.innerText = "▶️ Play Synth";
+        badge.innerText = "MUTED";
+        badge.className = "status-badge state-idle";
+        avatar.classList.remove('playing');
+        stopSynthMelodyLoopEngine();
+        logWorkspaceEvent("📻 Offline synthesizer audio waves silenced.");
     }
 };
 
+function startSynthMelodyLoopEngine() {
+    let internalNodeCounter = 0;
+    const currentTrack = synthTrackPresetsMemoryStore[activePlayingTrackIndex];
+    
+    currentSynthLoopIntervalThread = setInterval(() => {
+        if (!isAudioSynthCurrentlyPlaying || !localBrowserAudioContextInstance) return;
+        
+        let freq = currentTrack.notes[internalNodeCounter % currentTrack.notes.length];
+        
+        // Formulates pure dynamic sound wave oscillator hardware ticks
+        let oscillatorNode = localBrowserAudioContextInstance.createOscillator();
+        let individualNoteGain = localBrowserAudioContextInstance.createGain();
+        
+        oscillatorNode.type = currentTrack.type;
+        oscillatorNode.frequency.value = freq;
+        
+        individualNoteGain.gain.setValueAtTime(1, localBrowserAudioContextInstance.currentTime);
+        // Soft audio decline trail to sound smooth
+        individualNoteGain.gain.exponentialRampToValueAtTime(0.001, localBrowserAudioContextInstance.currentTime + 0.4);
+        
+        oscillatorNode.connect(individualNoteGain);
+        individualNoteGain.connect(syntheticMasterVolumeGainNode);
+        
+        oscillatorNode.start();
+        oscillatorNode.stop(localBrowserAudioContextInstance.currentTime + 0.4);
+        
+        internalNodeCounter++;
+    }, 500); // Speeds tempo ticks rhythmically
+}
+
+function stopSynthMelodyLoopEngine() {
+    if (currentSynthLoopIntervalThread) {
+        clearInterval(currentSynthLoopIntervalThread);
+        currentSynthLoopIntervalThread = null;
+    }
+}
+
 window.adjustLoFiRadioVolume = function(volumeValue) {
-    const audioStream = document.getElementById('lofi-stream');
-    if (audioStream) audioStream.volume = volumeValue;
+    if (syntheticMasterVolumeGainNode && localBrowserAudioContextInstance) {
+        syntheticMasterVolumeGainNode.gain.setValueAtTime(volumeValue, localBrowserAudioContextInstance.currentTime);
+    }
 };
 
 function refreshNumericalTimerDisplayReadout() {
@@ -471,7 +524,7 @@ window.copyStringToClipboard = function(el) {
 };
 
 window.clearWorkspaceLogStorage = function() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v7');
+    localStorage.removeItem('sproutOS_calibratedDataMemory_v9');
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     workspaceState.choreMinutesAccumulated = 0;
@@ -480,5 +533,5 @@ window.clearWorkspaceLogStorage = function() {
     syncChecklistDOMDisplay();
     updateChoreTrackingDashboardUI();
     document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());
-    logWorkspaceEvent("Storage system state wiped to baseline profiles.");
+logWorkspaceEvent("Storage system state wiped to baseline profiles.");
 };
