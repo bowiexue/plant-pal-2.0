@@ -24,7 +24,7 @@
         <!-- Main Structured Dashboard Layout -->
         <main class="dashboard-layout-grid">
             
-            <!-- Left Primary Column: Garden Ecosystem Node & Sandbox -->
+            <!-- Left Primary Column: Garden Ecosystem Node & Reduced Sandbox -->
             <div class="layout-column main-panel">
                 <!-- Ecosystem Core Card -->
                 <div class="workspace-card theme-sage" id="garden-card">
@@ -70,20 +70,24 @@
 
                     <!-- Ecosystem Impact Paragraph Profile Block -->
                     <div class="ecosystem-impact-profile-box">
-                        <h3>📋 Botanical Ecosystem Impact Statement</h3>
+                        <div class="impact-header-row">
+                            <h3>📋 Botanical Ecosystem Impact Statement</h3>
+                            <!-- Manual Plant Regeneration Fix Action Anchor -->
+                            <button class="action-btn btn-secondary btn-sm" onclick="renderProceduralPixelSproutSVG()">🔄 Refresh Sprout Canvas</button>
+                        </div>
                         <p id="ecosystem-paragraph-text">
                             The current seedling structure anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances inside the workstation.
                         </p>
                     </div>
                 </div>
 
-                <!-- Interactive Cursor Sandbox Playground Area -->
+                <!-- ✨ FIXED SIZE: Interactive Cursor Sandbox Playground Area (Height Reduced) ✨ -->
                 <div class="workspace-card theme-sage sandbox-card" id="sandbox-card">
                     <div class="card-header-bar">
                         <h2>✨ Interactive Sandbox Playground</h2>
                     </div>
                     <div class="sandbox-area" id="sandbox-container">
-                        <div class="sandbox-hint">✨ Move cursor here for sparkly trails! Click inside to hatch companions! ✨</div>
+                        <div class="sandbox-hint">✨ Hover for sparkly trails! Click to hatch companions! ✨</div>
                     </div>
                 </div>
             </div>
@@ -98,7 +102,8 @@
                     </div>
                     <div class="checklist-workspace-body">
                         <div class="checklist-interactive-input-row">
-                            <input type="text" id="new-task-input" class="clean-text-input" placeholder="Type a new workspace task target...">
+                            <!-- ✨ Enter/Return Interaction Handled directly inline via onkeydown listeners ✨ -->
+                            <input type="text" id="new-task-input" class="clean-text-input" placeholder="Type task & press 'Return' or Enter..." onkeydown="if(event.key === 'Enter') createNewTaskItem()">
                             <button class="action-btn btn-success" onclick="createNewTaskItem()">Add Task</button>
                         </div>
                         <ul class="task-list-node-container" id="task-list-container">
@@ -152,25 +157,38 @@
                     </div>
                 </div>
 
-                <!-- 📻 Lo-Fi Ambient Radio Player Deck Component Box -->
+                <!-- 📻 FIXED & UPGRADED: Multi-Station Live Ambient Radio Player Component Box -->
                 <div class="workspace-card theme-linen" id="audio-card">
                     <div class="card-header-bar">
-                        <h2>📻 Lo-Fi Ambient Radio Station</h2>
+                        <h2>📻 Multi-Station Ambient Radio</h2>
                         <span id="audio-status" class="status-badge state-idle">MUTED</span>
                     </div>
                     <div class="audio-player-workspace-body">
                         <div class="audio-station-meta-row">
                             <div class="station-avatar-icon">🎵</div>
                             <div class="station-details-block">
-                                <p class="station-title">Synth Sprout FM</p>
-                                <p class="station-genre">Chillhop / Focus Beats / 24/7</p>
+                                <p class="station-title" id="radio-station-title">Lofi Focus Beats</p>
+                                <p class="station-genre" id="radio-station-genre">Chillhop / Study / 24-7 Live Node</p>
                             </div>
                         </div>
+                        
+                        <!-- ✨ NEW FEATURE: Live Audio Channel Switching Router Dropdown Deck ✨ -->
+                        <div class="audio-channel-selector-row">
+                            <label for="radio-channel-select">🎵 Change Station:</label>
+                            <select id="radio-channel-select" class="clean-select-menu" onchange="switchRadioStationChannel()">
+                                <option value="0">🎯 Lofi Focus Beats (Live Node)</option>
+                                <option value="1">☕ Coffee Shop Smooth Jazz</option>
+                                <option value="2">👾 Retro 8-Bit Chiptune Radio</option>
+                            </select>
+                        </div>
+
                         <div class="audio-control-action-row">
                             <button class="action-btn btn-primary" id="play-audio-btn" onclick="toggleLoFiRadioPlayback()">▶️ Play Radio</button>
                             <input type="range" id="volume-slider" class="clean-range-slider" min="0" max="1" step="0.1" value="0.5" oninput="adjustLoFiRadioVolume(this.value)">
                         </div>
-                        <audio id="lofi-stream" loop src="https://workers.dev" crossorigin="anonymous"></audio>
+                        
+                        <!-- Main Verified Global Audio Stream Core Endpoint Anchor -->
+                        <audio id="lofi-stream" loop crossorigin="anonymous"></audio>
                     </div>
                 </div>
 
@@ -203,7 +221,6 @@
                 <button class="action-btn btn-danger btn-sm" onclick="clearWorkspaceLogStorage()">⚠️ Wipe Storage</button>
             </div>
             <div class="history-scroll-viewport-box" id="history-log-box">
-                <!-- Logs entries logged here dynamically -->
                 <div class="history-empty-placeholder">No logged activities present. System standby.</div>
             </div>
         </footer>
