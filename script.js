@@ -1,4 +1,4 @@
-// --- RUNTIME ARCHITECTURE STATE SETUP ---
+// --- COMPILER RUNTIME STATE MANAGEMENT ---
 let workspaceState = {
     plantStage: 1,
     plantTypeIndex: 0,
@@ -11,7 +11,46 @@ let workspaceState = {
     activeTimerPresetMode: 'focus'
 };
 
-const genotypeNamesList = ["Thick Sprout", "Pixie Fern", "Cosmic Clover", "Ruby Succulent", "Bonsai Buddy", "Lunar Moss"];
+// --- DYNAMIC GEOTYPE INTERACTION ENGINE bluePRINTS ---
+const genotypeAestheticProfiles = [
+    {
+        name: "Thick Sprout",
+        bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#fae1d4",
+        kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)", "🌿(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"],
+        fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾𝒸 𝒮𝓅𝓇ℴ𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
+    },
+    {
+        name: "Pixie Fern",
+        bg: "#edf2ee", primary: "#a3b899", shadow: "#e2ebd9",
+        kaomojis: ["(🧚•̤ᴗ•̤)", "(*ﾟ▽ﾟ*)🌿", "(🌿ᵕᴗᵕ)", "(*>﹏<*)", "(🍃'ᵕ'🍃)"],
+        fonts: { s2: "𝒫𝒾𝓍𝒾ℯ ℱℯ𝓇𝓃 𝒮𝓉𝓎𝓁ℯ", s3: "𝔓𝔦𝔵𝔦𝔢𝔉𝔢𝔯𝔫" }
+    },
+    {
+        name: "Cosmic Clover",
+        bg: "#f1eef6", primary: "#cbb4d4", shadow: "#e5def0",
+        kaomojis: ["(✨🍀.🍀)", "(🌌°o°)", "(🔮•̀ᴗ•́)", "(🚀🌟‿🌟)", "✧(⚙ 𖦹 ⚙)✧"],
+        fonts: { s2: "𝒞ℴ𝓈𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝔪𝔦𝔠ℭ𝔩𝔬𝔳𝔢𝔯" }
+    },
+    {
+        name: "Ruby Succulent",
+        bg: "#fdf5f2", primary: "#f3c1b6", shadow: "#fbe3db",
+        kaomojis: ["(🌸•‿•)", "(🪷´▿`)", "(๑>ᴗ<๑)💕", "(🌵`･ω･´)", "(☀️_☀️)"],
+        fonts: { s2: "ℛ𝓊𝒷𝓎 𝒮𝓊𝒸𝒸𝓊𝓁ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩𝔢𝔫𝔱" }
+    },
+    {
+        name: "Bonsai Buddy",
+        bg: "#faf7f2", primary: "#d4c5b9", shadow: "#eaddcf",
+        kaomojis: ["(🧘🥋.🥋)", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
+    },
+    {
+        name: "Lunar Moss",
+        bg: "#f3f0f7", primary: "#c3bef7", shadow: "#ded9fa",
+        kaomojis: ["(🌙💤.💤)", "(🛸★.★)", "(🌖𖦹⤙𖦹)", "(👾♫𖦹♫)", "✧(☄️.☄️)✧"],
+        fonts: { s2: "ℒ𝓊𝓃𝒶𝓇 ℳℴ𝓈𝓈 𝒩𝒾ℊ𝒽𝓉", s3: "𝔏𝔲𝔫𝔞𝔯𝔐𝔬𝔰𝔰" }
+    }
+];
+
 const playgroundCreatures = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐣", "🐸", "🐳", "🦄", "🐝"];
 
 const stringFontTransformationMappers = {
@@ -28,215 +67,193 @@ const stringFontTransformationMappers = {
 window.addEventListener('DOMContentLoaded', () => {
     synchronizeLocalStorageData();
     executeLiveTimestampClockSync();
-    renderProceduralPixelSproutSVG();
+    handlePlantGenotypeChange(); // Core router configurations sync trigger
     syncChecklistDOMDisplay();
     setupSandboxEngine();
     updateChoreTrackingDashboardUI();
     refreshNumericalTimerDisplayReadout();
-    runFontTransformationPreviews();
-    logWorkspaceEvent("Workspace configuration initiated successfully.");
+    logWorkspaceEvent("Workspace array configurations initialized successfully.");
 });
-
-function logWorkspaceEvent(logStringText) {
-    const historicalBoxNode = document.getElementById('history-log-box');
-    if (!historicalBoxNode) return;
+function renderProceduralPixelSproutSVG() {
+    const targetSvgCanvas = document.getElementById('plant-svg');
+    const levelDisplayBadgeNode = document.getElementById('level-badge');
+    if (!targetSvgCanvas) return;
     
-    const initialPlaceholderText = historicalBoxNode.querySelector('.history-empty-placeholder');
-    if (initialPlaceholderText) initialPlaceholderText.remove();
-
-    const modernTimestampStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    const dynamicRowElement = document.createElement('div');
-    dynamicRowElement.className = 'history-log-item-row';
-    dynamicRowElement.innerHTML = `<strong>[${modernTimestampStr}]</strong> ${logStringText}`;
+    levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 10`;
+    targetSvgCanvas.innerHTML = '';
     
-    historicalBoxNode.appendChild(dynamicRowElement);
-    historicalBoxNode.scrollTop = historicalBoxNode.scrollHeight;
-    writeStateToLocalStorageMemory();
+    // Pot setup parameters
+    let potHTML = `<rect x="11" y="24" width="10" height="1" fill="#a1705a" /><rect x="10" y="25" width="12" height="5" fill="#b8836b" /><rect x="11" y="30" width="10" height="1" fill="#8c5b47" />`;
+    let plantHTML = '';
+    let stage = workspaceState.plantStage;
+    let type = workspaceState.plantTypeIndex;
+    
+    if (type === 0) { // Thick Sprout Core Pixels
+        if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
+        if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
+        if (stage >= 7) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
+        if (stage >= 10) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
+    } else if (type === 1) { // Pixie Fern Core Pixels
+        if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#4d7c57" />`;
+        if (stage >= 4) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
+        if (stage >= 7) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
+        if (stage >= 10) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
+    } else if (type === 2) { // Cosmic Clover Core Pixels
+        if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#704d9c" />`;
+        if (stage >= 4) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
+        if (stage >= 7) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
+        if (stage >= 10) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
+    } else if (type === 3) { // Ruby Succulent Core Pixels
+        if (stage >= 1) plantHTML += `<rect x="14" y="22" width="4" height="2" fill="#d96262" />`;
+        if (stage >= 4) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
+        if (stage >= 7) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
+        if (stage >= 10) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
+    } else if (type === 4) { // Bonsai Buddy Core Pixels
+        if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#7a5230" />`;
+        if (stage >= 4) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
+        if (stage >= 7) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
+        if (stage >= 10) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
+    } else if (type === 5) { // Lunar Moss Core Pixels
+        if (stage >= 1) plantHTML += `<rect x="12" y="23" width="8" height="1" fill="#444163" />`;
+        if (stage >= 4) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
+        if (stage >= 7) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" /><circle cx="11" cy="16" r="1" fill="#fff" />`;
+        if (stage >= 10) plantHTML += `<rect x="8" y="18" width="16" height="3" fill="#9b95db" /><circle cx="20" cy="14" r="1.5" fill="#ffffcc" /><circle cx="13" cy="11" r="1" fill="#ffffcc" />`;
+    }
+    
+    targetSvgCanvas.innerHTML = potHTML + plantHTML;
+}
+window.handlePlantGenotypeChange = function() {
+    workspaceState.plantTypeIndex = parseInt(document.getElementById('plant-select').value);
+    const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
+    
+    // Inject Theme Color Palette to Document Elements Instantly
+    document.documentElement.style.setProperty('--bg-slate', profile.bg);
+    document.documentElement.style.setProperty('--sage-green', profile.primary);
+    document.documentElement.style.setProperty('--peach-cream', profile.shadow);
+    
+    logWorkspaceEvent(`Morphed layout framework to: <strong>${profile.name} Vibe Matrix</strong>`);
+    renderProceduralPixelSproutSVG();
+    populateKaomojisDynamically(profile.kaomojis);
+    runFontTransformationPreviews();
+    
+    document.getElementById('ecosystem-paragraph-text').innerText = `The calibrated ${profile.name} structural array conducts biological air filtration operations within this workspace column. Grow your workstation flora to stage rank level 10 to balance surrounding background mental processing frequencies perfectly.`;
+};
+
+function populateKaomojisDynamically(kaomojiArray) {
+    const grid = document.querySelector('.kaomoji-grid-layout');
+    if (!grid) return;
+    grid.innerHTML = '';
+    kaomojiArray.forEach(emoji => {
+        const span = document.createElement('span');
+        span.className = 'kaomoji-pill';
+        span.setAttribute('onclick', 'copyStringToClipboard(this)');
+        span.innerText = emoji;
+        grid.appendChild(span);
+    });
 }
 
 function writeStateToLocalStorageMemory() {
-    const statePackageObject = {
+    const dataPackage = {
         plantStage: workspaceState.plantStage,
         plantTypeIndex: workspaceState.plantTypeIndex,
         completedTaskCount: workspaceState.completedTaskCount,
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v3', JSON.stringify(statePackageObject));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v4', JSON.stringify(dataPackage));
 }
 
 function synchronizeLocalStorageData() {
-    const storedMemoryArrayValue = localStorage.getItem('sproutOS_calibratedDataMemory_v3');
-    if (storedMemoryArrayValue) {
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v4');
+    if (saved) {
         try {
-            const decompiledDataStructure = JSON.parse(storedMemoryArrayValue);
-            workspaceState.plantStage = decompiledDataStructure.plantStage || 1;
-            workspaceState.plantTypeIndex = decompiledDataStructure.plantTypeIndex || 0;
-            workspaceState.completedTaskCount = decompiledDataStructure.completedTaskCount || 0;
-            workspaceState.choreMinutesAccumulated = decompiledDataStructure.choreMinutesAccumulated || 0;
-            workspaceState.choreGoalTarget = decompiledDataStructure.choreGoalTarget || 15;
-        } catch(e) { console.error("Memory parsing error", e); }
+            const data = JSON.parse(saved);
+            workspaceState.plantStage = data.plantStage || 1;
+            workspaceState.plantTypeIndex = data.plantTypeIndex || 0;
+            workspaceState.completedTaskCount = data.completedTaskCount || 0;
+            workspaceState.choreMinutesAccumulated = data.choreMinutesAccumulated || 0;
+            workspaceState.choreGoalTarget = data.choreGoalTarget || 15;
+        } catch(e) { console.error("Data load failure", e); }
     }
-}
-
-function clearWorkspaceLogStorage() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v3');
-    workspaceState.plantStage = 1;
-    workspaceState.completedTaskCount = 0;
-    workspaceState.choreMinutesAccumulated = 0;
-    
-    document.getElementById('history-log-box').innerHTML = '<div class="history-empty-placeholder">No logged activities present. System standby.</div>';
-    
-    renderProceduralPixelSproutSVG();
-    syncChecklistDOMDisplay();
-    updateChoreTrackingDashboardUI();
-    document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());
-    logWorkspaceEvent("System storage matrix reset to default states.");
 }
 
 function executeLiveTimestampClockSync() {
-    const clockDisplayField = document.getElementById('live-clock');
-    const syncTimeTick = () => {
-        clockDisplayField.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    };
+    const clock = document.getElementById('live-clock');
+    const syncTimeTick = () => { clock.innerText = new Date().toLocaleTimeString(); };
     syncTimeTick();
     setInterval(syncTimeTick, 1000);
 }
-function renderProceduralPixelSproutSVG() {
-    const targetSvgCanvas = document.getElementById('plant-svg');
-    const levelDisplayBadgeNode = document.getElementById('level-badge');
-    const menuDropdownSelector = document.getElementById('plant-select');
-    if (!targetSvgCanvas) return;
-    
-    menuDropdownSelector.value = workspaceState.plantTypeIndex;
-    levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 10`;
-    targetSvgCanvas.innerHTML = '';
-    
-    let compiledPotVectorHTML = `
-        <rect x="11" y="24" width="10" height="1" fill="#a1705a" />
-        <rect x="10" y="25" width="12" height="5" fill="#b8836b" />
-        <rect x="11" y="30" width="10" height="1" fill="#8c5b47" />
-        <rect x="11" y="25" width="10" height="1" fill="#4d2c18" opacity="0.4" />
-    `;
-    
-    let calculatedPlantVectorHTML = '';
-    let stageLevelRank = workspaceState.plantStage;
-    
-    if (stageLevelRank >= 1) calculatedPlantVectorHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
-    if (stageLevelRank >= 2) calculatedPlantVectorHTML += `<rect x="15" y="19" width="2" height="3" fill="#7ebd7e" />`;
-    if (stageLevelRank >= 3) calculatedPlantVectorHTML += `<rect x="13" y="20" width="2" height="1" fill="#5fa35f" /><rect x="17" y="20" width="2" height="1" fill="#5fa35f" />`;
-    if (stageLevelRank >= 4) calculatedPlantVectorHTML += `<rect x="15" y="15" width="2" height="4" fill="#5fa35f" />`;
-    
-    if (stageLevelRank >= 6) {
-        calculatedPlantVectorHTML += `
-            <rect x="11" y="16" width="4" height="1" fill="#7ebd7e" />
-            <rect x="10" y="14" width="2" height="2" fill="#4e8c4e" />
-        `;
-    }
-    if (stageLevelRank >= 7) {
-        calculatedPlantVectorHTML += `
-            <rect x="17" y="15" width="4" height="1" fill="#7ebd7e" />
-            <rect x="20" y="13" width="2" height="2" fill="#4e8c4e" />
-        `;
-    }
-    
-    if (stageLevelRank >= 8) calculatedPlantVectorHTML += `<rect x="15" y="11" width="2" height="4" fill="#4e8c4e" />`;
-    
-    if (stageLevelRank >= 10) {
-        calculatedPlantVectorHTML += `
-            <rect x="14" y="8" width="4" height="3" fill="#f28a9b" />
-            <rect x="15" y="9" width="2" height="1" fill="#fae896" />
-        `;
-    } else if (stageLevelRank >= 5) {
-        calculatedPlantVectorHTML += `<rect x="15" y="9" width="2" height="2" fill="#f2a7b5" />`;
-    }
-    
-    targetSvgCanvas.innerHTML = compiledPotVectorHTML + calculatedPlantVectorHTML;
-}
-
-function handlePlantGenotypeChange() {
-    workspaceState.plantTypeIndex = parseInt(document.getElementById('plant-select').value);
-    logWorkspaceEvent(`Target profile shifted to: <strong>${genotypeNamesList[workspaceState.plantTypeIndex]}</strong>`);
-    renderProceduralPixelSproutSVG();
-    document.getElementById('ecosystem-paragraph-text').innerText = `Your selected ${genotypeNamesList[workspaceState.plantTypeIndex]} genotype profile coordinates carbon capture operations within this specific grid partition. Complete task milestones to expand leaf structures and maximize digital environmental filtering efficiency.`;
-}
-
 const underlyingActiveTaskMemoryStore = ["Verify project layout constraints", "Refactor system workspace variables", "Analyze environmental grid blueprints", "Audit core compilation modules"];
 
 function syncChecklistDOMDisplay() {
-    const listRootWrapperNode = document.getElementById('task-list-container');
-    const numericalDisplayCounterNode = document.getElementById('done-counter');
-    if (!listRootWrapperNode) return;
+    const list = document.getElementById('task-list-container');
+    const counter = document.getElementById('done-counter');
+    if (!list) return;
     
-    numericalDisplayCounterNode.innerText = workspaceState.completedTaskCount;
-    listRootWrapperNode.innerHTML = '';
+    counter.innerText = workspaceState.completedTaskCount;
+    list.innerHTML = '';
     
-    underlyingActiveTaskMemoryStore.forEach((taskStringText, taskIndexPosition) => {
-        const rowListNodeElement = document.createElement('li');
-        rowListNodeElement.className = 'task-item-row-node';
-        rowListNodeElement.innerHTML = `
+    underlyingActiveTaskMemoryStore.forEach((task, idx) => {
+        const li = document.createElement('li');
+        li.className = 'task-item-row-node';
+        li.innerHTML = `
             <div class="task-item-left-block">
-                <input type="checkbox" onchange="processTaskCompletionTrigger(${taskIndexPosition}, this)">
-                <span>${taskStringText}</span>
+                <input type="checkbox" onchange="processTaskCompletionTrigger(${idx}, this)">
+                <span>${task}</span>
             </div>
-            <button style="background:none; border:none; cursor:pointer;" onclick="removeExistingTaskItem(${taskIndexPosition})">❌</button>
+            <button style="background:none; border:none; cursor:pointer;" onclick="removeExistingTaskItem(${idx})">❌</button>
         `;
-        listRootWrapperNode.appendChild(rowListNodeElement);
+        list.appendChild(li);
     });
 }
 
 window.createNewTaskItem = function() {
-    const textInputNodeField = document.getElementById('new-task-input');
-    const extractedTaskString = textInputNodeField.value.trim();
-    if (!extractedTaskString) return;
-    
-    underlyingActiveTaskMemoryStore.push(extractedTaskString);
-    textInputNodeField.value = '';
+    const input = document.getElementById('new-task-input');
+    const text = input.value.trim();
+    if (!text) return;
+    underlyingActiveTaskMemoryStore.push(text);
+    input.value = '';
     syncChecklistDOMDisplay();
-    logWorkspaceEvent(`Injected task note: "${extractedTaskString}"`);
+    logWorkspaceEvent(`Injected task target parameter node: "${text}"`);
 };
 
-window.removeExistingTaskItem = function(targetIndex) {
-    const deletedTaskStringValue = underlyingActiveTaskMemoryStore.splice(targetIndex, 1);
+window.removeExistingTaskItem = function(idx) {
+    const removed = underlyingActiveTaskMemoryStore.splice(idx, 1);
     syncChecklistDOMDisplay();
-    logWorkspaceEvent(`Removed task data element: "${deletedTaskStringValue}"`);
+    logWorkspaceEvent(`Removed task row reference: "${removed}"`);
 };
 
-window.processTaskCompletionTrigger = function(targetIndex, checkboxInputElement) {
-    if (checkboxInputElement.checked) {
-        checkboxInputElement.disabled = true;
-        checkboxInputElement.parentElement.parentElement.classList.add('completed');
+window.processTaskCompletionTrigger = function(idx, checkbox) {
+    if (checkbox.checked) {
+        checkbox.disabled = true;
+        checkbox.parentElement.parentElement.classList.add('completed');
         workspaceState.completedTaskCount++;
         
-        logWorkspaceEvent(`Task verified! Progress tracking: <strong>${workspaceState.completedTaskCount} / 3 Checks</strong>`);
+        logWorkspaceEvent(`Task checked! Track: <strong>${workspaceState.completedTaskCount} / 3 Progress Points</strong>`);
         
         if (workspaceState.completedTaskCount >= 3) {
             workspaceState.completedTaskCount = 0;
             if (workspaceState.plantStage < 10) {
                 workspaceState.plantStage++;
-                logWorkspaceEvent(`🎉 <strong>GROWTH LEVEL INCREASED!</strong> Sprout rank: <strong>${workspaceState.plantStage} / 10</strong>!`);
+                logWorkspaceEvent(`🎉 <strong>GROWTH CEILING SHIFTED!</strong> Sprout expanded to Stage: <strong>${workspaceState.plantStage} / 10</strong>!`);
             }
             renderProceduralPixelSproutSVG();
         }
-        
-        setTimeout(() => {
-            underlyingActiveTaskMemoryStore.splice(targetIndex, 1);
-            syncChecklistDOMDisplay();
-        }, 500);
+        setTimeout(() => { underlyingActiveTaskMemoryStore.splice(idx, 1); syncChecklistDOMDisplay(); }, 500);
     }
 };
+
 function setupSandboxEngine() {
-    const sandbox = document.getElementById('sandbox-container');
-    if (!sandbox) return;
+    const container = document.getElementById('sandbox-container');
+    if (!container) return;
     
-    sandbox.replaceWith(sandbox.cloneNode(true));
+    container.replaceWith(container.cloneNode(true));
     const activeSandbox = document.getElementById('sandbox-container');
     
     activeSandbox.addEventListener('mousemove', (e) => {
         const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
         if (Math.random() > 0.85) { 
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
@@ -252,19 +269,16 @@ function setupSandboxEngine() {
         const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
         const animal = playgroundCreatures[Math.floor(Math.random() * playgroundCreatures.length)];
         const node = document.createElement('div');
         node.className = 'sandbox-companion';
         node.innerText = animal;
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
-        
         activeSandbox.appendChild(node);
-        logWorkspaceEvent(`Hatched sandbox companion creature: <strong>${animal}</strong>`);
+        logWorkspaceEvent(`Hatched companion creature: <strong>${animal}</strong>`);
     });
 }
-
 function updateChoreTrackingDashboardUI() {
     document.getElementById('chore-current').innerText = workspaceState.choreMinutesAccumulated;
     document.getElementById('chore-goal').innerText = workspaceState.choreGoalTarget;
@@ -273,67 +287,62 @@ function updateChoreTrackingDashboardUI() {
 window.adjustChoreGoalTarget = function() {
     workspaceState.choreGoalTarget = parseInt(document.getElementById('goal-select').value);
     updateChoreTrackingDashboardUI();
-    logWorkspaceEvent(`Chore balance target altered to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
+    logWorkspaceEvent(`Goal requirement altered to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
 };
 
 window.executeChoreTimeLog = function() {
-    const selectionLogQuantity = parseInt(document.getElementById('log-select').value);
-    const mechanicalWheelElementNode = document.getElementById('wheel-element');
-    const runningStatusBarBadgeNode = document.getElementById('hamster-status');
+    const mins = parseInt(document.getElementById('log-select').value);
+    const wheel = document.getElementById('wheel-element');
+    const status = document.getElementById('hamster-status');
     
-    workspaceState.choreMinutesAccumulated += selectionLogQuantity;
+    workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
-    
-    mechanicalWheelElementNode.classList.add('spinning');
-    runningStatusBarBadgeNode.innerText = "RUNNING";
-    runningStatusBarBadgeNode.className = "status-badge state-active";
-    logWorkspaceEvent(`Logged <strong>${selectionLogQuantity} minutes</strong> of chores.`);
+    wheel.classList.add('spinning');
+    status.innerText = "RUNNING";
+    status.className = "status-badge state-active";
+    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of active chores.`);
     
     setTimeout(() => {
-        mechanicalWheelElementNode.classList.remove('spinning');
-        runningStatusBarBadgeNode.innerText = "IDLE";
-        runningStatusBarBadgeNode.className = "status-badge state-idle";
+        wheel.classList.remove('spinning');
+        status.innerText = "IDLE";
+        status.className = "status-badge state-idle";
     }, 1200);
 };
 
 window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
     updateChoreTrackingDashboardUI();
-    logWorkspaceEvent("🐹 Hamster station chore tracking balance wiped back to zero mins.");
+    logWorkspaceEvent("🐹 Hamster station metrics reset to zero minutes.");
 };
 
 function refreshNumericalTimerDisplayReadout() {
-    const floorMinsValue = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
-    const boundarySecsValue = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
-    document.getElementById('timer-text').innerText = `${floorMinsValue}:${boundarySecsValue}`;
+    const m = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
+    const s = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
+    document.getElementById('timer-text').innerText = `${m}:${s}`;
 }
 
-window.applyTimerPreset = function(presetModeString, buttonContextReference) {
-    workspaceState.activeTimerPresetMode = presetModeString;
-    document.querySelectorAll('.timer-preset-row .preset-btn').forEach(buttonNode => buttonNode.classList.remove('active'));
-    buttonContextReference.classList.add('active');
-    
-    if (presetModeString === 'focus') workspaceState.timerSecondsRemaining = 1500;
-    else if (presetModeString === 'break') workspaceState.timerSecondsRemaining = 300;
-    else if (presetModeString === 'short') workspaceState.timerSecondsRemaining = 600;
-    else if (presetModeString === 'long') workspaceState.timerSecondsRemaining = 1800;
-    
+window.applyTimerPreset = function(mode, btn) {
+    workspaceState.activeTimerPresetMode = mode;
+    document.querySelectorAll('.timer-preset-row .preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (mode === 'focus') workspaceState.timerSecondsRemaining = 1500;
+    else if (mode === 'break') workspaceState.timerSecondsRemaining = 300;
+    else if (mode === 'short') workspaceState.timerSecondsRemaining = 600;
+    else if (mode === 'long') workspaceState.timerSecondsRemaining = 1800;
     refreshNumericalTimerDisplayReadout();
-    logWorkspaceEvent(`Chrono preset shifted to: <strong>${presetModeString}</strong>.`);
 };
 
 window.triggerTimerToggle = function() {
-    const initiationButtonToggleNode = document.getElementById('start-btn');
+    const btn = document.getElementById('start-btn');
     if (workspaceState.timerActiveState) {
         clearInterval(workspaceState.timerIntervalThread);
         workspaceState.timerActiveState = false;
-        initiationButtonToggleNode.innerText = "Start";
-        initiationButtonToggleNode.className = "action-btn btn-primary";
+        btn.innerText = "Start";
+        btn.className = "action-btn btn-primary";
     } else {
         workspaceState.timerActiveState = true;
-        initiationButtonToggleNode.innerText = "Pause";
-        initiationButtonToggleNode.className = "action-btn btn-danger";
-        
+        btn.innerText = "Pause";
+        btn.className = "action-btn btn-danger";
         workspaceState.timerIntervalThread = setInterval(() => {
             if (workspaceState.timerSecondsRemaining > 0) {
                 workspaceState.timerSecondsRemaining--;
@@ -341,9 +350,9 @@ window.triggerTimerToggle = function() {
             } else {
                 clearInterval(workspaceState.timerIntervalThread);
                 workspaceState.timerActiveState = false;
-                initiationButtonToggleNode.innerText = "Start";
-                initiationButtonToggleNode.className = "action-btn btn-primary";
-                logWorkspaceEvent("🔔 <strong>Pomodoro focus sequence complete!</strong>");
+                btn.innerText = "Start";
+                btn.className = "action-btn btn-primary";
+                logWorkspaceEvent("🔔 <strong>Focus countdown complete!</strong>");
             }
         }, 1000);
     }
@@ -354,33 +363,45 @@ window.executeTimerReset = function() {
     workspaceState.timerActiveState = false;
     document.getElementById('start-btn').innerText = "Start";
     document.getElementById('start-btn').className = "action-btn btn-primary";
-    
-    let currentMode = workspaceState.activeTimerPresetMode;
-    if (currentMode === 'focus') workspaceState.timerSecondsRemaining = 1500;
-    else if (currentMode === 'break') workspaceState.timerSecondsRemaining = 300;
-    else if (currentMode === 'short') workspaceState.timerSecondsRemaining = 600;
-    else if (currentMode === 'long') workspaceState.timerSecondsRemaining = 1800;
-    
+    let m = workspaceState.activeTimerPresetMode;
+    if (m === 'focus') workspaceState.timerSecondsRemaining = 1500;
+    else if (m === 'break') workspaceState.timerSecondsRemaining = 300;
+    else if (m === 'short') workspaceState.timerSecondsRemaining = 600;
+    else if (m === 'long') workspaceState.timerSecondsRemaining = 1800;
     refreshNumericalTimerDisplayReadout();
 };
 
 window.runFontTransformationPreviews = function() {
-    const underlyingStringValue = document.getElementById('font-input').value || "Plant Pal";
-    document.getElementById('preview-1').innerText = underlyingStringValue;
-    document.getElementById('preview-2').innerText = parseStringThroughFontCharacterMapping(underlyingStringValue, stringFontTransformationMappers.styleScript);
-    document.getElementById('preview-3').innerText = parseStringThroughFontCharacterMapping(underlyingStringValue, stringFontTransformationMappers.styleGothic);
+    const val = document.getElementById('font-input').value || "Plant Pal";
+    const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
+    document.getElementById('preview-1').innerText = val;
+    document.getElementById('preview-2').innerText = parseStringThroughFontCharacterMapping(val, stringFontTransformationMappers.styleScript);
+    document.getElementById('preview-3').innerText = parseStringThroughFontCharacterMapping(val, stringFontTransformationMappers.styleGothic);
 };
 
-function parseStringThroughFontCharacterMapping(initialStringValue, targetMappingAsset) {
-    return initialStringValue.split('').map(characterKey => targetMappingAsset[characterKey] || characterKey).join('');
+function parseStringThroughFontCharacterMapping(str, map) {
+    return str.split('').map(c => map[c] || c).join('');
 }
 
-window.copyStringToClipboard = function(domElementNodeReference) {
-    const targetStringLiteralText = domElementNodeReference.innerText;
-    navigator.clipboard.writeText(targetStringLiteralText).then(() => {
-        const toastNotificationOverlayNode = document.getElementById('toast-element');
-        toastNotificationOverlayNode.innerText = `Copied to clipboard: "${targetStringLiteralText}"`;
-        toastNotificationOverlayNode.classList.add('display-active');
-        setTimeout(() => toastNotificationOverlayNode.classList.remove('display-active'), 2000);
+window.copyStringToClipboard = function(el) {
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast-element');
+        toast.innerText = `Copied to clipboard: "${text}"`;
+        toast.classList.add('display-active');
+        setTimeout(() => toast.classList.remove('display-active'), 2000);
     });
+};
+
+window.clearWorkspaceLogStorage = function() {
+    localStorage.removeItem('sproutOS_calibratedDataMemory_v4');
+    workspaceState.plantStage = 1;
+    workspaceState.completedTaskCount = 0;
+    workspaceState.choreMinutesAccumulated = 0;
+    document.getElementById('history-log-box').innerHTML = '<div class="history-empty-placeholder">No logged activities present. System standby.</div>';
+    renderProceduralPixelSproutSVG();
+    syncChecklistDOMDisplay();
+    updateChoreTrackingDashboardUI();
+    document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());
+    logWorkspaceEvent("Storage matrix fully wiped.");
 };
