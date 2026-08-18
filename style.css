@@ -1,13 +1,20 @@
-/* Global Styling and Color Variables */
+/* Custom Kawaii Soft-Girl Pastel Variable Design Framework Matrix */
 :root {
-    --bg-color: #f4f7f5;
-    --border-color: #1a1a1a;
+    --bg-color: #fff9fb;
+    --border-color: #5c4d52;
     --card-bg: #ffffff;
-    --accent-green: #a3e635;
-    --dark-green: #15803d;
-    --text-color: #1a1a1a;
-    --radius-main: 16px;
-    --shadow-main: 4px 4px 0px #1a1a1a;
+    
+    /* Beautiful Soft Aesthetic Pastel Core Tones Map */
+    --pastel-pink: #ffd3e2;
+    --pastel-blue: #d6ecff;
+    --pastel-purple: #e8dbff;
+    --pastel-mint: #d2f8e4;
+    --pastel-cream: #fff0d4;
+    --pastel-lavender: #f1e4ff;
+    
+    --text-color: #4a3b40;
+    --radius-main: 24px;
+    --shadow-main: 5px 5px 0px #5c4d52;
 }
 
 * {
@@ -20,8 +27,10 @@ body {
     font-family: 'Fredoka', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    padding: 20px;
+    padding: 25px;
     line-height: 1.4;
+    background-image: radial-gradient(#ffe3ec 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
 }
 
 .workspace-container {
@@ -29,35 +38,31 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
-/* Top Nav Styling */
+/* Cloud Header Styling */
 .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 3px solid var(--border-color);
+    border: 3.5px solid var(--border-color);
     background-color: var(--card-bg);
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 14px 24px;
+    border-radius: 40px;
     box-shadow: var(--shadow-main);
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 1.2rem;
 }
 
-.main-title {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
-
-/* Grid Layout setup */
+/* Proportional Grid Setup */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: 2.2fr 1.5fr 1.5fr;
-    gap: 20px;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 25px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
@@ -66,63 +71,81 @@ body {
 .dashboard-col {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
-/* Cute Neo-Brutalism Cards Layout */
+/* Rounded Kawaii Card Frame Engine Configuration rules */
 .card {
     background: var(--card-bg);
-    border: 3px solid var(--border-color);
+    border: 3.5px solid var(--border-color);
     border-radius: var(--radius-main);
     box-shadow: var(--shadow-main);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
 }
 
 .card-header {
-    background-color: #fafafa;
-    border-bottom: 3px solid var(--border-color);
-    padding: 12px 16px;
+    border-bottom: 3.5px solid var(--border-color);
+    padding: 14px 20px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Status Badges */
+/* Color Assortment Injections */
+.card-pink .card-header { background-color: var(--pastel-pink); }
+.card-blue .card-header { background-color: var(--pastel-blue); }
+.card-purple .card-header { background-color: var(--pastel-purple); }
+.card-mint .card-header { background-color: var(--pastel-mint); }
+.card-cream .card-header { background-color: var(--pastel-cream); }
+.card-lavender .card-header { background-color: var(--pastel-lavender); }
+
+/* Rounded Badge System Buttons Matrix */
 .badge {
-    border: 2px solid var(--border-color);
-    padding: 2px 8px;
-    border-radius: 6px;
+    border: 2.5px solid var(--border-color);
+    padding: 3px 12px;
+    border-radius: 30px;
     font-size: 0.85rem;
-    background: var(--accent-green);
-    font-weight: bold;
+    background: #ffffff;
+    font-weight: 700;
 }
 
-.badge-idle { background-color: #cbd5e1; }
+.badge-idle { background-color: #f1f5f9; color: #94a3b8; }
 .badge-active {
-    background-color: #fbbf24;
-    animation: pulse 1s infinite alternate;
+    background-color: #ff9ebb;
+    color: white;
+    animation: bouncePulse 0.8s infinite alternate;
 }
 
-@keyframes pulse {
-    from { opacity: 0.7; }
-    to { opacity: 1; }
+@keyframes bouncePulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
 }
 
-/* Standardized Buttons */
+/* Soft Pill-Shaped Neo Buttons */
 .btn {
     font-family: 'Fredoka', sans-serif;
-    font-weight: 600;
-    border: 2px solid var(--border-color);
+    font-weight: 700;
+    border: 2.5px solid var(--border-color);
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
     background: white;
-    transition: transform 0.1s, box-shadow 0.1s;
+    color: var(--text-color);
+    transition: all 0.1s ease;
     box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.btn:hover {
+    background: #fff5f8;
 }
 
 .btn:active {
@@ -130,62 +153,61 @@ body {
     box-shadow: 0px 0px 0px var(--border-color);
 }
 
-.btn-primary { background: #60a5fa; }
-.btn-secondary { background: #e2e8f0; }
-.btn-success { background: #4ade80; }
-.btn-danger { background: #f87171; color: white; }
-.btn-dark { background: #1e293b; color: white; }
-.btn-audio { background: #c084fc; width: 100%; margin-top: 10px; }
-.btn-sm { padding: 4px 10px; font-size: 0.85rem; }
+.btn-primary { background: #bce0ff; }
+.btn-secondary { background: #f1f5f9; }
+.btn-success { background: #bbf7d0; }
+.btn-danger { background: #ffb3b3; }
+.btn-dark { background: #5c4d52; color: white; }
+.btn-audio { background: #e8dbff; width: 100%; margin-top: 10px; }
+.btn-sm { padding: 5px 12px; font-size: 0.85rem; }
 
 .btn.active {
-    background: var(--accent-green);
-    transform: translate(1px, 1px);
+    background: #ffb6d2 !important;
+    color: white;
     box-shadow: 1px 1px 0px var(--border-color);
 }
 .btn-block { width: 100%; }
 
-/* Ecosystem Workspace Body Layout */
+/* Proportional Garden Visual Box Row rules */
 .garden-body {
-    padding: 16px;
+    padding: 20px;
     display: flex;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
 }
 
 .plant-display {
-    width: 130px;
+    width: 140px;
     height: 160px;
-    border: 3px solid var(--border-color);
-    background-color: #ecfdf5;
-    border-radius: 12px;
-    position: relative;
+    border: 3.5px solid var(--border-color);
+    background-color: #f0fff7;
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .timer-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .timer-display {
     font-family: 'VT323', monospace;
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     text-align: center;
     border: 3px solid var(--border-color);
-    background: #f8fafc;
-    border-radius: 10px;
-    padding: 2px 0;
+    background: #fafafa;
+    border-radius: 16px;
+    padding: 4px 0;
+    color: #5c4d52;
 }
 
 .timer-presets {
     display: flex;
-    gap: 5px;
+    gap: 6px;
     justify-content: space-between;
 }
 
@@ -196,21 +218,24 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 5px;
+    margin-top: 2px;
     font-size: 0.9rem;
 }
 
 .target-selector select, .chore-row select, .audio-dropdown {
     font-family: 'Fredoka', sans-serif;
-    padding: 4px;
-    border: 2px solid var(--border-color);
-    border-radius: 6px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border: 2.5px solid var(--border-color);
+    border-radius: 12px;
     background: white;
+    color: var(--text-color);
+    outline: none;
 }
 
-/* Checklist Styling */
+/* Connected Checklist Structure rules */
 .checklist-body {
-    padding: 16px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -219,11 +244,13 @@ body {
 .task-input-row { display: flex; gap: 10px; }
 .task-input-row input {
     font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
     flex: 1;
-    padding: 8px 12px;
+    padding: 10px 16px;
     border: 3px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 16px;
     outline: none;
+    color: var(--text-color);
 }
 
 .task-list {
@@ -239,25 +266,33 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f8fafc;
-    padding: 8px 12px;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+    background: #fdfdfd;
+    padding: 10px 14px;
+    border: 2.5px solid var(--border-color);
+    border-radius: 16px;
 }
 
 .task-left { display: flex; align-items: center; gap: 10px; }
-.task-item.completed span { text-decoration: line-through; color: #64748b; }
-.task-remove { background: none; border: none; cursor: pointer; font-size: 1rem; }
-/* Hamster Station Mechanics Layout */
+.task-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff9ebb;
+    cursor: pointer;
+}
+
+.task-item.completed span { text-decoration: line-through; color: #b4a2a8; }
+.task-remove { background: none; border: none; cursor: pointer; font-size: 1.1rem; }
+
+/* Mechanical Spinning Pixel Hamster Wheel Frame config */
 .hamster-body {
-    padding: 16px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
-.wheel-container { width: 110px; height: 110px; position: relative; }
+.wheel-container { width: 120px; height: 120px; position: relative; }
 .hamster-wheel {
     width: 100%;
     height: 100%;
@@ -267,33 +302,38 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f1f5f9;
+    background: #fffbfa;
 }
 
-.hamster-wheel.spinning { animation: spin 2s linear infinite; }
-@keyframes spin {
+/* Hamster Rotation Loops */
+.hamster-wheel.spinning { animation: spinPixelWheel 1.5s linear infinite; }
+@keyframes spinPixelWheel {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
-.hamster-avatar { font-size: 2.2rem; position: absolute; bottom: 8px; }
-.hamster-wheel.spinning .hamster-avatar { animation: stayUpright 2s linear infinite; }
-@keyframes stayUpright {
+.hamster-avatar { 
+    position: absolute; 
+    bottom: 12px; 
+    image-rendering: pixelated; /* Forces ultra sharp crisp pixel borders */
+}
+.hamster-wheel.spinning .hamster-avatar { animation: cancelRotationUpright 1.5s linear infinite; }
+@keyframes cancelRotationUpright {
     from { transform: rotate(0deg); }
     to { transform: rotate(-360deg); }
 }
 
 .chore-tracker { width: 100%; display: flex; flex-direction: column; gap: 8px; }
-.chore-balance { font-size: 0.95rem; text-align: center; margin-bottom: 4px; }
+.chore-balance { font-size: 0.95rem; text-align: center; margin-bottom: 4px; font-weight: 600; }
 .chore-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; gap: 10px; }
 
-/* Audio Mixer Area */
-.audio-body { padding: 16px; }
-.audio-label { font-size: 0.9rem; margin-bottom: 6px; display: block; }
+/* Ambient Mixing pipeline fields */
+.audio-body { padding: 20px; }
+.audio-label { font-size: 0.9rem; margin-bottom: 6px; display: block; font-weight: 600; }
 
-/* Font Engine Packing Layout */
+/* Font Engine Variance Configuration packs */
 .font-engine-body {
-    padding: 16px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -302,51 +342,55 @@ body {
 .pack-title { font-size: 0.9rem; font-weight: bold; margin-bottom: 6px; }
 .kaomoji-grid { display: flex; flex-wrap: wrap; gap: 6px; }
 .kaomoji-item {
-    background: #f1f5f9;
-    border: 2px solid var(--border-color);
-    border-radius: 6px;
-    padding: 4px 8px;
+    background: #ffffff;
+    border: 2.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 6px 12px;
     font-size: 0.85rem;
     cursor: pointer;
     user-select: none;
+    box-shadow: 1.5px 1.5px 0px var(--border-color);
 }
 
-.kaomoji-item:hover, .preview-box:hover { background: #e2e8f0; }
+.kaomoji-item:hover, .preview-box:hover { background: #fff5f8; }
 .font-tester-section {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border-top: 2px dashed #cbd5e1;
-    padding-top: 12px;
+    border-top: 2.5px dashed #ebd7df;
+    padding-top: 14px;
 }
 
 .font-input-box {
     font-family: 'Fredoka', sans-serif;
-    padding: 6px 10px;
-    border: 2px solid var(--border-color);
-    border-radius: 6px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border: 2.5px solid var(--border-color);
+    border-radius: 12px;
     outline: none;
+    color: var(--text-color);
 }
 
 .preview-box {
-    background: #fafafa;
-    border: 2px solid var(--border-color);
-    border-radius: 6px;
-    padding: 8px;
-    font-size: 1rem;
+    background: #ffffff;
+    border: 2.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 1.05rem;
     cursor: pointer;
-    min-height: 38px;
+    min-height: 42px;
+    box-shadow: 1.5px 1.5px 0px var(--border-color);
 }
 
 .font-style-1 { font-family: 'Fredoka', sans-serif; font-weight: bold; }
 .font-style-2 { font-family: serif; font-style: italic; font-weight: bold; }
 .font-style-3 { font-family: monospace; font-weight: bold; }
 
-/* Interactive Sandbox Container Fixing Bounds Rules */
+/* Sandbox Playground bounding restrictions rules layout */
 .sandbox-card { margin-top: 10px; }
 .sandbox-area {
-    height: 140px;
-    background: #fdfbf7;
+    height: 160px;
+    background: #fffefa;
     position: relative;
     overflow: hidden;
     cursor: crosshair;
@@ -358,81 +402,81 @@ body {
     text-align: center;
     top: 50%;
     transform: translateY(-50%);
-    color: #94a3b8;
-    font-size: 0.9rem;
+    color: #cbb4bc;
+    font-size: 0.95rem;
     pointer-events: none;
+    font-weight: 600;
 }
 
-/* Particle items tracking properties */
 .sparkle {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: #fef08a;
     border-radius: 50%;
     pointer-events: none;
-    animation: fadeOutSparkle 0.6s forwards ease-out;
+    animation: shrinkSparkle 0.5s forwards ease-out;
 }
 
-@keyframes fadeOutSparkle {
+@keyframes shrinkSparkle {
     0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(0.2); opacity: 0; }
+    100% { transform: scale(0.1); opacity: 0; }
 }
 
 .sandbox-animal {
     position: absolute;
-    font-size: 2rem;
+    font-size: 2.2rem;
     user-select: none;
     transform: translate(-50%, -50%);
-    transition: all 0.5s ease-out;
     cursor: grab;
 }
 
-/* Strategic Activity History Container (CRITICAL CORE SCROLL BAR FIX) */
+/* Rigid History Log viewport calculation limits */
 .history-card { margin-top: 5px; }
 .history-container {
-    height: 150px; /* Locked bounding box constraint */
-    background: #fafafa;
-    padding: 12px;
-    overflow-y: scroll; /* CORE SCROLLBAR FIX FORCE ACTIVATION */
+    height: 160px; /* Locked bounding constraint */
+    background: #ffffff;
+    padding: 14px;
+    overflow-y: scroll; /* FORCE ACTIVE SCROLL ENGINE LOGS */
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     font-family: monospace;
     font-size: 0.9rem;
 }
 
 .history-item {
-    padding: 4px 8px;
-    border-left: 4px solid var(--dark-green);
-    background: #f0fdf4;
-    border-radius: 0 4px 4px 0;
-    animation: slideInLog 0.2s ease-out;
+    padding: 6px 12px;
+    border-left: 5px solid #ff9ebb;
+    background: #fff0f5;
+    border-radius: 0 10px 10px 0;
+    animation: rollInLog 0.2s ease-out;
+    color: #5c4d52;
 }
 
-@keyframes slideInLog {
-    from { transform: translateX(-5px); opacity: 0; }
+@keyframes rollInLog {
+    from { transform: translateX(-8px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
 
-.history-empty { color: #64748b; font-style: italic; text-align: center; margin-top: 40px; }
+.history-empty { color: #b4a2a8; font-style: italic; text-align: center; margin-top: 45px; }
 
-/* Notification Toast Alert Box Overlay */
+/* Toast Overlays */
 .toast-notification {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #1e293b;
+    bottom: 25px;
+    right: 25px;
+    background: #5c4d52;
     color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 12px 24px;
+    border-radius: 20px;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.3s, transform 0.3s;
+    transition: all 0.3s ease;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999;
 }
 
 .toast-notification.show { opacity: 1; transform: translateY(0); }
