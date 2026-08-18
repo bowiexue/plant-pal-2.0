@@ -27,8 +27,8 @@
             <!-- Left Primary Column: Garden Ecosystem Node -->
             <div class="layout-column main-panel">
                 <!-- Ecosystem Core Card -->
-                <div class="workspace-card theme-sage">
-                    <div class="card-header-bar">
+                <div class="workspace-card theme-accent-card" id="main-garden-card">
+                    <div class="card-header-bar" id="garden-header">
                         <h2>🌱 Ecosystem Workspace Garden</h2>
                         <span id="level-badge" class="level-indicator-badge">Stage 1 / 10</span>
                     </div>
@@ -55,14 +55,14 @@
                                 <button class="action-btn btn-secondary" onclick="executeTimerReset()">Reset</button>
                             </div>
                             <div class="seedling-dropdown-row">
-                                <label for="plant-select">Target Genotype:</label>
+                                <label for="plant-select">Target Profile:</label>
                                 <select id="plant-select" class="clean-select-menu" onchange="handlePlantGenotypeChange()">
-                                    <option value="0">Thick Sprout</option>
-                                    <option value="1">Pixie Fern</option>
-                                    <option value="2">Cosmic Clover</option>
-                                    <option value="3">Ruby Succulent</option>
-                                    <option value="4">Bonsai Buddy</option>
-                                    <option value="5">Lunar Moss</option>
+                                    <option value="0">Thick Sprout (Sage)</option>
+                                    <option value="1">Pixie Fern (Forest)</option>
+                                    <option value="2">Cosmic Clover (Galaxy)</option>
+                                    <option value="3">Ruby Succulent (Desert)</option>
+                                    <option value="4">Bonsai Buddy (Zen)</option>
+                                    <option value="5">Lunar Moss (Neon)</option>
                                 </select>
                             </div>
                         </div>
@@ -72,11 +72,10 @@
                     <div class="ecosystem-impact-profile-box">
                         <h3>📋 Botanical Ecosystem Impact Statement</h3>
                         <p id="ecosystem-paragraph-text">
-                            The current seedling structure anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture level balances inside the workstation. As your plant grows by resolving task milestones, its expanded root systems extract surrounding background tension while its leafy nodes optimize mental processing focus within the immediate digital environment.
+                            The current seedling structure anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture level balances inside the workstation.
                         </p>
                     </div>
                 </div>
-
                 <!-- Connected Task Checklist -->
                 <div class="workspace-card theme-linen">
                     <div class="card-header-bar">
@@ -89,13 +88,14 @@
                             <button class="action-btn btn-success" onclick="createNewTaskItem()">Add Task</button>
                         </div>
                         <ul class="task-list-node-container" id="task-list-container">
-                            <!-- Injected dynamically by logic initialization loops -->
+                            <!-- Injected dynamically by logic loops -->
                         </ul>
                     </div>
                 </div>
-                <!-- Interactive Cursor Sandbox Playground Area -->
-                <div class="workspace-card theme-sage sandbox-card">
-                    <div class="card-header-bar">
+
+                <!-- Interactive Sandbox Playground Area -->
+                <div class="workspace-card theme-accent-card">
+                    <div class="card-header-bar" id="sandbox-header">
                         <h2>✨ Interactive Sandbox Playground</h2>
                     </div>
                     <div class="sandbox-area" id="sandbox-container">
@@ -107,7 +107,7 @@
             <!-- Right Column: Secondary Utilities Sidecar -->
             <div class="layout-column side-panel">
                 <!-- Hamster Active Run Track Station -->
-                <div class="workspace-card theme-peach">
+                <div class="workspace-card theme-peach" id="hamster-card">
                     <div class="card-header-bar">
                         <h2>🐹 Hamster Runner Node</h2>
                         <span id="hamster-status" class="status-badge state-idle">IDLE</span>
@@ -154,25 +154,21 @@
                 </div>
 
                 <!-- Font Transformation Sandbox engine -->
-                <div class="workspace-card theme-lavender">
+                <div class="workspace-card theme-lavender" id="font-card">
                     <div class="card-header-bar">
-                        <h2>✨ Font Variance Engine</h2>
+                        <h2 id="font-engine-title">✨ Font Variance Engine</h2>
                     </div>
                     <div class="fonts-workspace-body">
                         <div class="kaomoji-quick-pack-wrapper">
-                            <div class="kaomoji-grid-layout">
-                                <span class="kaomoji-pill" onclick="copyStringToClipboard(this)">( •.•)♥</span>
-                                <span class="kaomoji-pill" onclick="copyStringToClipboard(this)">(⁀ᗢ⁀)</span>
-                                <span class="kaomoji-pill" onclick="copyStringToClipboard(this)">(•̤ᴗ•̤)</span>
-                                <span class="kaomoji-pill" onclick="copyStringToClipboard(this)">(⊃｡•́‿•̀｡)⊃</span>
-                                <span class="kaomoji-pill" onclick="copyStringToClipboard(this)">(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧</span>
+                            <div class="kaomoji-grid-layout" id="kaomoji-container">
+                                <!-- Dynamic Kaomojis injected by profile script -->
                             </div>
                         </div>
                         <div class="font-previewer-input-column">
                             <input type="text" id="font-input" class="clean-text-input" value="Plant Pal" oninput="runFontTransformationPreviews()">
                             <div class="font-rendered-preview-box style-standard" id="preview-1" onclick="copyStringToClipboard(this)">Plant Pal</div>
-                            <div class="font-rendered-preview-box style-script" id="preview-2" onclick="copyStringToClipboard(this)">𝒫𝓁𝒶𝓃𝓉 𝒫𝒶𝓁</div>
-                            <div class="font-rendered-preview-box style-gothic" id="preview-3" onclick="copyStringToClipboard(this)">𝔓𝔩𝔞𝔫𝔱 𝔓𝔞𝔩</div>
+                            <div class="font-rendered-preview-box style-custom-1" id="preview-2" onclick="copyStringToClipboard(this)">𝒫𝓁𝒶𝓃𝓉 𝒫𝒶𝓁</div>
+                            <div class="font-rendered-preview-box style-custom-2" id="preview-3" onclick="copyStringToClipboard(this)">𝔓𝔩𝔞𝔫𝔱 𝔓𝔞𝔩</div>
                         </div>
                     </div>
                 </div>
@@ -186,7 +182,7 @@
                 <button class="action-btn btn-danger btn-sm" onclick="clearWorkspaceLogStorage()">⚠️ Wipe Storage</button>
             </div>
             <div class="history-scroll-viewport-box" id="history-log-box">
-                <!-- Log streams appended here dynamically by engine loops -->
+                <!-- Log streams appended here dynamically -->
             </div>
         </footer>
     </div>
