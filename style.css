@@ -238,6 +238,25 @@ body {
 }
 .pixel-hamster-vector-graphic { image-rendering: pixelated; }
 
+/* Chore Selection Lists Layout Node */
+.chore-logging-tracker-box { display: flex; flex-direction: column; gap: 8px; }
+.chore-summary-readout { font-size: 0.9rem; text-align: center; font-weight: 600; margin-bottom: 2px; }
+.chore-control-select-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 600; }
+
+/* ✨ BEAUTIFUL BUTTONS FIX: Full width, explicit spacing, layout padding gap to stop smushing ✨ */
+.chore-buttons-row { 
+    display: flex; 
+    gap: 12px; 
+    width: 100%;
+    margin-top: 6px;
+}
+.chore-buttons-row button { 
+    flex: 1; 
+    font-size: 0.9rem; 
+    padding: 10px; 
+    white-space: nowrap;
+}
+
 /* Native HTML5 Audio Deck Sheet Styles */
 .audio-player-workspace-body { display: flex; flex-direction: column; gap: 10px; background-color: #fafdfa; }
 .audio-station-meta-row { display: flex; align-items: center; gap: 12px; }
