@@ -1,4 +1,4 @@
-// --- RUNTIME SCHEDULER STATE MATRICES ---
+// --- CENTRAL ENVIRONMENT STORAGE STATE MAP ---
 let workspaceState = {
     plantStage: 1,
     plantTypeIndex: 0,
@@ -11,12 +11,11 @@ let workspaceState = {
     activeTimerPresetMode: 'focus'
 };
 
-// --- DYNAMIC FLORA ECOSYSTEM PARAMETERS ---
 const genotypeAestheticProfiles = [
     {
         name: "Thick Sprout", bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#eaedea",
         kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"],
-        fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾𝒸 𝒮𝓅𝓇ℴ...𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
+        fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾ᶜ 𝒮𝓅𝓇ℴ𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
     },
     {
         name: "Pixie Fern", bg: "#edf5f0", primary: "#b3cbb4", shadow: "#dae5db",
@@ -31,26 +30,18 @@ const genotypeAestheticProfiles = [
     {
         name: "Ruby Succulent", bg: "#fcf4f2", primary: "#f7cbc1", shadow: "#fae5e0",
         kaomojis: ["(🌸•‿•)", "(🪷´▿`)", "(๑>ᴗ<๑)💕", "(🌵`･ω･´)", "(☀️_☀️)🌵"],
-        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩ℯ𝓃𝓉" }
+        fonts: { s2: "ℛ...ℯ𝓃𝓉", s3: "ℜ𝔲𝔟𝔶𝔖𝔲𝔠𝔠𝔲𝔩ℯ𝔫𝔱" }
     },
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
         kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
-        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞_𝔅𝔲𝔡𝔡𝔶" }
+        fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
         kaomojis: ["(🌙💤.💤)", "(🛸★.★)", "(🌖𖦹⤙𖦹)", "(👾♫𖦹♫)", "✧(☄️.☄️)✧"],
-        fonts: { s2: "ℒ...𝓃𝒶𝓇 ℳℴ𝓈𝓈 𝒩𝒾ℊ𝒽𝓉", s3: "𝔏𝔲𝔫𝔞𝔯𝔐𝔬𝔰𝔰" }
+        fonts: { s2: "ℒ...安全 ℳℴ𝓈𝓈 𝒩𝒾ℊ𝒽𝓉", s3: "𝔏𝔲𝔫𝔞𝔯𝔐𝔬𝔰𝔰" }
     }
-];
-
-// --- 📻 SECURITY DIRECT STREAMS MATRIX ---
-const broadcastStationProfiles = [
-    { title: "Lofi Chill Beats", genre: "Chillhop / Instrumental Focus Stream", url: "https://syntheticfm.com" },
-    { title: "Smooth Piano Loops", genre: "Soft Instrumental / Academic Calm Study", url: "https://wcrb.org" },
-    { title: "Vintage Chiptune 8-Bit Beats", genre: "Retro Arcade / Synthwave Loops", url: "https://chiptune.app" },
-    { title: "Ambient Deep Space Drone", genre: "Atmospheric Textures / Soundscapes White Noise", url: "https://somafm.com" }
 ];
 
 const stringFontTransformationMappers = {
@@ -69,20 +60,19 @@ const playgroundCreatures = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐣", "�
 window.addEventListener('DOMContentLoaded', () => {
     synchronizeLocalStorageData();
     executeLiveTimestampClockSync();
-    initializeRadioStreamEndpointSource();
     handlePlantGenotypeChange();
     syncChecklistDOMDisplay();
     setupSandboxEngine();
     updateChoreTrackingDashboardUI();
     refreshNumericalTimerDisplayReadout();
-    logWorkspaceEvent("Workspace environment node fully initiated.");
+    logWorkspaceEvent("Workspace environment node fully initiated via Spotify integration.");
 });
 function renderProceduralPixelSproutSVG() {
     const targetSvgCanvas = document.getElementById('plant-svg');
     const levelDisplayBadgeNode = document.getElementById('level-badge');
     if (!targetSvgCanvas) return;
     
-    levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 10`;
+    levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 5`;
     targetSvgCanvas.innerHTML = '';
     
     let potHTML = `<rect x="11" y="24" width="10" height="1" fill="#a1705a" /><rect x="10" y="25" width="12" height="5" fill="#b8836b" /><rect x="11" y="30" width="10" height="1" fill="#8c5b47" />`;
@@ -92,38 +82,39 @@ function renderProceduralPixelSproutSVG() {
     
     if (type === 0) {
         if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
-        if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
-        if (stage >= 7) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
-        if (stage >= 10) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
+        if (stage >= 2) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
+        if (stage >= 4) plantHTML += `<rect x="17" y="16" width="3" height="1" fill="#7ebd7e" /><rect x="12" y="15" width="3" height="1" fill="#5fa35f" />`;
+        if (stage >= 5) plantHTML += `<rect x="14" y="12" width="4" height="4" fill="#f28a9b" /><rect x="15" y="13" width="2" height="1" fill="#fae896" />`;
     } else if (type === 1) {
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#4d7c57" />`;
-        if (stage >= 4) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
-        if (stage >= 7) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
-        if (stage >= 10) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
+        if (stage >= 2) plantHTML += `<rect x="13" y="18" width="6" height="2" fill="#689f75" /><rect x="15" y="16" width="2" height="3" fill="#4d7c57" />`;
+        if (stage >= 4) plantHTML += `<rect x="11" y="14" width="10" height="2" fill="#8bc39a" />`;
+        if (stage >= 5) plantHTML += `<rect x="9" y="11" width="14" height="2" fill="#aee4bd" />`;
     } else if (type === 2) {
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#704d9c" />`;
-        if (stage >= 4) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
-        if (stage >= 7) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
-        if (stage >= 10) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
+        if (stage >= 2) plantHTML += `<rect x="14" y="19" width="4" height="2" fill="#916bbd" />`;
+        if (stage >= 4) plantHTML += `<rect x="12" y="16" width="3" height="3" fill="#b38cd9" /><rect x="17" y="16" width="3" height="3" fill="#b38cd9" />`;
+        if (stage >= 5) plantHTML += `<rect x="14" y="13" width="4" height="3" fill="#d4adf7" /><circle cx="16" cy="11" r="2" fill="#ffd700" />`;
     } else if (type === 3) {
         if (stage >= 1) plantHTML += `<rect x="14" y="22" width="4" height="2" fill="#d96262" />`;
-        if (stage >= 4) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
-        if (stage >= 7) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
-        if (stage >= 10) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
+        if (stage >= 2) plantHTML += `<rect x="12" y="20" width="8" height="3" fill="#f28080" />`;
+        if (stage >= 4) plantHTML += `<rect x="10" y="18" width="12" height="3" fill="#ff9e9e" />`;
+        if (stage >= 5) plantHTML += `<rect x="9" y="15" width="14" height="4" fill="#ffb3b3" /><rect x="15" y="13" width="2" height="2" fill="#960018" />`;
     } else if (type === 4) {
         if (stage >= 1) plantHTML += `<rect x="15" y="21" width="2" height="3" fill="#7a5230" />`;
-        if (stage >= 4) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
-        if (stage >= 7) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
-        if (stage >= 10) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
+        if (stage >= 2) plantHTML += `<rect x="13" y="17" width="3" height="4" fill="#7a5230" /><rect x="16" y="16" width="3" height="2" fill="#426b42" />`;
+        if (stage >= 4) plantHTML += `<rect x="10" y="15" width="4" height="3" fill="#7a5230" /><rect x="9" y="13" width="5" height="2" fill="#528252" />`;
+        if (stage >= 5) plantHTML += `<rect x="12" y="11" width="9" height="4" fill="#6ba36b" /><rect x="14" y="8" width="5" height="3" fill="#99cc99" />`;
     } else if (type === 5) {
         if (stage >= 1) plantHTML += `<rect x="12" y="23" width="8" height="1" fill="#444163" />`;
-        if (stage >= 4) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
-        if (stage >= 7) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
-        if (stage >= 10) plantHTML += `<rect x="8" y="18" width="16" height="3" fill="#9b95db" /><circle cx="20" cy="14" r="1.5" fill="#ffffcc" />`;
+        if (stage >= 2) plantHTML += `<rect x="10" y="22" width="12" height="2" fill="#5c5887" />`;
+        if (stage >= 4) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
+        if (stage >= 5) plantHTML += `<rect x="8" y="18" width="16" height="3" fill="#9b95db" /><circle cx="20" cy="14" r="1.5" fill="#ffffcc" />`;
     }
     
     targetSvgCanvas.innerHTML = potHTML + plantHTML;
 }
+
 function logWorkspaceEvent(logStringText) {
     const historicalBoxNode = document.getElementById('history-log-box');
     if (!historicalBoxNode) return;
@@ -142,29 +133,21 @@ function logWorkspaceEvent(logStringText) {
 }
 
 function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) {
-    return `The active ${profileName} node anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances inside the workstation. By maintaining a steady level of photosynthetic respiration, this genotype helps offset system-generated thermal metrics, improving air filter freshness near your workspace layout sheet. 
-
-As your node grows to Stage ${stageLevel}/10, its expanded structural roots optimize water absorption and fortify organic cellular links. This baseline growth provides a calming visual focus point that balances focus timers with physical task completions. Keep working through your checklist targets to expand branch frameworks and unlock advanced biological nodes!`;
+    return `The active ${profileName} node anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances. Scaling up to Stage ${stageLevel}/5, its expanded structural roots optimize water absorption and fortify organic links.`;
 }
 
 window.wipeAllPlantProgressMemory = function() {
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
     renderProceduralPixelSproutSVG();
-    
     const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
-    const paragraphBox = document.getElementById('ecosystem-paragraph-text');
-    if(paragraphBox) {
-        paragraphBox.innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
-    }
+    document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
     logWorkspaceEvent("🚨 <strong>Plant growth wiped!</strong> Progressive sprout metrics reset back to Stage 1 canvas outline.");
 };
 
 window.handlePlantGenotypeChange = function() {
     const selectElement = document.getElementById('plant-select');
-    if(selectElement) {
-        workspaceState.plantTypeIndex = parseInt(selectElement.value);
-    }
+    if(selectElement) workspaceState.plantTypeIndex = parseInt(selectElement.value);
     const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
     
     document.documentElement.style.setProperty('--bg-slate', profile.bg);
@@ -175,11 +158,7 @@ window.handlePlantGenotypeChange = function() {
     renderProceduralPixelSproutSVG();
     populateKaomojisPack(profile.kaomojis);
     runFontTransformationPreviews();
-    
-    const paragraphBox = document.getElementById('ecosystem-paragraph-text');
-    if(paragraphBox) {
-        paragraphBox.innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
-    }
+    document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
 };
 
 function populateKaomojisPack(kaomojiArray) {
@@ -194,7 +173,6 @@ function populateKaomojisPack(kaomojiArray) {
         container.appendChild(span);
     });
 }
-
 function writeStateToLocalStorageMemory() {
     const dataObj = {
         plantStage: workspaceState.plantStage,
@@ -203,11 +181,11 @@ function writeStateToLocalStorageMemory() {
         choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
         choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_calibratedDataMemory_v13', JSON.stringify(dataObj));
+    localStorage.setItem('sproutOS_calibratedDataMemory_v16', JSON.stringify(dataObj));
 }
 
 function synchronizeLocalStorageData() {
-    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v13');
+    const saved = localStorage.getItem('sproutOS_calibratedDataMemory_v16');
     if (saved) {
         try {
             const data = JSON.parse(saved);
@@ -216,6 +194,7 @@ function synchronizeLocalStorageData() {
             workspaceState.completedTaskCount = data.completedTaskCount || 0;
             workspaceState.choreMinutesAccumulated = data.choreMinutesAccumulated || 0;
             workspaceState.choreGoalTarget = data.choreGoalTarget || 15;
+            if(workspaceState.plantStage > 5) workspaceState.plantStage = 5;
         } catch(e) { console.error("Storage load bypassed.", e); }
     }
 }
@@ -226,6 +205,7 @@ function executeLiveTimestampClockSync() {
     syncTimeTick();
     setInterval(syncTimeTick, 1000);
 }
+
 const underlyingActiveTaskMemoryStore = ["Verify project layout constraints", "Refactor system workspace variables", "Analyze environmental grid blueprints", "Audit core compilation modules"];
 
 function syncChecklistDOMDisplay() {
@@ -276,13 +256,12 @@ window.processTaskCompletionTrigger = function(idx, checkbox) {
         
         if (workspaceState.completedTaskCount >= 3) {
             workspaceState.completedTaskCount = 0;
-            if (workspaceState.plantStage < 10) {
+            if (workspaceState.plantStage < 5) {
                 workspaceState.plantStage++;
-                logWorkspaceEvent(`🎉 <strong>GROWTH RANK BOOST!</strong> Flora advanced to: Stage <strong>${workspaceState.plantStage} / 10</strong>!`);
+                logWorkspaceEvent(`🎉 <strong>GROWTH RANK BOOST!</strong> Flora advanced to: Stage <strong>${workspaceState.plantStage} / 5</strong>!`);
             }
             renderProceduralPixelSproutSVG();
-            const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
-            document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
+            document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(genotypeAestheticProfiles[workspaceState.plantTypeIndex].name, workspaceState.plantStage);
         }
         setTimeout(() => { underlyingActiveTaskMemoryStore.splice(idx, 1); syncChecklistDOMDisplay(); }, 500);
     }
@@ -299,14 +278,17 @@ function setupSandboxEngine() {
         const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        if (Math.random() > 0.85) { 
+        if (Math.random() > 0.80) { 
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
             sparkle.style.left = `${x}px`;
             sparkle.style.top = `${y}px`;
-            sparkle.style.backgroundColor = "var(--border-charcoal)";
+            sparkle.style.position = 'absolute';
+            sparkle.style.fontSize = '1.2rem';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.innerText = Math.random() > 0.5 ? '✨' : '⭐';
             activeSandbox.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 500);
+            setTimeout(() => sparkle.remove(), 400);
         }
     });
     
@@ -325,12 +307,12 @@ function setupSandboxEngine() {
         logWorkspaceEvent(`Hatched companion creature: <strong>${animal}</strong>`);
     });
 }
+
 function updateChoreTrackingDashboardUI() {
     document.getElementById('chore-current').innerText = workspaceState.choreMinutesAccumulated;
     document.getElementById('chore-goal').innerText = workspaceState.choreGoalTarget;
 }
 
-// ✨ UPDATED DUAL GOAL ALIGNMENT: Keeps dropdown selection and text typing synced perfectly ✨
 window.syncGoalDropdownToInput = function(dropdownEl) {
     const customInput = document.getElementById('goal-custom-input');
     if (dropdownEl.value !== "custom") {
@@ -346,42 +328,26 @@ window.syncGoalInputToDropdown = function(inputEl) {
     if (isNaN(val) || val <= 0) val = 15;
     workspaceState.choreGoalTarget = val;
     updateChoreTrackingDashboardUI();
-    
     const select = document.getElementById('goal-select');
-    if (["15", "30", "45", "60"].includes(val.toString())) {
-        select.value = val.toString();
-    } else {
-        select.value = "custom";
-    }
+    select.value = ["15", "30", "45", "60"].includes(val.toString()) ? val.toString() : "custom";
 };
 
-// ✨ UPDATED DUAL LOG ALIGNMENT: Keeps dropdown selection and text typing synced perfectly ✨
 window.syncLogDropdownToInput = function(dropdownEl) {
     const customInput = document.getElementById('chore-custom-input');
-    if (dropdownEl.value !== "custom") {
-        customInput.value = dropdownEl.value;
-    }
+    if (dropdownEl.value !== "custom") customInput.value = dropdownEl.value;
 };
 
 window.syncLogInputToDropdown = function(inputEl) {
     let val = parseInt(inputEl.value);
     if (isNaN(val) || val <= 0) val = 5;
-    
     const select = document.getElementById('log-select');
-    if (["5", "15", "30"].includes(val.toString())) {
-        select.value = val.toString();
-    } else {
-        select.value = "custom";
-    }
+    select.value = ["5", "15", "30"].includes(val.toString()) ? val.toString() : "custom";
 };
 
 window.executeChoreTimeLog = function() {
     const customInputNode = document.getElementById('chore-custom-input');
     let mins = parseInt(customInputNode.value);
-    
-    if (isNaN(mins) || mins <= 0) {
-        mins = 5; 
-    }
+    if (isNaN(mins) || mins <= 0) mins = 5;
     
     const wheelTrackNode = document.getElementById('wheel-element');
     const hamsterSpriteNode = document.getElementById('hamster-element');
@@ -408,75 +374,13 @@ window.executeChoreTimeLog = function() {
 window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
     updateChoreTrackingDashboardUI();
-    
     const wheelTrackNode = document.getElementById('wheel-element');
     const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
-    
     if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
     if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
-    if (status) { 
-        status.innerText = "IDLE"; 
-        status.className = "status-badge state-idle"; 
-    }
+    if (status) { status.innerText = "IDLE"; status.className = "status-badge state-idle"; }
     logWorkspaceEvent("🐹 Hamster station chore metrics reset back to zero minutes.");
-};
-
-// --- 📻 SECURITY BYPASSED LIVE STREAM TUNER ENGINE ---
-// ✨ FIX: Set default initialization directly to valid matrix index index instead of .url object error pointer ✨
-function initializeRadioStreamEndpointSource() {
-    const audioStream = document.getElementById('lofi-stream');
-    if (audioStream) {
-        audioStream.volume = 0.5;
-        audioStream.src = broadcastStationProfiles[0].url; 
-    }
-}
-
-window.switchRadioStationChannel = function() {
-    const selectorIndex = parseInt(document.getElementById('radio-channel-select').value);
-    const station = broadcastStationProfiles[selectorIndex];
-    const audioStream = document.getElementById('lofi-stream');
-    
-    document.getElementById('radio-station-title').innerText = station.title;
-    document.getElementById('radio-station-genre').innerText = station.genre;
-    
-    const wasPlaying = !audioStream.paused;
-    audioStream.src = station.url;
-    audioStream.load();
-    
-    if (wasPlaying) {
-        audioStream.play().catch(err => console.log("Stream sync hold bypassed.", err));
-    }
-    logWorkspaceEvent(`Radio tuners shifted to channel: <strong>${station.title}</strong>`);
-};
-
-window.toggleLoFiRadioPlayback = function() {
-    const audioStream = document.getElementById('lofi-stream');
-    const btn = document.getElementById('play-audio-btn');
-    const statusBadge = document.getElementById('audio-status');
-    
-    if (audioStream.paused) {
-        audioStream.play().then(() => {
-            btn.innerText = "⏸️ Pause Radio";
-            statusBadge.innerText = "LIVE STREAM";
-            statusBadge.className = "status-badge state-active";
-            logWorkspaceEvent("📻 Ambient Live Radio deck connection established online.");
-        }).catch(err => {
-            console.error("Audio block caught", err);
-            logWorkspaceEvent("⚠️ Click anywhere inside the page first, then press Play Radio!");
-        });
-    } else {
-        audioStream.pause();
-        btn.innerText = "▶️ Play Radio";
-        statusBadge.innerText = "MUTED";
-        statusBadge.className = "status-badge state-idle";
-        logWorkspaceEvent("📻 Ambient Audio streaming feed paused.");
-    }
-};
-
-window.adjustLoFiRadioVolume = function(volumeValue) {
-    const audioStream = document.getElementById('lofi-stream');
-    if (audioStream) audioStream.volume = volumeValue;
 };
 
 function refreshNumericalTimerDisplayReadout() {
@@ -491,73 +395,4 @@ window.applyTimerPreset = function(mode, btn) {
     btn.classList.add('active');
     if (mode === 'focus') workspaceState.timerSecondsRemaining = 1500;
     else if (mode === 'break') workspaceState.timerSecondsRemaining = 300;
-    else if (mode === 'short') workspaceState.timerSecondsRemaining = 600;
-    else if (mode === 'long') workspaceState.timerSecondsRemaining = 1800;
-    refreshNumericalTimerDisplayReadout();
-};
-
-window.triggerTimerToggle = function() {
-    const btn = document.getElementById('start-btn');
-    if (workspaceState.timerActiveState) {
-        clearInterval(workspaceState.timerIntervalThread);
-        workspaceState.timerActiveState = false;
-        btn.innerText = "Start";
-        btn.className = "action-btn btn-primary";
-    } else {
-        workspaceState.timerActiveState = true;
-        btn.innerText = "Pause";
-        btn.className = "action-btn btn-danger";
-        workspaceState.timerIntervalThread = setInterval(() => {
-            if (workspaceState.timerSecondsRemaining > 0) {
-                workspaceState.timerSecondsRemaining--;
-                refreshNumericalTimerDisplayReadout();
-            } else {
-                clearInterval(workspaceState.timerIntervalThread);
-                workspaceState.timerActiveState = false;
-                btn.innerText = "Start";
-                btn.className = "action-btn btn-primary";
-                logWorkspaceEvent("🔔 <strong>Focus countdown target completed successfully!</strong>");
-            }
-        }, 1000);
-    }
-};
-
-window.executeTimerReset = function() {
-    clearInterval(workspaceState.timerIntervalThread);
-    workspaceState.timerActiveState = false;
-    document.getElementById('start-btn').innerText = "Start";
-    document.getElementById('start-btn').className = "action-btn btn-primary";
-    let m = workspaceState.activeTimerPresetMode;
-    if (m === 'focus') workspaceState.timerSecondsRemaining = 1500;
-    else if (m === 'break') workspaceState.timerSecondsRemaining = 300;
-    else if (m === 'short') workspaceState.timerSecondsRemaining = 600;
-    else if (m === 'long') workspaceState.timerSecondsRemaining = 1800;
-    refreshNumericalTimerDisplayReadout();
-};
-
-window.runFontTransformationPreviews = function() {
-    const val = document.getElementById('font-input').value || "Plant Pal";
-    document.getElementById('preview-1').innerText = val;
-    document.getElementById('preview-2').innerText = parseStringThroughFontCharacterMapping(val, stringFontTransformationMappers.styleScript);
-    document.getElementById('preview-3').innerText = parseStringThroughFontCharacterMapping(val, stringFontTransformationMappers.styleGothic);
-};
-
-function parseStringThroughFontCharacterMapping(str, map) {
-    return str.split('').map(c => map[c] || c).join('');
-}
-
-window.copyStringToClipboard = function(el) {
-    const text = el.innerText;
-    navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('toast-element');
-        toast.innerText = `Copied to clipboard: "${text}"`;
-        toast.classList.add('display-active');
-        setTimeout(() => toast.classList.remove('display-active'), 2000);
-    });
-};
-
-window.clearWorkspaceLogStorage = function() {
-    localStorage.removeItem('sproutOS_calibratedDataMemory_v12');
-    workspaceState.plantStage = 1;
-    workspaceState.completedTaskCount = 0;
-workspaceState.choreMinutesAccumulated = 0;document.getElementById('history-log-box').innerHTML = 'No logged activities present. System standby.';renderProceduralPixelSproutSVG();syncChecklistDOMDisplay();updateChoreTrackingDashboardUI();document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());logWorkspaceEvent("Storage system state wiped to baseline profiles.");};
+Use code with caution.else if (mode === 'short') workspaceState.timerSecondsRemaining = 600;else if (mode === 'long') workspaceState.timerSecondsRemaining = 1800;refreshNumericalTimerDisplayReadout();};window.triggerTimerToggle = function() {const btn = document.getElementById('start-btn');if (workspaceState.timerActiveState) {clearInterval(workspaceState.timerIntervalThread);workspaceState.timerActiveState = false;btn.innerText = "Start";btn.className = "action-btn btn-primary";} else {workspaceState.timerActiveState = true;btn.innerText = "Pause";btn.className = "action-btn btn-danger";workspaceState.timerIntervalThread = setInterval(() => {if (workspaceState.timerSecondsRemaining > 0) {workspaceState.timerSecondsRemaining--;refreshNumericalTimerDisplayReadout();} else {clearInterval(workspaceState.timerIntervalThread);workspaceState.timerActiveState = false;btn.innerText = "Start";btn.className = "action-btn btn-primary";logWorkspaceEvent("🔔 Focus countdown target completed successfully!");}}, 1000);}};window.executeTimerReset = function() {clearInterval(workspaceState.timerIntervalThread);workspaceState.timerActiveState = false;document.getElementById('start-btn').innerText = "Start";document.getElementById('start-btn').className = "action-btn btn-primary";let m = workspaceState.activeTimerPresetMode;if (m === 'focus') workspaceState.timerSecondsRemaining = 1500;else if (m === 'break') workspaceState.timerSecondsRemaining = 300;else if (m === 'short') workspaceState.timerSecondsRemaining = 600;else if (m === 'long') workspaceState.timerSecondsRemaining = 1800;refreshNumericalTimerDisplayReadout();};window.runFontTransformationPreviews = function() {const val = document.getElementById('font-input').value || "Plant Pal";document.getElementById('preview-1').innerText = val;document.getElementById('preview-2').innerText = parseStringThroughFontCharacterMapping(val, stringFontTransformationMappers.styleScript);document.getElementById('preview-3').innerText = parseStringThroughFontCharacterMapping(val, stringFontTransformationMappers.styleGothic);};function parseStringThroughFontCharacterMapping(str, map) { return str.split('').map(c => map[c] || c).join(''); }window.copyStringToClipboard = function(el) {const text = el.innerText;navigator.clipboard.writeText(text).then(() => {const toast = document.getElementById('toast-element');toast.innerText = Copied to clipboard: "${text}";toast.classList.add('display-active');setTimeout(() => toast.classList.remove('display-active'), 2000);});};window.clearWorkspaceLogStorage = function() {localStorage.removeItem('sproutOS_calibratedDataMemory_v16');workspaceState.plantStage = 1;workspaceState.completedTaskCount = 0;workspaceState.choreMinutesAccumulated = 0;document.getElementById('history-log-box').innerHTML = 'No logged activities present. System standby.';renderProceduralPixelSproutSVG();syncChecklistDOMDisplay();updateChoreTrackingDashboardUI();document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());logWorkspaceEvent("Storage system state wiped to baseline profiles.");};
