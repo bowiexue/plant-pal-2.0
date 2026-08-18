@@ -1,462 +1,359 @@
-// --- COZY WORKSPACE ENGINE STATE SETUP ---
-let appState = {
+// --- COMPILER INTEGRITY RUNTIME STATE ---
+let workspaceState = {
     plantStage: 1,
     plantTypeIndex: 0,
-    checkedTodoCount: 0,
-    choreMinutes: 0,
-    choreGoal: 15,
-    timerSeconds: 1500,
-    timerRunning: false,
-    timerInterval: null,
-    timerPreset: 'focus',
-    audioPlaying: false,
-    audioContext: null,
-    oscillatorNodes: []
+    completedTaskCount: 0,
+    choreMinutesAccumulated: 0,
+    choreGoalTarget: 15,
+    timerSecondsRemaining: 1500,
+    timerActiveState: false,
+    timerIntervalThread: null,
+    activeTimerPresetMode: 'focus'
 };
 
-const plantNames = [
-    "Thick Sprout", "Pixie Fern", "Cosmic Clover", "Ruby Succulent", "Bonsai Buddy",
-    "Lunar Moss", "Golden Pothos", "Dream Cactus", "Star Flower", "Aero Ivy",
-    "Amber Blossom", "Neon Shroom", "Zen Bamboo", "Aqua Lily", "Omega Bloom"
-];
+const genotypeNamesList = ["Thick Sprout", "Pixie Fern", "Cosmic Clover", "Ruby Succulent", "Bonsai Buddy", "Lunar Moss"];
 
-const sandboxAnimals = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐸", "🐵", "🐣", "🐙", "🦄", "🐝"];
-
-const fontMappers = {
-    style2: {
+const stringFontTransformationMappers = {
+    styleScript: {
         'A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒬','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵',
-        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
+        'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓋','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'
     },
-    style3: {
+    styleGothic: {
         'A':'𝔄','B':'𝔅','C':'ℭ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'𝔏','I':'ℑ','J':'𝔍','K':'𝔎','L':'𝔏','M':'𝔐','N':'𝔓','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'  ',
         'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦','j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯','s':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷'
     }
 };
 
-// Initial Dashboard Boots Loop
+// Application Bootstrapping Router Entrypoint
 window.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
-    setupClockLoop();
-    renderPlantGraphic();
-    updateChecklistDisplay();
-    setupSandboxEngine();
-    updateChoreUI();
-    updateTimerUI();
-    updateFontPreviews();
-    logActivity("✨ System Boot Completed! Your sweet workspace dashboard is active.");
+    synchronizeLocalStorageData();
+    executeLiveTimestampClockSync();
+    renderProceduralPixelSproutSVG();
+    syncChecklistDOMDisplay();
+    updateChoreTrackingDashboardUI();
+    refreshNumericalTimerDisplayReadout();
+    runFontTransformationPreviews();
+    logWorkspaceEvent("Workspace configuration array initiated successfully.");
 });
 
-function logActivity(text) {
-    const logBox = document.getElementById('history-log-box');
-    if (!logBox) return;
-    const emptyMsg = logBox.querySelector('.history-empty');
-    if (emptyMsg) emptyMsg.remove();
-
-    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    const logItem = document.createElement('div');
-    logItem.className = 'history-item';
-    logItem.innerHTML = `<strong>[${timestamp}]</strong> ${text}`;
+function logWorkspaceEvent(logStringText) {
+    const historicalBoxNode = document.getElementById('history-log-box');
+    if (!historicalBoxNode) return;
     
-    logBox.appendChild(logItem);
-    logBox.scrollTop = logBox.scrollHeight; // Core scrolling fix
-    saveToLocalStorage();
+    const initialPlaceholderText = historicalBoxNode.querySelector('.history-empty-placeholder');
+    if (initialPlaceholderText) initialPlaceholderText.remove();
+
+    const modernTimestampStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dynamicRowElement = document.createElement('div');
+    dynamicRowElement.className = 'history-log-item-row';
+    dynamicRowElement.innerHTML = `<strong>[${modernTimestampStr}]</strong> ${logStringText}`;
+    
+    historicalBoxNode.appendChild(dynamicRowElement);
+    historicalBoxNode.scrollTop = historicalBoxNode.scrollHeight; // FORCES VIEWPORT DESCENT TO PREVENT SCROLL LOG FREEZE
+    writeStateToLocalStorageMemory();
 }
 
-// --- LOCAL STORAGE CORE ---
-function saveToLocalStorage() {
-    const data = {
-        plantStage: appState.plantStage,
-        plantTypeIndex: appState.plantTypeIndex,
-        checkedTodoCount: appState.checkedTodoCount,
-        choreMinutes: appState.choreMinutes,
-        choreGoal: appState.choreGoal
+// --- SYSTEM LOCAL MEMORY PIPELINES ---
+function writeStateToLocalStorageMemory() {
+    const statePackageObject = {
+        plantStage: workspaceState.plantStage,
+        plantTypeIndex: workspaceState.plantTypeIndex,
+        completedTaskCount: workspaceState.completedTaskCount,
+        choreMinutesAccumulated: workspaceState.choreMinutesAccumulated,
+        choreGoalTarget: workspaceState.choreGoalTarget
     };
-    localStorage.setItem('sproutOS_kawaiiSave', JSON.stringify(data));
+    localStorage.setItem('sproutOS_calibratedDataMemory', JSON.stringify(statePackageObject));
 }
 
-function loadFromLocalStorage() {
-    const saved = localStorage.getItem('sproutOS_kawaiiSave');
-    if (saved) {
+function synchronizeLocalStorageData() {
+    const storedMemoryArrayValue = localStorage.getItem('sproutOS_calibratedDataMemory');
+    if (storedMemoryArrayValue) {
         try {
-            const parsed = JSON.parse(saved);
-            appState.plantStage = parsed.plantStage || 1;
-            appState.plantTypeIndex = parsed.plantTypeIndex || 0;
-            appState.checkedTodoCount = parsed.checkedTodoCount || 0;
-            appState.choreMinutes = parsed.choreMinutes || 0;
-            appState.choreGoal = parsed.choreGoal || 15;
-        } catch(e) { console.error("Reloading parameters aborted", e); }
+            const decompiledDataStructure = JSON.parse(storedMemoryArrayValue);
+            workspaceState.plantStage = decompiledDataStructure.plantStage || 1;
+            workspaceState.plantTypeIndex = decompiledDataStructure.plantTypeIndex || 0;
+            workspaceState.completedTaskCount = decompiledDataStructure.completedTaskCount || 0;
+            workspaceState.choreMinutesAccumulated = decompiledDataStructure.choreMinutesAccumulated || 0;
+            workspaceState.choreGoalTarget = decompiledDataStructure.choreGoalTarget || 15;
+        } catch(runtimeError) { console.error("Memory parsing error", runtimeError); }
     }
 }
 
-function resetWorkspaceStorage() {
-    localStorage.removeItem('sproutOS_kawaiiSave');
-    appState.plantStage = 1;
-    appState.checkedTodoCount = 0;
-    appState.choreMinutes = 0;
+function clearWorkspaceLogStorage() {
+    localStorage.removeItem('sproutOS_calibratedDataMemory');
+    workspaceState.plantStage = 1;
+    workspaceState.completedTaskCount = 0;
+    workspaceState.choreMinutesAccumulated = 0;
     
-    document.getElementById('history-log-box').innerHTML = '<div class="history-empty">No milestones logged for this session yet. <br>System Ready.</div>';
+    document.getElementById('history-log-box').innerHTML = '<div class="history-empty-placeholder">No logged activities present. System standby.</div>';
     
-    renderPlantGraphic();
-    updateChecklistDisplay();
-    updateChoreUI();
-    document.querySelectorAll('.sandbox-animal').forEach(a => a.remove());
-    logActivity("🧹 Dashboard storage cleared out cleanly!");
+    renderProceduralPixelSproutSVG();
+    syncChecklistDOMDisplay();
+    updateChoreTrackingDashboardUI();
+    logWorkspaceEvent("System storage matrix cleared out and values reset to default states.");
 }
 
-function setupClockLoop() {
-    const clockEl = document.getElementById('live-clock');
-    const tick = () => {
-        clockEl.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+function executeLiveTimestampClockSync() {
+    const clockDisplayField = document.getElementById('live-clock');
+    const syncTimeTick = () => {
+        clockDisplayField.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     };
-    tick();
-    setInterval(tick, 1000);
+    syncTimeTick();
+    setInterval(syncTimeTick, 1000);
 }
 
-// --- PROCEDURAL 32x32 CRISP PIXEL-ART SPROUT ENGINE RECONSTRUCTION ---
-function renderPlantGraphic() {
-    const svg = document.getElementById('plant-svg');
-    const stageBadge = document.getElementById('level-badge');
-    const selector = document.getElementById('plant-select');
-    if (!svg) return;
+// --- PROCEDURAL HIGH-CLARITY GRID VECTOR PIXEL PLANT GENERATION ---
+function renderProceduralPixelSproutSVG() {
+    const targetSvgCanvas = document.getElementById('plant-svg');
+    const levelDisplayBadgeNode = document.getElementById('level-badge');
+    const menuDropdownSelector = document.getElementById('plant-select');
+    if (!targetSvgCanvas) return;
     
-    selector.value = appState.plantTypeIndex;
-    stageBadge.innerText = `${appState.plantStage} / 15`;
-    svg.innerHTML = '';
+    menuDropdownSelector.value = workspaceState.plantTypeIndex;
+    levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 15`;
+    targetSvgCanvas.innerHTML = '';
     
-    // Cozy Pixel Pot (Hand Drawn SVG Matrix Grid Blocks)
-    let potHTML = `
-        <rect x="10" y="24" width="12" height="1" fill="#c2917c" />
-        <rect x="9" y="25" width="14" height="5" fill="#d4a38f" />
-        <rect x="10" y="30" width="12" height="1" fill="#a4735f" />
-        <rect x="11" y="26" width="10" height="4" fill="#603813" opacity="0.3" /> <!-- Soil Depth -->
+    let compiledPotVectorHTML = `
+        <rect x="11" y="24" width="10" height="1" fill="#a1705a" />
+        <rect x="10" y="25" width="12" height="5" fill="#b8836b" />
+        <rect x="11" y="30" width="10" height="1" fill="#8c5b47" />
+        <rect x="11" y="25" width="10" height="1" fill="#4d2c18" opacity="0.4" />
     `;
     
-    let plantHTML = '';
-    let stage = appState.plantStage;
+    let calculatedPlantVectorHTML = '';
+    let stageLevelRank = workspaceState.plantStage;
     
-    // Procedural Stalk growth logic calculations
-    if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#4ade80" />`;
-    if (stage >= 2) plantHTML += `<rect x="15" y="20" width="2" height="2" fill="#4ade80" />`;
-    if (stage >= 3) plantHTML += `<rect x="14" y="21" width="1" height="1" fill="#22c55e" /><rect x="17" y="21" width="1" height="1" fill="#22c55e" />`; // Leaves 1
+    if (stageLevelRank >= 1) calculatedPlantVectorHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
+    if (stageLevelRank >= 2) calculatedPlantVectorHTML += `<rect x="15" y="19" width="2" height="3" fill="#7ebd7e" />`;
+    if (stageLevelRank >= 3) calculatedPlantVectorHTML += `<rect x="13" y="20" width="2" height="1" fill="#5fa35f" /><rect x="17" y="20" width="2" height="1" fill="#5fa35f" />`;
+    if (stageLevelRank >= 5) calculatedPlantVectorHTML += `<rect x="15" y="15" width="2" height="4" fill="#5fa35f" />`;
     
-    if (stage >= 4) plantHTML += `<rect x="15" y="17" width="2" height="3" fill="#22c55e" />`;
-    if (stage >= 6) { // Left branches
-        plantHTML += `
-            <rect x="12" y="16" width="3" height="1" fill="#4ade80" />
-            <rect x="11" y="14" width="2" height="2" fill="#22c55e" />
+    if (stageLevelRank >= 7) {
+        calculatedPlantVectorHTML += `
+            <rect x="11" y="16" width="4" height="1" fill="#7ebd7e" />
+            <rect x="10" y="14" width="2" height="2" fill="#4e8c4e" />
         `;
     }
-    if (stage >= 8) { // Right branches
-        plantHTML += `
-            <rect x="17" y="15" width="3" height="1" fill="#4ade80" />
-            <rect x="19" y="13" width="2" height="2" fill="#16a34a" />
+    if (stageLevelRank >= 9) {
+        calculatedPlantVectorHTML += `
+            <rect x="17" y="15" width="4" height="1" fill="#7ebd7e" />
+            <rect x="20" y="13" width="2" height="2" fill="#4e8c4e" />
         `;
     }
     
-    if (stage >= 10) plantHTML += `<rect x="15" y="13" width="2" height="4" fill="#16a34a" />`;
+    if (stageLevelRank >= 11) calculatedPlantVectorHTML += `<rect x="15" y="11" width="2" height="4" fill="#4e8c4e" />`;
     
-    // Magic Crown Blossom Explosion Level Triggers
-    if (stage >= 12) {
-        plantHTML += `
-            <rect x="14" y="10" width="4" height="3" fill="#f43f5e" />
-            <rect x="15" y="11" width="2" height="1" fill="#fef08a" />
-            <rect x="13" y="11" width="1" height="1" fill="#fda4af" />
-            <rect x="18" y="11" width="1" height="1" fill="#fda4af" />
+    if (stageLevelRank >= 13) {
+        calculatedPlantVectorHTML += `
+            <rect x="14" y="8" width="4" height="3" fill="#f28a9b" />
+            <rect x="15" y="9" width="2" height="1" fill="#fae896" />
         `;
-    } else if (stage >= 7) { // Small bud configuration
-        plantHTML += `<rect x="15" y="11" width="2" height="2" fill="#fda4af" />`;
+    } else if (stageLevelRank >= 8) {
+        calculatedPlantVectorHTML += `<rect x="15" y="9" width="2" height="2" fill="#f2a7b5" />`;
     }
     
-    svg.innerHTML = potHTML + plantHTML;
+    targetSvgCanvas.innerHTML = compiledPotVectorHTML + calculatedPlantVectorHTML;
 }
 
-function changePlantType() {
-    appState.plantTypeIndex = parseInt(document.getElementById('plant-select').value);
-    logActivity(`Target seedling blueprint changed to: <strong>${plantNames[appState.plantTypeIndex]}</strong>`);
-    renderPlantGraphic();
+function handlePlantGenotypeChange() {
+    workspaceState.plantTypeIndex = parseInt(document.getElementById('plant-select').value);
+    logWorkspaceEvent(`Target botanical genotype profile shifted to: <strong>${genotypeNamesList[workspaceState.plantTypeIndex]}</strong>`);
+    renderProceduralPixelSproutSVG();
+    
+    // Updates paragraph statement string variables seamlessly
+    document.getElementById('ecosystem-paragraph-text').innerText = `Your selected ${genotypeNamesList[workspaceState.plantTypeIndex]} genotype profile coordinates carbon capture operations within this specific grid partition. Complete task milestones to expand leaf structures and maximize digital environmental filtering efficiency.`;
 }
+// --- DATA INTERFACE CHECKLIST MATRIX ---
+const underlyingActiveTaskMemoryStore = [
+    "Verify project layout constraints",
+    "Refactor system workspace variables",
+    "Analyze environmental grid blueprints",
+    "Audit core compilation modules"
+];
 
-// --- CONTEXT CHECKLIST MATRIX ---
-const presetTasks = ["Configure project index layout files", "Perform code file refactor routines", "Design graphical vector blueprints", "Audit code block structures"];
-
-function updateChecklistDisplay() {
-    const container = document.getElementById('task-list-container');
-    const counter = document.getElementById('done-counter');
-    if (!container) return;
+function syncChecklistDOMDisplay() {
+    const listRootWrapperNode = document.getElementById('task-list-container');
+    const numericalDisplayCounterNode = document.getElementById('done-counter');
+    if (!listRootWrapperNode) return;
     
-    counter.innerText = appState.checkedTodoCount;
-    container.innerHTML = '';
+    numericalDisplayCounterNode.innerText = workspaceState.completedTaskCount;
+    listRootWrapperNode.innerHTML = '';
     
-    presetTasks.forEach((task, idx) => {
-        const li = document.createElement('li');
-        li.className = 'task-item';
-        li.innerHTML = `
-            <div class="task-left">
-                <input type="checkbox" onchange="resolveTaskTrigger(${idx}, this)">
-                <span>${task}</span>
+    underlyingActiveTaskMemoryStore.forEach((taskStringText, taskIndexPosition) => {
+        const rowListNodeElement = document.createElement('li');
+        rowListNodeElement.className = 'task-item-row-node';
+        rowListNodeElement.innerHTML = `
+            <div class="task-item-left-block">
+                <input type="checkbox" onchange="processTaskCompletionTrigger(${taskIndexPosition}, this)">
+                <span>${taskStringText}</span>
             </div>
-            <button class="task-remove" onclick="deleteTask(${idx})">❌</button>
+            <button class="task-delete-trigger-btn" style="background:none; border:none; cursor:pointer;" onclick="removeExistingTaskItem(${taskIndexPosition})">❌</button>
         `;
-        container.appendChild(li);
+        listRootWrapperNode.appendChild(rowListNodeElement);
     });
 }
-function addTask() {
-    const input = document.getElementById('new-task-input');
-    const val = input.value.trim();
-    if (!val) return;
-    presetTasks.push(val);
-    input.value = '';
-    updateChecklistDisplay();
-    logActivity(`Added task notebook entry: "${val}"`);
+
+function createNewTaskItem() {
+    const textInputNodeField = document.getElementById('new-task-input');
+    const extractedTaskString = textInputNodeField.value.trim();
+    if (!extractedTaskString) return;
+    
+    underlyingActiveTaskMemoryStore.push(extractedTaskString);
+    textInputNodeField.value = '';
+    syncChecklistDOMDisplay();
+    logWorkspaceEvent(`Injected target task parameter node: "${extractedTaskString}"`);
 }
 
-function deleteTask(idx) {
-    const removed = presetTasks.splice(idx, 1);
-    updateChecklistDisplay();
-    logActivity(`Deleted task entry: "${removed}"`);
+function removeExistingTaskItem(targetIndex) {
+    const deletedTaskStringValue = underlyingActiveTaskMemoryStore.splice(targetIndex, 1);
+    syncChecklistDOMDisplay();
+    logWorkspaceEvent(`Removed task reference data element: "${deletedTaskStringValue}"`);
 }
 
-function resolveTaskTrigger(idx, element) {
-    if (element.checked) {
-        element.disabled = true;
-        element.parentElement.parentElement.classList.add('completed');
-        appState.checkedTodoCount++;
+function processTaskCompletionTrigger(targetIndex, checkboxInputElement) {
+    if (checkboxInputElement.checked) {
+        checkboxInputElement.disabled = true;
+        checkboxInputElement.parentElement.parentElement.classList.add('completed');
+        workspaceState.completedTaskCount++;
         
-        logActivity(`Completed task! Progress: <strong>${appState.checkedTodoCount} / 9</strong>`);
+        logWorkspaceEvent(`Task block verified! Session progress matrix tracking: <strong>${workspaceState.completedTaskCount} / 9 Checks</strong>`);
         
-        if (appState.checkedTodoCount >= 9) {
-            appState.checkedTodoCount = 0; 
-            if (appState.plantStage < 15) {
-                appState.plantStage++;
-                logActivity("🎉 <strong>GROWTH CEILING ATTAINED!</strong> Plant evolved stage level upwards!");
+        if (workspaceState.completedTaskCount >= 9) {
+            workspaceState.completedTaskCount = 0;
+            if (workspaceState.plantStage < 15) {
+                workspaceState.plantStage++;
+                logWorkspaceEvent(`🎉 <strong>GROWTH LEVEL UPCEILING REACHED!</strong> Sprout genotype expanded to Stage Rank Level: <strong>${workspaceState.plantStage} / 15</strong>!`);
             }
-            spawnAnimalRandomly();
-            renderPlantGraphic();
+            renderProceduralPixelSproutSVG();
         }
         
         setTimeout(() => {
-            presetTasks.splice(idx, 1);
-            updateChecklistDisplay();
-        }, 600);
+            underlyingActiveTaskMemoryStore.splice(targetIndex, 1);
+            syncChecklistDOMDisplay();
+        }, 500);
     }
 }
 
-// --- CALIBRATED SANDBOX PLAYGROUND CORE ENGINE ---
-function setupSandboxEngine() {
-    const sandbox = document.getElementById('sandbox-container');
-    if (!sandbox) return;
+// --- MECHANICAL HAMSTER ACTIVE RUN STATION DRIVERS ---
+function updateChoreTrackingDashboardUI() {
+    document.getElementById('chore-current').innerText = workspaceState.choreMinutesAccumulated;
+    document.getElementById('chore-goal').innerText = workspaceState.choreGoalTarget;
+}
+
+function adjustChoreGoalTarget() {
+    workspaceState.choreGoalTarget = parseInt(document.getElementById('goal-select').value);
+    updateChoreTrackingDashboardUI();
+    logWorkspaceEvent(`Chore balance requirement barrier altered to: <strong>${workspaceState.choreGoalTarget} minutes</strong>.`);
+}
+
+function executeChoreTimeLog() {
+    const selectionLogQuantity = parseInt(document.getElementById('log-select').value);
+    const mechanicalWheelElementNode = document.getElementById('wheel-element');
+    const runningStatusBarBadgeNode = document.getElementById('hamster-status');
     
-    sandbox.addEventListener('mousemove', (e) => {
-        const rect = sandbox.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        if (Math.random() > 0.8) { 
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = `${x}px`;
-            sparkle.style.top = `${y}px`;
-            sandbox.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 500);
-        }
-    });
+    workspaceState.choreMinutesAccumulated += selectionLogQuantity;
+    updateChoreTrackingDashboardUI();
     
-    sandbox.addEventListener('click', (e) => {
-        if (e.target.classList.contains('sandbox-animal')) return;
-        const rect = sandbox.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        instantiateAnimal(x, y);
-    });
-}
-
-function instantiateAnimal(x, y) {
-    const sandbox = document.getElementById('sandbox-container');
-    const randomAnimal = sandboxAnimals[Math.floor(Math.random() * sandboxAnimals.length)];
-    const node = document.createElement('div');
-    node.className = 'sandbox-animal';
-    node.innerText = randomAnimal;
-    node.style.left = `${x}px`;
-    node.style.top = `${y}px`;
-    
-    bindDragEvents(node, sandbox);
-    sandbox.appendChild(node);
-    logActivity(`Hatched companion animal <strong>${randomAnimal}</strong> into the sandbox!`);
-}
-
-function spawnAnimalRandomly() {
-    const sandbox = document.getElementById('sandbox-container');
-    if (!sandbox) return;
-    const rect = sandbox.getBoundingClientRect();
-    instantiateAnimal(Math.random() * (rect.width - 40) + 20, Math.random() * (rect.height - 40) + 20);
-}
-
-function bindDragEvents(el, parent) {
-    let active = false, startX, startY;
-    el.addEventListener('mousedown', (e) => {
-        active = true;
-        startX = e.clientX - el.offsetLeft;
-        startY = e.clientY - el.offsetTop;
-        e.stopPropagation();
-    });
-    window.addEventListener('mousemove', (e) => {
-        if (!active) return;
-        const rect = parent.getBoundingClientRect();
-        let nx = e.clientX - startX;
-        let ny = e.clientY - startY;
-        if (nx < 15) nx = 15; if (nx > rect.width - 15) nx = rect.width - 15;
-        if (ny < 15) ny = 15; if (ny > rect.height - 15) ny = rect.height - 15;
-        el.style.left = `${nx}px`; el.style.top = `${ny}px`;
-    });
-    window.addEventListener('mouseup', () => active = false);
-}
-
-// --- HAMSTER WHEEL AND TIMERS ---
-function updateChoreUI() {
-    document.getElementById('chore-current').innerText = appState.choreMinutes;
-    document.getElementById('chore-goal').innerText = appState.choreGoal;
-}
-
-function updateChoreGoal() {
-    appState.choreGoal = parseInt(document.getElementById('goal-select').value);
-    updateChoreUI();
-    logActivity(`Chore target adjusted to: <strong>${appState.choreGoal} mins</strong>.`);
-}
-
-function logChoreTime() {
-    const mins = parseInt(document.getElementById('log-select').value);
-    const wheel = document.getElementById('wheel-element');
-    const status = document.getElementById('hamster-status');
-    
-    appState.choreMinutes += mins;
-    updateChoreUI();
-    
-    wheel.classList.add('spinning');
-    status.innerText = "RUNNING";
-    status.className = "badge badge-active";
-    logActivity(`Hamster spinning! Logged <strong>${mins} mins</strong> of chores.`);
+    mechanicalWheelElementNode.classList.add('spinning');
+    runningStatusBarBadgeNode.innerText = "RUNNING";
+    runningStatusBarBadgeNode.className = "status-badge state-active";
+    logWorkspaceEvent(`Active tracking spin loop engaged. Logged <strong>${selectionLogQuantity} minutes</strong> of physical chore operations.`);
     
     setTimeout(() => {
-        wheel.classList.remove('spinning');
-        status.innerText = "IDLE";
-        status.className = "badge badge-idle";
-        if (appState.choreMinutes >= appState.choreGoal) {
-            logActivity("🏆 <strong>Chore Goal Attained!</strong> Superb productivity focus!");
+        mechanicalWheelElementNode.classList.remove('spinning');
+        runningStatusBarBadgeNode.innerText = "IDLE";
+        runningStatusBarBadgeNode.className = "status-badge state-idle";
+        
+        if (workspaceState.choreMinutesAccumulated >= workspaceState.choreGoalTarget) {
+            logWorkspaceEvent("🏆 <strong>Chore Activity Milestone Logged!</strong> Personal physical fitness target attained.");
         }
     }, 1500);
 }
 
-function updateTimerUI() {
-    const mins = Math.floor(appState.timerSeconds / 60).toString().padStart(2, '0');
-    const secs = (appState.timerSeconds % 60).toString().padStart(2, '0');
-    document.getElementById('timer-text').innerText = `${mins}:${secs}`;
+// --- CHRONO CLOCK CALIBRATION AND POMODORO Presets ---
+function refreshNumericalTimerDisplayReadout() {
+    const floorMinsValue = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
+    const boundarySecsValue = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
+    document.getElementById('timer-text').innerText = `${floorMinsValue}:${boundarySecsValue}`;
 }
 
-function setTimerPreset(type, buttonElement) {
-    appState.timerPreset = type;
-    document.querySelectorAll('.timer-presets .btn').forEach(b => b.classList.remove('active'));
-    buttonElement.classList.add('active');
+function applyTimerPreset(presetModeString, buttonContextReference) {
+    workspaceState.activeTimerPresetMode = presetModeString;
+    document.querySelectorAll('.timer-preset-row .preset-btn').forEach(buttonNode => buttonNode.classList.remove('active'));
+    buttonContextReference.classList.add('active');
     
-    if (type === 'focus') appState.timerSeconds = 1500;
-    else if (type === 'break') appState.timerSeconds = 300;
-    else if (type === 'short') appState.timerSeconds = 600;
-    else if (type === 'long') appState.timerSeconds = 1800;
+    if (presetModeString === 'focus') workspaceState.timerSecondsRemaining = 1500;
+    else if (presetModeString === 'break') workspaceState.timerSecondsRemaining = 300;
+    else if (presetModeString === 'short') workspaceState.timerSecondsRemaining = 600;
+    else if (presetModeString === 'long') workspaceState.timerSecondsRemaining = 1800;
     
-    updateTimerUI();
-    logActivity(`Timer preset shifted to: <strong>${type}</strong>.`);
+    refreshNumericalTimerDisplayReadout();
+    logWorkspaceEvent(`Chrono registry shifted to preset profile mode: <strong>${presetModeString}</strong>.`);
 }
 
-function toggleTimer() {
-    const btn = document.getElementById('start-btn');
-    if (appState.timerRunning) {
-        clearInterval(appState.timerInterval);
-        appState.timerRunning = false;
-        btn.innerText = "Start";
-        btn.className = "btn btn-primary";
+function triggerTimerToggle() {
+    const initiationButtonToggleNode = document.getElementById('start-btn');
+    if (workspaceState.timerActiveState) {
+        clearInterval(workspaceState.timerIntervalThread);
+        workspaceState.timerActiveState = false;
+        initiationButtonToggleNode.innerText = "Start";
+        initiationButtonToggleNode.className = "action-btn btn-primary";
+        logWorkspaceEvent("Chrono block sequence suspended temporarily.");
     } else {
-        appState.timerRunning = true;
-        btn.innerText = "Pause";
-        btn.className = "btn btn-danger";
-        appState.timerInterval = setInterval(() => {
-            if (appState.timerSeconds > 0) {
-                appState.timerSeconds--;
-                updateTimerUI();
+        workspaceState.timerActiveState = true;
+        initiationButtonToggleNode.innerText = "Pause";
+        initiationButtonToggleNode.className = "action-btn btn-danger";
+        logWorkspaceEvent("Chrono block timeline countdown track initialized.");
+        
+        workspaceState.timerIntervalThread = setInterval(() => {
+            if (workspaceState.timerSecondsRemaining > 0) {
+                workspaceState.timerSecondsRemaining--;
+                refreshNumericalTimerDisplayReadout();
             } else {
-                clearInterval(appState.timerInterval);
-                appState.timerRunning = false;
-                btn.innerText = "Start";
-                logActivity("🔔 <strong>Pomodoro focus block completed successfully!</strong>");
+                clearInterval(workspaceState.timerIntervalThread);
+                workspaceState.timerActiveState = false;
+                initiationButtonToggleNode.innerText = "Start";
+                initiationButtonToggleNode.className = "action-btn btn-primary";
+                logWorkspaceEvent("🔔 <strong>Pomodoro focus sequence accomplished successfully!</strong> Viewport reset.");
             }
         }, 1000);
     }
 }
 
-function resetTimer() {
-    clearInterval(appState.timerInterval);
-    appState.timerRunning = false;
+function executeTimerReset() {
+    clearInterval(workspaceState.timerIntervalThread);
+    workspaceState.timerActiveState = false;
     document.getElementById('start-btn').innerText = "Start";
-    document.getElementById('start-btn').className = "btn btn-primary";
-    if (appState.timerPreset === 'focus') appState.timerSeconds = 1500;
-    else if (appState.timerPreset === 'break') appState.timerSeconds = 300;
-    else if (appState.timerPreset === 'short') appState.timerSeconds = 600;
-    else if (appState.timerPreset === 'long') appState.timerSeconds = 1800;
-    updateTimerUI();
-}
-
-// --- AMBIENT SOUND GENERATOR ENGINE (TYPO COMPLETELY FIXED) ---
-function handleAudioChange() {
-    logActivity(`Soundscape set to: <strong>${document.getElementById('audio-select').value}</strong>`);
-    if (appState.audioPlaying) { toggleAudioEngine(); toggleAudioEngine(); }
-}
-
-function toggleAudioEngine() {
-    const btn = document.getElementById('audio-toggle-btn');
-    if (appState.audioPlaying) {
-        appState.oscillatorNodes.forEach(o => { try{o.stop();}catch(e){} });
-        appState.oscillatorNodes = [];
-        appState.audioPlaying = false;
-        btn.innerText = "🔊 Play Web-Audio Soundscape";
-        btn.style.background = "";
-    } else {
-        if (!appState.audioContext) appState.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        appState.audioPlaying = true;
-        btn.innerText = "🔇 Mute Mixer Pipeline";
-        btn.style.background = "#ffb3b3";
-        generateSynthesizedBeats(document.getElementById('audio-select').value);
-    }
-}
-
-function generateSynthesizedBeats(mode) {
-    if (!appState.audioContext || !appState.audioPlaying) return;
-    const ctx = appState.audioContext;
-    let freq = mode === 'space' ? 80 : (mode === 'forest' ? 130 : 100);
+    document.getElementById('start-btn').className = "action-btn btn-primary";
     
-    let baseOsc = ctx.createOscillator();
-    let baseGain = ctx.createGain();
-    baseOsc.type = 'sine';
-    baseOsc.frequency.setValueAtTime(freq, ctx.currentTime);
-    baseGain.gain.setValueAtTime(0.015, ctx.currentTime);
-    baseOsc.connect(baseGain); baseGain.connect(ctx.destination);
-    baseOsc.start(); appState.oscillatorNodes.push(baseOsc);
+    let currentMode = workspaceState.activeTimerPresetMode;
+    if (currentMode === 'focus') workspaceState.timerSecondsRemaining = 1500;
+    else if (currentMode === 'break') workspaceState.timerSecondsRemaining = 300;
+    else if (currentMode === 'short') workspaceState.timerSecondsRemaining = 600;
+    else if (currentMode === 'long') workspaceState.timerSecondsRemaining = 1800;
     
-    const playTick = () => {
-        if (!appState.audioPlaying) return;
-        // Synthesizer frequency array map is now cleanly defined without unparsed syntax symbols
-        let chordMap = mode === 'cafe' ? [130.81, 164.81, 196.00, 246.94] : [146.83, 174.61, 220.00, 261.63];
-        let note = ctx.createOscillator();
-        let noteGain = ctx.createGain();
-        note.type = 'sine';
-        note.frequency.setValueAtTime(chordMap[Math.floor(Math.random() * chordMap.length)], ctx.currentTime);
-        noteGain.gain.setValueAtTime(0, ctx.currentTime);
-        noteGain.gain.linearRampToValueAtTime(0.015, ctx.currentTime + 0.4);
-        noteGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 2.0);
-        note.connect(noteGain); noteGain.connect(ctx.destination);
-        note.start();
-        setTimeout(playTick, 3500);
-    };
-    playTick();
+    refreshNumericalTimerDisplayReadout();
+    logWorkspaceEvent("Chrono timeline configuration metrics reset to preset base limits.");
 }
 
-// --- FONTS TRANSFORM AND COPIER ---
-function updateFontPreviews() {
-Use code with caution.const val = document.getElementById('font-input').value || "Plant Pal";document.getElementById('preview-1').innerText = val;document.getElementById('preview-2').innerText = transformStringFonts(val, fontMappers.style2);document.getElementById('preview-3').innerText = transformStringFonts(val, fontMappers.style3);}function transformStringFonts(str, mapper) { return str.split('').map(c => mapper[c] || c).join(''); }function copyText(element) {const text = element.innerText;navigator.clipboard.writeText(text).then(() => {const toast = document.getElementById('toast-element');toast.innerText = Copied: "${text}";toast.classList.add('show');setTimeout(() => toast.classList.remove('show'), 2000);});}
+// --- CUSTOM FONTS CONVERTER MANAGEMENT ---
+function runFontTransformationPreviews() {
+    const underlyingStringValue = document.getElementById('font-input').value || "Plant Pal";
+    document.getElementById('preview-1').innerText = underlyingStringValue;
+    document.getElementById('preview-2').innerText = parseStringThroughFontCharacterMapping(underlyingStringValue, stringFontTransformationMappers.styleScript);
+    document.getElementById('preview-3').innerText = parseStringThroughFontCharacterMapping(underlyingStringValue, stringFontTransformationMappers.styleGothic);
+}
+
+function parseStringThroughFontCharacterMapping(initialStringValue, targetMappingAsset) {
+    return initialStringValue.split('').map(characterKey => targetMappingAsset[characterKey] || characterKey).join('');
+}
+
+function copyStringToClipboard(domElementNodeReference) {
+    const targetStringLiteralText = domElementNodeReference.innerText;
+    navigator.clipboard.writeText(targetStringLiteralText).then(() => {
+        const toastNotificationOverlayNode = document.getElementById('toast-element');
+        toastNotificationOverlayNode.innerText = `Copied to clipboard: "${targetStringLiteralText}"`;
+        toastNotificationOverlayNode.classList.add('display-active');
+        setTimeout(() => toastNotificationOverlayNode.classList.remove('display-active'), 2000);
+    });
+}
