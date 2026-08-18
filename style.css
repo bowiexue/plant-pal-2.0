@@ -1,16 +1,15 @@
 /* --- PROPORTIONAL AESTHETIC DESIGN VARIABLES --- */
 :root {
+    /* Dynamic Theme Defaults (Sage Profile Base) */
     --bg-slate: #f4f6f4;
     --border-charcoal: #3d423d;
     --card-surface: #ffffff;
+    --theme-accent: #d1dfd1;
+    --sparkle-color: #d97706;
     
-    /* Clean Sage Garden Color Map Palette */
-    --sage-green: #d1dfd1;
     --linen-white: #f7f9f7;
     --peach-cream: #fae1d4;
     --lavender-mist: #e5def0;
-    --dark-charcoal: #2d312d;
-    
     --text-primary: #2d312d;
     --text-muted: #616961;
     --border-radius-smooth: 12px;
@@ -29,6 +28,7 @@ body {
     color: var(--text-primary);
     padding: 24px;
     line-height: 1.5;
+    transition: background-color 0.4s ease;
 }
 
 /* Master Centered Wrapper Layout Grid */
@@ -53,10 +53,7 @@ body {
     font-weight: 600;
 }
 
-.time-divider {
-    margin: 0 8px;
-    color: var(--text-muted);
-}
+.time-divider { margin: 0 8px; color: var(--text-muted); }
 
 /* Highly Proportional Dashboard Grid Structure */
 .dashboard-layout-grid {
@@ -66,16 +63,10 @@ body {
 }
 
 @media (max-width: 900px) {
-    .dashboard-layout-grid {
-        grid-template-columns: 1fr;
-    }
+    .dashboard-layout-grid { grid-template-columns: 1fr; }
 }
 
-.layout-column {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
+.layout-column { display: flex; flex-direction: column; gap: 24px; }
 
 /* Uniform Proportional Workspace Card Core */
 .workspace-card {
@@ -94,15 +85,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.4s ease;
 }
 
-.card-header-bar h2 {
-    font-size: 1.15rem;
-    font-weight: 700;
+.card-header-bar h2 { font-size: 1.15rem; font-weight: 700; }
+
+/* Dynamic Accent Card Binding Rule */
+.theme-accent-card .card-header-bar {
+    background-color: var(--theme-accent);
 }
 
-/* Architectural Theme Injections */
-.theme-sage .card-header-bar { background-color: var(--sage-green); }
 .theme-linen .card-header-bar { background-color: var(--linen-white); }
 .theme-peach .card-header-bar { background-color: var(--peach-cream); }
 .theme-lavender .card-header-bar { background-color: var(--lavender-mist); }
@@ -128,7 +120,7 @@ body {
 .status-badge.state-idle { background-color: #e2e8f0; color: #64748b; }
 .status-badge.state-active { background-color: #fca5a5; color: #b91c1c; }
 
-/* Elegant Pill-Shaped Control Interface Buttons */
+/* Buttons Controls Layout definitions */
 .action-btn {
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
@@ -151,7 +143,6 @@ body {
 .btn-success { background-color: #bbf7d0; }
 .btn-danger { background-color: #fecaca; }
 .btn-dark { background-color: var(--border-charcoal); color: white; }
-.btn-block { width: 100%; }
 .btn-sm { padding: 4px 10px; font-size: 0.8rem; }
 /* Proportional Garden Interior Structural Matrix Layout */
 .garden-workspace-body {
@@ -206,7 +197,7 @@ body {
     cursor: pointer;
     background: white;
 }
-.preset-btn.active { background-color: var(--sage-green); font-weight: 700; }
+.preset-btn.active { background-color: var(--theme-accent); font-weight: 700; transition: background-color 0.4s ease; }
 
 .timer-action-row { display: flex; gap: 8px; }
 .timer-action-row button { flex: 1; }
@@ -282,7 +273,7 @@ body {
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
 
-/* ✨ High-Visibility Sandbox Styling ✨ */
+/* Playground Interactive Canvas Viewports */
 .sandbox-area {
     height: 130px;
     background-color: #fffefa;
@@ -308,7 +299,7 @@ body {
     position: absolute;
     width: 8px;
     height: 8px;
-    background-color: #d97706; /* Highly visible dark amber orange tone */
+    background-color: var(--sparkle-color);
     border-radius: 50%;
     pointer-events: none;
     z-index: 5;
@@ -371,7 +362,7 @@ body {
 
 /* Font Variance Engine Layout rules */
 .fonts-workspace-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-.kaomoji-grid-layout { display: flex; flex-wrap: wrap; gap: 4px; }
+.kaomoji-grid-layout { display: flex; flex-wrap: wrap; gap: 4px; min-height: 32px; }
 .kaomoji-pill {
     background: white;
     border: 2px solid var(--border-charcoal);
@@ -394,10 +385,10 @@ body {
 }
 
 .style-standard { font-family: 'Fredoka', sans-serif; font-weight: 600; }
-.style-script { font-family: serif; font-style: italic; font-weight: 700; }
-.style-gothic { font-family: monospace; font-weight: 700; }
+.style-custom-1 { font-family: var(--font-family-1, serif); font-style: var(--font-style-1, normal); font-weight: 700; }
+.style-custom-2 { font-family: var(--font-family-2, monospace); font-weight: 700; }
 
-/* Logs Viewport layout */
+/* Activity Log registers styling boundaries */
 .history-footer-card { margin-top: 10px; }
 .history-scroll-viewport-box {
     height: 130px;
