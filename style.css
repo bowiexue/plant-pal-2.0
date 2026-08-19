@@ -194,11 +194,5 @@ body {
 
 .toast-popup-notification { position: fixed; bottom: 20px; right: 20px; background-color: var(--border-charcoal); color: white; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; opacity: 0; transform: translateY(5px); transition: all 0.2s ease; pointer-events: none; z-index: 999999; }
 .toast-popup-notification.display-active { opacity: 1; transform: translateY(0); }
-/* Inside style.css */
-.spotify-portal-container {
-  width: 100%;
-  height: 180px; /* Adjust height based on your layout UI */
-  border-radius: 8px;
-  overflow: hidden;
-}
+
 
