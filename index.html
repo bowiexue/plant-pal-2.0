@@ -88,22 +88,37 @@
                 <!-- Inside index.html (Lines 76-82) -->
 <!-- Spotify Web Player Portal Card -->
 <!-- Spotify Web Player Portal Card -->
+<!-- Inside index.html -->
+<!-- Spotify Web Player Portal Card -->
 <div class="workspace-card theme-linen" id="audio-card">
   <div class="card-header-bar">
     <h2>🎵 Local Workspace Music Node</h2>
     <span id="audio-status" class="status-badge state-active">READY</span>
   </div>
   <div class="audio-player-workspace-body">
-    <!-- FIXED: Replaced blocking Spotify iframe with native browser audio player -->
-    <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
-      <p style="font-size: 0.85rem; font-weight: 600; color: #616961;">Track: Lofi Focus Ambient Mix</p>
-      <audio controls style="width: 100%;">
-        <source src="alex-morgan-lofi-midnight-club-568164 (2).mp3" type="audio/mpeg">
+    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+      
+      <!-- Track Selection Menu -->
+      <div class="seedling-dropdown-row" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.85rem; font-weight: 600;">
+        <label for="track-select">Select Station:</label>
+        <select id="track-select" class="clean-select-menu" onchange="changeWorkspaceMusicTrack(this.value)">
+          <option value="focus-music.mp3">🎯 Focus Lofi Mix (Local)</option>
+          <option value="cafe-vibes.mp3">☕ Rainy Cafe Jazz (Local)</option>
+          <option value="ambient-space.mp3">🚀 Cosmic Drone Mix (Local)</option>
+          <option value="https://soundhelix.com">🌐 Online Backup Stream</option>
+        </select>
+      </div>
+
+      <!-- Native Browser Audio Controller -->
+      <audio id="workspace-audio-player" controls style="width: 100%;">
+        <source id="audio-player-source" src="focus-music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
+
     </div>
   </div>
 </div>
+
 
             </div>
             <!-- RIGHT COLUMN: Checklist, Hamster Wheel, Fonts -->
