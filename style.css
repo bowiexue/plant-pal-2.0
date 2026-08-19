@@ -46,13 +46,13 @@ body {
 .time-divider { margin: 0 8px; color: var(--text-muted); }
 
 /* Inside style.css (Lines 40-45) */
+/* Update around lines 40-45 */
 .dashboard-layout-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 24px;
-  align-items: start; /* FIXED: Keeps items hugging the top without stretching layout cards */
+  align-items: start; /* Forces the columns to shrink to their contents */
 }
-
 
 @media (max-width: 900px) {
     .dashboard-layout-grid { grid-template-columns: 1fr; }
