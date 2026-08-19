@@ -14,17 +14,17 @@ let workspaceState = {
 const genotypeAestheticProfiles = [
     {
         name: "Thick Sprout", bg: "#f4f6f4", primary: "#d1dfd1", shadow: "#eaedea",
-        kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"],
+        kaomojis: ["(🌱•.•)", "(⁀ᗢ⁀)🍃", "(•̤ᴗ•̤)🌿", "(⊃｡•́‿•̀｡)⊃", "(ﾉ◕ヮ◕)ﾉ・ﾟ✧"],
         fonts: { s2: "𝒞𝓁𝒶𝓈𝓈𝒾ᶜ 𝒮𝓅𝓇ℴ𝓊𝓉", s3: "𝔖𝔭𝔯𝔬𝔲𝔱𝔒𝔖" }
     },
     {
         name: "Pixie Fern", bg: "#edf5f0", primary: "#b3cbb4", shadow: "#dae5db",
-        kaomojis: ["(🧚•̤ᴗ•̤)", "(*ﾟ▽ﾟ*)🌿", "(🌿ᵕᴗᵕ)", "(*>﹏<*)🍃", "(🍃'ᵕ'🍃)"],
+        kaomojis: ["(🧚•̤ᴗ•̤)", "(*• - •*)🌿", "(🌿ᵕᴗᵕ)", "(*>﹏<*)🍃", "(🍃'ᵕ'🍃)"],
         fonts: { s2: "𝒫𝒾𝓍𝒾ℯ ℱℯ𝓇𝓃 𝒮𝓉𝓎𝓁ℯ", s3: "𝔓𝔦𝔵𝔦ℯ𝔉𝔢𝔯𝔫" }
     },
     {
         name: "Cosmic Clover", bg: "#f3effa", primary: "#d3bee6", shadow: "#e8e1f2",
-        kaomojis: ["(✨🍀.🍀)", "(🌌°o°)", "(🔮•̀ᴗ•́)", "(🚀🌟‿🌟)", "✧(⚙ 𖦹 ⚙)✧"],
+        kaomojis: ["(✨🍀.🍀)", "(🌌°o°)", "(🔮•̀ᴗ•́)", "(🚀🌟‿🌟)", "✧(^ - ^)✧"],
         fonts: { s2: "𝒞ℴ𝓈𝓂𝒾𝒸 𝒞𝓁ℴ𝓋ℯ𝓇", s3: "ℭ𝔬𝔰𝔪𝔦ℭ  𝔬𝔳𝔢𝔯" }
     },
     {
@@ -34,13 +34,13 @@ const genotypeAestheticProfiles = [
     },
     {
         name: "Bonsai Buddy", bg: "#faf5ef", primary: "#dec9b8", shadow: "#eddcd0",
-        kaomojis: ["( Bonsai 🧘 )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
+        kaomojis: ["( ~.~ )", "(🍵_🍵)", "( `ᵕ` )🌸", "(o^^o)🌳", "(🥷•̀⤙•́)"],
         fonts: { s2: "ℬℴ𝓃𝓈𝒶𝒾 ℬ𝓊𝒹𝒹𝓎", s3: "𝔅𝔬𝔫𝔰𝔞𝔦𝔅𝔲𝔡𝔡𝔶" }
     },
     {
         name: "Lunar Moss", bg: "#f2f0f7", primary: "#cbc5f5", shadow: "#e4e1fa",
-        kaomojis: ["(🌙💤.💤)", "(🛸★.★)", "(🌖𖦹⤙𖦹)", "(👾♫𖦹♫)", "✧(☄️.☄️)✧"],
-        fonts: { s2: "ℒ...安全 ℳℴ𝓈𝓈 𝒩𝒾ℊ𝒽𝓉", s3: "𝔏𝔲𝔫𝔞𝔯𝔐𝔬𝔰𝔰" }
+        kaomojis: ["(🌙💤.💤)", "(🛸★.★)", "(🌖𖦹⤙𖦹)", "(👾♫-.-)", "✧(☄️.☄️)✧"],
+        fonts: { s2: "ℳℴ𝓈𝓈 𝒩𝒾ℊ𝒽𝓉", s3: "𝔏𝔲𝔫𝔞𝔯𝔐𝔬𝔰𝔰" }
     }
 ];
 
