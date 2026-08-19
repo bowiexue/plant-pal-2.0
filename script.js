@@ -266,6 +266,51 @@ window.processTaskCompletionTrigger = function(idx, checkbox) {
         setTimeout(() => { underlyingActiveTaskMemoryStore.splice(idx, 1); syncChecklistDOMDisplay(); }, 500);
     }
 };
+// Inside script.js
+
+// 1. A dictionary map that assigns an aesthetic font style name to each plant ID number
+const plantFontMap = {
+  "0": "style-standard", // Thick Sprout -> Clean Fredoka Font
+  "1": "style-script",   // Pixie Fern -> Elegant Cursive Font
+  "2": "style-gothic",   // Cosmic Clover -> Pixel/Gothic Font
+  "3": "style-standard", // Ruby Succulent
+  "4": "style-script",   // Bonsai Buddy
+  "5": "style-gothic"    // Lunar Moss
+};
+
+// 2. Your updated plant handler function
+function handlePlantGenotypeChange() {
+  const plantSelect = document.getElementById('plant-select');
+  if (!plantSelect) return;
+  
+  const selectedValue = plantSelect.value;
+
+  // --- YOUR EXISTING PLANT CODE ---
+  // (Keep whatever code you already had here that changes your SVG plant graphics!)
+  console.log("Plant genotype changed to option ID: " + selectedValue);
+  
+  
+  // --- ADDED FONT CHANGES BLOCK ---
+  // Find your font preview container box element
+  const fontInputPreview = document.getElementById('font-input');
+  
+  if (fontInputPreview) {
+    // Get the matching font style name from our dictionary map above
+    const newFontStyleClass = plantFontMap[selectedValue] || "style-standard";
+    
+    // Clear out any old font class tags first so they don't fight each other
+    fontInputPreview.classList.remove('style-standard', 'style-script', 'style-gothic');
+    
+    // Inject the matching aesthetic class to change the typography style
+    fontInputPreview.classList.add(newFontStyleClass);
+    
+    // Optional: Trigger a refresh of your font list if your preview system needs it
+    if (typeof runFontTransformationPreviews === 'function') {
+      runFontTransformationPreviews();
+    }
+  }
+}
+
 function setupSandboxEngine() {
     const container = document.getElementById('sandbox-container');
     if (!container) return;
