@@ -458,3 +458,21 @@ window.clearWorkspaceLogStorage = function() {
     document.querySelectorAll('.sandbox-companion').forEach(el => el.remove());
     logWorkspaceEvent("Storage system reset.");
 };
+// Inside script.js (At the very bottom of the file)
+function changeWorkspaceMusicTrack(selectedTrackUrl) {
+  const audioPlayer = document.getElementById('workspace-audio-player');
+  const audioSource = document.getElementById('audio-player-source');
+  
+  if (audioPlayer && audioSource) {
+    // 1. Swap the media file link path
+    audioSource.src = selectedTrackUrl;
+    
+    // 2. Force the browser node to load up the new file asset
+    audioPlayer.load();
+    
+    // 3. Keep playing smoothly if the user was already listening
+    audioPlayer.play().catch(error => {
+      console.log("Playback standby. Waiting for user interaction trigger.");
+    });
+  }
+}
