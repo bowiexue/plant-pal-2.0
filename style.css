@@ -163,7 +163,14 @@ body {
 .task-item-left-block { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .task-item-row-node.completed span { text-decoration: line-through; color: #9ca3af; }
 
-.sandbox-area { height: 75px; background-color: #fffefa; position: relative; overflow: hidden; cursor: crosshair; }
+/* Inside style.css (Around lines 158-164) */
+.sandbox-area {
+  height: 250px; /* FIXED: Increased from 75px to 250px to stretch and fill the gap */
+  background-color: #fffefa;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+}
 .sandbox-hint { position: absolute; width: 100%; text-align: center; top: 50%; transform: translateY(-50%); color: #8fa08e; font-size: 0.85rem; font-weight: 600; pointer-events: none; z-index: 10; }
 .sandbox-companion { position: absolute; font-size: 1.8rem; user-select: none; transform: translate(-50%, -50%); z-index: 6; }
 
