@@ -87,24 +87,20 @@
                 <!-- Spotify Web Player Portal Card -->
                 <!-- Inside index.html (Lines 76-82) -->
 <!-- Spotify Web Player Portal Card -->
+<!-- Spotify Web Player Portal Card -->
 <div class="workspace-card theme-linen" id="audio-card">
   <div class="card-header-bar">
-    <h2>🎵 Connected Spotify Focus Portal</h2>
+    <h2>🎵 Local Workspace Music Node</h2>
     <span id="audio-status" class="status-badge state-active">READY</span>
   </div>
   <div class="audio-player-workspace-body">
-    <div class="spotify-embed-container">
-      <!-- FIXED: Changed src to an embed player path -->
-      <!-- Inside index.html -->
-<iframe src="https://spotify.com" 
-        width="100%" 
-        height="152" 
-        frameBorder="0" 
-        allowfullscreen="" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy">
-</iframe>
-
+    <!-- FIXED: Replaced blocking Spotify iframe with native browser audio player -->
+    <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+      <p style="font-size: 0.85rem; font-weight: 600; color: #616961;">Track: Lofi Focus Ambient Mix</p>
+      <audio controls style="width: 100%;">
+        <source src="https://soundhelix.com" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     </div>
   </div>
 </div>
