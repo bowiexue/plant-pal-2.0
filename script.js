@@ -138,7 +138,7 @@ function logWorkspaceEvent(logStringText) {
 function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) {
   // Clean up the name by making it lowercase so it always matches perfectly
   const cleanName = String(profileName).toLowerCase().trim();
-  
+
   if (cleanName.includes("sprout")) {
     return `🌱 The active Thick Sprout node anchors your micro-ecosystem at Stage ${stageLevel}/5. This dense flora genotype absorbs vital pressurized water vapors from your active focus sessions, driving rapid cellular expansion and inflating its thick emerald stem architecture.`;
   } 
@@ -157,7 +157,7 @@ function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) 
   else if (cleanName.includes("moss")) {
     return `🌙 The active Lunar Moss node anchors your micro-ecosystem at Stage ${stageLevel}/5. This creeping moss matrix captures glowing moonlight frequencies, injecting synthetic silver nutrients into your dashboard rootbed to make its velvet patches pulse in soft cyan hues.`;
   } 
-  
+
   // Safe backup fallback text just in case the name doesn't match anything
   return `The active ${profileName} node anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances. Scaling up to Stage ${stageLevel}/5, its expanded structural roots optimize water absorption and fortify organic links.`;
 }
@@ -309,28 +309,28 @@ const plantFontMap = {
 function handlePlantGenotypeChange() {
   const plantSelect = document.getElementById('plant-select');
   if (!plantSelect) return;
-  
+
   const selectedValue = plantSelect.value;
 
   // --- YOUR EXISTING PLANT CODE ---
   // (Keep whatever code you already had here that changes your SVG plant graphics!)
   console.log("Plant genotype changed to option ID: " + selectedValue);
-  
-  
+
+
   // --- ADDED FONT CHANGES BLOCK ---
   // Find your font preview container box element
   const fontInputPreview = document.getElementById('font-input');
-  
+
   if (fontInputPreview) {
     // Get the matching font style name from our dictionary map above
     const newFontStyleClass = plantFontMap[selectedValue] || "style-standard";
-    
+
     // Clear out any old font class tags first so they don't fight each other
     fontInputPreview.classList.remove('style-standard', 'style-script', 'style-gothic');
-    
+
     // Inject the matching aesthetic class to change the typography style
     fontInputPreview.classList.add(newFontStyleClass);
-    
+
     // Optional: Trigger a refresh of your font list if your preview system needs it
     if (typeof runFontTransformationPreviews === 'function') {
       runFontTransformationPreviews();
@@ -344,7 +344,7 @@ function handlePlantGenotypeChange() {
   if (textContainer && plantMenu) {
     const currentName = plantMenu.options[plantMenu.selectedIndex].text.toLowerCase();
     const currentStage = stageBadge ? stageBadge.textContent.replace(/[^0-9]/g, '') || '1' : '1';
-    
+
     if (currentName.includes("sprout")) {
       textContainer.textContent = `🌱 The active Thick Sprout node anchors your micro-ecosystem at Stage ${currentStage}/5. This dense flora genotype absorbs vital pressurized water vapors from your active focus sessions, driving rapid cellular expansion and inflating its thick emerald stem architecture.`;
     } else if (currentName.includes("fern")) {
@@ -438,144 +438,78 @@ window.syncLogInputToDropdown = function(inputEl) {
     select.value = ["5", "15", "30"].includes(val.toString()) ? val.toString() : "custom";
 };
 
-// Inside script.js (Replace your old window.executeChoreTimeLog function)
-// Inside script.js (Replace your window.executeChoreTimeLog function)
-// Inside script.js (Replace your window.executeChoreTimeLog block)
-window.executeChoreTimeLog = function() { 
-  const customInputNode = document.getElementById('chore-custom-input'); 
-  let mins = parseInt(customInputNode.value); 
-  if (isNaN(mins) || mins <= 0) mins = 5; 
+window.executeChoreTimeLog = function() {
+    const customInputNode = document.getElementById('chore-custom-input');
+    let mins = parseInt(customInputNode.value);
+    if (isNaN(mins) || mins <= 0) mins = 5;
 
-  const wheelTrackNode = document.getElementById('wheel-element'); 
-  const hamsterSpriteNode = document.getElementById('hamster-element'); 
-  const status = document.getElementById('hamster-status'); 
+    const wheelTrackNode = document.getElementById('wheel-element');
+    const hamsterSpriteNode = document.getElementById('hamster-element');
+    const status = document.getElementById('hamster-status');
 
-  // 1. Keep your exact original variables working smoothly
-  workspaceState.choreMinutesAccumulated += mins; 
-  updateChoreTrackingDashboardUI(); 
+    workspaceState.choreMinutesAccumulated += mins;
+    updateChoreTrackingDashboardUI();
 
-  // 2. Fetch the current goal dynamically from the layout text boxes
-  const goalTextNode = document.getElementById('chore-goal');
-  const targetGoal = goalTextNode ? parseInt(goalTextNode.textContent) || 15 : 15;
+    if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
+    if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
 
-  // --- GOAL 4 CHECK: DID CHORES MEET OR PASS THE GOAL? ---
-  if (workspaceState.choreMinutesAccumulated >= targetGoal) {
-    // Permanent Stop Mode
-    if (wheelTrackNode) {
-      wheelTrackNode.classList.remove('spinning'); 
-      wheelTrackNode.style.animation = 'none'; 
-    }
-    if (hamsterSpriteNode) {
-      hamsterSpriteNode.classList.remove('active-running'); 
-    }
-    
-    status.innerText = "DONE 🎉"; 
-    status.className = "status-badge state-active"; 
-    status.style.backgroundColor = "#bae6fd"; 
-    status.style.color = "#0369a1";
+    status.innerText = "RUNNING";
+    status.className = "status-badge state-active";
+    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
 
-    logWorkspaceEvent(`🏆 <strong>CONGRATS!</strong> You crushed your chore target goal of ${targetGoal} minutes! The hamster is happily resting.`);
-  } else {
-    // 1.2-Second Burst Mode (Only happens if you are under your goal time)
-    if (wheelTrackNode) {
-      wheelTrackNode.style.animation = ''; 
-      wheelTrackNode.classList.add('spinning'); 
-    }
-    if (hamsterSpriteNode) {
-      hamsterSpriteNode.classList.add('active-running'); 
-    }
-    
-    status.innerText = "RUNNING"; 
-    status.className = "status-badge state-active"; 
-    
-    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`); 
-
-    setTimeout(() => { 
-      // Safe check ensuring we haven't crossed the line during the delay interval
-      if (workspaceState.choreMinutesAccumulated < targetGoal) {
-        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning'); 
-        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running'); 
-        status.innerText = "IDLE"; 
-        status.className = "status-badge state-idle"; 
-      }
-    }, 1200); 
-  }
+    setTimeout(() => {
+        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
+        status.innerText = "IDLE";
+        status.className = "status-badge state-idle";
+    }, 1200);
 };
 
-
-
 window.resetChoreTracker = function() {
-      const currentChoreBox = document.getElementById('chore-current');
-      const wheelElement = document.getElementById('wheel-element');
-      const hamsterStatus = document.getElementById('hamster-status');
-    
-      // 1. Reset ONLY the hamster score tracking minutes back to 0
-      if (currentChoreBox) {
-        currentChoreBox.textContent = "0";
-      }
-      
-      // 2. Clear frozen locks and turn the spinning wheel tracking back on cleanly
-      if (wheelElement) {
-        wheelElement.style.animation = ''; // Removes the 'none' frozen overlay setting
-        wheelElement.classList.remove('spinning'); // Cycle clean-up bump
-        void wheelElement.offsetWidth;             // Smart browser engine force-refresh trick
-        wheelElement.classList.add('spinning');    // Forces the CSS rotation movement loop back on
-      }
-      
-      // 3. Reset ONLY the hamster status state badge back to standard IDLE
-      if (hamsterStatus) {
-        hamsterStatus.textContent = "IDLE";
-        hamsterStatus.style.backgroundColor = ""; // Wipes out the done celebration colors
-        hamsterStatus.style.color = "";
-      }
-    
-      // 4. Print a brand new track alert notice into your activity log timeline registry
-      if (typeof logToActivityRegistry === 'function') {
-        logToActivityRegistry("🔄 Hamster game card refreshed! Chore data wiped and runner wheel restarted.");
-      }
+    workspaceState.choreMinutesAccumulated = 0;
+    updateChoreTrackingDashboardUI();
+    logWorkspaceEvent("🐹 Hamster station metrics reset.");
+};
+
+function refreshNumericalTimerDisplayReadout() {
+    const m = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
+    const s = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
+    document.getElementById('timer-text').innerText = `${m}:${s}`;
+}
+
+window.applyTimerPreset = function(mode, btn) {
+    workspaceState.activeTimerPresetMode = mode;
+    document.querySelectorAll('.timer-preset-row .preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (mode === 'focus') workspaceState.timerSecondsRemaining = 1500;
+    else if (mode === 'break') workspaceState.timerSecondsRemaining = 300;
+    else if (mode === 'short') workspaceState.timerSecondsRemaining = 600;
+    else if (mode === 'long') workspaceState.timerSecondsRemaining = 1800;
+    refreshNumericalTimerDisplayReadout();
+};
+
+window.triggerTimerToggle = function() {
+    const btn = document.getElementById('start-btn');
+    if (workspaceState.timerActiveState) {
+        clearInterval(workspaceState.timerIntervalThread);
+        workspaceState.timerActiveState = false;
+        btn.innerText = "Start";
+    } else {
+        workspaceState.timerActiveState = true;
+        btn.innerText = "Pause";
+        workspaceState.timerIntervalThread = setInterval(() => {
+            if (workspaceState.timerSecondsRemaining > 0) {
+                workspaceState.timerSecondsRemaining--;
+                refreshNumericalTimerDisplayReadout();
+            } else {
+                clearInterval(workspaceState.timerIntervalThread);
+                workspaceState.timerActiveState = false;
+                btn.innerText = "Start";
+                logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>");
+            }
+        }, 1000);
     }
-    
-    };
-    
-    function refreshNumericalTimerDisplayReadout() {
-        const m = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
-        const s = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
-        document.getElementById('timer-text').innerText = `${m}:${s}`;
-    }
-    
-    window.applyTimerPreset = function(mode, btn) {
-        workspaceState.activeTimerPresetMode = mode;
-        document.querySelectorAll('.timer-preset-row .preset-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        if (mode === 'focus') workspaceState.timerSecondsRemaining = 1500;
-        else if (mode === 'break') workspaceState.timerSecondsRemaining = 300;
-        else if (mode === 'short') workspaceState.timerSecondsRemaining = 600;
-        else if (mode === 'long') workspaceState.timerSecondsRemaining = 1800;
-        refreshNumericalTimerDisplayReadout();
-    };
-    
-    window.triggerTimerToggle = function() {
-        const btn = document.getElementById('start-btn');
-        if (workspaceState.timerActiveState) {
-            clearInterval(workspaceState.timerIntervalThread);
-            workspaceState.timerActiveState = false;
-            btn.innerText = "Start";
-        } else {
-            workspaceState.timerActiveState = true;
-            btn.innerText = "Pause";
-            workspaceState.timerIntervalThread = setInterval(() => {
-                if (workspaceState.timerSecondsRemaining > 0) {
-                    workspaceState.timerSecondsRemaining--;
-                    refreshNumericalTimerDisplayReadout();
-                } else {
-                    clearInterval(workspaceState.timerIntervalThread);
-                    workspaceState.timerActiveState = false;
-                    btn.innerText = "Start";
-                    logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>");
-                }
-            }, 1000);
-        
-    };
+};
 
 window.executeTimerReset = function() {
     clearInterval(workspaceState.timerIntervalThread);
@@ -646,9 +580,19 @@ function clearSandboxPlaygroundArea() {
   const sandboxContainer = document.getElementById('sandbox-container');
   if (!sandboxContainer) return;
 
+  // 1. Find all hatched buddy elements inside the sandbox area
+  const companions = sandboxContainer.querySelectorAll('.sandbox-companion');
+  
+  // 2. Remove each companion element from the screen
+  companions.forEach(buddy => buddy.remove());
   // 1. Gather up all elements except for the original helper hint text line
   const elementsToWipe = sandboxContainer.children;
-  
+
+  // 3. Log a clean confirmation notice into your activity timeline registry
+  if (typeof logToActivityRegistry === 'function') {
+    logToActivityRegistry("Sandbox playground cleared of all companion entities.");
+  } else {
+    console.log("Sandbox playground cleared.");
   // 2. Loop backwards to delete everything cleanly
   for (let i = elementsToWipe.length - 1; i >= 0; i--) {
     const currentElement = elementsToWipe[i];
