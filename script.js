@@ -441,12 +441,6 @@ window.syncLogInputToDropdown = function(inputEl) {
 };
 
 window.executeChoreTimeLog = function() {
-    // 1. BLOCKING BLOCK: If goal is already met, stop immediately!
-    if (workspaceState.choreMinutesAccumulated >= workspaceState.choreGoalTarget) {
-        logWorkspaceEvent("⚠️ Goal already achieved! Reset the tracker to log more time.");
-        return; // This exits the function so no time is added
-    }
-
     const customInputNode = document.getElementById('chore-custom-input');
     let mins = parseInt(customInputNode.value);
     if (isNaN(mins) || mins <= 0) mins = 5;
@@ -455,21 +449,24 @@ window.executeChoreTimeLog = function() {
     const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
 
-    // 2. Add the minutes to total
+    // 1. Add the new minutes to the total amount accumulated
     workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
 
-    // 3. Check if this input just pushed them over the goal target
+    // 2. Check if the user has reached or passed their set goal target
     if (workspaceState.choreMinutesAccumulated >= workspaceState.choreGoalTarget) {
+        // Stop any running animations immediately
         if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
         if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
         
+        // Change the status text to DONE and update its styling class
         status.innerText = "DONE";
-        status.className = "status-badge state-done"; 
+        status.className = "status-badge state-done"; // Make sure to style .state-done in your CSS!
         
+        // Print the happy celebration message directly into your history log box
         logWorkspaceEvent("🎉 ── GOAL REACHED! ── 🎉 Your hamster helper is so proud of you! You crushed your chore target! 🐹✨");
     } else {
-        // 4. Normal running routine if goal is not met yet
+        // 3. If the goal isn't reached yet, run the normal spinning loop animation
         if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
         if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
 
@@ -477,7 +474,9 @@ window.executeChoreTimeLog = function() {
         status.className = "status-badge state-active";
         logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
 
+        // Return to IDLE state after 1.2 seconds if the goal still hasn't been met
         setTimeout(() => {
+            // Only drop back to IDLE if a subsequent action didn't finish the goal in the meantime
             if (workspaceState.choreMinutesAccumulated < workspaceState.choreGoalTarget) {
                 if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
                 if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
@@ -487,6 +486,7 @@ window.executeChoreTimeLog = function() {
         }, 1200);
     }
 };
+
 
 
 window.resetChoreTracker = function() {
