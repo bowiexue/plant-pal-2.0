@@ -336,6 +336,30 @@ function handlePlantGenotypeChange() {
       runFontTransformationPreviews();
     }
   }
+      // === FORCE PARAGRAPH UPDATE ON DROPDOWN CHANGE ===
+  const textContainer = document.getElementById('ecosystem-paragraph-text');
+  const plantMenu = document.getElementById('plant-select');
+  const stageBadge = document.getElementById('level-badge');
+
+  if (textContainer && plantMenu) {
+    const currentName = plantMenu.options[plantMenu.selectedIndex].text.toLowerCase();
+    const currentStage = stageBadge ? stageBadge.textContent.replace(/[^0-9]/g, '') || '1' : '1';
+    
+    if (currentName.includes("sprout")) {
+      textContainer.textContent = `🌱 The active Thick Sprout node anchors your micro-ecosystem at Stage ${currentStage}/5. This dense flora genotype absorbs vital pressurized water vapors from your active focus sessions, driving rapid cellular expansion and inflating its thick emerald stem architecture.`;
+    } else if (currentName.includes("fern")) {
+      textContainer.textContent = `🧚 The active Pixie Fern node anchors your micro-ecosystem at Stage ${currentStage}/5. Flourishing under low-light ambient conditions, this delicate organism generates miniature bioluminescent spore rings that shimmer softly and purify surrounding workspace code stress patterns.`;
+    } else if (currentName.includes("clover")) {
+      textContainer.textContent = `🌌 The active Cosmic Clover node anchors your micro-ecosystem at Stage ${currentStage}/5. It pulls kinetic energy directly from planetary rotations, triggering small localized gravity ripples that force its purple crowns to expand and mirror deep space stardust patterns.`;
+    } else if (currentName.includes("succulent")) {
+      textContainer.textContent = `💎 The active Ruby Succulent node anchors your micro-ecosystem at Stage ${currentStage}/5. This rare rock-botanical hybrid locks high-heat thermal fluids into its thick glass-like petals, turning them into a deep, vivid glowing scarlet hue as your timer counts down.`;
+    } else if (currentName.includes("buddy")) {
+      textContainer.textContent = `🪴 The active Bonsai Buddy node anchors your micro-ecosystem at Stage ${currentStage}/5. This sentient wood-spirit terminal responds to your systematic dashboard clicks, triggering automatic care routines that train its woody trunk to wrap elegantly around your interface layouts.`;
+    } else if (currentName.includes("moss")) {
+      textContainer.textContent = `🌙 The active Lunar Moss node anchors your micro-ecosystem at Stage ${currentStage}/5. This creeping moss matrix captures glowing moonlight frequencies, injecting synthetic silver nutrients into your dashboard rootbed to make its velvet patches pulse in soft cyan hues.`;
+    }
+  }
+
 }
 
 function setupSandboxEngine() {
