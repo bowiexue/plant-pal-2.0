@@ -490,10 +490,54 @@ window.executeChoreTimeLog = function() {
 
 
 window.resetChoreTracker = function() {
-    workspaceState.choreMinutesAccumulated = 0;
+    window.executeChoreTimeLog = function() {
+    // 1. BLOCKING BLOCK: If goal is already met, stop immediately!
+    if (workspaceState.choreMinutesAccumulated >= workspaceState.choreGoalTarget) {
+        logWorkspaceEvent("⚠️ Goal already achieved! Reset the tracker to log more time.");
+        return; // This exits the function so no time is added
+    }
+
+    const customInputNode = document.getElementById('chore-custom-input');
+    let mins = parseInt(customInputNode.value);
+    if (isNaN(mins) || mins <= 0) mins = 5;
+
+    const wheelTrackNode = document.getElementById('wheel-element');
+    const hamsterSpriteNode = document.getElementById('hamster-element');
+    const status = document.getElementById('hamster-status');
+
+    // 2. Add the minutes to total
+    workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
-    logWorkspaceEvent("🐹 Hamster station metrics reset.");
+
+    // 3. Check if this input just pushed them over the goal target
+    if (workspaceState.choreMinutesAccumulated >= workspaceState.choreGoalTarget) {
+        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
+        
+        status.innerText = "DONE";
+        status.className = "status-badge state-done"; 
+        
+        logWorkspaceEvent("🎉 ── GOAL REACHED! ── 🎉 Your hamster helper is so proud of you! You crushed your chore target! 🐹✨");
+    } else {
+        // 4. Normal running routine if goal is not met yet
+        if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
+
+        status.innerText = "RUNNING";
+        status.className = "status-badge state-active";
+        logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
+
+        setTimeout(() => {
+            if (workspaceState.choreMinutesAccumulated < workspaceState.choreGoalTarget) {
+                if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+                if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
+                status.innerText = "IDLE";
+                status.className = "status-badge state-idle";
+            }
+        }, 1200);
+    }
 };
+
 
 function refreshNumericalTimerDisplayReadout() {
     const m = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
