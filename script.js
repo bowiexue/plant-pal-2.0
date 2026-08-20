@@ -335,6 +335,11 @@ function handlePlantGenotypeChange() {
     }
   }
 }
+// Add this line inside your handlePlantGenotypeChange function right before its ending }
+const paragraphText = document.getElementById('ecosystem-paragraph-text');
+if (paragraphText) {
+  paragraphText.textContent = plantParagraphs[selectedValue] || "Loading statistics...";
+}
 
 function setupSandboxEngine() {
     const container = document.getElementById('sandbox-container');
