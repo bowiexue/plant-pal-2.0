@@ -521,3 +521,73 @@ function changeWorkspaceMusicTrack(selectedTrackUrl) {
     });
   }
 }
+// ==========================================
+// GOAL 1 & 2 FIXED CODE (PASTED AT THE BOTTOM)
+// ==========================================
+
+const realPlantDesigns = {
+  "0": '<rect x="15" y="16" width="2" height="12" fill="#2E7D32"/><path d="M12 10c0-4 4-6 4-6s4 2 4 6-4 4-4 4-4 0-4-4z" fill="#D32F2F"/><circle cx="16" cy="9" r="3" fill="#C2185B"/>', 
+  "1": '<path d="M10 28c2-8 5-10 6-10s4 2 6 10z" fill="#5D4037"/><circle cx="13" cy="16" r="3" fill="#1565C0"/><circle cx="19" cy="14" r="3" fill="#1E88E5"/><circle cx="15" cy="12" r="2.5" fill="#0D47A1"/>', 
+  "2": '<rect x="15" y="14" width="2" height="14" fill="#4CAF50"/><circle cx="16" cy="10" r="5" fill="#FBC02D"/><circle cx="16" cy="10" r="2.5" fill="#5D4037"/>', 
+  "3": '<rect x="14" y="10" width="4" height="18" fill="#388E3C"/><rect x="9" y="14" width="5" height="3" fill="#388E3C"/><rect x="9" y="10" width="3" height="5" fill="#388E3C"/><rect x="18" y="17" width="5" height="3" fill="#388E3C"/><rect x="20" y="12" width="3" height="6" fill="#388E3C"/>', 
+  "4": '<rect x="15" y="18" width="2" height="10" fill="#4CAF50"/><circle cx="16" cy="14" r="2" fill="#7E57C2"/><circle cx="14" cy="11" r="2" fill="#9575CD"/><circle cx="18" cy="10" r="2" fill="#7E57C2"/><circle cx="16" cy="7" r="1.5" fill="#B39DDB"/>', 
+  "5": '<rect x="11" y="24" width="10" height="5" fill="#D7CCC8"/><path d="M12 18c0-3 2-4 4-4s4 1 4 4v6H12z" fill="#4CAF50"/><circle cx="14" cy="19" r="1.5" fill="#E91E63"/><circle cx="18" cy="21" r="1.5" fill="#E91E63"/>', 
+  "6": '<path d="M10 26c0-6 5-8 6-8s6 2 6 8z" fill="#5D4037"/><circle cx="12" cy="12" r="5" fill="#1B5E20"/><circle cx="20" cy="11" r="6" fill="#2E7D32"/>' 
+};
+
+const plantBackgrounds = {
+  "0": "#FFEAEB", 
+  "1": "#EBF3FF", 
+  "2": "#FFFDEB", 
+  "3": "#FFF3E0", 
+  "4": "#F3EBF6", 
+  "5": "#F1F8E9", 
+  "6": "#F5F5F5"  
+};
+
+const plantFontMap = {
+  "0": "style-script", "1": "style-standard", "2": "style-standard", "3": "style-gothic", "4": "style-script", "5": "style-standard", "6": "style-gothic"
+};
+
+const plantParagraphs = {
+  "0": "🌹 The Classic Red Rose thrives best in bright, direct sunlight with deep weekly watering sessions. In this node workspace, your active focus minutes convert directly into vital structural defense layers, strengthening the rose's thorny defenses and cultivating aromatic bloom pathways.",
+  "1": "🫐 Your Wild Blueberry Bush requires highly acidic soil and continuous airflow. Every focus session logged provides virtual cross-pollination modules, increasing active fruit cluster yields and generating sweet, nutrient-dense ecosystem returns.",
+  "2": "🌻 Sunflower nodes track cosmic sun trajectories automatically. They demand wide structural spacing and immense hydration. Your workspace productivity acts as synthetic solar rays, forcing the stalks to grow taller and expand their golden geometric petal crown profiles.",
+  "3": "🌵 The Saguaro Desert Cactus is built for ultimate structural resilience, hoarding small drops of moisture for months. Its impact profile shows that long-form deep study intervals help build up interior core hydration, expanding the rib lines and preventing structural dehydration.",
+  "4": "🪻 English Lavender fills your digital layout container with calming aromatherapy waves. This plant demands excellent soil drainage and dry roots. Focus milestones cycle relaxation scripts throughout the workspace node, reducing code stress indexes.",
+  "5": "🍓 Sweet Strawberry Pots are rapid producers that rely on hanging vine pathways. When your timer countdown triggers successfully, it drops essential potassium drops into the root matrix, fast-tracking the evolution from white blossoms to bright red runner fruits.",
+  "6": "🪵 This Miniature Bonsai Tree is an ancient node requiring delicate pruning and artistic patience. Your systematic workspace activity provides precise clipping actions, training the woody trunk layout to twist elegantly around your central dashboard interface."
+};
+
+function handlePlantGenotypeChange() {
+  const plantSelect = document.getElementById('plant-select');
+  const plantSvg = document.getElementById('plant-svg');
+  const viewportFrame = document.querySelector('.plant-viewport-frame');
+  const paragraphText = document.getElementById('ecosystem-paragraph-text');
+  
+  if (!plantSelect || !plantSvg) return;
+  
+  const selectedValue = plantSelect.value;
+  
+  plantSvg.innerHTML = realPlantDesigns[selectedValue] || '';
+  
+  if (viewportFrame) {
+    viewportFrame.style.backgroundColor = plantBackgrounds[selectedValue] || "#f7faf7";
+  }
+  
+  const fontInputPreview = document.getElementById('font-input');
+  if (fontInputPreview) {
+    const newFontStyleClass = plantFontMap[selectedValue] || "style-standard";
+    fontInputPreview.classList.remove('style-standard', 'style-script', 'style-gothic');
+    fontInputPreview.classList.add(newFontStyleClass);
+    if (typeof runFontTransformationPreviews === 'function') { runFontTransformationPreviews(); }
+  }
+
+  if (paragraphText) {
+    paragraphText.textContent = plantParagraphs[selectedValue] || "Loading statistics...";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  handlePlantGenotypeChange();
+});
