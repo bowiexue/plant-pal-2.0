@@ -440,89 +440,63 @@ window.syncLogInputToDropdown = function(inputEl) {
 
 // Inside script.js (Replace your old window.executeChoreTimeLog function)
 // Inside script.js (Replace your window.executeChoreTimeLog function)
+// Inside script.js (Replace your window.executeChoreTimeLog block)
 window.executeChoreTimeLog = function() { 
-  const currentElement = document.getElementById('chore-current');
-  const goalElement = document.getElementById('chore-goal');
   const customInputNode = document.getElementById('chore-custom-input'); 
+  let mins = parseInt(customInputNode.value); 
+  if (isNaN(mins) || mins <= 0) mins = 5; 
+
   const wheelTrackNode = document.getElementById('wheel-element'); 
   const hamsterSpriteNode = document.getElementById('hamster-element'); 
   const status = document.getElementById('hamster-status'); 
 
-  if (!currentElement || !goalElement) return;
+  // 1. Keep your exact original variables working smoothly
+  workspaceState.choreMinutesAccumulated += mins; 
+  updateChoreTrackingDashboardUI(); 
 
-  // 1. Calculate how many minutes the user wants to log
-  let mins = customInputNode ? parseInt(customInputNode.value) : 5; 
-  if (isNaN(mins) || mins <= 0) mins = 5; 
+  // 2. Fetch the current goal dynamically from the layout text boxes
+  const goalTextNode = document.getElementById('chore-goal');
+  const targetGoal = goalTextNode ? parseInt(goalTextNode.textContent) || 15 : 15;
 
-  // 2. Read what numbers are currently written on the screen
-  let currentChores = parseInt(currentElement.textContent) || 0;
-  let targetGoal = parseInt(goalElement.textContent) || 15;
-
-  // 3. Add the logged minutes and update the page text display
-  currentChores += mins;
-  currentElement.textContent = currentChores;
-
-  // 4. Safely update your script's hidden data object if it exists
-  if (typeof workspaceState !== 'undefined') {
-    workspaceState.choreMinutesAccumulated = currentChores;
-  }
-
-  // --- GOAL 4 RULE: CHECK IF CHORE GOAL IS REACHED ---
-  if (currentChores >= targetGoal) {
-    // GOAL MET: Stop permanently right now! Do not set a 1.2-second timer.
+  // --- GOAL 4 CHECK: DID CHORES MEET OR PASS THE GOAL? ---
+  if (workspaceState.choreMinutesAccumulated >= targetGoal) {
+    // Permanent Stop Mode
     if (wheelTrackNode) {
       wheelTrackNode.classList.remove('spinning'); 
-      wheelTrackNode.style.animation = 'none'; // Lock the wheel static
+      wheelTrackNode.style.animation = 'none'; 
     }
     if (hamsterSpriteNode) {
       hamsterSpriteNode.classList.remove('active-running'); 
     }
     
-    if (status) {
-      status.innerText = "DONE 🎉"; 
-      status.className = "status-badge state-active"; 
-      status.style.backgroundColor = "#bae6fd"; 
-      status.style.color = "#0369a1";
-    }
+    status.innerText = "DONE 🎉"; 
+    status.className = "status-badge state-active"; 
+    status.style.backgroundColor = "#bae6fd"; 
+    status.style.color = "#0369a1";
 
-    // Call whatever activity logger function your script uses
-    if (typeof logWorkspaceEvent === 'function') {
-      logWorkspaceEvent(`🏆 <strong>CONGRATS!</strong> You crushed your chore target goal of ${targetGoal} minutes! The hamster is happily resting.`);
-    } else if (typeof logToActivityRegistry === 'function') {
-      logToActivityRegistry(`🏆 CONGRATS! You crushed your chore target goal of ${targetGoal} minutes! The hamster is happily resting.`);
-    }
+    logWorkspaceEvent(`🏆 <strong>CONGRATS!</strong> You crushed your chore target goal of ${targetGoal} minutes! The hamster is happily resting.`);
   } else {
-    // RUNNING BURST: Start the 1.2-second rotation loop
+    // 1.2-Second Burst Mode (Only happens if you are under your goal time)
     if (wheelTrackNode) {
-      wheelTrackNode.style.animation = ''; // Wipe frozen settings
+      wheelTrackNode.style.animation = ''; 
       wheelTrackNode.classList.add('spinning'); 
     }
     if (hamsterSpriteNode) {
       hamsterSpriteNode.classList.add('active-running'); 
     }
     
-    if (status) {
-      status.innerText = "RUNNING"; 
-      status.className = "status-badge state-active"; 
-    }
+    status.innerText = "RUNNING"; 
+    status.className = "status-badge state-active"; 
     
-    if (typeof logWorkspaceEvent === 'function') {
-      logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`); 
-    } else if (typeof logToActivityRegistry === 'function') {
-      logToActivityRegistry(`Logged ${mins} minutes of chores.`);
-    }
+    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`); 
 
-    // Run the short 1.2 second close timer
     setTimeout(() => { 
-      // Only return to IDLE if the user hasn't hit the goal yet
-      const doubleCheckCurrent = parseInt(currentElement.textContent) || 0;
-      if (doubleCheckCurrent < targetGoal) {
+      // Safe check ensuring we haven't crossed the line during the delay interval
+      if (workspaceState.choreMinutesAccumulated < targetGoal) {
         if (wheelTrackNode) wheelTrackNode.classList.remove('spinning'); 
         if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running'); 
-        if (status) {
-          status.innerText = "IDLE"; 
-          status.className = "status-badge state-idle"; 
-        }
+        status.innerText = "IDLE"; 
+        status.className = "status-badge state-idle"; 
       }
     }, 1200); 
   }
