@@ -341,6 +341,16 @@ if (paragraphText) {
   paragraphText.textContent = plantParagraphs[selectedValue] || "Loading statistics...";
 // Paste this line inside your handlePlantGenotypeChange function right before its ending }
 if (typeof updateEcosystemStatsDisplay === 'function') { updateEcosystemStatsDisplay(); } else if (typeof renderBotanicalStats === 'function') { renderBotanicalStats(); }
+  // Paste this right before the last closing bracket of handlePlantGenotypeChange
+  const paragraphText = document.getElementById('ecosystem-paragraph-text');
+  const plantSelectElement = document.getElementById('plant-select');
+  const levelBadge = document.getElementById('level-badge');
+
+  if (paragraphText && plantSelectElement) {
+    const profileName = plantSelectElement.options[plantSelectElement.selectedIndex].text;
+    const stageLevel = levelBadge ? levelBadge.textContent.replace(/[^0-9]/g, '') || '1' : '1';
+    paragraphText.textContent = generateComprehensiveBotanicalImpactStatement(profileName, stageLevel);
+  }
 
 }
 
