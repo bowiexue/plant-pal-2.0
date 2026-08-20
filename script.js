@@ -503,50 +503,77 @@ window.executeChoreTimeLog = function() {
 
 
 window.resetChoreTracker = function() {
-    workspaceState.choreMinutesAccumulated = 0;
-    updateChoreTrackingDashboardUI();
-    logWorkspaceEvent("🐹 Hamster station metrics reset.");
-};
-
-function refreshNumericalTimerDisplayReadout() {
-    const m = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
-    const s = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
-    document.getElementById('timer-text').innerText = `${m}:${s}`;
-}
-
-window.applyTimerPreset = function(mode, btn) {
-    workspaceState.activeTimerPresetMode = mode;
-    document.querySelectorAll('.timer-preset-row .preset-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (mode === 'focus') workspaceState.timerSecondsRemaining = 1500;
-    else if (mode === 'break') workspaceState.timerSecondsRemaining = 300;
-    else if (mode === 'short') workspaceState.timerSecondsRemaining = 600;
-    else if (mode === 'long') workspaceState.timerSecondsRemaining = 1800;
-    refreshNumericalTimerDisplayReadout();
-};
-
-window.triggerTimerToggle = function() {
-    const btn = document.getElementById('start-btn');
-    if (workspaceState.timerActiveState) {
-        clearInterval(workspaceState.timerIntervalThread);
-        workspaceState.timerActiveState = false;
-        btn.innerText = "Start";
-    } else {
-        workspaceState.timerActiveState = true;
-        btn.innerText = "Pause";
-        workspaceState.timerIntervalThread = setInterval(() => {
-            if (workspaceState.timerSecondsRemaining > 0) {
-                workspaceState.timerSecondsRemaining--;
-                refreshNumericalTimerDisplayReadout();
-            } else {
-                clearInterval(workspaceState.timerIntervalThread);
-                workspaceState.timerActiveState = false;
-                btn.innerText = "Start";
-                logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>");
-            }
-        }, 1000);
+      const currentChoreBox = document.getElementById('chore-current');
+      const wheelElement = document.getElementById('wheel-element');
+      const hamsterStatus = document.getElementById('hamster-status');
+    
+      // 1. Reset ONLY the hamster score tracking minutes back to 0
+      if (currentChoreBox) {
+        currentChoreBox.textContent = "0";
+      }
+      
+      // 2. Clear frozen locks and turn the spinning wheel tracking back on cleanly
+      if (wheelElement) {
+        wheelElement.style.animation = ''; // Removes the 'none' frozen overlay setting
+        wheelElement.classList.remove('spinning'); // Cycle clean-up bump
+        void wheelElement.offsetWidth;             // Smart browser engine force-refresh trick
+        wheelElement.classList.add('spinning');    // Forces the CSS rotation movement loop back on
+      }
+      
+      // 3. Reset ONLY the hamster status state badge back to standard IDLE
+      if (hamsterStatus) {
+        hamsterStatus.textContent = "IDLE";
+        hamsterStatus.style.backgroundColor = ""; // Wipes out the done celebration colors
+        hamsterStatus.style.color = "";
+      }
+    
+      // 4. Print a brand new track alert notice into your activity log timeline registry
+      if (typeof logToActivityRegistry === 'function') {
+        logToActivityRegistry("🔄 Hamster game card refreshed! Chore data wiped and runner wheel restarted.");
+      }
     }
-};
+    
+    };
+    
+    function refreshNumericalTimerDisplayReadout() {
+        const m = Math.floor(workspaceState.timerSecondsRemaining / 60).toString().padStart(2, '0');
+        const s = (workspaceState.timerSecondsRemaining % 60).toString().padStart(2, '0');
+        document.getElementById('timer-text').innerText = `${m}:${s}`;
+    }
+    
+    window.applyTimerPreset = function(mode, btn) {
+        workspaceState.activeTimerPresetMode = mode;
+        document.querySelectorAll('.timer-preset-row .preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (mode === 'focus') workspaceState.timerSecondsRemaining = 1500;
+        else if (mode === 'break') workspaceState.timerSecondsRemaining = 300;
+        else if (mode === 'short') workspaceState.timerSecondsRemaining = 600;
+        else if (mode === 'long') workspaceState.timerSecondsRemaining = 1800;
+        refreshNumericalTimerDisplayReadout();
+    };
+    
+    window.triggerTimerToggle = function() {
+        const btn = document.getElementById('start-btn');
+        if (workspaceState.timerActiveState) {
+            clearInterval(workspaceState.timerIntervalThread);
+            workspaceState.timerActiveState = false;
+            btn.innerText = "Start";
+        } else {
+            workspaceState.timerActiveState = true;
+            btn.innerText = "Pause";
+            workspaceState.timerIntervalThread = setInterval(() => {
+                if (workspaceState.timerSecondsRemaining > 0) {
+                    workspaceState.timerSecondsRemaining--;
+                    refreshNumericalTimerDisplayReadout();
+                } else {
+                    clearInterval(workspaceState.timerIntervalThread);
+                    workspaceState.timerActiveState = false;
+                    btn.innerText = "Start";
+                    logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>");
+                }
+            }, 1000);
+        
+    };
 
 window.executeTimerReset = function() {
     clearInterval(workspaceState.timerIntervalThread);
