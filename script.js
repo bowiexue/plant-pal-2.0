@@ -132,9 +132,34 @@ function logWorkspaceEvent(logStringText) {
     writeStateToLocalStorageMemory();
 }
 
+// Inside script.js (Replace the old generateComprehensiveBotanicalImpactStatement function)
 function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) {
-    return `The active ${profileName} node anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances. Scaling up to Stage ${stageLevel}/5, its expanded structural roots optimize water absorption and fortify organic links.`;
+  // Clean up the name by forcing it to lowercase so it always matches our list perfectly
+  const cleanName = profileName.toLowerCase().trim();
+  
+  if (cleanName.includes("sprout")) {
+    return `🌱 The active Thick Sprout node anchors your micro-ecosystem at Stage ${stageLevel}/5. This dense genotype found in marshy forest zones absorbs pressurized water vapors from your focus sessions, driving rapid cellular expansion and thickening its emerald stem architecture.`;
+  } 
+  else if (cleanName.includes("fern")) {
+    return `🧚 The active Pixie Fern node anchors your micro-ecosystem at Stage ${stageLevel}/5. Flourishing under low-light ambient workspace conditions, this delicate organism generates miniature bioluminescent spore rings that purify surrounding workspace code stress patterns.`;
+  } 
+  else if (cleanName.includes("clover")) {
+    return `🌌 The active Cosmic Clover node anchors your micro-ecosystem at Stage ${stageLevel}/5. It pulls energy directly from planetary rotations, triggering localized gravity ripples that force its purple crowns to expand and mirror deep space stardust patterns.`;
+  } 
+  else if (cleanName.includes("succulent")) {
+    return `💎 The active Ruby Succulent node anchors your micro-ecosystem at Stage ${stageLevel}/5. This rare rock-botanical hybrid locks high-heat thermal fluids into its thick glass-like petals, turning them into a deep, vivid glowing scarlet hue as your timer counts down.`;
+  } 
+  else if (cleanName.includes("buddy")) {
+    return `🪴 The active Bonsai Buddy node anchors your micro-ecosystem at Stage ${stageLevel}/5. This sentient wood-spirit terminal responds to your systematic dashboard clicks, triggering automatic care routines that train its trunk to wrap elegantly around your interface layouts.`;
+  } 
+  else if (cleanName.includes("moss")) {
+    return `🌙 The active Lunar Moss node anchors your micro-ecosystem at Stage ${stageLevel}/5. This creeping moss matrix captures glowing moonlight frequencies, injecting synthetic silver nutrients into your dashboard rootbed to make its velvet patches pulse in soft cyan hues.`;
+  } 
+  
+  // Safe backup fallback text just in case the name doesn't match anything
+  return `The active ${profileName} node anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances. Scaling up to Stage ${stageLevel}/5, its expanded structural roots optimize water absorption and fortify organic links.`;
 }
+
 window.wipeAllPlantProgressMemory = function() {
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
