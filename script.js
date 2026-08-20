@@ -71,15 +71,15 @@ function renderProceduralPixelSproutSVG() {
     const targetSvgCanvas = document.getElementById('plant-svg');
     const levelDisplayBadgeNode = document.getElementById('level-badge');
     if (!targetSvgCanvas) return;
-    
+
     levelDisplayBadgeNode.innerText = `Stage ${workspaceState.plantStage} / 5`;
     targetSvgCanvas.innerHTML = '';
-    
+
     let potHTML = `<rect x="11" y="24" width="10" height="1" fill="#a1705a" /><rect x="10" y="25" width="12" height="5" fill="#b8836b" /><rect x="11" y="30" width="10" height="1" fill="#8c5b47" />`;
     let plantHTML = '';
     let stage = workspaceState.plantStage;
     let type = workspaceState.plantTypeIndex;
-    
+
     if (type === 0) {
         if (stage >= 1) plantHTML += `<rect x="15" y="22" width="2" height="2" fill="#7ebd7e" />`;
         if (stage >= 2) plantHTML += `<rect x="15" y="17" width="2" height="5" fill="#5fa35f" /><rect x="13" y="19" width="2" height="1" fill="#7ebd7e" />`;
@@ -111,14 +111,14 @@ function renderProceduralPixelSproutSVG() {
         if (stage >= 4) plantHTML += `<rect x="9" y="20" width="14" height="3" fill="#7b75b3" />`;
         if (stage >= 5) plantHTML += `<rect x="8" y="18" width="16" height="3" fill="#9b95db" /><circle cx="20" cy="14" r="1.5" fill="#ffffcc" />`;
     }
-    
+
     targetSvgCanvas.innerHTML = potHTML + plantHTML;
 }
 
 function logWorkspaceEvent(logStringText) {
     const historicalBoxNode = document.getElementById('history-log-box');
     if (!historicalBoxNode) return;
-    
+
     const placeholder = historicalBoxNode.querySelector('.history-empty-placeholder');
     if (placeholder) placeholder.remove();
 
@@ -126,26 +126,15 @@ function logWorkspaceEvent(logStringText) {
     const logRow = document.createElement('div');
     logRow.className = 'history-log-item-row';
     logRow.innerHTML = `<strong>[${timeStr}]</strong> ${logStringText}`;
-    
+
     historicalBoxNode.appendChild(logRow);
     historicalBoxNode.scrollTop = historicalBoxNode.scrollHeight; 
     writeStateToLocalStorageMemory();
 }
 
-// ==========================================
-// GOAL 1 & 2 FIXED CODE (PASTED AT THE BOTTOM)
-// ==========================================
 function generateComprehensiveBotanicalImpactStatement(profileName, stageLevel) {
-    const plantParagraphs = {
-  "0": "🌹 The Classic Red Rose thrives best in bright, direct sunlight with deep weekly watering sessions. In this node workspace, your active focus minutes convert directly into vital structural defense layers, strengthening the rose's thorny defenses and cultivating aromatic bloom pathways.",
-  "1": "🫐 Your Wild Blueberry Bush requires highly acidic soil and continuous airflow. Every focus session logged provides virtual cross-pollination modules, increasing active fruit cluster yields and generating sweet, nutrient-dense ecosystem returns.",
-  "2": "🌻 Sunflower nodes track cosmic sun trajectories automatically. They demand wide structural spacing and immense hydration. Your workspace productivity acts as synthetic solar rays, forcing the stalks to grow taller and expand their golden geometric petal crown profiles.",
-  "3": "🌵 The Saguaro Desert Cactus is built for ultimate structural resilience, hoarding small drops of moisture for months. Its impact profile shows that long-form deep study intervals help build up interior core hydration, expanding the rib lines and preventing structural dehydration.",
-  "4": "🪻 English Lavender fills your digital layout container with calming aromatherapy waves. This plant demands excellent soil drainage and dry roots. Focus milestones cycle relaxation scripts throughout the workspace node, reducing code stress indexes.",
-  "5": "🍓 Sweet Strawberry Pots are rapid producers that rely on hanging vine pathways. When your timer countdown triggers successfully, it drops essential potassium drops into the root matrix, fast-tracking the evolution from white blossoms to bright red runner fruits.",
-  "6": "🪵 This Miniature Bonsai Tree is an ancient node requiring delicate pruning and artistic patience. Your systematic workspace activity provides precise clipping actions, training the woody trunk layout to twist elegantly around your central dashboard interface."
-};
-    return plantParagraphs
+    return `The active ${profileName} node anchors your micro-ecosystem, regulating oxygen production and atmospheric moisture balances. Scaling up to Stage ${stageLevel}/5, its expanded structural roots optimize water absorption and fortify organic links.`;
+}
 window.wipeAllPlantProgressMemory = function() {
     workspaceState.plantStage = 1;
     workspaceState.completedTaskCount = 0;
@@ -166,8 +155,10 @@ window.handlePlantGenotypeChange = function() {
 
     logWorkspaceEvent(`Environment mutated to: <strong>${profile.name}</strong>`);
     renderProceduralPixelSproutSVG();
-// === REAL REAL-WORLD PLANTS DATA MAPS ===
-
+    populateKaomojisPack(profile.kaomojis);
+    runFontTransformationPreviews();
+    document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
+};
 
 function populateKaomojisPack(kaomojiArray) {
     const container = document.querySelector('.kaomoji-grid-layout');
@@ -221,10 +212,10 @@ function syncChecklistDOMDisplay() {
     const list = document.getElementById('task-list-container');
     const counter = document.getElementById('done-counter');
     if (!list) return;
-    
+
     counter.innerText = workspaceState.completedTaskCount;
     list.innerHTML = '';
-    
+
     underlyingActiveTaskMemoryStore.forEach((task, idx) => {
         const li = document.createElement('li');
         li.className = 'task-item-row-node';
@@ -260,9 +251,9 @@ window.processTaskCompletionTrigger = function(idx, checkbox) {
         checkbox.disabled = true;
         checkbox.parentElement.parentElement.classList.add('completed');
         workspaceState.completedTaskCount++;
-        
+
         logWorkspaceEvent(`Task audited! Progress: <strong>${workspaceState.completedTaskCount} / 3 Checks</strong>`);
-        
+
         if (workspaceState.completedTaskCount >= 3) {
             workspaceState.completedTaskCount = 0;
             if (workspaceState.plantStage < 5) {
@@ -323,10 +314,10 @@ function handlePlantGenotypeChange() {
 function setupSandboxEngine() {
     const container = document.getElementById('sandbox-container');
     if (!container) return;
-    
+
     container.replaceWith(container.cloneNode(true));
     const activeSandbox = document.getElementById('sandbox-container');
-    
+
     activeSandbox.addEventListener('mousemove', (e) => {
         const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -344,7 +335,7 @@ function setupSandboxEngine() {
             setTimeout(() => sparkle.remove(), 400);
         }
     });
-    
+
     activeSandbox.addEventListener('click', (e) => {
         if (e.target.classList.contains('sandbox-companion')) return;
         const rect = activeSandbox.getBoundingClientRect();
@@ -400,21 +391,21 @@ window.executeChoreTimeLog = function() {
     const customInputNode = document.getElementById('chore-custom-input');
     let mins = parseInt(customInputNode.value);
     if (isNaN(mins) || mins <= 0) mins = 5;
-    
+
     const wheelTrackNode = document.getElementById('wheel-element');
     const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
-    
+
     workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
-    
+
     if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
     if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
-    
+
     status.innerText = "RUNNING";
     status.className = "status-badge state-active";
     logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
-    
+
     setTimeout(() => {
         if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
         if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
@@ -516,14 +507,14 @@ window.clearWorkspaceLogStorage = function() {
 function changeWorkspaceMusicTrack(selectedTrackUrl) {
   const audioPlayer = document.getElementById('workspace-audio-player');
   const audioSource = document.getElementById('audio-player-source');
-  
+
   if (audioPlayer && audioSource) {
     // 1. Swap the media file link path
     audioSource.src = selectedTrackUrl;
-    
+
     // 2. Force the browser node to load up the new file asset
     audioPlayer.load();
-    
+
     // 3. Keep playing smoothly if the user was already listening
     audioPlayer.play().catch(error => {
       console.log("Playback standby. Waiting for user interaction trigger.");
