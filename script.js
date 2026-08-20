@@ -574,21 +574,20 @@ function changeWorkspaceMusicTrack(selectedTrackUrl) {
 }
 
 // Inside script.js (Paste at the very bottom of the file)
+// Inside script.js (Paste at the very bottom of the file)
 function clearSandboxPlaygroundArea() {
+  // Find the playground block element container
   const sandboxContainer = document.getElementById('sandbox-container');
   if (!sandboxContainer) return;
 
-  // 1. Find all hatched buddy elements inside the sandbox area
-  const companions = sandboxContainer.querySelectorAll('.sandbox-companion');
+  // 1. Gather up all elements except for the original helper hint text line
+  const elementsToWipe = sandboxContainer.children;
   
-  // 2. Remove each companion element from the screen
-  companions.forEach(buddy => buddy.remove());
-  
-  // 3. Log a clean confirmation notice into your activity timeline registry
-  if (typeof logToActivityRegistry === 'function') {
-    logToActivityRegistry("Sandbox playground cleared of all companion entities.");
-  } else {
-    console.log("Sandbox playground cleared.");
+  // 2. Loop backwards to delete everything cleanly
+  for (let i = elementsToWipe.length - 1; i >= 0; i--) {
+    const currentElement = elementsToWipe[i];
+    if (!currentElement.classList.contains('sandbox-hint')) {
+      currentElement.remove();
+    }
   }
 }
-
