@@ -438,32 +438,69 @@ window.syncLogInputToDropdown = function(inputEl) {
     select.value = ["5", "15", "30"].includes(val.toString()) ? val.toString() : "custom";
 };
 
-window.executeChoreTimeLog = function() {
-    const customInputNode = document.getElementById('chore-custom-input');
-    let mins = parseInt(customInputNode.value);
-    if (isNaN(mins) || mins <= 0) mins = 5;
+// Inside script.js (Replace your old window.executeChoreTimeLog function)
+window.executeChoreTimeLog = function() { 
+  const customInputNode = document.getElementById('chore-custom-input'); 
+  let mins = parseInt(customInputNode.value); 
+  if (isNaN(mins) || mins <= 0) mins = 5; 
 
-    const wheelTrackNode = document.getElementById('wheel-element');
-    const hamsterSpriteNode = document.getElementById('hamster-element');
-    const status = document.getElementById('hamster-status');
+  const wheelTrackNode = document.getElementById('wheel-element'); 
+  const hamsterSpriteNode = document.getElementById('hamster-element'); 
+  const status = document.getElementById('hamster-status'); 
 
-    workspaceState.choreMinutesAccumulated += mins;
-    updateChoreTrackingDashboardUI();
+  // 1. Add your new logged minutes to the core system memory data
+  workspaceState.choreMinutesAccumulated += mins; 
+  updateChoreTrackingDashboardUI(); 
 
-    if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
-    if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
+  // 2. Fetch your current goal target amount from the page
+  const currentGoalElement = document.getElementById('chore-goal');
+  const targetGoalValue = currentGoalElement ? parseInt(currentGoalElement.textContent) || 15 : 15;
 
-    status.innerText = "RUNNING";
-    status.className = "status-badge state-active";
-    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
+  // --- GOAL 4 RULE: CHECK IF CHORE TARGET TIME IS MATCHED ---
+  if (workspaceState.choreMinutesAccumulated >= targetGoalValue) {
+    // STOP PERMANENTLY: You crushed the target goal! No timer close!
+    if (wheelTrackNode) {
+      wheelTrackNode.classList.remove('spinning'); 
+      wheelTrackNode.style.animation = 'none'; // Hard-locks the rotational movement
+    }
+    if (hamsterSpriteNode) {
+      hamsterSpriteNode.classList.remove('active-running'); 
+    }
+    
+    status.innerText = "DONE 🎉"; 
+    status.className = "status-badge state-active"; 
+    status.style.backgroundColor = "#bae6fd"; 
+    status.style.color = "#0369a1";
 
-    setTimeout(() => {
-        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
-        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
-        status.innerText = "IDLE";
-        status.className = "status-badge state-idle";
-    }, 1200);
+    logWorkspaceEvent(`🏆 <strong>CONGRATS!</strong> You crushed your chore target goal of ${targetGoalValue} minutes! The hamster is happily resting.`);
+  } else {
+    // KEEP RUNNING TEMPORARILY: Start the 1.2-second burst cycle
+    if (wheelTrackNode) {
+      wheelTrackNode.style.animation = ''; // Clears frozen setting overrides
+      wheelTrackNode.classList.add('spinning'); 
+    }
+    if (hamsterSpriteNode) {
+      hamsterSpriteNode.classList.add('active-running'); 
+    }
+    
+    status.innerText = "RUNNING"; 
+    status.className = "status-badge state-active"; 
+    
+    logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`); 
+
+    // This 1.2 second close timer only activates if you HAVEN'T reached the goal yet
+    setTimeout(() => { 
+      // Double check that we didn't somehow finish since the button was clicked
+      if (workspaceState.choreMinutesAccumulated < targetGoalValue) {
+        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning'); 
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running'); 
+        status.innerText = "IDLE"; 
+        status.className = "status-badge state-idle"; 
+      }
+    }, 1200); 
+  }
 };
+
 
 window.resetChoreTracker = function() {
     workspaceState.choreMinutesAccumulated = 0;
