@@ -339,6 +339,9 @@ function handlePlantGenotypeChange() {
 const paragraphText = document.getElementById('ecosystem-paragraph-text');
 if (paragraphText) {
   paragraphText.textContent = plantParagraphs[selectedValue] || "Loading statistics...";
+// Paste this line inside your handlePlantGenotypeChange function right before its ending }
+if (typeof updateEcosystemStatsDisplay === 'function') { updateEcosystemStatsDisplay(); } else if (typeof renderBotanicalStats === 'function') { renderBotanicalStats(); }
+
 }
 
 function setupSandboxEngine() {
