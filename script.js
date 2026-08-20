@@ -136,6 +136,7 @@ function logWorkspaceEvent(logStringText) {
 // GOAL 1 & 2 FIXED CODE (PASTED AT THE BOTTOM)
 // ==========================================
 
+// === REAL REAL-WORLD PLANTS DATA MAPS ===
 const realPlantDesigns = {
   "0": '<rect x="15" y="16" width="2" height="12" fill="#2E7D32"/><path d="M12 10c0-4 4-6 4-6s4 2 4 6-4 4-4 4-4 0-4-4z" fill="#D32F2F"/><circle cx="16" cy="9" r="3" fill="#C2185B"/>', 
   "1": '<path d="M10 28c2-8 5-10 6-10s4 2 6 10z" fill="#5D4037"/><circle cx="13" cy="16" r="3" fill="#1565C0"/><circle cx="19" cy="14" r="3" fill="#1E88E5"/><circle cx="15" cy="12" r="2.5" fill="#0D47A1"/>', 
@@ -147,13 +148,7 @@ const realPlantDesigns = {
 };
 
 const plantBackgrounds = {
-  "0": "#FFEAEB", 
-  "1": "#EBF3FF", 
-  "2": "#FFFDEB", 
-  "3": "#FFF3E0", 
-  "4": "#F3EBF6", 
-  "5": "#F1F8E9", 
-  "6": "#F5F5F5"  
+  "0": "#FFEAEB", "1": "#EBF3FF", "2": "#FFFDEB", "3": "#FFF3E0", "4": "#F3EBF6", "5": "#F1F8E9", "6": "#F5F5F5"  
 };
 
 const plantFontMap = {
@@ -170,6 +165,7 @@ const plantParagraphs = {
   "6": "🪵 This Miniature Bonsai Tree is an ancient node requiring delicate pruning and artistic patience. Your systematic workspace activity provides precise clipping actions, training the woody trunk layout to twist elegantly around your central dashboard interface."
 };
 
+// --- UPDATED REPLACEMENT PLANT CHANGER FUNCTION ---
 function handlePlantGenotypeChange() {
   const plantSelect = document.getElementById('plant-select');
   const plantSvg = document.getElementById('plant-svg');
@@ -177,7 +173,6 @@ function handlePlantGenotypeChange() {
   const paragraphText = document.getElementById('ecosystem-paragraph-text');
   
   if (!plantSelect || !plantSvg) return;
-  
   const selectedValue = plantSelect.value;
   
   plantSvg.innerHTML = realPlantDesigns[selectedValue] || '';
@@ -199,34 +194,6 @@ function handlePlantGenotypeChange() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  handlePlantGenotypeChange();
-});
-
-window.wipeAllPlantProgressMemory = function() {
-    workspaceState.plantStage = 1;
-    workspaceState.completedTaskCount = 0;
-    renderProceduralPixelSproutSVG();
-    const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
-    document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
-    logWorkspaceEvent("🚨 Progress metrics reset back to Stage 1.");
-};
-
-window.handlePlantGenotypeChange = function() {
-    const selectElement = document.getElementById('plant-select');
-    if(selectElement) workspaceState.plantTypeIndex = parseInt(selectElement.value);
-    const profile = genotypeAestheticProfiles[workspaceState.plantTypeIndex];
-    
-    document.documentElement.style.setProperty('--bg-slate', profile.bg);
-    document.documentElement.style.setProperty('--sage-green', profile.primary);
-    document.documentElement.style.setProperty('--peach-cream', profile.shadow);
-
-    logWorkspaceEvent(`Environment mutated to: <strong>${profile.name}</strong>`);
-    renderProceduralPixelSproutSVG();
-    populateKaomojisPack(profile.kaomojis);
-    runFontTransformationPreviews();
-    document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
-};
 
 function populateKaomojisPack(kaomojiArray) {
     const container = document.querySelector('.kaomoji-grid-layout');
