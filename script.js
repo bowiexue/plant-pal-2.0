@@ -590,26 +590,34 @@ window.applyTimerPreset = function(mode, btn) {
 };
 
 window.triggerTimerToggle = function() {
-    const btn = document.getElementById('start-btn');
-    if (workspaceState.timerActiveState) {
-        clearInterval(workspaceState.timerIntervalThread);
-        workspaceState.timerActiveState = false;
-        btn.innerText = "Start";
-    } else {
-        workspaceState.timerActiveState = true;
-        btn.innerText = "Pause";
-        workspaceState.timerIntervalThread = setInterval(() => {
-            if (workspaceState.timerSecondsRemaining > 0) {
-                workspaceState.timerSecondsRemaining--;
-                refreshNumericalTimerDisplayReadout();
-            } else {
-                clearInterval(workspaceState.timerIntervalThread);
-                workspaceState.timerActiveState = false;
-                btn.innerText = "Start";
-                logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>");
-            }
-        }, 1000);
-    }
+    const btn = document.getElementById('start-btn'); 
+    
+    if (workspaceState.timerActiveState) { 
+        clearInterval(workspaceState.timerIntervalThread); 
+        workspaceState.timerActiveState = false; 
+        if (btn) btn.innerText = "Start"; 
+    } else { 
+        workspaceState.timerActiveState = true; 
+        if (btn) btn.innerText = "Pause"; 
+        
+        workspaceState.timerIntervalThread = setInterval(() => { 
+            if (workspaceState.timerSecondsRemaining > 0) { 
+                workspaceState.timerSecondsRemaining--; 
+                refreshNumericalTimerDisplayReadout(); 
+            } else { 
+                // 1. STOP THE CLOCK LOOP IMMEDIATELY
+                clearInterval(workspaceState.timerIntervalThread); 
+                workspaceState.timerActiveState = false; 
+                if (btn) btn.innerText = "Start"; 
+                
+                // 2. 🔔 RING THE ALARM BELL SAFELY!
+                playTimerChimeAlert();
+                
+                // 3. LOG THE SUCCESS MESSAGE
+                logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>"); 
+            } 
+        }, 1000); 
+    } 
 };
 
 window.executeTimerReset = function() {
@@ -698,3 +706,33 @@ function clearSandboxPlaygroundArea() {
     }
   }
 }
+
+function playTimerChimeAlert() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const audioContextInstance = new AudioCtx();
+    const playbackTime = audioContextInstance.currentTime;
+    
+    // Play 3 quick, crisp electronic alarm beeps
+    for (let index = 0; index < 3; index++) {
+      const audioOscillator = audioContextInstance.createOscillator();
+      const soundGainNode = audioContextInstance.createGain();
+      
+      audioOscillator.type = 'sine'; // Gentler on browsers
+      audioOscillator.frequency.setValueAtTime(index % 2 === 0 ? 880 : 1050, playbackTime + (index * 0.2));
+      
+      soundGainNode.gain.setValueAtTime(0.08, playbackTime + (index * 0.2));
+      soundGainNode.gain.exponentialRampToValueAtTime(0.001, playbackTime + (index * 0.2) + 0.12);
+      
+      audioOscillator.connect(soundGainNode);
+      soundGainNode.connect(audioContextInstance.destination);
+      
+      audioOscillator.start(playbackTime + (index * 0.2));
+      audioOscillator.stop(playbackTime + (index * 0.2) + 0.15);
+    }
+  } catch (error) {
+    console.log("Audio block bypass tracker: ", error);
+  }
+}
+
