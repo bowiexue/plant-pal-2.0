@@ -602,6 +602,7 @@ window.triggerTimerToggle = function() {
             if (workspaceState.timerSecondsRemaining > 0) {
                 workspaceState.timerSecondsRemaining--;
                 refreshNumericalTimerDisplayReadout();
+                playTimerChimeAlert();
             } else {
                 clearInterval(workspaceState.timerIntervalThread);
                 workspaceState.timerActiveState = false;
@@ -696,5 +697,36 @@ function clearSandboxPlaygroundArea() {
     if (!currentElement.classList.contains('sandbox-hint')) {
       currentElement.remove();
     }
+  }
+}
+
+// 🔔 GENTLE RETRO ALARM CHIME WORKER
+function playTimerChimeAlert() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    
+    const audioContextInstance = new AudioCtx();
+    const playbackTime = audioContextInstance.currentTime;
+    
+    // Play 3 quick, crisp digital beeps
+    for (let index = 0; index < 3; index++) {
+      const audioOscillator = audioContextInstance.createOscillator();
+      const soundGainNode = audioContextInstance.createGain();
+      
+      audioOscillator.type = 'sine'; // Light on CPU processing
+      audioOscillator.frequency.setValueAtTime(index % 2 === 0 ? 880 : 1050, playbackTime + (index * 0.2));
+      
+      soundGainNode.gain.setValueAtTime(0.08, playbackTime + (index * 0.2));
+      soundGainNode.gain.exponentialRampToValueAtTime(0.001, playbackTime + (index * 0.2) + 0.12);
+      
+      audioOscillator.connect(soundGainNode);
+      soundGainNode.connect(audioContextInstance.destination);
+      
+      audioOscillator.start(playbackTime + (index * 0.2));
+      audioOscillator.stop(playbackTime + (index * 0.2) + 0.15);
+    }
+  } catch (error) {
+    console.log("Audio block bypass tracker: ", error);
   }
 }
