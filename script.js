@@ -441,6 +441,109 @@ window.syncLogInputToDropdown = function(inputEl) {
 };
 
 window.executeChoreTimeLog = function() {
+    // 1. GET UI ELEMENTS GENTLY (Prevents crashes if an element is missing)
+    const status = document.getElementById('hamster-status');
+    const customInputNode = document.getElementById('chore-custom-input');
+    const wheelTrackNode = document.getElementById('wheel-element');
+    const hamsterSpriteNode = document.getElementById('hamster-element');
+
+    // 2. STOP HERE GENTLY IF THE GOAL IS DONE
+    if (status && status.innerText === "DONE") {
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("✨ Your target is complete! Reset the chores board to log a new goal.");
+        }
+        return; // Exits the function early so NO code breaks!
+    }
+
+    // 3. PARSE CHORE MINUTES SAFELY
+    let mins = 5; 
+    if (customInputNode && customInputNode.value) {
+        let parsedMins = parseInt(customInputNode.value);
+        if (!isNaN(parsedMins) && parsedMins > 0) {
+            mins = parsedMins;
+        }
+    }
+
+    // 4. UPDATE DATA SYSTEM STATE
+    if (typeof workspaceState !== 'undefined' && workspaceState.choreMinutesAccumulated !== undefined) {
+        workspaceState.choreMinutesAccumulated += mins;
+    } else {
+        // Fallback placeholder if your state structure is simplified
+        if (!window.fallbackMinutes) window.fallbackMinutes = 0;
+        window.fallbackMinutes += mins;
+    }
+    
+    // 5. UPDATE NUMERICAL INTERFACE COUNTERS
+    if (typeof updateChoreTrackingDashboardUI === 'function') {
+        updateChoreTrackingDashboardUI();
+    }
+
+    // 6. CALCULATE PROGRESS TARGET VALUES
+    let currentProgress = 0;
+    let targetGoal = 100;
+
+    if (typeof workspaceState !== 'undefined') {
+        currentProgress = workspaceState.choreMinutesAccumulated || 0;
+        targetGoal = workspaceState.choreGoalTarget || 100;
+    } else {
+        currentProgress = window.fallbackMinutes || 0;
+    }
+
+    // 7. HANDLE GOAL COMPLETION CELEBRATION VS. NORMAL SPINNING
+    if (currentProgress >= targetGoal) {
+        // GOAL REACHED! Stop animations and show DONE status
+        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
+        
+        if (status) {
+            status.innerText = "DONE";
+            status.className = "status-badge state-done";
+        }
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("🎉 ── GOAL REACHED! ── 🎉 Your hamster helper is so proud of you! You crushed your chore target! 🐹✨");
+        }
+    } else {
+        // NORMAL LOOP: Make hamster spin, then go back to IDLE
+        if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
+
+        if (status) {
+            status.innerText = "RUNNING";
+            status.className = "status-badge state-active";
+        }
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
+        }
+
+        // Return to idle state after 1.2 seconds if goal isn't met yet
+        setTimeout(() => {
+            let checkProgress = (typeof workspaceState !== 'undefined') ? workspaceState.choreMinutesAccumulated : (window.fallbackMinutes || 0);
+            let checkTarget = (typeof workspaceState !== 'undefined') ? workspaceState.choreGoalTarget : 100;
+            
+            if (checkProgress < checkTarget) {
+                if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+                if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
+                if (status) {
+                    status.innerText = "IDLE";
+                    status.className = "status-badge state-idle";
+                }
+            }
+        }, 1200);
+    }
+};
+
+
+
+
+window.executeChoreTimeLog = function() {
+    // 1. BLOCKING BLOCK: If goal is already met, stop immediately!
+    if (workspaceState.choreMinutesAccumulated >= workspaceState.choreGoalTarget) {
+        logWorkspaceEvent("⚠️ Goal already achieved! Reset the tracker to log more time.");
+        return; // This exits the function so no time is added
+    }
+
     const customInputNode = document.getElementById('chore-custom-input');
     let mins = parseInt(customInputNode.value);
     if (isNaN(mins) || mins <= 0) mins = 5;
@@ -449,24 +552,21 @@ window.executeChoreTimeLog = function() {
     const hamsterSpriteNode = document.getElementById('hamster-element');
     const status = document.getElementById('hamster-status');
 
-    // 1. Add the new minutes to the total amount accumulated
+    // 2. Add the minutes to total
     workspaceState.choreMinutesAccumulated += mins;
     updateChoreTrackingDashboardUI();
 
-    // 2. Check if the user has reached or passed their set goal target
+    // 3. Check if this input just pushed them over the goal target
     if (workspaceState.choreMinutesAccumulated >= workspaceState.choreGoalTarget) {
-        // Stop any running animations immediately
         if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
         if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
         
-        // Change the status text to DONE and update its styling class
         status.innerText = "DONE";
-        status.className = "status-badge state-done"; // Make sure to style .state-done in your CSS!
+        status.className = "status-badge state-done"; 
         
-        // Print the happy celebration message directly into your history log box
         logWorkspaceEvent("🎉 ── GOAL REACHED! ── 🎉 Your hamster helper is so proud of you! You crushed your chore target! 🐹✨");
     } else {
-        // 3. If the goal isn't reached yet, run the normal spinning loop animation
+        // 4. Normal running routine if goal is not met yet
         if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
         if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
 
@@ -474,9 +574,7 @@ window.executeChoreTimeLog = function() {
         status.className = "status-badge state-active";
         logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
 
-        // Return to IDLE state after 1.2 seconds if the goal still hasn't been met
         setTimeout(() => {
-            // Only drop back to IDLE if a subsequent action didn't finish the goal in the meantime
             if (workspaceState.choreMinutesAccumulated < workspaceState.choreGoalTarget) {
                 if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
                 if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
@@ -485,14 +583,6 @@ window.executeChoreTimeLog = function() {
             }
         }, 1200);
     }
-};
-
-
-
-window.resetChoreTracker = function() {
-     workspaceState.choreMinutesAccumulated = 0;
-    updateChoreTrackingDashboardUI();
-    logWorkspaceEvent("🐹 Hamster station metrics reset.");
 };
 
 
