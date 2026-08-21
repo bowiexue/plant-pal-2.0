@@ -602,6 +602,15 @@ window.triggerTimerToggle = function() {
             if (workspaceState.timerSecondsRemaining > 0) {
                 workspaceState.timerSecondsRemaining--;
                 refreshNumericalTimerDisplayReadout();
+                // 🔍 FIND THIS INSIDE YOUR WORKBENCH TIMER DONE BLOCK:
+                clearInterval(timerInterval); // Your existing line to stop the clock
+    
+    // 🔔 ADD THIS EXACT LINE RIGHT HERE:
+                playTimerChimeAlert(); 
+    
+    // Your remaining code stays the same (updating status logs, printing text, etc.)
+}
+
             } else {
                 clearInterval(workspaceState.timerIntervalThread);
                 workspaceState.timerActiveState = false;
@@ -696,5 +705,34 @@ function clearSandboxPlaygroundArea() {
     if (!currentElement.classList.contains('sandbox-hint')) {
       currentElement.remove();
     }
+  }
+}
+function playTimerChimeAlert() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    
+    const audioContextInstance = new AudioCtx();
+    const playbackTime = audioContextInstance.currentTime;
+    
+    // Play 3 quick, lightweight digital retro beeps
+    for (let index = 0; index < 3; index++) {
+      const audioOscillator = audioContextInstance.createOscillator();
+      const soundGainNode = audioContextInstance.createGain();
+      
+      audioOscillator.type = 'sine'; // 'sine' is much gentler on the browser than 'square'
+      audioOscillator.frequency.setValueAtTime(index % 2 === 0 ? 900 : 1100, playbackTime + (index * 0.2));
+      
+      soundGainNode.gain.setValueAtTime(0.1, playbackTime + (index * 0.2));
+      soundGainNode.gain.exponentialRampToValueAtTime(0.01, playbackTime + (index * 0.2) + 0.12);
+      
+      audioOscillator.connect(soundGainNode);
+      soundGainNode.connect(audioContextInstance.destination);
+      
+      audioOscillator.start(playbackTime + (index * 0.2));
+      audioOscillator.stop(playbackTime + (index * 0.2) + 0.15);
+    }
+  } catch (error) {
+    console.log("Audio block bypass tracker: ", error);
   }
 }
