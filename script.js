@@ -570,6 +570,41 @@ window.resetChoreTracker = function() {
     }
 };
 
+// Generates a retro, chiptune alarm ringtone using browser frequencies
+window.playRetroTimerRingtone = function() {
+    try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        
+        const ctx = new AudioContext();
+        let time = ctx.currentTime;
+        
+        // Loop a cute 3-beep alarm chime ring pattern
+        for (let i = 0; i < 3; i++) {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            // Set up an 8-bit square sound wave style
+            osc.type = 'square'; 
+            // Alternates high and crisp retro beeps
+            osc.frequency.setValueAtTime(i % 2 === 0 ? 880 : 1200, time); 
+            
+            // Fade out smoothly to prevent popping noises
+            gain.gain.setValueAtTime(0.15, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.15);
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.start(time);
+            osc.stop(time + 0.18);
+            
+            time += 0.25; // Delay space between each ring beep
+        }
+    } catch (e) {
+        console.log("Audio block: Tap the screen first so the browser allows sounds!", e);
+    }
+};
 
 
 function refreshNumericalTimerDisplayReadout() {
@@ -599,9 +634,22 @@ window.triggerTimerToggle = function() {
         workspaceState.timerActiveState = true;
         btn.innerText = "Pause";
         workspaceState.timerIntervalThread = setInterval(() => {
-            if (workspaceState.timerSecondsRemaining > 0) {
-                workspaceState.timerSecondsRemaining--;
-                refreshNumericalTimerDisplayReadout();
+            
+                // 🔍 LOOK INSIDE YOUR TIMER FUNCTION FOR THIS BLOCK:
+if (timeLeft <= 0) {
+    clearInterval(timerInterval); // Stops the timer countdown loops
+    
+    // 🔔 CHOOSE THIS NEW LINE TO TRIGGER THE RING:
+    if (typeof window.playRetroTimerRingtone === 'function') {
+        window.playRetroTimerRingtone();
+    }
+    
+    // Your existing code below (e.g. status changes, history alert logging)
+    if (typeof logWorkspaceEvent === 'function') {
+        logWorkspaceEvent("⏰ ── TIME'S UP! ── Your workbench timer has completed successfully!");
+    }
+}
+
             } else {
                 clearInterval(workspaceState.timerIntervalThread);
                 workspaceState.timerActiveState = false;
