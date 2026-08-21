@@ -631,6 +631,42 @@ window.executeTimerReset = function() {
     else if (m === 'long') workspaceState.timerSecondsRemaining = 1800;
     refreshNumericalTimerDisplayReadout();
 };
+window.applyCustomTimerInputPreset = function() {
+    const inputNode = document.getElementById('custom-timer-input');
+    if (!inputNode) return;
+
+    // 1. Read the custom minutes input value typed by the user
+    let customMinutes = parseInt(inputNode.value);
+
+    // 2. Validate the number to make sure it is real and safe
+    if (isNaN(customMinutes) || customMinutes <= 0) {
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("⚠️ Please enter a valid number of minutes greater than 0.");
+        }
+        return;
+    }
+
+    // 3. Stop any ticking timer clocks before changing values
+    if (workspaceState.timerActiveState) {
+        clearInterval(workspaceState.timerIntervalThread);
+        workspaceState.timerActiveState = false;
+        const btn = document.getElementById('start-btn');
+        if (btn) btn.innerText = "Start";
+    }
+
+    // 4. Convert the user's minutes directly into total seconds
+    workspaceState.timerSecondsRemaining = customMinutes * 60;
+
+    // 5. Update your system screen layout digits instantly
+    if (typeof refreshNumericalTimerDisplayReadout === 'function') {
+        refreshNumericalTimerDisplayReadout();
+    }
+
+    // 6. Print a confirmation notice to your app activity box
+    if (typeof logWorkspaceEvent === 'function') {
+        logWorkspaceEvent(`⏳ Custom countdown clock set to <strong>${customMinutes} minutes</strong>.`);
+    }
+};
 
 window.runFontTransformationPreviews = function() {
     const val = document.getElementById('font-input').value || "Plant Pal";
