@@ -602,7 +602,8 @@ window.triggerTimerToggle = function() {
             if (workspaceState.timerSecondsRemaining > 0) {
                 workspaceState.timerSecondsRemaining--;
                 refreshNumericalTimerDisplayReadout();
-                playTimerChimeAlert();
+                if (typeof playTimerChimeAlert === 'function') {
+                    playTimerChimeAlert();
             } else {
                 clearInterval(workspaceState.timerIntervalThread);
                 workspaceState.timerActiveState = false;
