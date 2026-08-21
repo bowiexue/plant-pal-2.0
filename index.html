@@ -202,6 +202,25 @@
                         </div>
                     </div>
                 </div>
+<!-- Custom Timer Input Panel -->
+<div class="custom-timer-container" style="margin-top: 10px; display: flex; gap: 8px; align-items: center;">
+    <input 
+        type="number" 
+        id="custom-timer-input" 
+        placeholder="Mins" 
+        min="1" 
+        max="180" 
+        style="width: 70px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; text-align: center;"
+    >
+    <button 
+        type="button" 
+        id="custom-timer-btn" 
+        onclick="window.applyCustomTimerInputPreset()" 
+        style="padding: 4px 10px; border-radius: 4px; cursor: pointer; background-color: #4CAF50; color: white; border: none;"
+    >
+        Set Custom
+    </button>
+</div>
 
                 <!-- Font Variance Card -->
                 <div class="workspace-card theme-lavender" id="font-card">
