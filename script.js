@@ -753,3 +753,131 @@ function playTimerChimeAlert() {
     console.log("Audio layout engine notice: ", error);
   }
 }
+// 📦 1. INITIALIZE & BOOTSTRAP BALANCE FROM LOCALSTORAGE
+window.loadPiggyBankDataOnBoot = function() {
+    // Read whatever number was stored in the user's browser storage
+    const savedCoins = localStorage.getItem('sproutOS_piggy_balance');
+    
+    if (savedCoins !== null) {
+        window.currentPiggyCoinsBalance = parseInt(savedCoins);
+    } else {
+        window.currentPiggyCoinsBalance = 0; // Default fresh value
+    }
+    
+    window.refreshPiggyBankVisualLayoutDisplay();
+};
+
+// 🖨️ 2. REDRAW BALANCES ON SCREEN UI
+window.refreshPiggyBankVisualLayoutDisplay = function() {
+    const displayNode = document.getElementById('piggy-balance-display');
+    if (displayNode) {
+        displayNode.innerText = window.currentPiggyCoinsBalance;
+    }
+};
+
+// 🪙 3. CORE ADD / SPEND PROCESSING MATH
+window.modifyPiggyBankBalance = function(actionType) {
+    const inputField = document.getElementById('piggy-amount-input');
+    if (!inputField) return;
+
+    let transactionAmount = parseInt(inputField.value);
+    if (isNaN(transactionAmount) || transactionAmount <= 0) {
+        if (typeof logWorkspaceEvent === 'function') logWorkspaceEvent("⚠️ Enter a valid coin amount first!");
+        return;
+    }
+
+    if (actionType === 'add') {
+        // Add coins to pool
+        window.currentPiggyCoinsBalance += transactionAmount;
+        
+        // Spawn tumbling graphic animation coins!
+        window.triggerFallingPixelCoinsShower(transactionAmount);
+        window.makePigDanceJoyfully();
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent(`🪙 Deposited <strong>${transactionAmount} pixel coins</strong> into your piggy bank!`);
+        }
+    } else if (actionType === 'spend') {
+        // Validation check to see if user has enough coins to spend
+        if (transactionAmount > window.currentPiggyCoinsBalance) {
+            if (typeof logWorkspaceEvent === 'function') logWorkspaceEvent("⚠️ Not enough coins in the bank to spend that much!");
+            return;
+        }
+        
+        window.currentPiggyCoinsBalance -= transactionAmount;
+        window.makePigShakeDisappointedly();
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent(`💸 Spent <strong>${transactionAmount} pixel coins</strong> from your piggy bank.`);
+        }
+    }
+
+    // 💾 SAVE IMMEDIATELY TO BROWSER STORAGE MEMORY
+    localStorage.setItem('sproutOS_piggy_balance', window.currentPiggyCoinsBalance);
+    
+    // Refresh visual counters and clear typed text input box fields
+    window.refreshPiggyBankVisualLayoutDisplay();
+    inputField.value = "";
+};
+
+// 🔄 4. FULL RESET HANDLER DATA COMPONENT
+window.resetPiggyBankData = function() {
+    if (confirm("Are you sure you want to completely empty your piggy bank?")) {
+        window.currentPiggyCoinsBalance = 0;
+        localStorage.setItem('sproutOS_piggy_balance', 0);
+        window.refreshPiggyBankVisualLayoutDisplay();
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("🔨 ── BANK BROKEN ── Your pixel piggy bank data has been completely reset back to zero!");
+        }
+    }
+};
+
+// ✨ 5. VISUAL ANIMATIONS: COIN SHOWER EFFECTS
+window.triggerFallingPixelCoinsShower = function(coinCount) {
+    const container = document.getElementById('pig-container');
+    if (!container) return;
+
+    // Limit maximum falling icons to 15 at once to ensure mobile screens do not freeze or crash
+    let visualLimit = Math.min(coinCount, 15);
+
+    for (let i = 0; i < visualLimit; i++) {
+        const coin = document.createElement('div');
+        coin.innerText = "🪙";
+        coin.className = "falling-pixel-coin";
+        
+        // Randomize the drop point locations horizontally across the box area width
+        coin.style.left = Math.floor(Math.random() * 80) + 10 + "%";
+        // Stagger the dropping times so they fall sequentially rather than all at once
+        coin.style.animationDelay = (i * 0.15) + "s";
+
+        container.appendChild(coin);
+
+        // Delete the HTML tag element safely from memory once its dropping animation path finishes
+        setTimeout(() => { coin.remove(); }, 1200);
+    }
+};
+
+// 🕺 6. VISUAL ANIMATIONS: THE HAPPY DANCING PIG
+window.makePigDanceJoyfully = function() {
+    const pig = document.getElementById('pixel-pig');
+    if (!pig) return;
+    
+    pig.className = "pig-dancing-animation";
+    setTimeout(() => { pig.className = ""; }, 1200); // Stop dancing after 1.2 seconds
+};
+
+// 💢 7. VISUAL ANIMATIONS: THE SPENDING SHAKE PIG
+window.makePigShakeDisappointedly = function() {
+    const pig = document.getElementById('pixel-pig');
+    if (!pig) return;
+    
+    pig.className = "pig-shaking-animation";
+    setTimeout(() => { pig.className = ""; }, 500); // Stop shaking after 0.5 seconds
+};
+
+// 🏁 8. AUTOMATIC LOADING AT RUNTIME
+// Look for your script's initialization process block, or simply load it instantly right here:
+document.addEventListener("DOMContentLoaded", () => {
+    window.loadPiggyBankDataOnBoot();
+});
