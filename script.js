@@ -605,6 +605,12 @@ window.applyTimerPreset = function(mode, btn) {
 window.triggerTimerToggle = function() {
     const btn = document.getElementById('start-btn'); 
     
+    // Silences the chime if clicked while it is still looping through its 3 rings
+    if (typeof stopTimerChimeAlertLoop === 'function') {
+        stopTimerChimeAlertLoop();
+    }
+    const btn = document.getElementById('start-btn'); 
+    
     if (workspaceState.timerActiveState) { 
         clearInterval(workspaceState.timerIntervalThread); 
         workspaceState.timerActiveState = false; 
@@ -752,4 +758,75 @@ function playTimerChimeAlert() {
   } catch (error) {
     console.log("Audio layout engine notice: ", error);
   }
+}
+// Global placeholders for managing the 3-loop alarm system
+window.timerAlarmIntervalId = null;
+window.alarmLoopCounter = 0; // Tracks how many times it has rung
+
+function playTimerChimeAlert() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+
+    // 1. Reset our counter back to 0 every time a new timer finishes
+    window.alarmLoopCounter = 0;
+    
+    // Clear any leftover interval loops to keep it safe
+    if (window.timerAlarmIntervalId) {
+        clearInterval(window.timerAlarmIntervalId);
+    }
+
+    // 2. The core worker function that fires your double-beeps
+    const triggerSingleAlarmChimePattern = () => {
+        // Stop completely if it has already finished 3 loops!
+        if (window.alarmLoopCounter >= 3) {
+            if (window.timerAlarmIntervalId) {
+                clearInterval(window.timerAlarmIntervalId);
+                window.timerAlarmIntervalId = null;
+            }
+            return;
+        }
+
+        const audioContextInstance = new AudioCtx();
+        const playbackTime = audioContextInstance.currentTime;
+
+        // Play 2 crisp electronic alarm beeps
+        for (let index = 0; index < 2; index++) {
+            const audioOscillator = audioContextInstance.createOscillator();
+            const soundGainNode = audioContextInstance.createGain();
+            
+            audioOscillator.type = 'sine';
+            audioOscillator.frequency.setValueAtTime(1000, playbackTime + (index * 0.25));
+            
+            soundGainNode.gain.setValueAtTime(0.30, playbackTime + (index * 0.25));
+            soundGainNode.gain.exponentialRampToValueAtTime(0.001, playbackTime + (index * 0.25) + 0.22);
+            
+            audioOscillator.connect(soundGainNode);
+            soundGainNode.connect(audioContextInstance.destination);
+            
+            audioOscillator.start(playbackTime + (index * 0.25));
+            audioOscillator.stop(playbackTime + (index * 0.25) + 0.25);
+        }
+
+        // 3. Count this ring loop session
+        window.alarmLoopCounter++;
+    };
+
+    // Fire the first ring session instantly
+    triggerSingleAlarmChimePattern();
+
+    // Repeat the pattern every 2.5 seconds until our limit counter hits 3
+    window.timerAlarmIntervalId = setInterval(triggerSingleAlarmChimePattern, 2500);
+
+  } catch (error) {
+    console.log("Audio counter helper tracking notice: ", error);
+  }
+}
+
+// Simple cleanup helper to stop the alarm early if a user clicks Start/Pause
+function stopTimerChimeAlertLoop() {
+    if (window.timerAlarmIntervalId) {
+        clearInterval(window.timerAlarmIntervalId);
+        window.timerAlarmIntervalId = null;
+    }
 }
