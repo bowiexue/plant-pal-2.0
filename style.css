@@ -209,236 +209,211 @@ body {
     font-weight: bold;
 }
 
-/* 🧱 RETRO COMPONENT CARD CASING CONTAINER */
+/* 🧱 SPROUT-OS INTEGRATED CARD WRAPPER */
 .pixel-piggy-card {
-    background-color: #f7ede2; /* Crisp vintage gameboy canvas cream background */
-    border: 4px solid #222222;
-    border-radius: 0px; /* Sharp retro gaming borders */
+    background: #ffffff !important; /* Forces the clean widget background styling */
+    border: 3px solid #1a1a1a !important;
+    border-radius: 12px !important; /* Matches your app's widget rounded corners */
     padding: 20px;
     margin: 20px 0;
-    box-shadow: 6px 6px 0px #bcaba0;
-    font-family: monospace;
-    text-align: center;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05);
+    font-family: inherit;
 }
 
-.pixel-header {
-    font-size: 1.5rem;
-    color: #222;
-    margin: 0 0 15px 0;
-    letter-spacing: 2px;
-}
-
-/* 📟 RETRO LCD GAME DASHBOARD READOUT */
+/* 📟 MATCHING LCD TEXT READOUT SCREEN */
 .pixel-balance-screen {
-    background-color: #1e1e1e;
-    color: #4af626; /* Classic terminal green glow lettering */
-    padding: 12px;
-    font-size: 2rem;
+    background-color: #1a1a1a;
+    color: #4af626; /* Neon pixel terminal green text */
+    padding: 14px;
+    font-size: 1.8rem;
     font-weight: bold;
-    border: 3px solid #444;
-    box-shadow: inset 0 0 10px #000;
+    font-family: monospace;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 20px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
 }
-
 .pixel-text-label {
-    font-size: 1rem;
-    color: #888;
+    font-size: 0.9rem;
+    color: #777;
+    letter-spacing: 1px;
 }
 
-/* 🪙 CSS PIXEL COIN DESIGN BLOCK SPECIFICATIONS */
-.true-pixel-coin-asset {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background-color: #ffd166; /* Vibrant Gold base */
-    border: 2px solid #f77f00; /* Darker copper gold outline border edge */
-    box-shadow: inset -2px -2px 0px #f77f00;
-    top: -20px;
-    left: calc(50% - 7px); /* Perfectly centered horizontally over the pig */
-    z-index: 5;
-    pointer-events: none;
-    animation: dropCoinStraightIntoSlot 0.5s cubic-bezier(0.47, 0, 0.74, 0.71) forwards;
-}
-
-/* 🎯 PHYSICS MOTION: Falls straight down into the top coin slot */
-@keyframes dropCoinStraightIntoSlot {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    85% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(85px); /* Hits right into the top slot line boundary */
-        opacity: 0;
-    }
-}
-
-/* 🐷 PIGGY BANK GRAPHICS AREA CHAMBER PANEL */
+/* 🐷 THE INTERNAL PIGGY CHAMBER PANEL */
 #pig-sandbox-chamber {
     position: relative;
     width: 100%;
-    height: 180px;
-    background-color: #e3d5ca;
-    border: 3px dashed #a9927d;
+    height: 160px;
+    background-color: var(--bg-slate); /* Dynamic: Changes automatically with plant background selection! */
+    border: 3px solid #1a1a1a;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding-bottom: 15px;
+    padding-bottom: 12px;
     box-sizing: border-box;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: background-color 0.3s ease; /* Smooth color crossfades */
 }
 
-/* The Slot Line Opening on Top of the Pig */
+/* Drop Target Insertion Chute Slot */
 .pig-coin-slot-line {
     position: absolute;
-    top: 75px;
-    width: 30px;
+    top: 55px;
+    width: 28px;
     height: 6px;
-    background-color: #222;
+    background-color: #1a1a1a;
+    border-radius: 2px;
     z-index: 4;
 }
 
-/* 🎨 THE CSS DRAWN PIXEL PIG BODY ASSET */
+/* 🎨 THE THEME-RESPONSIVE CSS PIXEL PIG */
 #pixel-pig-sprite {
     position: relative;
-    width: 110px;
-    height: 80px;
-    background-color: #ffb5a7; /* Main Pink Pig Color Base */
-    border: 4px solid #222;
-    box-shadow: inset -6px -6px 0px #fcd5ce;
+    width: 100px;
+    height: 72px;
+    background-color: var(--sage-green); /* Dynamic: Changes instantly to match your plant primary tone! */
+    border: 3px solid #1a1a1a;
+    border-radius: 6px;
+    box-shadow: inset -6px -6px 0px rgba(0, 0, 0, 0.08);
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Ears components */
+/* Ear Shapes */
 .pig-ear {
     position: absolute;
-    width: 16px;
-    height: 16px;
-    background-color: #ffb5a7;
-    border: 4px solid #222;
-    top: -16px;
+    width: 14px;
+    height: 14px;
+    background-color: var(--sage-green); /* Matches plant colors */
+    border: 3px solid #1a1a1a;
+    border-radius: 3px;
+    top: -13px;
+    transition: background-color 0.3s ease;
 }
-.pig-ear.left { left: 10px; }
-.pig-ear.right { right: 10px; }
+.pig-ear.left { left: 8px; transform: rotate(-10deg); }
+.pig-ear.right { right: 8px; transform: rotate(10deg); }
 
-/* 👁️ PERFECTLY ALIGNED EYE SHAPES */
+/* Eye Shapes (Fixed Layout Alignment Metrics) */
 .pig-eye {
     position: absolute;
-    width: 8px;
-    height: 12px;
-    background-color: #222;
-    top: 25px;
+    width: 6px;
+    height: 10px;
+    background-color: #1a1a1a;
+    border-radius: 1px;
+    top: 22px;
 }
-/* Shifted closer together so both show up cleanly on the face */
-.pig-eye.left { left: 20px; }
-.pig-eye.right { right: 20px; }
+.pig-eye.left { left: 24px; }
+.pig-eye.right { right: 24px; }
 
-/* Snout block components */
+/* Snout Box Element Component */
 .pig-snout {
     position: absolute;
-    width: 44px;
-    height: 28px;
-    background-color: #fcd5ce; /* Lighter highlight pink */
-    border: 4px solid #222;
-    bottom: 10px;
-    left: calc(50% - 22px);
+    width: 38px;
+    height: 24px;
+    background-color: var(--peach-cream); /* Dynamic: Matches plant shadow highlight tone! */
+    border: 3px solid #1a1a1a;
+    border-radius: 4px;
+    bottom: 8px;
+    left: calc(50% - 19px);
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0 4px;
     box-sizing: border-box;
+    transition: background-color 0.3s ease;
 }
 .nostril {
-    width: 6px;
-    height: 8px;
-    background-color: #222;
+    width: 5px;
+    height: 6px;
+    background-color: #1a1a1a;
+    border-radius: 1px;
 }
 
-/* 🕹️ RETRO INTERACTIVE BUTTON STYLING SETS */
+/* 🪙 THE FALLING GOLD PIXEL COIN BLOCK */
+.true-pixel-coin-asset {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #ffcc00; 
+    border: 2px solid #1a1a1a;
+    border-radius: 3px;
+    top: -15px;
+    left: calc(50% - 6px); /* Centers the falling coins directly over the slot opening */
+    z-index: 5;
+    pointer-events: none;
+    animation: dropCoinStraightIntoSlot 0.45s cubic-bezier(0.47, 0, 0.74, 0.71) forwards;
+}
+
+@keyframes dropCoinStraightIntoSlot {
+    0% { transform: translateY(0); opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateY(68px); opacity: 0; }
+}
+
+/* 🕹️ CONTROLS STYLING ROWS */
 .pixel-control-dock {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .pixel-numeric-input {
-    border: 3px solid #222;
-    background-color: #fff;
+    border: 3px solid #1a1a1a;
+    border-radius: 6px;
     padding: 8px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
-    font-family: monospace;
-    width: 80px;
+    width: 70px;
     text-align: center;
     outline: none;
 }
 
-.pixel-btn {
-    border: 3px solid #222;
+.pixel-action-btn {
+    border: 3px solid #1a1a1a;
+    border-radius: 6px;
     padding: 8px 16px;
+    font-size: 0.9rem;
     font-weight: bold;
-    font-family: monospace;
     cursor: pointer;
-    text-transform: uppercase;
-    box-shadow: 3px 3px 0px #222;
-    transition: transform 0.05s;
+    transition: transform 0.05s, box-shadow 0.05s;
+    box-shadow: 2px 2px 0px #1a1a1a;
 }
-.pixel-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px #222;
+.pixel-action-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px #1a1a1a;
 }
-.btn-add { background-color: #ffb703; color: #222; }
-.btn-spend { background-color: #fb8500; color: #fff; }
+.btn-deposit { background-color: var(--sage-green); color: #1a1a1a; transition: background-color 0.3s ease; }
+.btn-withdraw { background-color: #ff9f1c; color: white; }
 
 .pixel-btn-reset {
     background: transparent;
     border: none;
-    color: #888;
+    color: #999;
     text-decoration: underline;
     cursor: pointer;
     font-size: 11px;
     font-family: monospace;
 }
+.pixel-btn-reset:hover { color: #555; }
 
-/* 🕺 DANCE HOPS ANIMATION SPECIFICATIONS */
-.pig-dancing-animation {
-    animation: bounceIntoSlotEffect 0.3s ease 2;
-}
+/* 🕺 ANIMATIONS JUMP EFFECTS */
+.pig-dancing-animation { animation: bounceIntoSlotEffect 0.25s ease 2; }
 @keyframes bounceIntoSlotEffect {
-    0%, 100% { transform: translateY(0) scaleY(1); }
-    50% { transform: translateY(-16px) scaleY(0.9); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
 }
 
-/* 💢 SYSTEM DAMAGE SHAKE SPECIFICATIONS */
-.pig-shaking-animation {
-    animation: twitchOnSpendEffect 0.08s linear 4;
-}
+/* 💢 ANIMATIONS DISAPPOINTED SHAKE EFFECTS */
+.pig-shaking-animation { animation: twitchOnSpendEffect 0.06s linear 4; }
 @keyframes twitchOnSpendEffect {
     0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-6px); }
+    50% { transform: translateX(-5px); }
 }
-
-/* 🌱 STAGE 1: SEED THEMED PIGGY BANK COLORS */
-.piggy-theme-seed #pixel-pig-sprite { background-color: #d8f3dc; box-shadow: inset -6px -6px 0px #b7e4c7; }
-.piggy-theme-seed .pig-ear { background-color: #d8f3dc; }
-.piggy-theme-seed .pig-snout { background-color: #b7e4c7; }
-
-/* 🌿 STAGE 2: SPROUT THEMED PIGGY BANK COLORS */
-.piggy-theme-sprout #pixel-pig-sprite { background-color: #74c69d; box-shadow: inset -6px -6px 0px #52b788; }
-.piggy-theme-sprout .pig-ear { background-color: #74c69d; }
-.piggy-theme-sprout .pig-snout { background-color: #52b788; }
-
-/* 🌳 STAGE 3: FULL GROWN PLANT THEMED PIGGY BANK COLORS */
-.piggy-theme-grown #pixel-pig-sprite { background-color: #2d6a4f; box-shadow: inset -6px -6px 0px #1b4332; }
-.piggy-theme-grown .pig-ear { background-color: #2d6a4f; }
-.piggy-theme-grown .pig-snout { background-color: #1b4332; }
-
 
