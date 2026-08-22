@@ -223,32 +223,47 @@
                 </div>
             </div>
         </main>
-    <!-- 🐷 PIXEL PIGGY BANK STATION -->
-    <div class="piggy-bank-card" style="border: 2px solid #333; padding: 15px; border-radius: 8px; margin: 15px 0; background: #fff; text-align: center; position: relative; overflow: hidden;">
-        <h3>🐷 Pixel Piggy Bank</h3>
-        
-        <!-- Giant Balance Screen -->
-        <div style="font-size: 2rem; font-weight: bold; margin: 10px 0; font-family: monospace; color: #2e7d32;">
-            🪙 <span id="piggy-balance-display">0</span> Coins
-        </div>
+   <!-- 🐷 RETRO GAME STYLED PIXEL PIGGY BANK -->
+<div class="pixel-piggy-card">
+    <h3 class="pixel-header">🐷 PIGGY BANK</h3>
     
-        <!-- The Animated Pixel Pig Container -->
-        <div id="pig-container" style="position: relative; width: 100%; height: 120px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
-            <!-- You can swap this text emoji with your own pixel art image path later if you want! -->
-            <div id="pixel-pig" style="font-size: 4rem; transition: transform 0.1s; display: inline-block;">🐷</div>
-        </div>
-    
-        <!-- Interactive Inputs Area -->
-        <div style="display: flex; gap: 6px; justify-content: center; margin-bottom: 10px; flex-wrap: wrap;">
-            <input type="number" id="piggy-amount-input" placeholder="Amount" min="1" style="width: 80px; padding: 4px; text-align: center; border-radius: 4px; border: 1px solid #ccc;">
-            
-            <button onclick="window.modifyPiggyBankBalance('add')" style="background-color: #4CAF50; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">+ Add</button>
-            <button onclick="window.modifyPiggyBankBalance('spend')" style="background-color: #f44336; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">- Spend</button>
-        </div>
-    
-        <!-- Reset Utility Area -->
-        <button onclick="window.resetPiggyBankData()" style="background: transparent; color: #777; border: 1px dashed #aaa; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">Break Bank (Reset)</button>
+    <!-- Retro LCD Gold Score Dashboard Screen -->
+    <div class="pixel-balance-screen">
+        <span class="gold-coin-symbol"></span>
+        <span id="piggy-balance-display">0</span> <span class="pixel-text-label">COINS</span>
     </div>
+
+    <!-- The Physics Chamber where Coins Fall INSIDE the Pig -->
+    <div id="pig-sandbox-chamber">
+        <!-- The Coin Slot Target Opening Guide Box -->
+        <div class="pig-coin-slot-line"></div>
+        
+        <!-- CSS Drawn Pixel Piggy Object -->
+        <div id="pixel-pig-sprite" onclick="window.modifyPiggyBankBalance('add')">
+            <div class="pig-ear left"></div>
+            <div class="pig-ear right"></div>
+            <div class="pig-snout">
+                <div class="nostril"></div>
+                <div class="nostril"></div>
+            </div>
+            <div class="pig-eye left"></div>
+            <div class="pig-eye right"></div>
+        </div>
+    </div>
+
+    <!-- Retro Interactive Control Blocks -->
+    <div class="pixel-control-dock">
+        <input type="number" id="piggy-amount-input" placeholder="000" min="1" class="pixel-numeric-input">
+        
+        <button onclick="window.modifyPiggyBankBalance('add')" class="pixel-btn btn-add">+ DEPOSIT</button>
+        <button onclick="window.modifyPiggyBankBalance('spend')" class="pixel-btn btn-spend">- SPEND</button>
+    </div>
+
+    <!-- Bottom Reset link -->
+    <div style="margin-top: 12px;">
+        <button onclick="window.resetPiggyBankData()" class="pixel-btn-reset">RESET BANK DATA</button>
+    </div>
+</div>
 
         <!-- Footer Log -->
         <footer class="workspace-card theme-dark history-footer-card">
