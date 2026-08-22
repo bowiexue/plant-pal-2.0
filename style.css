@@ -328,7 +328,7 @@ body {
 .pig-ear.left { left: 10px; }
 .pig-ear.right { right: 10px; }
 
-/* Eyes components */
+/* 👁️ PERFECTLY ALIGNED EYE SHAPES */
 .pig-eye {
     position: absolute;
     width: 8px;
@@ -336,8 +336,9 @@ body {
     background-color: #222;
     top: 25px;
 }
-.pig-eye.left { left: 25px; }
-.pig-eye.right { right: 75px; }
+/* Shifted closer together so both show up cleanly on the face */
+.pig-eye.left { left: 20px; }
+.pig-eye.right { right: 20px; }
 
 /* Snout block components */
 .pig-snout {
