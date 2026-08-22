@@ -426,3 +426,19 @@ body {
     50% { transform: translateX(-6px); }
 }
 
+/* 🌱 STAGE 1: SEED THEMED PIGGY BANK COLORS */
+.piggy-theme-seed #pixel-pig-sprite { background-color: #d8f3dc; box-shadow: inset -6px -6px 0px #b7e4c7; }
+.piggy-theme-seed .pig-ear { background-color: #d8f3dc; }
+.piggy-theme-seed .pig-snout { background-color: #b7e4c7; }
+
+/* 🌿 STAGE 2: SPROUT THEMED PIGGY BANK COLORS */
+.piggy-theme-sprout #pixel-pig-sprite { background-color: #74c69d; box-shadow: inset -6px -6px 0px #52b788; }
+.piggy-theme-sprout .pig-ear { background-color: #74c69d; }
+.piggy-theme-sprout .pig-snout { background-color: #52b788; }
+
+/* 🌳 STAGE 3: FULL GROWN PLANT THEMED PIGGY BANK COLORS */
+.piggy-theme-grown #pixel-pig-sprite { background-color: #2d6a4f; box-shadow: inset -6px -6px 0px #1b4332; }
+.piggy-theme-grown .pig-ear { background-color: #2d6a4f; }
+.piggy-theme-grown .pig-snout { background-color: #1b4332; }
+
+
