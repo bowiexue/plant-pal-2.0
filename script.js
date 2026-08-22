@@ -187,7 +187,14 @@ window.handlePlantGenotypeChange = function() {
     populateKaomojisPack(profile.kaomojis);
     runFontTransformationPreviews();
     document.getElementById('ecosystem-paragraph-text').innerHTML = generateComprehensiveBotanicalImpactStatement(profile.name, workspaceState.plantStage);
+
+    // 🐷 DYNAMIC PIGGY COLOR SYNC FIX:
+    // Forces the piggy bank interface layout window to repaint using the new plant profile color assets instantly!
+    if (typeof refreshPiggyBankVisualLayoutDisplay === 'function') {
+        refreshPiggyBankVisualLayoutDisplay();
+    }
 };
+
 
 function populateKaomojisPack(kaomojiArray) {
     const container = document.querySelector('.kaomoji-grid-layout');
