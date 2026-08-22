@@ -441,21 +441,20 @@ window.syncLogInputToDropdown = function(inputEl) {
 };
 
 window.executeChoreTimeLog = function() {
-    // 1. GET UI ELEMENTS GENTLY (Prevents crashes if an element is missing)
     const status = document.getElementById('hamster-status');
     const customInputNode = document.getElementById('chore-custom-input');
     const wheelTrackNode = document.getElementById('wheel-element');
     const hamsterSpriteNode = document.getElementById('hamster-element');
 
-    // 2. STOP HERE GENTLY IF THE GOAL IS DONE
+    // 1. BLOCKING BLOCK: If badge already says DONE, block inputs
     if (status && status.innerText === "DONE") {
         if (typeof logWorkspaceEvent === 'function') {
             logWorkspaceEvent("✨ Your target is complete! Reset the chores board to log a new goal.");
         }
-        return; // Exits the function early so NO code breaks!
+        return; 
     }
 
-    // 3. PARSE CHORE MINUTES SAFELY
+    // 2. PARSE CHORE MINUTES SAFELY
     let mins = 5; 
     if (customInputNode && customInputNode.value) {
         let parsedMins = parseInt(customInputNode.value);
@@ -464,24 +463,22 @@ window.executeChoreTimeLog = function() {
         }
     }
 
-    // 4. UPDATE DATA SYSTEM STATE
+    // 3. UPDATE SYSTEM DATA STATE
     if (typeof workspaceState !== 'undefined' && workspaceState.choreMinutesAccumulated !== undefined) {
         workspaceState.choreMinutesAccumulated += mins;
     } else {
-        // Fallback placeholder if your state structure is simplified
         if (!window.fallbackMinutes) window.fallbackMinutes = 0;
         window.fallbackMinutes += mins;
     }
     
-    // 5. UPDATE NUMERICAL INTERFACE COUNTERS
+    // 4. UPDATE VISUAL COUNTERS ON DASHBOARD
     if (typeof updateChoreTrackingDashboardUI === 'function') {
         updateChoreTrackingDashboardUI();
     }
 
-    // 6. CALCULATE PROGRESS TARGET VALUES
+    // 5. GET PROGRESS TARGET VALUES
     let currentProgress = 0;
     let targetGoal = 100;
-
     if (typeof workspaceState !== 'undefined') {
         currentProgress = workspaceState.choreMinutesAccumulated || 0;
         targetGoal = workspaceState.choreGoalTarget || 100;
@@ -489,22 +486,38 @@ window.executeChoreTimeLog = function() {
         currentProgress = window.fallbackMinutes || 0;
     }
 
-    // 7. HANDLE GOAL COMPLETION CELEBRATION VS. NORMAL SPINNING
+    // 6. CHECK FOR GOAL COMPLETION CELEBRATION!
     if (currentProgress >= targetGoal) {
-        // GOAL REACHED! Stop animations and show DONE status
-        if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
-        if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
+        // Make the hamster spin super fast for a victory lap!
+        if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
+        if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
         
         if (status) {
-            status.innerText = "DONE";
-            status.className = "status-badge state-done";
+            status.innerText = "RUNNING";
+            status.className = "status-badge state-active";
         }
-        
+
         if (typeof logWorkspaceEvent === 'function') {
-            logWorkspaceEvent("🎉 ── GOAL REACHED! ── 🎉 Your hamster helper is so proud of you! You crushed your chore target! 🐹✨");
+            logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
         }
+
+        // Wait 1.5 seconds so the user sees the final run animation finish!
+        setTimeout(() => {
+            if (wheelTrackNode) wheelTrackNode.classList.remove('spinning');
+            if (hamsterSpriteNode) hamsterSpriteNode.classList.remove('active-running');
+            
+            if (status) {
+                status.innerText = "DONE";
+                status.className = "status-badge state-done";
+            }
+            
+            if (typeof logWorkspaceEvent === 'function') {
+                logWorkspaceEvent("🎉 ── GOAL REACHED! ── 🎉 Your hamster helper is so proud of you! You crushed your chore target! 🐹✨");
+            }
+        }, 1500);
+
     } else {
-        // NORMAL LOOP: Make hamster spin, then go back to IDLE
+        // NORMAL LOOP: Run hamster normally, then return to IDLE
         if (wheelTrackNode) wheelTrackNode.classList.add('spinning');
         if (hamsterSpriteNode) hamsterSpriteNode.classList.add('active-running');
 
@@ -517,7 +530,6 @@ window.executeChoreTimeLog = function() {
             logWorkspaceEvent(`Logged <strong>${mins} minutes</strong> of chores.`);
         }
 
-        // Return to idle state after 1.2 seconds if goal isn't met yet
         setTimeout(() => {
             let checkProgress = (typeof workspaceState !== 'undefined') ? workspaceState.choreMinutesAccumulated : (window.fallbackMinutes || 0);
             let checkTarget = (typeof workspaceState !== 'undefined') ? workspaceState.choreGoalTarget : 100;
@@ -533,6 +545,7 @@ window.executeChoreTimeLog = function() {
         }, 1200);
     }
 };
+
 
 
 
@@ -604,21 +617,25 @@ window.triggerTimerToggle = function() {
             if (workspaceState.timerSecondsRemaining > 0) { 
                 workspaceState.timerSecondsRemaining--; 
                 refreshNumericalTimerDisplayReadout(); 
-            } else { 
-                // 1. STOP THE CLOCK LOOP IMMEDIATELY
-                clearInterval(workspaceState.timerIntervalThread); 
-                workspaceState.timerActiveState = false; 
-                if (btn) btn.innerText = "Start"; 
                 
-                // 2. 🔔 RING THE ALARM BELL SAFELY!
-                playTimerChimeAlert();
-                
-                // 3. LOG THE SUCCESS MESSAGE
-                logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>"); 
+                // CRITICAL FIX: If it just hit 0 on this tick, ring IMMEDIATELY!
+                if (workspaceState.timerSecondsRemaining === 0) {
+                    clearInterval(workspaceState.timerIntervalThread); 
+                    workspaceState.timerActiveState = false; 
+                    if (btn) btn.innerText = "Start"; 
+                    
+                    // Call the improved loud ringtone
+                    if (typeof playTimerChimeAlert === 'function') {
+                        playTimerChimeAlert();
+                    }
+                    
+                    logWorkspaceEvent("🔔 <strong>Countdown completed!</strong>"); 
+                }
             } 
         }, 1000); 
     } 
 };
+
 
 window.executeTimerReset = function() {
     clearInterval(workspaceState.timerIntervalThread);
@@ -714,24 +731,25 @@ function playTimerChimeAlert() {
     const audioContextInstance = new AudioCtx();
     const playbackTime = audioContextInstance.currentTime;
     
-    // Play 3 quick, crisp electronic alarm beeps
+    // Play 3 loud, clear digital alarm tones
     for (let index = 0; index < 3; index++) {
       const audioOscillator = audioContextInstance.createOscillator();
       const soundGainNode = audioContextInstance.createGain();
       
-      audioOscillator.type = 'sine'; // Gentler on browsers
-      audioOscillator.frequency.setValueAtTime(index % 2 === 0 ? 880 : 1050, playbackTime + (index * 0.2));
+      audioOscillator.type = 'sine';
+      audioOscillator.frequency.setValueAtTime(index % 2 === 0 ? 900 : 1100, playbackTime + (index * 0.25));
       
-      soundGainNode.gain.setValueAtTime(0.08, playbackTime + (index * 0.2));
-      soundGainNode.gain.exponentialRampToValueAtTime(0.001, playbackTime + (index * 0.2) + 0.12);
+      // Volume boosted from 0.08 to 0.30 for clear hearing!
+      soundGainNode.gain.setValueAtTime(0.30, playbackTime + (index * 0.25));
+      soundGainNode.gain.exponentialRampToValueAtTime(0.001, playbackTime + (index * 0.25) + 0.22);
       
       audioOscillator.connect(soundGainNode);
       soundGainNode.connect(audioContextInstance.destination);
       
-      audioOscillator.start(playbackTime + (index * 0.2));
-      audioOscillator.stop(playbackTime + (index * 0.2) + 0.15);
+      audioOscillator.start(playbackTime + (index * 0.25));
+      audioOscillator.stop(playbackTime + (index * 0.25) + 0.25);
     }
   } catch (error) {
-    console.log("Audio block bypass tracker: ", error);
+    console.log("Audio layout engine notice: ", error);
   }
 }
