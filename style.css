@@ -209,4 +209,48 @@ body {
     font-weight: bold;
 }
 
+/* 🪙 Falling Pixel Coin Physics Animation */
+.falling-pixel-coin {
+    position: absolute;
+    top: -20px;
+    font-size: 1.5rem;
+    z-index: 10;
+    pointer-events: none;
+    animation: coinTumbleFallDown 1s linear forwards;
+}
+
+@keyframes coinTumbleFallDown {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 🕺 Happy Pig Dancing Victory Jump Loop */
+.pig-dancing-animation {
+    animation: pigDanceMovesLoop 0.4s ease infinite;
+}
+
+@keyframes pigDanceMovesLoop {
+    0%, 100% { transform: translateY(0) scaleX(1); }
+    50% { transform: translateY(-25px) scaleX(0.9) rotate(10deg); }
+}
+
+/* 💢 Spending Money Shaking Jitter Effect */
+.pig-shaking-animation {
+    animation: pigShakeDefensiveMoves 0.1s linear infinite;
+}
+
+@keyframes pigShakeDefensiveMoves {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
 
