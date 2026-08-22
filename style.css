@@ -252,19 +252,19 @@ body {
 }
 
 /* 📟 ULTRABOLD RETRO SCORE SCREEN FIX */
+/* 📟 ULTRABOLD RESPONSIVE SCORE SCREEN */
 .pixel-balance-screen {
-    background-color: #1a1a1a;
+    background-color: #ffffff !important; /* Changes the black background to white to match your theme! */
     padding: 16px;
-    border: 3px solid #222222; /* Thick 3px black outline */
-    border-radius: 8px;
+    border: 3px solid #1a1a1a !important; /* Thick 3px charcoal-dark border line wrapper */
+    border-radius: 12px !important; /* Matches your plant panels perfectly */
     margin-bottom: 20px;
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Internal Layout Center Block Alignment Wrapper */
+/* Center Block Alignment Layout Wrapper */
 .screen-content-wrapper {
     display: flex;
     align-items: center;
@@ -273,41 +273,43 @@ body {
     width: 100%;
 }
 
-/* 🪙 SCALED UP CSS PURE PIXEL ART GOLD COIN ICON */
+/* 🪙 THE EMBEDDED GOLD COIN ICON */
 .pixel-gold-coin-icon {
-    width: 22px; /* Increased size to look prominent */
-    height: 22px;
-    background-color: #ffcc00; 
-    border: 3px solid #222222; /* Thick crisp 8-bit outline */
-    box-shadow: inset -3px -3px 0px #fb8500; /* Distinct pixel shadow depth */
+    width: 20px;
+    height: 20px;
+    background-color: #ffd166; 
+    border: 3px solid #1a1a1a !important; /* Thick 3px crisp outlines */
+    box-shadow: inset -3px -3px 0px #f77f00;
     border-radius: 4px;
     display: inline-block;
     flex-shrink: 0;
 }
 
-/* 🟢 HEAVY 8-BIT LCD DIGITAL NUMBER DISPLAY */
+/* 🟢 MATCHING MUTED THEME NUMBER READOUT DISPLAY */
 #piggy-balance-display {
-    color: #4af626; /* Vibrant terminal neon green */
-    font-size: 2.2rem; /* Crisp, oversized readability screen digits */
-    /* Thick monospace stack with an impact backup layer to remove the thin ugly zero */
-    font-family: 'Press Start 2P', 'Courier New', Courier, monospace !important; 
-    font-weight: 900 !important; /* Forces thickest rendering lines possible */
-    letter-spacing: 2px;
-    /* Heavy solid 8-bit dark block text shadow outline drops */
-    text-shadow: 2px 2px 0px #0a2505; 
+    /* FIXES COLOR: Replaces ugly bright green with your beautiful plant sage tint! */
+    color: var(--sage-green) !important; 
+    font-size: 2.5rem; /* Large readability numbers */
+    /* FIXES FONT: Inherits your project's clean sans-serif/inter font stack to fix the ugly zero */
+    font-family: inherit !important; 
+    font-weight: 800 !important; /* Extra thick bold rendering lines */
+    letter-spacing: -1px;
     line-height: 1;
+    /* Clean text display without aggressive neon shadows */
+    text-shadow: none !important; 
 }
 
-/* 🏷️ BOLD GRAY TEXT SEPARATOR LABEL */
+/* 🏷️ BOLD SUBTEXT LABEL SEPARATOR */
 .pixel-text-label {
-    color: #888888;
-    font-size: 1rem;
-    font-family: 'Press Start 2P', 'Courier New', Courier, monospace !important;
-    font-weight: 900 !important;
-    letter-spacing: 1px;
+    color: #1a1a1a !important; /* Matches your panel text header colors */
+    font-size: 1.1rem;
+    font-family: inherit !important;
+    font-weight: 800 !important; /* Matching bold text styling weight */
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    margin-left: 4px;
+    margin-left: 2px;
 }
+
 /* 🐷 THE INTERNAL PIGGY CHAMBER PANEL */
 #pig-sandbox-chamber {
     position: relative;
