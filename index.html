@@ -226,47 +226,57 @@
    <!-- 🐷 RETRO GAME STYLED PIXEL PIGGY BANK -->
 <!-- 🐷 SproutOS THEMED PIXEL PIGGY BANK PANEL -->
 <div class="panel-card-container pixel-piggy-card">
-    <div class="panel-header-title">
-        <span>🐷 PIGGY BANK STASH</span>
-    </div>
-    
-    <!-- Theme-matching Green LCD Score Screen -->
-    <div class="pixel-balance-screen">
-        <span class="gold-coin-symbol">🪙</span>
-        <span id="piggy-balance-display">0</span> 
-        <span class="pixel-text-label">COINS</span>
-    </div>
-
-    <!-- Interactive Sandboxed Physics Chamber -->
-    <div id="pig-sandbox-chamber">
-        <!-- Center-aligned Top Input Coin Slot Chute -->
-        <div class="pig-coin-slot-line"></div>
-        
-        <!-- Interactive Theme-Responsive CSS Pig Asset -->
-        <div id="pixel-pig-sprite" onclick="window.modifyPiggyBankBalance('add')">
-            <div class="pig-ear left"></div>
-            <div class="pig-ear right"></div>
-            <div class="pig-eye left"></div>
-            <div class="pig-eye right"></div>
-            <div class="pig-snout">
-                <div class="nostril"></div>
-                <div class="nostril"></div>
-            </div>
+    <!-- Header Block (Matches the look of your Garden title bar) -->
+    <div class="piggy-panel-header">
+        <div class="piggy-header-title">
+            <span>🐷 Ecosystem Piggy Bank Stash</span>
         </div>
     </div>
+    
+    <!-- Bold Interior Separator Line -->
+    <div class="piggy-header-separator"></div>
 
-    <!-- Integrated Control Dock Line -->
-    <div class="pixel-control-dock">
-        <input type="number" id="piggy-amount-input" placeholder="0" min="1" class="pixel-numeric-input">
-        <button onclick="window.modifyPiggyBankBalance('add')" class="pixel-action-btn btn-deposit">+ DEPOSIT</button>
-        <button onclick="window.modifyPiggyBankBalance('spend')" class="pixel-action-btn btn-withdraw">- SPEND</button>
-    </div>
+    <!-- Main Widget Content Body Area -->
+    <div class="piggy-panel-body">
+        <!-- Theme-matching Green LCD Score Screen -->
+        <div class="pixel-balance-screen">
+            <span class="gold-coin-symbol">🪙</span>
+            <span id="piggy-balance-display">0</span> 
+            <span class="pixel-text-label">COINS</span>
+        </div>
 
-    <!-- Subdued Reset Action -->
-    <div style="margin-top: 15px; text-align: center;">
-        <button onclick="window.resetPiggyBankData()" class="pixel-btn-reset">RESET COIN STORAGE</button>
+        <!-- Interactive Sandboxed Physics Chamber -->
+        <div id="pig-sandbox-chamber">
+            <!-- Center-aligned Top Input Coin Slot Chute -->
+            <div class="pig-coin-slot-line"></div>
+            
+            <!-- Interactive Theme-Responsive CSS Pig Asset -->
+            <div id="pixel-pig-sprite" onclick="window.modifyPiggyBankBalance('add')">
+                <div class="pig-ear left"></div>
+                <div class="pig-ear right"></div>
+                <div class="pig-eye left"></div>
+                <div class="pig-eye right"></div>
+                <div class="pig-snout">
+                    <div class="nostril"></div>
+                    <div class="nostril"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integrated Control Dock Line -->
+        <div class="pixel-control-dock">
+            <input type="number" id="piggy-amount-input" placeholder="0" min="1" class="pixel-numeric-input">
+            <button onclick="window.modifyPiggyBankBalance('add')" class="pixel-action-btn btn-deposit">+ DEPOSIT</button>
+            <button onclick="window.modifyPiggyBankBalance('spend')" class="pixel-action-btn btn-withdraw">- SPEND</button>
+        </div>
+
+        <!-- Subdued Reset Action -->
+        <div style="margin-top: 15px; text-align: center;">
+            <button onclick="window.resetPiggyBankData()" class="pixel-btn-reset">Reset Coin Storage</button>
+        </div>
     </div>
 </div>
+
 
 
         <!-- Footer Log -->
