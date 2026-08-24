@@ -302,3 +302,42 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!-- 📅 PIXEL-ART PLANNER WIDGET CARD CONTAINER -->
+<div class="pixel-piggy-card system-calendar-widget">
+    <div class="piggy-panel-header">
+        <div class="header-left">
+            <span class="pixel-deco-icon">📅</span>
+            <strong>Pixel Planner Station</strong>
+        </div>
+        <div class="calendar-month-controls">
+            <button id="prev-month-btn" class="calendar-btn" onclick="shiftActiveCalendarMonth(-1)">◀</button>
+            <span id="calendar-month-year-label" class="calendar-header-title">August 2026</span>
+            <button id="next-month-btn" class="calendar-btn" onclick="shiftActiveCalendarMonth(1)">▶</button>
+        </div>
+    </div>
+    
+    <div class="calendar-grid-wrapper">
+        <!-- Weekday label indicators -->
+        <div class="calendar-weekdays-row">
+            <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+        </div>
+        <!-- Target matrix container populated via script engine loops -->
+        <div id="calendar-days-grid" class="calendar-days-matrix"></div>
+    </div>
+
+    <!-- Hidden task editor modular sheet overlay inside the card layout -->
+    <div id="calendar-reminder-modal" class="calendar-reminder-editor hidden-layout">
+        <h4 id="modal-date-heading">Edit Reminders</h4>
+        <input type="text" id="calendar-task-input" placeholder="Type milestone description...">
+        <div class="modal-time-row">
+            <label>Notify Time:</label>
+            <input type="time" id="calendar-task-time">
+        </div>
+        <div class="modal-action-row">
+            <button class="modal-btn save-btn" onclick="commitCalendarTaskToMemoryStore()">Save Item</button>
+            <button class="modal-btn close-btn" onclick="hideCalendarReminderModalSheet()">Cancel</button>
+        </div>
+    </div>
+</div>
+
