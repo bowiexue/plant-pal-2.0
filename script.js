@@ -890,3 +890,129 @@ window.makePigShakeDisappointedly = function() {
 document.addEventListener("DOMContentLoaded", () => {
     window.loadPiggyBankDataOnBoot();
 });
+// --- 📅 STANDALONE CELL CALENDAR COMPONENT ENGINE ---
+let globalCalendarActiveDate = new Date();
+let localCalendarRemindersDatabaseMemory = JSON.parse(localStorage.getItem('sproutOS_calendar_reminders_v1') || '{}');
+let activeSelectedCalendarDateStringKey = null;
+
+// Initialize background scheduler scanning sweeps once file reads loop out
+setTimeout(() => {
+    buildVisualCalendarGrid();
+    setInterval(verifyScheduledCalendarNotificationAlarms, 30000); // Scans once every 30 seconds
+}, 200);
+
+function buildVisualCalendarGrid() {
+    const daysGrid = document.getElementById('calendar-days-grid');
+    const monthYearLabel = document.getElementById('calendar-month-year-label');
+    if (!daysGrid || !monthYearLabel) return;
+
+    daysGrid.innerHTML = '';
+    
+    const targetYear = globalCalendarActiveDate.getFullYear();
+    const targetMonth = globalCalendarActiveDate.getMonth();
+
+    // Sets header title strings dynamically
+    const nameStringArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    monthYearLabel.innerText = `${nameStringArr[targetMonth]} ${targetYear}`;
+
+    // Calculates variations in total month lengths cleanly
+    const totalDaysInMonth = new Date(targetYear, targetMonth + 1, 0).getDate();
+    const leadingDayOfWeekIndex = new Date(targetYear, targetMonth, 1).getDay();
+
+    // Spawns layout placeholders for trailing space padding offsets
+    for (let i = 0; i < leadingDayOfWeekIndex; i++) {
+        const spacer = document.createElement('div');
+        spacer.className = 'calendar-day-tile empty-space';
+        daysGrid.appendChild(spacer);
+    }
+
+    // Spawns actual functional date cells mapping days
+    for (let dayNum = 1; dayNum <= totalDaysInMonth; dayNum++) {
+        const tile = document.createElement('div');
+        tile.className = 'calendar-day-tile';
+        tile.innerText = dayNum;
+
+        // Formats memory mapping lookup string patterns (YYYY-MM-DD)
+        const currentTrackingDateKey = `${targetYear}-${String(targetMonth + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+        
+        if (localCalendarRemindersDatabaseMemory[currentTrackingDateKey]) {
+            tile.classList.add('has-reminder');
+        }
+
+        tile.onclick = () => revealCalendarReminderModalSheet(currentTrackingDateKey, dayNum, nameStringArr[targetMonth]);
+        daysGrid.appendChild(tile);
+    }
+}
+
+function shiftActiveCalendarMonth(directionOffsetAmount) {
+    globalCalendarActiveDate.setMonth(globalCalendarActiveDate.getMonth() + directionOffsetAmount);
+    buildVisualCalendarGrid();
+}
+
+function revealCalendarReminderModalSheet(dateKeyString, dateNumber, monthStringLabel) {
+    activeSelectedCalendarDateStringKey = dateKeyString;
+    const modal = document.getElementById('calendar-reminder-modal');
+    const heading = document.getElementById('modal-date-heading');
+    const textInput = document.getElementById('calendar-task-input');
+    const timeInput = document.getElementById('calendar-task-time');
+
+    heading.innerText = `Reminders for ${monthStringLabel} ${dateNumber}`;
+    
+    // Autofills if record row exists in variable mappings
+    const activeSavedRecord = localCalendarRemindersDatabaseMemory[dateKeyString];
+    if (activeSavedRecord) {
+        textInput.value = activeSavedRecord.text || '';
+        timeInput.value = activeSavedRecord.time || '';
+    } else {
+        textInput.value = '';
+        timeInput.value = '12:00';
+    }
+
+    modal.classList.remove('hidden-layout');
+}
+
+function hideCalendarReminderModalSheet() {
+    const modal = document.getElementById('calendar-reminder-modal');
+    if (modal) modal.classList.add('hidden-layout');
+}
+
+function commitCalendarTaskToMemoryStore() {
+    if (!activeSelectedCalendarDateStringKey) return;
+
+    const textVal = document.getElementById('calendar-task-input').value.trim();
+    const timeVal = document.getElementById('calendar-task-time').value;
+
+    if (textVal) {
+        localCalendarRemindersDatabaseMemory[activeSelectedCalendarDateStringKey] = {
+            text: textVal,
+            time: timeVal,
+            triggered: false
+        };
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent(`Saved log note for date: <strong>${activeSelectedCalendarDateStringKey}</strong>`);
+        }
+    } else {
+        delete localCalendarRemindersDatabaseMemory[activeSelectedCalendarDateStringKey];
+    }
+
+    localStorage.setItem('sproutOS_calendar_reminders_v1', JSON.stringify(localCalendarRemindersDatabaseMemory));
+    hideCalendarReminderModalSheet();
+    buildVisualCalendarGrid();
+}
+
+function verifyScheduledCalendarNotificationAlarms() {
+    const now = new Date();
+    const localDateStringKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    const localTimeStringKey = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+    const matchCandidateRow = localCalendarRemindersDatabaseMemory[localDateStringKey];
+    if (matchCandidateRow && !matchCandidateRow.triggered) {
+        if (matchCandidateRow.time === localTimeStringKey) {
+            matchCandidateRow.triggered = true;
+            localStorage.setItem('sproutOS_calendar_reminders_v1', JSON.stringify(localCalendarRemindersDatabaseMemory));
+            
+            // Fires browser alert framework notification boxes instantly
+            alert(`✨ SproutOS Reminder Alert! ✨\n\n📌 Task: ${matchCandidateRow.text}`);
+        }
+    }
+}
