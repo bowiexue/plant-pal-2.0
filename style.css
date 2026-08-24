@@ -491,13 +491,15 @@ body {
     50% { transform: translateX(-5px); }
 }
 /* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (MEDIUM BALANCED) */
+/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (WIDE ALIGNED) */
 .system-calendar-widget {
     position: relative;
     padding: 0 !important;
     overflow: hidden;
-    max-width: 350px; /* Perfectly fills space without overpowering your boards */
-    margin: 15px auto;
+    max-width: 480px;  /* Increments width constraints so cells stretch wider */
+    margin: 20px 0;    /* Changes 'auto' to '0' to pull the block directly to the left side */
 }
+
 
 .calendar-month-controls {
     display: flex;
