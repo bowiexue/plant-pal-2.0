@@ -418,6 +418,28 @@ function setupSandboxEngine() {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
+        // Randomly selects one of your 6 new CSS pixel art sprite ids
+        const totalSpritesCount = 6; 
+        const randomizedIndexId = Math.floor(Math.random() * totalSpritesCount) + 1;
+        
+        const node = document.createElement('div');
+        // Attaches classes that map directly to the CSS pixel background drawings
+        node.className = `sandbox-companion pixel-sprite-buddy-node sprite-id-${randomizedIndexId}`;
+        node.style.left = `${x}px`;
+        node.style.top = `${y}px`;
+        
+        activeSandbox.appendChild(node);
+        logWorkspaceEvent(`Hatched pixel companion ID: <strong>#${randomizedIndexId}</strong>`);
+    });
+}
+
+
+    activeSandbox.addEventListener('click', (e) => {
+        if (e.target.classList.contains('sandbox-companion')) return;
+        const rect = activeSandbox.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
         // --- UPDATED PIXEL RENDERING CODE BLOCK ---
         // Randomized index selectors matching your new CSS sprite sheets array keys
         const totalSpritesCount = 6; 
