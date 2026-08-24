@@ -10,7 +10,7 @@
     --text-primary: #2d312d;
     --text-muted: #616961;
     --border-radius-smooth: 12px;
-    --neo-flat-shadow: 3px 3px 0px #3d423d;
+    --neo-flat-shadow: 3px 3px 0px #222222;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -212,14 +212,14 @@ body {
 /* 🧱 SPROUT-OS PIXEL ART CONTAINER SYSTEM */
 .pixel-piggy-card {
     background: #ffffff !important;
-    /* Thick 3px charcoal-dark structural borders to match your main panel */
     border: 3px solid #222222 !important;
     border-radius: 12px !important;
     margin: 20px 0;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05);
-    padding: 0 !important; /* Cleared out so header row stretches edge-to-edge */
-    overflow: hidden;
+    /* Change rgba(0,0,0,0.05) to solid #222222 */
+    box-shadow: 4px 4px 0px #222222; 
+    padding: 0 !important;
 }
+
 
 /* 🏷️ PANEL TITLE INNER TEXT LAYOUT */
 .piggy-panel-header {
