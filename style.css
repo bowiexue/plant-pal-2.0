@@ -490,14 +490,17 @@ body {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(-5px); }
 }
-/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (MEDIUM BALANCED) */
-/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (WIDE ALIGNED) */
+/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (PERFECT ALIGNMENT) */
 .system-calendar-widget {
     position: relative;
     padding: 0 !important;
     overflow: hidden;
-    max-width: 480px;  /* Increments width constraints so cells stretch wider */
-    margin: 20px 0;    /* Changes 'auto' to '0' to pull the block directly to the left side */
+    max-width: 480px;  
+    /* Restores the left side offset spacing while keeping it aligned to the left */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px; /* Adjust this number to match your exact card offsets */
+    margin-right: auto;
 }
 
 
