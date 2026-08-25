@@ -1016,3 +1016,27 @@ function verifyScheduledCalendarNotificationAlarms() {
         }
     }
 }
+// --- 🗑️ PURGE CALENDAR RECOVERY METRICS ACTION ---
+window.clearAllCalendarPlannerReminders = function() {
+    // Shows a native browser popup verification modal window to protect against accidental clicks
+    if (confirm("Are you sure you want to clear your pixel planner? This will permanently wipe out all saved task items and active milestones!")) {
+        
+        // Destroys database object profiles entirely 
+        localCalendarRemindersDatabaseMemory = {};
+        
+        // Clears out browser cache slots matching our system namespace key
+        localStorage.removeItem('sproutOS_calendar_reminders_v1');
+        
+        // Closes the editor menu row overlay if it was open on a date cell
+        hideCalendarReminderModalSheet();
+        
+        // Rebuilds the visual day block elements completely clean
+        buildVisualCalendarGrid();
+        
+        // Logs updates directly to your system sidebar activity track history window if it's available
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("🚨 <strong>Calendar cleared!</strong> All saved milestone tasks purged.");
+        }
+    }
+};
+
