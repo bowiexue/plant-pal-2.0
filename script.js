@@ -949,56 +949,109 @@ function shiftActiveCalendarMonth(directionOffsetAmount) {
     buildVisualCalendarGrid();
 }
 
+// --- 📑 REVEAL MODAL PREVIEW AND POPULATE EXISTING ARRAY METRICS ---
 function revealCalendarReminderModalSheet(dateKeyString, dateNumber, monthStringLabel) {
     activeSelectedCalendarDateStringKey = dateKeyString;
     const modal = document.getElementById('calendar-reminder-modal');
     const heading = document.getElementById('modal-date-heading');
     const textInput = document.getElementById('calendar-task-input');
-    const timeInput = document.getElementById('calendar-task-time');
-
-    heading.innerText = `Reminders for ${monthStringLabel} ${dateNumber}`;
     
-    // Autofills if record row exists in variable mappings
-    const activeSavedRecord = localCalendarRemindersDatabaseMemory[dateKeyString];
-    if (activeSavedRecord) {
-        textInput.value = activeSavedRecord.text || '';
-        timeInput.value = activeSavedRecord.time || '';
-    } else {
-        textInput.value = '';
-        timeInput.value = '12:00';
-    }
-
+    heading.innerText = `Milestones for ${monthStringLabel} ${dateNumber}`;
+    textInput.value = ''; // Clears input box for a fresh entry
+    
+    // Automatically renders a clean list view of existing milestones inside the slider modal
+    renderModalMilestoneItemsList(dateKeyString);
     modal.classList.remove('hidden-layout');
 }
 
-function hideCalendarReminderModalSheet() {
-    const modal = document.getElementById('calendar-reminder-modal');
-    if (modal) modal.classList.add('hidden-layout');
+// Helper layout function to display list rows inside your modal popup
+function renderModalMilestoneItemsList(dateKeyString) {
+    let listContainer = document.getElementById('modal-milestones-list-view');
+    
+    // Lazy-creates the list block if it doesn't exist inside your editor layout container
+    if (!listContainer) {
+        listContainer = document.createElement('div');
+        listContainer.id = 'modal-milestones-list-view';
+        listContainer.style.cssText = 'max-height: 80px; overflow-y: auto; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;';
+        const inputFieldNode = document.getElementById('calendar-task-input');
+        if (inputFieldNode) inputFieldNode.parentNode.insertBefore(listContainer, inputFieldNode);
+    }
+    
+    listContainer.innerHTML = '';
+    const dayRecordsArray = localCalendarRemindersDatabaseMemory[dateKeyString] || [];
+    
+    if (dayRecordsArray.length === 0) {
+        listContainer.innerHTML = '<div style="font-size:0.75rem; color:#888; font-style:italic;">No tasks saved for today.</div>';
+        return;
+    }
+    
+    // Renders matching rows with independent ❌ buttons for each item entry
+    dayRecordsArray.forEach((item, index) => {
+        const itemRow = document.createElement('div');
+        itemRow.style.cssText = 'display:flex; justify-content:space-between; align-items:center; background:#fafafa; border:1px solid #ddd; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;';
+        itemRow.innerHTML = `
+            <span>⏰ <b>[${item.time}]</b> ${item.text}</span>
+            <span style="cursor:pointer; color:#ff4d4d; margin-left:6px;" onclick="deleteSingleCalendarMilestoneItem('${dateKeyString}', ${index})">❌</span>
+        `;
+        listContainer.appendChild(itemRow);
+    });
 }
 
+// --- 💾 APPEND AN ENTRY PROFILE TO THE ACTIVE ARRAY TARGET ---
 function commitCalendarTaskToMemoryStore() {
     if (!activeSelectedCalendarDateStringKey) return;
 
     const textVal = document.getElementById('calendar-task-input').value.trim();
     const timeVal = document.getElementById('calendar-task-time').value;
 
-    if (textVal) {
-        localCalendarRemindersDatabaseMemory[activeSelectedCalendarDateStringKey] = {
-            text: textVal,
-            time: timeVal,
-            triggered: false
-        };
-        if (typeof logWorkspaceEvent === 'function') {
-            logWorkspaceEvent(`Saved log note for date: <strong>${activeSelectedCalendarDateStringKey}</strong>`);
-        }
-    } else {
-        delete localCalendarRemindersDatabaseMemory[activeSelectedCalendarDateStringKey];
+    if (!textVal) return; // Ignores blank form actions
+
+    // Initializes data slots as a clean list map if it was empty
+    if (!Array.isArray(localCalendarRemindersDatabaseMemory[activeSelectedCalendarDateStringKey])) {
+        localCalendarRemindersDatabaseMemory[activeSelectedCalendarDateStringKey] = [];
     }
 
+    // Safely pushes the fresh milestone configuration entry to the list array
+    localCalendarRemindersDatabaseMemory[activeSelectedCalendarDateStringKey].push({
+        text: textVal,
+        time: timeVal,
+        triggered: false
+    });
+
     localStorage.setItem('sproutOS_calendar_reminders_v1', JSON.stringify(localCalendarRemindersDatabaseMemory));
-    hideCalendarReminderModalSheet();
+    
+    if (typeof logWorkspaceEvent === 'function') {
+        logWorkspaceEvent(`Added item entry to milestone register: <strong>${activeSelectedCalendarDateStringKey}</strong>`);
+    }
+
+    // Refresh view structures immediately without shutting down window panels
+    document.getElementById('calendar-task-input').value = '';
+    renderModalMilestoneItemsList(activeSelectedCalendarDateStringKey);
     buildVisualCalendarGrid();
 }
+
+// --- 🗑️ PURGE AN INDEPENDENT SUBROW BY KEY SELECTION INDEX ---
+window.deleteSingleCalendarMilestoneItem = function(dateKeyString, itemIndex) {
+    if (!localCalendarRemindersDatabaseMemory[dateKeyString]) return;
+    
+    localCalendarRemindersDatabaseMemory[dateKeyString].splice(itemIndex, 1);
+    
+    // Clears the empty memory key register slot entirely if no items remain
+    if (localCalendarRemindersDatabaseMemory[dateKeyString].length === 0) {
+        delete localCalendarRemindersDatabaseMemory[dateKeyString];
+    }
+    
+    localStorage.setItem('sproutOS_calendar_reminders_v1', JSON.stringify(localCalendarRemindersDatabaseMemory));
+    
+    // Updates UI layers immediately
+    renderModalMilestoneItemsList(dateKeyString);
+    buildVisualCalendarGrid();
+    
+    if (typeof logWorkspaceEvent === 'function') {
+        logWorkspaceEvent("Removed isolated schedule track row entry.");
+    }
+};
+
 
 function verifyScheduledCalendarNotificationAlarms() {
     const now = new Date();
