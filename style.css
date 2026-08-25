@@ -490,164 +490,175 @@ body {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(-5px); }
 }
-/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (PERFECT ALIGNMENT) */
-/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (FORCED ALIGNMENT) */
-/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (GRID COMPLIANT) */
+/* 📅 DYNAMIC PIXEL-ART CALENDAR GRAPHICS STYLING SHEET (LEFT-COLUMN STRETCH) */
 .system-calendar-widget {
-    position: relative;
+    position: relative !important;
     padding: 0 !important;
-    overflow: hidden;
-    width: 100%; /* Spans the calendar across the entire width of its parent column container */
-    margin: 0; /* Lets the grid handle vertical gap distributions naturally */
+    overflow: hidden !important;
+    width: 100% !important;
+    margin: 0 !important;
+    
+    /* Perfect matching card frame styles */
+    background-color: var(--card-surface, #ffffff) !important;
+    border: 2.5px solid var(--border-charcoal, #3d423d) !important;
+    border-radius: var(--border-radius-smooth, 12px) !important;
+    box-shadow: var(--neo-flat-shadow, 3px 3px 0px #3d423d) !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-
-
+/* 🏷️ PANEL TITLE INNER TEXT LAYOUT */
+.system-calendar-widget .piggy-panel-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    background-color: var(--card-surface, #ffffff) !important;
+    border-bottom: 2.5px solid var(--border-charcoal, #3d423d) !important;
+    border-top-left-radius: 9px !important;
+    border-top-right-radius: 9px !important;
+}
 
 .calendar-month-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
 }
 
 .calendar-btn {
-    background: #ffffff;
-    border: 2px solid var(--border-charcoal, #3d423d);
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-    box-shadow: 1px 1px 0px var(--border-charcoal, #3d423d);
-}
-
-.calendar-btn:active {
-    transform: translate(1px, 1px);
-    box-shadow: 0px 0px 0px;
+    background: #ffffff !important;
+    border: 2px solid var(--border-charcoal, #3d423d) !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 0.7rem !important;
+    padding: 1px 5px !important;
+    box-shadow: 1px 1px 0px var(--border-charcoal, #3d423d) !important;
 }
 
 .calendar-header-title {
-    font-weight: bold;
-    min-width: 95px;
-    text-align: center;
-    font-size: 0.88rem;
+    font-weight: bold !important;
+    min-width: 85px !important;
+    text-align: center !important;
+    font-size: 0.82rem !important;
 }
 
+/* 📦 INTERNAL WRAPPER SCALING */
 .calendar-grid-wrapper {
-    padding: 12px; /* Balanced spacing around grid slots */
-    background: var(--linen-white, #f7f9f7);
+    padding: 10px !important;
+    background: var(--linen-white, #f7f9f7) !important;
 }
 
 .calendar-weekdays-row {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.75rem;
-    color: var(--text-muted, #616961);
-    margin-bottom: 6px;
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    font-size: 0.72rem !important;
+    color: var(--text-muted, #616961) !important;
+    margin-bottom: 6px !important;
 }
 
 .calendar-days-matrix {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 4px !important;
 }
 
-/* Balanced day blocks with room for text and icons */
+/* 📆 SHRUNK INDIVIDUAL CELL BLOCKS */
 .calendar-day-tile {
-    aspect-ratio: 1;
-    background: #ffffff;
-    border: 1px solid #d1dfd1;
-    border-radius: 4px;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: background 0.15s;
+    aspect-ratio: 1 !important;
+    background: #ffffff !important;
+    border: 1.5px solid var(--sage-green, #d1dfd1) !important;
+    border-radius: 6px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    transition: background 0.15s !important;
 }
 
 .calendar-day-tile:hover {
-    background: var(--sage-green, #d1dfd1);
+    background: var(--sage-green, #d1dfd1) !important;
 }
 
 .calendar-day-tile.empty-space {
-    background: transparent;
-    border: none;
-    cursor: default;
+    background: transparent !important;
+    border: none !important;
+    cursor: default !important;
 }
 
-/* Star pixel indicator scaled elegantly */
 .calendar-day-tile.has-reminder::after {
-    content: '⭐';
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    font-size: 0.5rem;
+    content: '⭐' !important;
+    position: absolute !important;
+    bottom: 1px !important;
+    right: 2px !important;
+    font-size: 0.45rem !important;
 }
 
-/* Inline data form slider modal setup */
+/* 📑 EDIT REMINDER MODAL PANEL SLIDE */
 .calendar-reminder-editor {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #ffffff;
-    border-top: 2px solid var(--border-charcoal, #3d423d);
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    transition: transform 0.25s ease;
-    z-index: 10;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #ffffff !important;
+    border-top: 2.5px solid var(--border-charcoal, #3d423d) !important;
+    padding: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    transition: transform 0.2s ease !important;
+    z-index: 10 !important;
 }
 
 .calendar-reminder-editor.hidden-layout {
-    transform: translateY(100%);
+    transform: translateY(100%) !important;
 }
 
 .calendar-reminder-editor h4 {
-    margin: 0;
-    font-size: 0.85rem;
+    margin: 0 !important;
+    font-size: 0.8rem !important;
 }
 
 .calendar-reminder-editor input[type="text"] {
-    padding: 5px;
-    font-size: 0.8rem;
-    border: 2px solid var(--border-charcoal, #3d423d);
-    border-radius: 4px;
+    padding: 4px !important;
+    font-size: 0.75rem !important;
+    border: 2px solid var(--border-charcoal, #3d423d) !important;
+    border-radius: 4px !important;
 }
 
 .modal-time-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.75rem;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 0.72rem !important;
 }
 
 .modal-time-row input[type="time"] {
-    font-size: 0.75rem;
-    padding: 3px;
+    font-size: 0.72rem !important;
+    padding: 1px !important;
 }
 
 .modal-action-row {
-    display: flex;
-    justify-content: flex-end;
-    gap: 6px;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 4px !important;
 }
 
 .modal-btn {
-    padding: 3px 8px;
-    border: 2px solid var(--border-charcoal, #3d423d);
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.75rem;
+    padding: 2px 6px !important;
+    border: 2px solid var(--border-charcoal, #3d423d) !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-size: 0.72rem !important;
 }
 
-.save-btn { background: #b3cbb4; }
-.close-btn { background: #fae1d4; }
+.save-btn { background: #b3cbb4 !important; }
+.close-btn { background: #fae1d4 !important; }
+
 
 
