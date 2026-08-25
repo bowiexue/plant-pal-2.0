@@ -564,11 +564,25 @@ body {
     gap: 4px !important;
 }
 
-/* 📆 SHRUNK INDIVIDUAL CELL BLOCKS */
+/* 🏷️ CALENDAR PANEL HEADER ALIGNMENT (THEME RESPONSIVE) */
+.system-calendar-widget .piggy-panel-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 18px !important;
+    /* Automatically pulls the exact primary background shade for all 6 styles! */
+    background-color: var(--sage-green) !important;
+    border-bottom: 2.5px solid var(--border-charcoal, #3d423d) !important;
+    border-top-left-radius: 9px !important;
+    border-top-right-radius: 9px !important;
+}
+
+/* 📆 VARIABLE-DRIVEN DAY CELL BLOCKS */
 .calendar-day-tile {
     aspect-ratio: 1 !important;
     background: #ffffff !important;
-    border: 1.5px solid var(--sage-green, #d1dfd1) !important;
+    /* 🔄 UPDATED: Automatically matches your day tile outlines to your active environment color! */
+    border: 1.5px solid var(--sage-green) !important;
     border-radius: 6px !important;
     position: relative !important;
     cursor: pointer !important;
@@ -577,8 +591,14 @@ body {
     justify-content: center !important;
     font-size: 0.78rem !important;
     font-weight: 600 !important;
-    transition: background 0.15s !important;
+    transition: background 0.15s, border-color 0.3s !important;
 }
+
+.calendar-day-tile:hover {
+    /* Highlights cells using your environment's signature palette accent */
+    background: var(--sage-green) !important;
+}
+
 
 .calendar-day-tile:hover {
     background: var(--sage-green, #d1dfd1) !important;
