@@ -661,4 +661,17 @@ body {
 .close-btn { background: #fae1d4 !important; }
 
 
+/* 🚨 CALENDAR WIPE PANEL BUTTON MODIFIERS */
+.system-calendar-widget .btn-sm {
+    padding: 3px 8px !important;
+    font-size: 0.72rem !important;
+    border-radius: 4px !important;
+    box-shadow: 1.5px 1.5px 0px var(--border-charcoal, #3d423d) !important;
+    font-family: 'Fredoka', sans-serif !important;
+}
+
+.system-calendar-widget .btn-sm:active {
+    transform: translate(1px, 1px) !important;
+    box-shadow: 0.5px 0.5px 0px var(--border-charcoal, #3d423d) !important;
+}
 
