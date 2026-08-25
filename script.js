@@ -1058,17 +1058,27 @@ function verifyScheduledCalendarNotificationAlarms() {
     const localDateStringKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
     const localTimeStringKey = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-    const matchCandidateRow = localCalendarRemindersDatabaseMemory[localDateStringKey];
-    if (matchCandidateRow && !matchCandidateRow.triggered) {
-        if (matchCandidateRow.time === localTimeStringKey) {
-            matchCandidateRow.triggered = true;
+    const matchCandidateArrayList = localCalendarRemindersDatabaseMemory[localDateStringKey];
+    if (Array.isArray(matchCandidateArrayList)) {
+        let updatedDatabaseStateFlag = false;
+
+        // Iterates down over every assigned milestone saved under today's key
+        matchCandidateArrayList.forEach(item => {
+            if (!item.triggered && item.time === localTimeStringKey) {
+                item.triggered = true;
+                updatedDatabaseStateFlag = true;
+                
+                // Triggers browser native modal notifications instantly
+                alert(`✨ SproutOS Milestone Reminder Alert! ✨\n\n📌 Task: ${item.text}`);
+            }
+        });
+
+        if (updatedDatabaseStateFlag) {
             localStorage.setItem('sproutOS_calendar_reminders_v1', JSON.stringify(localCalendarRemindersDatabaseMemory));
-            
-            // Fires browser alert framework notification boxes instantly
-            alert(`✨ SproutOS Reminder Alert! ✨\n\n📌 Task: ${matchCandidateRow.text}`);
         }
     }
 }
+
 // --- 🗑️ PURGE CALENDAR RECOVERY METRICS ACTION ---
 window.clearAllCalendarPlannerReminders = function() {
     // Shows a native browser popup verification modal window to protect against accidental clicks
