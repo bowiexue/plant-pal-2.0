@@ -1102,4 +1102,15 @@ window.clearAllCalendarPlannerReminders = function() {
         }
     }
 };
+// --- 🚪 MULTI-NAMING BUTTON OVERLAY FALLBACK CLOSER ---
+window.hideCalendarReminderModalSheet = function() {
+    const modalElementNode = document.getElementById('calendar-reminder-modal');
+    if (modalElementNode) {
+        // Instantly slides the item editor sheet back down out of the viewport view
+        modalElementNode.classList.add('hidden-layout');
+    }
+};
+
+// Alternate shortcut reference name layout fallback to handle both versions perfectly
+window.hideCalendarReminderModalSheetAction = window.hideCalendarReminderModalSheet;
 
