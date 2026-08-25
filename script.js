@@ -57,7 +57,7 @@ const stringFontTransformationMappers = {
     }
 };
 
-const playgroundCreatures = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐣", "🐸", "🐳", "🦄", "🐝"];
+const playgroundCreatures = ["🐹", "🐰", "🦊", "🐻", "🐼", "🐣", "🐸", "🐳", "🦄", "🐝", "🐷", "🦁", "🐻‍❄️"];
 
 window.addEventListener('DOMContentLoaded', () => {
     synchronizeLocalStorageData();
