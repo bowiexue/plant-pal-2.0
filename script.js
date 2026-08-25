@@ -415,7 +415,7 @@ function setupSandboxEngine() {
             sparkle.style.position = 'absolute';
             sparkle.style.fontSize = '1.2rem';
             sparkle.style.pointerEvents = 'none';
-            sparkle.innerText = Math.random() > 0.5 ? '✨' : '⭐' : '🌟';
+            sparkle.innerText = Math.random() > 0.5 ? '✨' : '⭐';
             activeSandbox.appendChild(sparkle);
             setTimeout(() => sparkle.remove(), 400);
         }
