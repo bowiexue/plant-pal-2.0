@@ -696,27 +696,35 @@ body {
 }
 
 /* 👾 RETRO PIXEL ART COMPANION GRAPHICS CONFIGURATION */
-.pixel-sprite-buddy-node {
-    width: 24px !important;
-    height: 24px !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    position: absolute !important;
-    transform: translate(-50%, -50%) !important; /* Centers the animal right under your cursor */
-    pointer-events: auto !important;
-    cursor: pointer !important;
+.sandbox-companion.pixel-sprite-buddy-node {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     
-    /* Forces browsers to display tiny low-res sprites cleanly without smoothing blur */
+    /* Forces big, visible bounding box sizes so they don't load at 0px */
+    width: 32px !important;
+    height: 32px !important;
+    
+    position: absolute !important;
+    transform: translate(-50%, -50%) !important; 
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    
+    /* Injects crisp retro scaling engines */
     image-rendering: pixelated !important;
     image-rendering: crisp-edges !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
     background-position: center !important;
-    z-index: 5 !important;
+    
+    /* Forces the animals to sit on top of your grid backgrounds instead of under them */
+    z-index: 9999 !important; 
 }
 
 /* Custom retro assets utilizing transparent CSS background channels */
-.sprite-id-1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%23e5a93b"/><rect x="5" y="6" width="2" height="2" fill="%23222"/><rect x="9" y="6" width="2" height="2" fill="%23222"/><rect x="6" y="9" width="4" height="2" fill="%23d66060"/></svg>'); } /* Hamster */
-.sprite-id-2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="5" y="5" width="6" height="8" fill="%23dedfde"/><rect x="4" y="2" width="2" height="4" fill="%23dedfde"/><rect x="10" y="2" width="2" height="4" fill="%23dedfde"/><rect x="6" y="7" width="1" height="1" fill="%23222"/><rect x="9" y="7" width="1" height="1" fill="%23222"/></svg>'); } /* Bunny */
-.sprite-id-3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="5" width="8" height="7" fill="%23e67e22"/><rect x="3" y="3" width="3" height="3" fill="%23e67e22"/><rect x="10" y="3" width="3" height="3" fill="%23e67e22"/><rect x="6" y="10" width="4" height="2" fill="%23fff"/></svg>'); } /* Fox */
-.sprite-id-4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%238c6239"/><rect x="3" y="3" width="3" height="3" fill="%236d4c2b"/><rect x="10" y="3" width="3" height="3" fill="%236d4c2b"/><rect x="6" y="7" width="1" height="1" fill="%23fff"/><rect x="9" y="7" width="1" height="1" fill="%23fff"/></svg>'); } /* Bear */
-.sprite-id-5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%23fff"/><rect x="3" y="3" width="3" height="3" fill="%23222"/><rect x="10" y="3" width="3" height="3" fill="%23222"/><rect x="4" y="8" width="8" height="4" fill="%23222"/></svg>'); } /* Panda */
-.sprite-id-6 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="5" width="8" height="7" fill="%232ecc71"/><rect x="5" y="4" width="2" height="2" fill="%23fff"/><rect x="9" y="4" width="2" height="2" fill="%23fff"/><rect x="6" y="5" width="1" height="1" fill="%23000"/><rect x="10" y="5" width="1" height="1" fill="%23000"/></svg>'); } /* Frog */
+.sprite-id-1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%23e5a93b"/><rect x="5" y="6" width="2" height="2" fill="%23222"/><rect x="9" y="6" width="2" height="2" fill="%23222"/><rect x="6" y="9" width="4" height="2" fill="%23d66060"/></svg>') !important; }
+.sprite-id-2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="5" y="5" width="6" height="8" fill="%23dedfde"/><rect x="4" y="2" width="2" height="4" fill="%23dedfde"/><rect x="10" y="2" width="2" height="4" fill="%23dedfde"/><rect x="6" y="7" width="1" height="1" fill="%23222"/><rect x="9" y="7" width="1" height="1" fill="%23222"/></svg>') !important; }
+.sprite-id-3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="5" width="8" height="7" fill="%23e67e22"/><rect x="3" y="3" width="3" height="3" fill="%23e67e22"/><rect x="10" y="3" width="3" height="3" fill="%23e67e22"/><rect x="6" y="10" width="4" height="2" fill="%23fff"/></svg>') !important; }
+.sprite-id-4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%238c6239"/><rect x="3" y="3" width="3" height="3" fill="%236d4c2b"/><rect x="10" y="3" width="3" height="3" fill="%236d4c2b"/><rect x="6" y="7" width="1" height="1" fill="%23fff"/><rect x="9" y="7" width="1" height="1" fill="%23fff"/></svg>') !important; }
+.sprite-id-5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%23fff"/><rect x="3" y="3" width="3" height="3" fill="%23222"/><rect x="10" y="3" width="3" height="3" fill="%23222"/><rect x="4" y="8" width="8" height="4" fill="%23222"/></svg>') !important; }
+.sprite-id-6 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="5" width="8" height="7" fill="%232ecc71"/><rect x="5" y="4" width="2" height="2" fill="%23fff"/><rect x="9" y="4" width="2" height="2" fill="%23fff"/><rect x="6" y="5" width="1" height="1" fill="%23000"/><rect x="10" y="5" width="1" height="1" fill="%23000"/></svg>') !important; }
