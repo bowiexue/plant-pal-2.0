@@ -894,46 +894,40 @@ body {
 }
 /* 👾 PREMIUM PIXEL ART COMPANIONS (PART 4: THREE NEW BUDDIES) */
 
-/* 🐶 Companion #10: PERFECT UN-CURSED PUPPY (NO SHADOW GLITCHES) */
-.sprite-id-10 {
+/* 🐶 Companion #10: FIXED RETRO PUPPY (EXPANDED BOX SIZE) */
+.sandbox-companion.sprite-id-10 {
     width: 14px !important;
     height: 11px !important;
     background: 
-        /* Top Row (Ears Only) */
-        linear-gradient(to right, #1e1e1e 2px, transparent 2px 10px, #1e1e1e 10px) 0px 0px/14px 1px,
-        linear-gradient(to right, #1e1e1e 1px, #6d4c41 1px 3px, #1e1e1e 3px 9px, #6d4c41 9px 11px, #1e1e1e 11px) 0px 1px/14px 1px,
-        linear-gradient(to right, #1e1e1e 1px, #6d4c41 1px 2px, #1e1e1e 2px 10px, #6d4c41 10px 11px, #1e1e1e 11px) 0px 2px/14px 1px,
-        /* Face Rows (Welded Clean) */
-        linear-gradient(to right, #1e1e1e 2px, #ffb74d 2px 10px, #1e1e1e 10px) 0px 3px/14px 1px,
-        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 3px, #1e1e1e 3px 4px, #ffb74d 4px 8px, #1e1e1e 8px 9px, #ffb74d 9px 11px, #1e1e1e 11px) 0px 4px/14px 1px, /* Eyes */
-        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 5px, #1e1e1e 5px 7px, #ffb74d 7px 11px, #1e1e1e 11px) 0px 5px/14px 1px, /* Nose */
-        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 3px, #ffffff 3px 9px, #ffb74d 9px 11px, #1e1e1e 11px) 0px 6px/14px 1px, /* Muzzle */
-        /* Chin Base */
-        linear-gradient(to right, transparent 2px, #1e1e1e 2px 10px, transparent 10px) 0px 7px/14px 1px !important;
+        linear-gradient(to right, #1e1e1e 2px, transparent 2px 12px, #1e1e1e 12px) 0px 0px,
+        linear-gradient(to right, #1e1e1e 1px, #6d4c41 1px 3px, #1e1e1e 3px 11px, #6d4c41 11px 13px, #1e1e1e 13px) 0px 1px,
+        linear-gradient(to right, #1e1e1e 1px, #6d4c41 1px 2px, #1e1e1e 2px 12px, #6d4c41 12px 13px, #1e1e1e 13px) 0px 2px,
+        linear-gradient(to right, #1e1e1e 2px, #ffb74d 2px 12px, #1e1e1e 12px) 0px 3px,
+        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 3px, #1e1e1e 3px 4px, #ffb74d 4px 10px, #1e1e1e 10px 11px, #ffb74d 11px 13px, #1e1e1e 13px) 0px 4px,
+        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 6px, #1e1e1e 6px 8px, #ffb74d 8px 13px, #1e1e1e 13px) 0px 5px,
+        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 4px, #ffffff 4px 10px, #ffb74d 10px 13px, #1e1e1e 13px) 0px 6px,
+        linear-gradient(to right, transparent 2px, #1e1e1e 2px 12px, transparent 12px) 0px 7px !important;
+    background-size: 14px 11px !important;
     background-repeat: no-repeat !important;
     box-shadow: none !important;
 }
 
-/* 🐥 Companion #11: PERFECT CHICK (BEARD REMOVED & BIG BEAK) */
-.sprite-id-11 {
+/* 🐥 Companion #11: FIXED BABY CHICK (EXPANDED BOX SIZE) */
+.sandbox-companion.sprite-id-11 {
     width: 14px !important;
     height: 11px !important;
     background: 
-        /* Head Top Curve */
-        linear-gradient(to right, transparent 3px, #1e1e1e 3px 9px, transparent 9px) 0px 0px/14px 1px,
-        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 10px, #1e1e1e 10px) 0px 1px/14px 1px,
-        /* Eyes Row */
-        linear-gradient(to right, #1e1e1e 1px, #ffd54f 1px 3px, #1e1e1e 3px 4px, #ffd54f 4px 8px, #1e1e1e 8px 9px, #ffd54f 9px 11px, #1e1e1e 11px) 0px 2px/14px 1px,
-        linear-gradient(to right, #1e1e1e 1px, #ffd54f 1px 11px, #1e1e1e 11px) 0px 3px/14px 1px,
-        /* 🍊 BIG BEAK LAYER (Stretches clear across the middle) */
-        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 4px, #ff9800 4px 8px, #ffd54f 8px 10px, #1e1e1e 10px) 0px 4px/14px 1px,
-        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 4px, #ff9800 4px 8px, #ffd54f 8px 10px, #1e1e1e 10px) 0px 5px/14px 1px,
-        /* Yellow Belly Layer (Pure color—wipes beard completely!) */
-        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 10px, #1e1e1e 10px) 0px 6px/14px 1px,
-        linear-gradient(to right, transparent 3px, #1e1e1e 3px 9px, transparent 9px) 0px 7px/14px 1px,
-        /* Orange Feet Base */
-        linear-gradient(to right, transparent 4px, #ff9800 4px 5px, transparent 5px 7px, #ff9800 7px 8px, transparent 8px) 0px 8px/14px 1px,
-        linear-gradient(to right, transparent 4px, #1e1e1e 4px 5px, transparent 5px 7px, #1e1e1e 7px 8px, transparent 8px) 0px 9px/14px 1px !important;
+        linear-gradient(to right, transparent 3px, #1e1e1e 3px 11px, transparent 11px) 0px 0px,
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 12px, #1e1e1e 12px) 0px 1px,
+        linear-gradient(to right, #1e1e1e 1px, #ffd54f 1px 3px, #1e1e1e 3px 4px, #ffd54f 4px 10px, #1e1e1e 10px 11px, #ffd54f 11px 13px, #1e1e1e 13px) 0px 2px,
+        linear-gradient(to right, #1e1e1e 1px, #ffd54f 1px 13px, #1e1e1e 13px) 0px 3px,
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 5px, #ff9800 5px 9px, #ffd54f 9px 12px, #1e1e1e 12px) 0px 4px,
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 5px, #ff9800 5px 9px, #ffd54f 9px 12px, #1e1e1e 12px) 0px 5px,
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 12px, #1e1e1e 12px) 0px 6px,
+        linear-gradient(to right, transparent 3px, #1e1e1e 3px 11px, transparent 11px) 0px 7px,
+        linear-gradient(to right, transparent 5px, #ff9800 5px 6px, transparent 6px 8px, #ff9800 8px 9px, transparent 9px) 0px 8px,
+        linear-gradient(to right, transparent 5px, #1e1e1e 5px 6px, transparent 6px 8px, #1e1e1e 8px 9px, transparent 9px) 0px 9px !important;
+    background-size: 14px 11px !important;
     background-repeat: no-repeat !important;
     box-shadow: none !important;
 }
