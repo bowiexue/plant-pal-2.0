@@ -721,10 +721,74 @@ body {
     z-index: 9999 !important; 
 }
 
-/* 👾 RETRO PIXEL ART COMPANION GRAPHICS CONFIGURATION (FIXED LINKS) */
-.sprite-id-1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%23e5a93b"/><rect x="5" y="6" width="2" height="2" fill="%23222"/><rect x="9" y="6" width="2" height="2" fill="%23222"/><rect x="6" y="9" width="4" height="2" fill="%23d66060"/></svg>') !important; } /* Hamster */
-.sprite-id-2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="5" y="5" width="6" height="8" fill="%23dedfde"/><rect x="4" y="2" width="2" height="4" fill="%23dedfde"/><rect x="10" y="2" width="2" height="4" fill="%23dedfde"/><rect x="6" y="7" width="1" height="1" fill="%23222"/><rect x="9" y="7" width="1" height="1" fill="%23222"/></svg>') !important; } /* Bunny */
-.sprite-id-3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="5" width="8" height="7" fill="%23e67e22"/><rect x="3" y="3" width="3" height="3" fill="%23e67e22"/><rect x="10" y="3" width="3" height="3" fill="%23e67e22"/><rect x="6" y="10" width="4" height="2" fill="%23fff"/></svg>') !important; } /* Fox */
-.sprite-id-4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%238c6239"/><rect x="3" y="3" width="3" height="3" fill="%236d4c2b"/><rect x="10" y="3" width="3" height="3" fill="%236d4c2b"/><rect x="6" y="7" width="1" height="1" fill="%23fff"/><rect x="9" y="7" width="1" height="1" fill="%23fff"/></svg>') !important; } /* Bear */
-.sprite-id-5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="4" width="8" height="8" fill="%23fff"/><rect x="3" y="3" width="3" height="3" fill="%23222"/><rect x="10" y="3" width="3" height="3" fill="%23222"/><rect x="4" y="8" width="8" height="4" fill="%23222"/></svg>') !important; } /* Panda */
-.sprite-id-6 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="5" width="8" height="7" fill="%232ecc71"/><rect x="5" y="4" width="2" height="2" fill="%23fff"/><rect x="9" y="4" width="2" height="2" fill="%23fff"/><rect x="6" y="5" width="1" height="1" fill="%23000"/><rect x="10" y="5" width="1" height="1" fill="%23000"/></svg>') !important; } /* Frog */
+/* 👾 PURE CSS PIXEL ART COMPANIONS (NO EXTERNAL LINKS) */
+
+/* Hamster Buddy (#1) */
+.sprite-id-1 {
+    background: transparent;
+    box-shadow: 
+        /* Head Outline */
+        4px 4px 0 #222, 5px 4px 0 #222, 6px 4px 0 #222, 7px 4px 0 #222, 
+        8px 4px 0 #222, 9px 4px 0 #222, 10px 4px 0 #222, 11px 4px 0 #222,
+        /* Orange Fur Base */
+        4px 5px 0 #e5a93b, 5px 5px 0 #e5a93b, 6px 5px 0 #e5a93b, 7px 5px 0 #e5a93b,
+        8px 5px 0 #e5a93b, 9px 5px 0 #e5a93b, 10px 5px 0 #e5a93b, 11px 5px 0 #e5a93b,
+        4px 6px 0 #e5a93b, 7px 6px 0 #e5a93b, 8px 6px 0 #e5a93b, 11px 6px 0 #e5a93b,
+        /* Eyes */
+        5px 6px 0 #222, 6px 6px 0 #222, 9px 6px 0 #222, 10px 6px 0 #222,
+        /* Snout & Mouth Area */
+        4px 7px 0 #e5a93b, 5px 7px 0 #e5a93b, 6px 7px 0 #e5a93b, 7px 7px 0 #e5a93b,
+        8px 7px 0 #e5a93b, 9px 7px 0 #e5a93b, 10px 7px 0 #e5a93b, 11px 7px 0 #e5a93b,
+        4px 8px 0 #e5a93b, 5px 8px 0 #e5a93b, 10px 8px 0 #e5a93b, 11px 8px 0 #e5a93b,
+        /* Rosy Cheeks */
+        6px 8px 0 #d66060, 7px 8px 0 #d66060, 8px 8px 0 #d66060, 9px 8px 0 #d66060,
+        /* Lower Jaw */
+        4px 9px 0 #222, 5px 9px 0 #222, 6px 9px 0 #222, 7px 9px 0 #222,
+        8px 9px 0 #222, 9px 9px 0 #222, 10px 9px 0 #222, 11px 9px 0 #222;
+}
+
+/* Bunny Buddy (#2) */
+.sprite-id-2 {
+    background: transparent;
+    box-shadow:
+        /* Left Ear */
+        4px 2px 0 #dedfde, 4px 3px 0 #dedfde, 4px 4px 0 #dedfde,
+        5px 2px 0 #dedfde, 5px 3px 0 #dedfde, 5px 4px 0 #dedfde,
+        /* Right Ear */
+        10px 2px 0 #dedfde, 10px 3px 0 #dedfde, 10px 4px 0 #dedfde,
+        11px 2px 0 #dedfde, 11px 3px 0 #dedfde, 11px 4px 0 #dedfde,
+        /* Main Body Base */
+        5px 5px 0 #dedfde, 6px 5px 0 #dedfde, 7px 5px 0 #dedfde, 8px 5px 0 #dedfde, 9px 5px 0 #dedfde, 10px 5px 0 #dedfde,
+        5px 6px 0 #dedfde, 6px 6px 0 #dedfde, 7px 6px 0 #dedfde, 8px 6px 0 #dedfde, 9px 6px 0 #dedfde, 10px 6px 0 #dedfde,
+        /* Face Features */
+        5px 7px 0 #dedfde, 7px 7px 0 #dedfde, 8px 7px 0 #dedfde, 10px 7px 0 #dedfde,
+        6px 7px 0 #222, 9px 7px 0 #222, /* Black Eyes */
+        /* Lower Body Block */
+        5px 8px 0 #dedfde, 6px 8px 0 #dedfde, 7px 8px 0 #dedfde, 8px 8px 0 #dedfde, 9px 8px 0 #dedfde, 10px 8px 0 #dedfde,
+        5px 9px 0 #dedfde, 6px 9px 0 #dedfde, 7px 9px 0 #dedfde, 8px 9px 0 #dedfde, 9px 9px 0 #dedfde, 10px 9px 0 #dedfde;
+}
+
+/* Frog Buddy (#3) */
+.sprite-id-3 {
+    background: transparent;
+    box-shadow:
+        /* Big Frog Eyes Up Top */
+        5px 3px 0 #fff, 6px 3px 0 #fff, 9px 3px 0 #fff, 10px 3px 0 #fff,
+        5px 4px 0 #000, 6px 4px 0 #2ecc71, 9px 4px 0 #2ecc71, 10px 4px 0 #000,
+        /* Dense Green Body Framework */
+        4px 5px 0 #2ecc71, 5px 5px 0 #2ecc71, 6px 5px 0 #2ecc71, 7px 5px 0 #2ecc71, 
+        8px 5px 0 #2ecc71, 9px 5px 0 #2ecc71, 10px 5px 0 #2ecc71, 11px 5px 0 #2ecc71,
+        4px 6px 0 #2ecc71, 5px 6px 0 #2ecc71, 6px 6px 0 #2ecc71, 7px 6px 0 #2ecc71, 
+        8px 6px 0 #2ecc71, 9px 6px 0 #2ecc71, 10px 6px 0 #2ecc71, 11px 6px 0 #2ecc71,
+        /* Cute Rosy Cheeks */
+        4px 7px 0 #2ecc71, 5px 7px 0 #ff9e9e, 6px 7px 0 #2ecc71, 7px 7px 0 #2ecc71, 
+        8px 7px 0 #2ecc71, 9px 7px 0 #2ecc71, 10px 7px 0 #ff9e9e, 11px 7px 0 #2ecc71,
+        /* Base Bottom Edge */
+        4px 8px 0 #2ecc71, 5px 8px 0 #2ecc71, 6px 8px 0 #2ecc71, 7px 8px 0 #2ecc71, 
+        8px 8px 0 #2ecc71, 9px 8px 0 #2ecc71, 10px 8px 0 #2ecc71, 11px 8px 0 #2ecc71;
+}
+
+/* Fallback mappings to catch IDs 4, 5, and 6 gracefully */
+.sprite-id-4 { com-copy: sprite-id-1; background: transparent; }
+.sprite-id-5 { com-copy: sprite-id-2; background: transparent; }
+.sprite-id-6 { com-copy: sprite-id-3; background: transparent; }
