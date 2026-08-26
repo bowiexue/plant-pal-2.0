@@ -720,59 +720,109 @@ body {
 
 /* 👾 CRISP 1PX MATRIX SHADOW PIXEL ART BLOCKS */
 
-/* Hamster Buddy (#1) */
-.sprite-id-1, .sprite-id-4 {
-    background: transparent !important;
-    width: 1px !important;
-    height: 1px !important;
-    box-shadow: 
-        /* Row 4 */
-        4px 4px 0 #222, 5px 4px 0 #222, 6px 4px 0 #222, 7px 4px 0 #222, 8px 4px 0 #222, 9px 4px 0 #222, 10px 4px 0 #222, 11px 4px 0 #222,
-        /* Row 5 */
-        4px 5px 0 #e5a93b, 5px 5px 0 #e5a93b, 6px 5px 0 #e5a93b, 7px 5px 0 #e5a93b, 8px 5px 0 #e5a93b, 9px 5px 0 #e5a93b, 10px 5px 0 #e5a93b, 11px 5px 0 #e5a93b,
-        /* Row 6 (Eyes) */
-        4px 6px 0 #e5a93b, 5px 6px 0 #222, 6px 6px 0 #222, 7px 6px 0 #e5a93b, 8px 6px 0 #e5a93b, 9px 6px 0 #222, 10px 6px 0 #222, 11px 6px 0 #e5a93b,
-        /* Row 7 */
-        4px 7px 0 #e5a93b, 5px 7px 0 #e5a93b, 6px 7px 0 #e5a93b, 7px 7px 0 #e5a93b, 8px 7px 0 #e5a93b, 9px 7px 0 #e5a93b, 10px 7px 0 #e5a93b, 11px 7px 0 #e5a93b,
-        /* Row 8 (Cheeks) */
-        4px 8px 0 #e5a93b, 5px 8px 0 #e5a93b, 6px 8px 0 #d66060, 7px 8px 0 #d66060, 8px 8px 0 #d66060, 9px 8px 0 #d66060, 10px 8px 0 #e5a93b, 11px 8px 0 #e5a93b,
-        /* Row 9 */
-        4px 9px 0 #222, 5px 9px 0 #222, 6px 9px 0 #222, 7px 9px 0 #222, 8px 9px 0 #222, 9px 9px 0 #222, 10px 9px 0 #222, 11px 9px 0 #222 !important;
-}
+/* 👾 PREMIUM PIXEL ART COMPANIONS (PART 1 OF 2) */
 
-/* Bunny Buddy (#2) */
-.sprite-id-2, .sprite-id-5 {
+/* 🦝 Companion #1: Raccoon */
+.sprite-id-1 {
     background: transparent !important;
     width: 1px !important;
     height: 1px !important;
     box-shadow:
-        /* Ears */
-        4px 2px 0 #dedfde, 4px 3px 0 #dedfde, 4px 4px 0 #dedfde, 5px 2px 0 #dedfde, 5px 3px 0 #dedfde, 5px 4px 0 #dedfde,
-        10px 2px 0 #dedfde, 10px 3px 0 #dedfde, 10px 4px 0 #dedfde, 11px 2px 0 #dedfde, 11px 3px 0 #dedfde, 11px 4px 0 #dedfde,
-        /* Body */
-        5px 5px 0 #dedfde, 6px 5px 0 #dedfde, 7px 5px 0 #dedfde, 8px 5px 0 #dedfde, 9px 5px 0 #dedfde, 10px 5px 0 #dedfde,
-        5px 6px 0 #dedfde, 6px 6px 0 #dedfde, 7px 6px 0 #dedfde, 8px 6px 0 #dedfde, 9px 6px 0 #dedfde, 10px 6px 0 #dedfde,
-        /* Eyes */
-        5px 7px 0 #dedfde, 6px 7px 0 #222, 7px 7px 0 #dedfde, 8px 7px 0 #dedfde, 9px 7px 0 #222, 10px 7px 0 #dedfde,
-        /* Bottom */
-        5px 8px 0 #dedfde, 6px 8px 0 #dedfde, 7px 8px 0 #dedfde, 8px 8px 0 #dedfde, 9px 8px 0 #dedfde, 10px 8px 0 #dedfde,
-        5px 9px 0 #dedfde, 6px 9px 0 #dedfde, 7px 9px 0 #dedfde, 8px 9px 0 #dedfde, 9px 9px 0 #dedfde, 10px 9px 0 #dedfde !important;
+        4px 3px 0 #1e1e1e, 5px 3px 0 #1e1e1e, 11px 3px 0 #1e1e1e, 12px 3px 0 #1e1e1e,
+        3px 4px 0 #1e1e1e, 4px 4px 0 #5a5a5a, 5px 4px 0 #1e1e1e, 11px 4px 0 #1e1e1e, 12px 4px 0 #5a5a5a, 13px 4px 0 #1e1e1e,
+        3px 5px 0 #1e1e1e, 4px 5px 0 #5a5a5a, 5px 5px 0 #5a5a5a, 6px 5px 0 #1e1e1e, 10px 5px 0 #1e1e1e, 11px 5px 0 #5a5a5a, 12px 5px 0 #5a5a5a, 13px 5px 0 #1e1e1e,
+        3px 6px 0 #1e1e1e, 4px 6px 0 #8a8a8a, 5px 6px 0 #8a8a8a, 6px 6px 0 #8a8a8a, 7px 6px 0 #1e1e1e, 8px 6px 0 #1e1e1e, 9px 6px 0 #1e1e1e, 10px 6px 0 #8a8a8a, 11px 6px 0 #8a8a8a, 12px 6px 0 #8a8a8a, 13px 6px 0 #1e1e1e,
+        2px 7px 0 #1e1e1e, 3px 7px 0 #8a8a8a, 4px 7px 0 #1e1e1e, 5px 7px 0 #1e1e1e, 6px 7px 0 #8a8a8a, 7px 7px 0 #8a8a8a, 8px 7px 0 #8a8a8a, 9px 7px 0 #8a8a8a, 10px 7px 0 #8a8a8a, 11px 7px 0 #1e1e1e, 12px 7px 0 #1e1e1e, 13px 7px 0 #8a8a8a, 14px 7px 0 #1e1e1e,
+        2px 8px 0 #1e1e1e, 3px 8px 0 #8a8a8a, 4px 8px 0 #1e1e1e, 5px 8px 0 #ffffff, 6px 8px 0 #1e1e1e, 7px 8px 0 #8a8a8a, 8px 8px 0 #8a8a8a, 9px 8px 0 #8a8a8a, 10px 8px 0 #1e1e1e, 11px 8px 0 #ffffff, 12px 8px 0 #1e1e1e, 13px 8px 0 #8a8a8a, 14px 8px 0 #1e1e1e,
+        2px 9px 0 #1e1e1e, 3px 9px 0 #5a5a5a, 4px 9px 0 #8a8a8a, 5px 9px 0 #1e1e1e, 6px 9px 0 #1e1e1e, 7px 9px 0 #ffffff, 8px 9px 0 #ffffff, 9px 9px 0 #ffffff, 10px 9px 0 #1e1e1e, 11px 9px 0 #1e1e1e, 12px 9px 0 #8a8a8a, 13px 9px 0 #5a5a5a, 14px 9px 0 #1e1e1e,
+        3px 10px 0 #1e1e1e, 4px 10px 0 #5a5a5a, 5px 10px 0 #5a5a5a, 6px 10px 0 #8a8a8a, 7px 10px 0 #ffffff, 8px 10px 0 #1e1e1e, 9px 10px 0 #ffffff, 10px 10px 0 #8a8a8a, 11px 10px 0 #5a5a5a, 12px 10px 0 #5a5a5a, 13px 10px 0 #1e1e1e,
+        4px 11px 0 #1e1e1e, 5px 11px 0 #5a5a5a, 6px 11px 0 #5a5a5a, 7px 11px 0 #8a8a8a, 8px 11px 0 #8a8a8a, 9px 11px 0 #8a8a8a, 10px 11px 0 #5a5a5a, 11px 11px 0 #5a5a5a, 12px 11px 0 #1e1e1e,
+        5px 12px 0 #1e1e1e, 6px 12px 0 #1e1e1e, 7px 12px 0 #1e1e1e, 8px 12px 0 #1e1e1e, 9px 12px 0 #1e1e1e, 10px 12px 0 #1e1e1e, 11px 12px 0 #1e1e1e !important;
 }
 
-/* Frog Buddy (#3) */
-.sprite-id-3, .sprite-id-6 {
+/* 🐱 Companion #2: Calico Cat */
+.sprite-id-2 {
     background: transparent !important;
     width: 1px !important;
     height: 1px !important;
     box-shadow:
-        /* Eyes */
-        5px 3px 0 #fff, 6px 3px 0 #fff, 9px 3px 0 #fff, 10px 3px 0 #fff,
-        5px 4px 0 #000, 6px 4px 0 #2ecc71, 9px 4px 0 #2ecc71, 10px 4px 0 #000,
-        /* Green Head */
-        4px 5px 0 #2ecc71, 5px 5px 0 #2ecc71, 6px 5px 0 #2ecc71, 7px 5px 0 #2ecc71, 8px 5px 0 #2ecc71, 9px 5px 0 #2ecc71, 10px 5px 0 #2ecc71, 11px 5px 0 #2ecc71,
-        4px 6px 0 #2ecc71, 5px 6px 0 #2ecc71, 6px 6px 0 #2ecc71, 7px 6px 0 #2ecc71, 8px 6px 0 #2ecc71, 9px 6px 0 #2ecc71, 10px 6px 0 #2ecc71, 11px 6px 0 #2ecc71,
-        /* Cheeks */
-        4px 7px 0 #2ecc71, 5px 7px 0 #ff9e9e, 6px 7px 0 #2ecc71, 7px 7px 0 #2ecc71, 8px 7px 0 #2ecc71, 9px 7px 0 #2ecc71, 10px 7px 0 #ff9e9e, 11px 7px 0 #2ecc71,
-        /* Bottom Row */
-        4px 8px 0 #2ecc71, 5px 8px 0 #2ecc71, 6px 8px 0 #2ecc71, 7px 8px 0 #2ecc71, 8px 8px 0 #2ecc71, 9px 8px 0 #2ecc71, 10px 8px 0 #2ecc71, 11px 8px 0 #2ecc71 !important;
+        4px 3px 0 #1e1e1e, 5px 3px 0 #1e1e1e, 11px 3px 0 #1e1e1e, 12px 3px 0 #1e1e1e,
+        3px 4px 0 #1e1e1e, 4px 4px 0 #e5a93b, 5px 4px 0 #1e1e1e, 11px 4px 0 #1e1e1e, 12px 4px 0 #5a5a5a, 13px 4px 0 #1e1e1e,
+        3px 5px 0 #1e1e1e, 4px 5px 0 #e5a93b, 5px 5px 0 #e5a93b, 6px 5px 0 #1e1e1e, 10px 5px 0 #1e1e1e, 11px 5px 0 #5a5a5a, 12px 5px 0 #5a5a5a, 13px 5px 0 #1e1e1e,
+        3px 6px 0 #1e1e1e, 4px 6px 0 #e5a93b, 5px 6px 0 #e5a93b, 6px 6px 0 #ffffff, 7px 6px 0 #ffffff, 8px 6px 0 #ffffff, 9px 6px 0 #ffffff, 10px 6px 0 #ffffff, 11px 6px 0 #5a5a5a, 12px 6px 0 #5a5a5a, 13px 6px 0 #1e1e1e,
+        2px 7px 0 #1e1e1e, 3px 7px 0 #ffffff, 4px 7px 0 #ffffff, 5px 7px 0 #ffffff, 6px 7px 0 #ffffff, 7px 7px 0 #ffffff, 8px 7px 0 #ffffff, 9px 7px 0 #ffffff, 10px 7px 0 #ffffff, 11px 7px 0 #ffffff, 12px 7px 0 #ffffff, 13px 7px 0 #ffffff, 14px 7px 0 #1e1e1e,
+        2px 8px 0 #1e1e1e, 3px 8px 0 #ffffff, 4px 8px 0 #1e1e1e, 5px 8px 0 #ffffff, 6px 8px 0 #ffffff, 7px 8px 0 #ffffff, 8px 8px 0 #ffffff, 9px 8px 0 #ffffff, 10px 8px 0 #ffffff, 11px 8px 0 #1e1e1e, 12px 8px 0 #ffffff, 13px 8px 0 #ffffff, 14px 8px 0 #1e1e1e,
+        2px 9px 0 #1e1e1e, 3px 9px 0 #ffffff, 4px 9px 0 #ffffff, 5px 9px 0 #ffffff, 6px 9px 0 #ffffff, 7px 9px 0 #ffb3b3, 8px 9px 0 #1e1e1e, 9px 9px 0 #ffb3b3, 10px 9px 0 #ffffff, 11px 9px 0 #ffffff, 12px 9px 0 #ffffff, 13px 9px 0 #ffffff, 14px 9px 0 #1e1e1e,
+        3px 10px 0 #1e1e1e, 4px 10px 0 #ffffff, 5px 10px 0 #ffffff, 6px 10px 0 #ffffff, 7px 10px 0 #ffffff, 8px 10px 0 #ffffff, 9px 10px 0 #ffffff, 10px 10px 0 #ffffff, 11px 10px 0 #ffffff, 12px 10px 0 #ffffff, 13px 10px 0 #1e1e1e,
+        4px 11px 0 #1e1e1e, 5px 11px 0 #ffffff, 6px 11px 0 #ffffff, 7px 11px 0 #ffffff, 8px 11px 0 #ffffff, 9px 11px 0 #ffffff, 10px 11px 0 #ffffff, 11px 11px 0 #ffffff, 12px 11px 0 #1e1e1e,
+        5px 12px 0 #1e1e1e, 6px 12px 0 #1e1e1e, 7px 12px 0 #1e1e1e, 8px 12px 0 #1e1e1e, 9px 12px 0 #1e1e1e, 10px 12px 0 #1e1e1e, 11px 12px 0 #1e1e1e !important;
+}
+
+/* 🦒 Companion #3: Giraffe */
+.sprite-id-3 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
+    box-shadow:
+        4px 2px 0 #1e1e1e, 5px 2px 0 #1e1e1e, 11px 2px 0 #1e1e1e, 12px 2px 0 #1e1e1e,
+        4px 3px 0 #e5a93b, 5px 3px 0 #e5a93b, 11px 3px 0 #e5a93b, 12px 3px 0 #e5a93b,
+        3px 4px 0 #1e1e1e, 4px 4px 0 #e5a93b, 5px 4px 0 #1e1e1e, 6px 4px 0 #1e1e1e, 10px 4px 0 #1e1e1e, 11px 4px 0 #1e1e1e, 12px 4px 0 #e5a93b, 13px 4px 0 #1e1e1e,
+        2px 5px 0 #1e1e1e, 3px 5px 0 #e5a93b, 4px 5px 0 #e5a93b, 5px 5px 0 #e5a93b, 6px 5px 0 #e5a93b, 7px 5px 0 #1e1e1e, 9px 5px 0 #1e1e1e, 10px 5px 0 #e5a93b, 11px 5px 0 #e5a93b, 12px 5px 0 #e5a93b, 13px 5px 0 #e5a93b, 14px 5px 0 #1e1e1e,
+        2px 6px 0 #1e1e1e, 3px 6px 0 #e5a93b, 4px 6px 0 #e5a93b, 5px 6px 0 #e5a93b, 6px 6px 0 #e5a93b, 7px 6px 0 #e5a93b, 8px 6px 0 #e5a93b, 9px 6px 0 #e5a93b, 10px 6px 0 #e5a93b, 11px 6px 0 #e5a93b, 12px 6px 0 #e5a93b, 13px 6px 0 #e5a93b, 14px 6px 0 #1e1e1e,
+        3px 7px 0 #1e1e1e, 4px 7px 0 #e5a93b, 5px 7px 0 #1e1e1e, 6px 7px 0 #e5a93b, 7px 7px 0 #e5a93b, 8px 7px 0 #e5a93b, 9px 7px 0 #e5a93b, 10px 7px 0 #e5a93b, 11px 7px 0 #1e1e1e, 12px 7px 0 #e5a93b, 13px 7px 0 #1e1e1e,
+        3px 8px 0 #1e1e1e, 4px 8px 0 #e5a93b, 5px 8px 0 #e5a93b, 6px 8px 0 #e5a93b, 7px 8px 0 #e5a93b, 8px 8px 0 #e5a93b, 9px 8px 0 #e5a93b, 10px 8px 0 #e5a93b, 11px 8px 0 #e5a93b, 12px 8px 0 #e5a93b, 13px 8px 0 #1e1e1e,
+        3px 9px 0 #1e1e1e, 4px 9px 0 #8c5b47, 5px 9px 0 #8c5b47, 6px 9px 0 #8c5b47, 7px 9px 0 #8c5b47, 8px 9px 0 #8c5b47, 9px 9px 0 #8c5b47, 10px 9px 0 #8c5b47, 11px 9px 0 #8c5b47, 12px 9px 0 #8c5b47, 13px 9px 0 #1e1e1e,
+        4px 10px 0 #1e1e1e, 5px 10px 0 #8c5b47, 6px 10px 0 #8c5b47, 7px 10px 0 #8c5b47, 8px 10px 0 #8c5b47, 9px 10px 0 #8c5b47, 10px 10px 0 #8c5b47, 11px 10px 0 #8c5b47, 12px 10px 0 #1e1e1e,
+        5px 11px 0 #1e1e1e, 6px 11px 0 #1e1e1e, 7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e, 9px 11px 0 #1e1e1e, 10px 11px 0 #1e1e1e, 11px 11px 0 #1e1e1e !important;
+}
+/* 👾 PREMIUM PIXEL ART COMPANIONS (PART 2 OF 2) */
+
+/* 🐷 Companion #4: Piggy */
+.sprite-id-4 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
+    box-shadow:
+        3px 3px 0 #1e1e1e, 4px 3px 0 #1e1e1e, 5px 3px 0 #1e1e1e, 11px 3px 0 #1e1e1e, 12px 3px 0 #1e1e1e, 13px 3px 0 #1e1e1e,
+        2px 4px 0 #1e1e1e, 3px 4px 0 #ffb3b3, 4px 4px 0 #ff9e9e, 5px 4px 0 #1e1e1e, 11px 4px 0 #1e1e1e, 12px 4px 0 #ff9e9e, 13px 4px 0 #ffb3b3, 14px 4px 0 #1e1e1e,
+        2px 5px 0 #1e1e1e, 3px 5px 0 #ffb3b3, 4px 5px 0 #ffb3b3, 5px 5px 0 #ffb3b3, 6px 5px 0 #1e1e1e, 10px 5px 0 #1e1e1e, 11px 5px 0 #ffb3b3, 12px 5px 0 #ffb3b3, 13px 5px 0 #ffb3b3, 14px 5px 0 #1e1e1e,
+        2px 6px 0 #1e1e1e, 3px 6px 0 #ffb3b3, 4px 6px 0 #ffb3b3, 5px 6px 0 #ffb3b3, 6px 6px 0 #ffb3b3, 7px 6px 0 #ffb3b3, 8px 6px 0 #ffb3b3, 9px 6px 0 #ffb3b3, 10px 6px 0 #ffb3b3, 11px 6px 0 #ffb3b3, 12px 6px 0 #ffb3b3, 13px 6px 0 #ffb3b3, 14px 6px 0 #1e1e1e,
+        3px 7px 0 #1e1e1e, 4px 7px 0 #ffb3b3, 5px 7px 0 #1e1e1e, 6px 7px 0 #ffb3b3, 7px 7px 0 #ffb3b3, 8px 7px 0 #ffb3b3, 9px 7px 0 #ffb3b3, 10px 7px 0 #ffb3b3, 11px 7px 0 #1e1e1e, 12px 7px 0 #ffb3b3, 13px 7px 0 #1e1e1e,
+        3px 8px 0 #1e1e1e, 4px 8px 0 #ffb3b3, 5px 8px 0 #ffb3b3, 6px 8px 0 #ffb3b3, 7px 8px 0 #ff9e9e, 8px 8px 0 #ff9e9e, 9px 8px 0 #ff9e9e, 10px 8px 0 #ffb3b3, 11px 8px 0 #ffb3b3, 12px 8px 0 #ffb3b3, 13px 8px 0 #1e1e1e,
+        3px 9px 0 #1e1e1e, 4px 9px 0 #ffb3b3, 5px 9px 0 #ffb3b3, 6px 9px 0 #ffb3b3, 7px 9px 0 #1e1e1e, 8px 9px 0 #ff9e9e, 9px 9px 0 #1e1e1e, 10px 9px 0 #ffb3b3, 11px 9px 0 #ffb3b3, 12px 9px 0 #ffb3b3, 13px 9px 0 #1e1e1e,
+        4px 10px 0 #1e1e1e, 5px 10px 0 #ffb3b3, 6px 10px 0 #ffb3b3, 7px 10px 0 #ffb3b3, 8px 10px 0 #ffb3b3, 9px 10px 0 #ffb3b3, 10px 10px 0 #ffb3b3, 11px 10px 0 #ffb3b3, 12px 10px 0 #1e1e1e,
+        5px 11px 0 #1e1e1e, 6px 11px 0 #1e1e1e, 7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e, 9px 11px 0 #1e1e1e, 10px 11px 0 #1e1e1e, 11px 11px 0 #1e1e1e !important;
+}
+
+/* 🐸 Companion #5: Upgraded Round Frog */
+.sprite-id-5 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
+    box-shadow:
+        4px 3px 0 #1e1e1e, 5px 3px 0 #1e1e1e, 6px 3px 0 #1e1e1e, 10px 3px 0 #1e1e1e, 11px 3px 0 #1e1e1e, 12px 3px 0 #1e1e1e,
+        3px 4px 0 #1e1e1e, 4px 4px 0 #2ecc71, 5px 4px 0 #ffffff, 6px 4px 0 #1e1e1e, 7px 4px 0 #2ecc71, 9px 4px 0 #2ecc71, 10px 4px 0 #1e1e1e, 11px 4px 0 #ffffff, 12px 4px 0 #2ecc71, 13px 4px 0 #1e1e1e,
+        3px 5px 0 #1e1e1e, 4px 5px 0 #2ecc71, 5px 5px 0 #1e1e1e, 6px 5px 0 #2ecc71, 7px 5px 0 #2ecc71, 8px 5px 0 #2ecc71, 9px 5px 0 #2ecc71, 10px 5px 0 #2ecc71, 11px 5px 0 #1e1e1e, 12px 5px 0 #2ecc71, 13px 5px 0 #1e1e1e,
+        2px 6px 0 #1e1e1e, 3px 6px 0 #2ecc71, 4px 6px 0 #2ecc71, 5px 6px 0 #2ecc71, 6px 6px 0 #2ecc71, 7px 6px 0 #2ecc71, 8px 6px 0 #2ecc71, 9px 6px 0 #2ecc71, 10px 6px 0 #2ecc71, 11px 6px 0 #2ecc71, 12px 6px 0 #2ecc71, 13px 6px 0 #2ecc71, 14px 6px 0 #1e1e1e,
+        2px 7px 0 #1e1e1e, 3px 7px 0 #ff9e9e, 4px 7px 0 #2ecc71, 5px 7px 0 #2ecc71, 6px 7px 0 #2ecc71, 7px 7px 0 #2ecc71, 8px 7px 0 #1e1e1e, 9px 7px 0 #2ecc71, 10px 7px 0 #2ecc71, 11px 7px 0 #2ecc71, 12px 7px 0 #2ecc71, 13px 7px 0 #ff9e9e, 14px 7px 0 #1e1e1e,
+        2px 8px 0 #1e1e1e, 3px 8px 0 #2ecc71, 4px 8px 0 #2ecc71, 5px 8px 0 #2ecc71, 6px 8px 0 #2ecc71, 7px 8px 0 #2ecc71, 8px 8px 0 #2ecc71, 9px 8px 0 #2ecc71, 10px 8px 0 #2ecc71, 11px 8px 0 #2ecc71, 12px 8px 0 #2ecc71, 13px 8px 0 #2ecc71, 14px 8px 0 #1e1e1e,
+        3px 9px 0 #1e1e1e, 4px 9px 0 #2ecc71, 5px 9px 0 #2ecc71, 6px 9px 0 #2ecc71, 7px 9px 0 #2ecc71, 8px 9px 0 #2ecc71, 9px 9px 0 #2ecc71, 10px 9px 0 #2ecc71, 11px 9px 0 #2ecc71, 12px 9px 0 #2ecc71, 13px 9px 0 #1e1e1e,
+        4px 10px 0 #1e1e1e, 5px 10px 0 #1e1e1e, 6px 10px 0 #1e1e1e, 7px 10px 0 #1e1e1e, 8px 10px 0 #1e1e1e, 9px 10px 0 #1e1e1e, 10px 10px 0 #1e1e1e, 11px 10px 0 #1e1e1e, 12px 10px 0 #1e1e1e !important;
+}
+
+/* 🦊 Companion #6: Soft Fox */
+.sprite-id-6 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
+    box-shadow:
+        3px 3px 0 #1e1e1e, 4px 3px 0 #1e1e1e, 12px 3px 0 #1e1e1e, 13px 3px 0 #1e1e1e,
+        2px 4px 0 #1e1e1e, 3px 4px 0 #e67e22, 4px 4px 0 #e67e22, 5px 4px 0 #1e1e1e, 11px 4px 0 #1e1e1e, 12px 4px 0 #e67e22, 13px 4px 0 #e67e22, 14px 4px 0 #1e1e1e,
+        2px 5px 0 #1e1e1e, 3px 5px 0 #e67e22, 4px 5px 0 #e67e22, 5px 5px 0 #e67e22, 6px 5px 0 #e67e22, 10px 5px 0 #e67e22, 11px 5px 0 #e67e22, 12px 5px 0 #e67e22, 13px 5px 0 #e67e22, 14px 5px 0 #1e1e1e,
+        2px 6px 0 #1e1e1e, 3px 6px 0 #e67e22, 4px 6px 0 #1e1e1e, 5px 6px 0 #ffffff, 6px 6px 0 #e67e22, 7px 6px 0 #e67e22, 8px 6px 0 #e67e22, 9px 6px 0 #e67e22, 10px 6px 0 #e67e22, 11px 6px 0 #ffffff, 12px 6px 0 #1e1e1e, 13px 6px 0 #e67e22, 14px 6px 0 #1e1e1e,
+        2px 7px 0 #1e1e1e, 3px 7px 0 #e67e22, 4px 7px 0 #ffffff, 5px 7px 0 #1e1e1e, 6px 7px 0 #ffffff, 7px 7px 0 #ffffff, 8px 7px 0 #ffffff, 9px 7px 0 #ffffff, 10px 7px 0 #ffffff, 11px 7px 0 #1e1e1e, 12px 7px 0 #ffffff, 13px 7px 0 #e67e22, 14px 7px 0 #1e1e1e,
+        3px 8px 0 #1e1e1e, 4px 8px 0 #ffffff, 5px 8px 0 #ffffff, 6px 8px 0 #ffffff, 7px 8px 0 #ffffff, 8px 8px 0 #1e1e1e, 9px 8px 0 #ffffff, 10px 8px 0 #ffffff, 11px 8px 0 #ffffff, 12px 8px 0 #ffffff, 13px 8px 0 #1e1e1e,
+        4px 9px 0 #1e1e1e, 5px 9px 0 #ffffff, 6px 9px 0 #ffffff, 7px 9px 0 #ffffff, 8px 9px 0 #ffffff, 9px 9px 0 #ffffff, 10px 9px 0 #ffffff, 11px 9px 0 #ffffff, 12px 9px 0 #1e1e1e,
+        5px 10px 0 #1e1e1e, 6px 10px 0 #ffffff, 7px 10px 0 #ffffff, 8px 10px 0 #1e1e1e, 9px 10px 0 #ffffff, 10px 10px 0 #ffffff, 11px 10px 0 #1e1e1e,
+        6px 11px 0 #1e1e1e, 7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e, 9px 11px 0 #1e1e1e, 10px 11px 0 #1e1e1e !important;
 }
