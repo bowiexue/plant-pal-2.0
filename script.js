@@ -407,14 +407,10 @@ function setupSandboxEngine() {
         const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        if (Math.random() > 0.80) { 
+        if (Math.random() > 0.85) { 
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
-            sparkle.style.left = `${x}px`;
-            sparkle.style.top = `${y}px`;
-            sparkle.style.position = 'absolute';
-            sparkle.style.fontSize = '1.2rem';
-            sparkle.style.pointerEvents = 'none';
+            sparkle.style.cssText = `left: ${x}px; top: ${y}px; position: absolute; font-size: 1rem; pointer-events: none;`;
             sparkle.innerText = Math.random() > 0.5 ? '✨' : '⭐';
             activeSandbox.appendChild(sparkle);
             setTimeout(() => sparkle.remove(), 400);
@@ -422,20 +418,40 @@ function setupSandboxEngine() {
     });
 
     activeSandbox.addEventListener('click', (e) => {
+        // Ignores clicks if you click directly on a creature so they don't stack up
         if (e.target.classList.contains('sandbox-companion')) return;
+        
         const rect = activeSandbox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const animal = playgroundCreatures[Math.floor(Math.random() * playgroundCreatures.length)];
+        
+        // Randomly picks 1 of your 6 new pixel art drawings
+        const totalSpritesCount = 6; 
+        const randomizedIndexId = Math.floor(Math.random() * totalSpritesCount) + 1;
+        
         const node = document.createElement('div');
-        node.className = 'sandbox-companion';
-        node.innerText = animal;
+        // Injects classes that draw the pixel backgrounds instead of innerText emojis!
+        node.className = `sandbox-companion pixel-sprite-buddy-node sprite-id-${randomizedIndexId}`;
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
+        
+        // Makes clicking an individual animal delete it cleanly from your garden
+        node.onclick = (event) => {
+            event.stopPropagation();
+            node.remove();
+            if (typeof logWorkspaceEvent === 'function') {
+                logWorkspaceEvent("Returned pixel companion back to nature.");
+            }
+        };
+        
         activeSandbox.appendChild(node);
-        logWorkspaceEvent(`Hatched companion creature: <strong>${animal}</strong>`);
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent(`Hatched pixel companion ID: <strong>#${randomizedIndexId}</strong>`);
+        }
     });
 }
+
 
 function updateChoreTrackingDashboardUI() {
     document.getElementById('chore-current').innerText = workspaceState.choreMinutesAccumulated;
