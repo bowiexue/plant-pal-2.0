@@ -721,74 +721,61 @@ body {
     z-index: 9999 !important; 
 }
 
-/* 👾 PURE CSS PIXEL ART COMPANIONS (NO EXTERNAL LINKS) */
+/* 👾 CRISP 1PX MATRIX SHADOW PIXEL ART BLOCKS */
 
 /* Hamster Buddy (#1) */
-.sprite-id-1 {
-    background: transparent;
+.sprite-id-1, .sprite-id-4 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
     box-shadow: 
-        /* Head Outline */
-        4px 4px 0 #222, 5px 4px 0 #222, 6px 4px 0 #222, 7px 4px 0 #222, 
-        8px 4px 0 #222, 9px 4px 0 #222, 10px 4px 0 #222, 11px 4px 0 #222,
-        /* Orange Fur Base */
-        4px 5px 0 #e5a93b, 5px 5px 0 #e5a93b, 6px 5px 0 #e5a93b, 7px 5px 0 #e5a93b,
-        8px 5px 0 #e5a93b, 9px 5px 0 #e5a93b, 10px 5px 0 #e5a93b, 11px 5px 0 #e5a93b,
-        4px 6px 0 #e5a93b, 7px 6px 0 #e5a93b, 8px 6px 0 #e5a93b, 11px 6px 0 #e5a93b,
-        /* Eyes */
-        5px 6px 0 #222, 6px 6px 0 #222, 9px 6px 0 #222, 10px 6px 0 #222,
-        /* Snout & Mouth Area */
-        4px 7px 0 #e5a93b, 5px 7px 0 #e5a93b, 6px 7px 0 #e5a93b, 7px 7px 0 #e5a93b,
-        8px 7px 0 #e5a93b, 9px 7px 0 #e5a93b, 10px 7px 0 #e5a93b, 11px 7px 0 #e5a93b,
-        4px 8px 0 #e5a93b, 5px 8px 0 #e5a93b, 10px 8px 0 #e5a93b, 11px 8px 0 #e5a93b,
-        /* Rosy Cheeks */
-        6px 8px 0 #d66060, 7px 8px 0 #d66060, 8px 8px 0 #d66060, 9px 8px 0 #d66060,
-        /* Lower Jaw */
-        4px 9px 0 #222, 5px 9px 0 #222, 6px 9px 0 #222, 7px 9px 0 #222,
-        8px 9px 0 #222, 9px 9px 0 #222, 10px 9px 0 #222, 11px 9px 0 #222;
+        /* Row 4 */
+        4px 4px 0 #222, 5px 4px 0 #222, 6px 4px 0 #222, 7px 4px 0 #222, 8px 4px 0 #222, 9px 4px 0 #222, 10px 4px 0 #222, 11px 4px 0 #222,
+        /* Row 5 */
+        4px 5px 0 #e5a93b, 5px 5px 0 #e5a93b, 6px 5px 0 #e5a93b, 7px 5px 0 #e5a93b, 8px 5px 0 #e5a93b, 9px 5px 0 #e5a93b, 10px 5px 0 #e5a93b, 11px 5px 0 #e5a93b,
+        /* Row 6 (Eyes) */
+        4px 6px 0 #e5a93b, 5px 6px 0 #222, 6px 6px 0 #222, 7px 6px 0 #e5a93b, 8px 6px 0 #e5a93b, 9px 6px 0 #222, 10px 6px 0 #222, 11px 6px 0 #e5a93b,
+        /* Row 7 */
+        4px 7px 0 #e5a93b, 5px 7px 0 #e5a93b, 6px 7px 0 #e5a93b, 7px 7px 0 #e5a93b, 8px 7px 0 #e5a93b, 9px 7px 0 #e5a93b, 10px 7px 0 #e5a93b, 11px 7px 0 #e5a93b,
+        /* Row 8 (Cheeks) */
+        4px 8px 0 #e5a93b, 5px 8px 0 #e5a93b, 6px 8px 0 #d66060, 7px 8px 0 #d66060, 8px 8px 0 #d66060, 9px 8px 0 #d66060, 10px 8px 0 #e5a93b, 11px 8px 0 #e5a93b,
+        /* Row 9 */
+        4px 9px 0 #222, 5px 9px 0 #222, 6px 9px 0 #222, 7px 9px 0 #222, 8px 9px 0 #222, 9px 9px 0 #222, 10px 9px 0 #222, 11px 9px 0 #222 !important;
 }
 
 /* Bunny Buddy (#2) */
-.sprite-id-2 {
-    background: transparent;
+.sprite-id-2, .sprite-id-5 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
     box-shadow:
-        /* Left Ear */
-        4px 2px 0 #dedfde, 4px 3px 0 #dedfde, 4px 4px 0 #dedfde,
-        5px 2px 0 #dedfde, 5px 3px 0 #dedfde, 5px 4px 0 #dedfde,
-        /* Right Ear */
-        10px 2px 0 #dedfde, 10px 3px 0 #dedfde, 10px 4px 0 #dedfde,
-        11px 2px 0 #dedfde, 11px 3px 0 #dedfde, 11px 4px 0 #dedfde,
-        /* Main Body Base */
+        /* Ears */
+        4px 2px 0 #dedfde, 4px 3px 0 #dedfde, 4px 4px 0 #dedfde, 5px 2px 0 #dedfde, 5px 3px 0 #dedfde, 5px 4px 0 #dedfde,
+        10px 2px 0 #dedfde, 10px 3px 0 #dedfde, 10px 4px 0 #dedfde, 11px 2px 0 #dedfde, 11px 3px 0 #dedfde, 11px 4px 0 #dedfde,
+        /* Body */
         5px 5px 0 #dedfde, 6px 5px 0 #dedfde, 7px 5px 0 #dedfde, 8px 5px 0 #dedfde, 9px 5px 0 #dedfde, 10px 5px 0 #dedfde,
         5px 6px 0 #dedfde, 6px 6px 0 #dedfde, 7px 6px 0 #dedfde, 8px 6px 0 #dedfde, 9px 6px 0 #dedfde, 10px 6px 0 #dedfde,
-        /* Face Features */
-        5px 7px 0 #dedfde, 7px 7px 0 #dedfde, 8px 7px 0 #dedfde, 10px 7px 0 #dedfde,
-        6px 7px 0 #222, 9px 7px 0 #222, /* Black Eyes */
-        /* Lower Body Block */
+        /* Eyes */
+        5px 7px 0 #dedfde, 6px 7px 0 #222, 7px 7px 0 #dedfde, 8px 7px 0 #dedfde, 9px 7px 0 #222, 10px 7px 0 #dedfde,
+        /* Bottom */
         5px 8px 0 #dedfde, 6px 8px 0 #dedfde, 7px 8px 0 #dedfde, 8px 8px 0 #dedfde, 9px 8px 0 #dedfde, 10px 8px 0 #dedfde,
-        5px 9px 0 #dedfde, 6px 9px 0 #dedfde, 7px 9px 0 #dedfde, 8px 9px 0 #dedfde, 9px 9px 0 #dedfde, 10px 9px 0 #dedfde;
+        5px 9px 0 #dedfde, 6px 9px 0 #dedfde, 7px 9px 0 #dedfde, 8px 9px 0 #dedfde, 9px 9px 0 #dedfde, 10px 9px 0 #dedfde !important;
 }
 
 /* Frog Buddy (#3) */
-.sprite-id-3 {
-    background: transparent;
+.sprite-id-3, .sprite-id-6 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
     box-shadow:
-        /* Big Frog Eyes Up Top */
+        /* Eyes */
         5px 3px 0 #fff, 6px 3px 0 #fff, 9px 3px 0 #fff, 10px 3px 0 #fff,
         5px 4px 0 #000, 6px 4px 0 #2ecc71, 9px 4px 0 #2ecc71, 10px 4px 0 #000,
-        /* Dense Green Body Framework */
-        4px 5px 0 #2ecc71, 5px 5px 0 #2ecc71, 6px 5px 0 #2ecc71, 7px 5px 0 #2ecc71, 
-        8px 5px 0 #2ecc71, 9px 5px 0 #2ecc71, 10px 5px 0 #2ecc71, 11px 5px 0 #2ecc71,
-        4px 6px 0 #2ecc71, 5px 6px 0 #2ecc71, 6px 6px 0 #2ecc71, 7px 6px 0 #2ecc71, 
-        8px 6px 0 #2ecc71, 9px 6px 0 #2ecc71, 10px 6px 0 #2ecc71, 11px 6px 0 #2ecc71,
-        /* Cute Rosy Cheeks */
-        4px 7px 0 #2ecc71, 5px 7px 0 #ff9e9e, 6px 7px 0 #2ecc71, 7px 7px 0 #2ecc71, 
-        8px 7px 0 #2ecc71, 9px 7px 0 #2ecc71, 10px 7px 0 #ff9e9e, 11px 7px 0 #2ecc71,
-        /* Base Bottom Edge */
-        4px 8px 0 #2ecc71, 5px 8px 0 #2ecc71, 6px 8px 0 #2ecc71, 7px 8px 0 #2ecc71, 
-        8px 8px 0 #2ecc71, 9px 8px 0 #2ecc71, 10px 8px 0 #2ecc71, 11px 8px 0 #2ecc71;
+        /* Green Head */
+        4px 5px 0 #2ecc71, 5px 5px 0 #2ecc71, 6px 5px 0 #2ecc71, 7px 5px 0 #2ecc71, 8px 5px 0 #2ecc71, 9px 5px 0 #2ecc71, 10px 5px 0 #2ecc71, 11px 5px 0 #2ecc71,
+        4px 6px 0 #2ecc71, 5px 6px 0 #2ecc71, 6px 6px 0 #2ecc71, 7px 6px 0 #2ecc71, 8px 6px 0 #2ecc71, 9px 6px 0 #2ecc71, 10px 6px 0 #2ecc71, 11px 6px 0 #2ecc71,
+        /* Cheeks */
+        4px 7px 0 #2ecc71, 5px 7px 0 #ff9e9e, 6px 7px 0 #2ecc71, 7px 7px 0 #2ecc71, 8px 7px 0 #2ecc71, 9px 7px 0 #2ecc71, 10px 7px 0 #ff9e9e, 11px 7px 0 #2ecc71,
+        /* Bottom Row */
+        4px 8px 0 #2ecc71, 5px 8px 0 #2ecc71, 6px 8px 0 #2ecc71, 7px 8px 0 #2ecc71, 8px 8px 0 #2ecc71, 9px 8px 0 #2ecc71, 10px 8px 0 #2ecc71, 11px 8px 0 #2ecc71 !important;
 }
-
-/* Fallback mappings to catch IDs 4, 5, and 6 gracefully */
-.sprite-id-4 { com-copy: sprite-id-1; background: transparent; }
-.sprite-id-5 { com-copy: sprite-id-2; background: transparent; }
-.sprite-id-6 { com-copy: sprite-id-3; background: transparent; }
