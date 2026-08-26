@@ -892,3 +892,60 @@ body {
         5px 10px 0 #1e1e1e, 6px 10px 0 #8b5a2b, 7px 10px 0 #8b5a2b, 8px 10px 0 #8b5a2b, 9px 10px 0 #8b5a2b, 10px 10px 0 #8b5a2b, 11px 10px 0 #1e1e1e,
         6px 11px 0 #1e1e1e, 7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e, 9px 11px 0 #1e1e1e, 10px 11px 0 #1e1e1e !important;
 }
+/* 👾 PREMIUM PIXEL ART COMPANIONS (PART 4: THREE NEW BUDDIES) */
+
+/* 🐶 Companion #10: Playful Puppy */
+.sprite-id-10 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
+    box-shadow:
+        /* Flappy Brown Ears */
+        3px 3px 0 #1e1e1e, 4px 3px 0 #1e1e1e, 12px 3px 0 #1e1e1e, 13px 3px 0 #1e1e1e,
+        2px 4px 0 #1e1e1e, 3px 4px 0 #8b5a2b, 4px 4px 0 #8b5a2b, 5px 4px 0 #1e1e1e, 11px 4px 0 #1e1e1e, 12px 4px 0 #8b5a2b, 13px 4px 0 #8b5a2b, 14px 4px 0 #1e1e1e,
+        2px 5px 0 #1e1e1e, 3px 5px 0 #8b5a2b, 4px 5px 0 #8b5a2b, 5px 5px 0 #f4a460, 6px 5px 0 #f4a460, 10px 5px 0 #f4a460, 11px 5px 0 #f4a460, 12px 5px 0 #8b5a2b, 13px 5px 0 #8b5a2b, 14px 5px 0 #1e1e1e,
+        /* Puppy Eyes and Tan Face Base */
+        2px 6px 0 #1e1e1e, 3px 6px 0 #1e1e1e, 4px 6px 0 #f4a460, 5px 6px 0 #1e1e1e, 6px 6px 0 #f4a460, 7px 6px 0 #f4a460, 8px 6px 0 #f4a460, 9px 6px 0 #f4a460, 10px 6px 0 #f4a460, 11px 6px 0 #1e1e1e, 12px 6px 0 #f4a460, 13px 6px 0 #1e1e1e, 14px 6px 0 #1e1e1e,
+        2px 7px 0 #1e1e1e, 3px 7px 0 #f4a460, 4px 7px 0 #f4a460, 5px 7px 0 #f4a460, 6px 7px 0 #f4a460, 7px 7px 0 #f4a460, 8px 7px 0 #f4a460, 9px 7px 0 #f4a460, 10px 7px 0 #f4a460, 11px 7px 0 #f4a460, 12px 7px 0 #f4a460, 13px 7px 0 #f4a460, 14px 7px 0 #1e1e1e,
+        /* Little Black Puppy Nose */
+        3px 8px 0 #1e1e1e, 4px 8px 0 #f4a460, 5px 8px 0 #f4a460, 6px 8px 0 #f4a460, 7px 8px 0 #1e1e1e, 8px 8px 0 #1e1e1e, 9px 8px 0 #f4a460, 10px 8px 0 #f4a460, 11px 8px 0 #f4a460, 12px 8px 0 #f4a460, 13px 8px 0 #1e1e1e,
+        4px 9px 0 #1e1e1e, 5px 9px 0 #f4a460, 6px 9px 0 #ffffff, 7px 9px 0 #ffffff, 8px 9px 0 #ffffff, 9px 9px 0 #ffffff, 10px 9px 0 #f4a460, 11px 9px 0 #1e1e1e,
+        5px 10px 0 #1e1e1e, 6px 10px 0 #1e1e1e, 7px 10px 0 #1e1e1e, 8px 10px 0 #1e1e1e, 9px 10px 0 #1e1e1e, 10px 10px 0 #1e1e1e, 11px 10px 0 #1e1e1e !important;
+}
+
+/* 🐥 Companion #11: Baby Chick */
+.sprite-id-11 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
+    box-shadow:
+        5px 3px 0 #1e1e1e, 6px 3px 0 #1e1e1e, 7px 3px 0 #1e1e1e, 8px 3px 0 #1e1e1e, 9px 3px 0 #1e1e1e, 10px 3px 0 #1e1e1e,
+        4px 4px 0 #1e1e1e, 5px 4px 0 #ffdb4d, 6px 4px 0 #ffdb4d, 7px 4px 0 #ffdb4d, 8px 4px 0 #ffdb4d, 9px 4px 0 #ffdb4d, 10px 4px 0 #ffdb4d, 11px 4px 0 #1e1e1e,
+        3px 5px 0 #1e1e1e, 4px 5px 0 #ffdb4d, 5px 5px 0 #ffdb4d, 6px 5px 0 #1e1e1e, 7px 5px 0 #ffdb4d, 8px 5px 0 #ffdb4d, 9px 5px 0 #1e1e1e, 10px 5px 0 #ffdb4d, 11px 5px 0 #ffdb4d, 12px 5px 0 #1e1e1e, /* Beady Eyes */
+        3px 6px 0 #1e1e1e, 4px 6px 0 #ffdb4d, 5px 6px 0 #ffdb4d, 6px 6px 0 #ffdb4d, 7px 6px 0 #ffdb4d, 8px 6px 0 #ffdb4d, 9px 6px 0 #ffdb4d, 10px 6px 0 #ffdb4d, 11px 6px 0 #ffdb4d, 12px 6px 0 #1e1e1e,
+        4px 7px 0 #1e1e1e, 5px 7px 0 #ffdb4d, 6px 7px 0 #ffdb4d, 7px 7px 0 #ff9933, 8px 7px 0 #ff9933, 9px 7px 0 #ffdb4d, 10px 7px 0 #ffdb4d, 11px 7px 0 #1e1e1e, /* Orange Beak */
+        4px 8px 0 #1e1e1e, 5px 8px 0 #ffdb4d, 6px 8px 0 #ffdb4d, 7px 8px 0 #ffdb4d, 8px 8px 0 #ffdb4d, 9px 8px 0 #ffdb4d, 10px 8px 0 #ffdb4d, 11px 8px 0 #1e1e1e,
+        5px 9px 0 #1e1e1e, 6px 9px 0 #ffdb4d, 7px 9px 0 #ffdb4d, 8px 9px 0 #ffdb4d, 9px 9px 0 #ffdb4d, 10px 9px 0 #1e1e1e,
+        6px 10px 0 #1e1e1e, 7px 10px 0 #ff9933, 8px 10px 0 #ff9933, 9px 10px 0 #1e1e1e, /* Little Orange Feet */
+        7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e !important;
+}
+
+/* 🐨 Companion #12: Cozy Koala */
+.sprite-id-12 {
+    background: transparent !important;
+    width: 1px !important;
+    height: 1px !important;
+    box-shadow:
+        /* Large Fluffy Gray Ears */
+        3px 2px 0 #1e1e1e, 4px 2px 0 #1e1e1e, 5px 2px 0 #1e1e1e, 11px 2px 0 #1e1e1e, 12px 2px 0 #1e1e1e, 13px 2px 0 #1e1e1e,
+        2px 3px 0 #1e1e1e, 3px 3px 0 #b0b0b0, 4px 3px 0 #ffffff, 5px 3px 0 #b0b0b0, 6px 3px 0 #1e1e1e, 10px 3px 0 #1e1e1e, 11px 3px 0 #b0b0b0, 12px 3px 0 #ffffff, 13px 3px 0 #b0b0b0, 14px 3px 0 #1e1e1e,
+        2px 4px 0 #1e1e1e, 3px 4px 0 #b0b0b0, 4px 4px 0 #b0b0b0, 5px 4px 0 #b0b0b0, 6px 4px 0 #b0b0b0, 7px 4px 0 #1e1e1e, 9px 4px 0 #1e1e1e, 10px 4px 0 #b0b0b0, 11px 4px 0 #b0b0b0, 12px 4px 0 #b0b0b0, 13px 4px 0 #b0b0b0, 14px 4px 0 #1e1e1e,
+        /* Head Structure and Eyes */
+        3px 5px 0 #1e1e1e, 4px 5px 0 #b0b0b0, 5px 5px 0 #b0b0b0, 6px 5px 0 #b0b0b0, 7px 5px 0 #b0b0b0, 8px 5px 0 #b0b0b0, 9px 5px 0 #b0b0b0, 10px 5px 0 #b0b0b0, 11px 5px 0 #b0b0b0, 12px 5px 0 #b0b0b0, 13px 5px 0 #1e1e1e,
+        3px 6px 0 #1e1e1e, 4px 6px 0 #b0b0b0, 5px 6px 0 #1e1e1e, 6px 6px 0 #b0b0b0, 7px 6px 0 #b0b0b0, 8px 6px 0 #b0b0b0, 9px 6px 0 #b0b0b0, 10px 6px 0 #b0b0b0, 11px 6px 0 #1e1e1e, 12px 6px 0 #b0b0b0, 13px 6px 0 #1e1e1e,
+        /* Large Koala Nose Base */
+        3px 7px 0 #1e1e1e, 4px 7px 0 #b0b0b0, 5px 7px 0 #b0b0b0, 6px 7px 0 #b0b0b0, 7px 7px 0 #505050, 8px 7px 0 #505050, 9px 7px 0 #b0b0b0, 10px 7px 0 #b0b0b0, 11px 7px 0 #b0b0b0, 12px 7px 0 #1e1e1e,
+        4px 8px 0 #1e1e1e, 5px 8px 0 #b0b0b0, 6px 8px 0 #b0b0b0, 7px 8px 0 #505050, 8px 8px 0 #505050, 9px 8px 0 #b0b0b0, 10px 8px 0 #b0b0b0, 11px 8px 0 #1e1e1e,
+        4px 9px 0 #1e1e1e, 5px 9px 0 #b0b0b0, 6px 9px 0 #b0b0b0, 7px 9px 0 #b0b0b0, 8px 9px 0 #b0b0b0, 9px 9px 0 #b0b0b0, 10px 9px 0 #b0b0b0, 11px 9px 0 #1e1e1e,
+        5px 10px 0 #1e1e1e, 6px 10px 0 #1e1e1e, 7px 10px 0 #1e1e1e, 8px 10px 0 #1e1e1e, 9px 10px 0 #1e1e1e, 10px 10px 0 #1e1e1e, 11px 10px 0 #1e1e1e !important;
+}
