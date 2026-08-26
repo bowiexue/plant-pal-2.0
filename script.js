@@ -425,7 +425,7 @@ function setupSandboxEngine() {
         
         // Randomly picks 1 of your 6 new pixel art drawings
                // 🔄 UPDATE: Changes 6 to 9 to let the new elephant, lion, and bear spawn!
-        const totalSpritesCount = 12; 
+        const totalSpritesCount = 10; 
         const randomizedIndexId = Math.floor(Math.random() * totalSpritesCount) + 1;
 
         const node = document.createElement('div');
