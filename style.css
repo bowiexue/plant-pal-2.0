@@ -845,25 +845,26 @@ body {
         7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e, 9px 11px 0 #1e1e1e !important;
 }
 
-/* 🦁 CRISP RETRO PIXEL LION GRAPHICS CONFIGURATION */
+/* 🦁 CORRECTED CLEAN PIXEL LION GRAPHICS CONFIGURATION */
 .sprite-id-8 {
     background: transparent !important;
     width: 1px !important;
     height: 1px !important;
     box-shadow:
-        /* Mane Outer Ring Border Rows */
-        4px 3px 0 #1e1e1e, 5px 3px 0 #1e1e1e, 6px 3px 0 #1e1e1e, 7px 3px 0 #1e1e1e, 8px 3px 0 #1e1e1e, 9px 3px 0 #1e1e1e, 10px 3px 0 #1e1e1e, 11px 3px 0 #1e1e1e,
-        3px 4px 0 #1e1e1e, 4px 4px 0 #d2691e, 5px 4px 0 #d2691e, 6px 4px 0 #d2691e, 7px 4px 0 #d2691e, 8px 4px 0 #d2691e, 9px 4px 0 #d2691e, 10px 4px 0 #d2691e, 11px 4px 0 #d2691e, 12px 4px 0 #1e1e1e,
-        /* Orange Mane Panels with Yellow Face Base Inside */
-        3px 5px 0 #1e1e1e, 4px 5px 0 #d2691e, 5px 5px 0 #f4a460, 6px 5px 0 #f4a460, 7px 5px 0 #f4a460, 8px 5px 0 #f4a460, 9px 5px 0 #f4a460, 10px 5px 0 #f4a460, 11px 5px 0 #d2691e, 12px 5px 0 #1e1e1e,
-        2px 6px 0 #1e1e1e, 3px 6px 0 #d2691e, 4px 6px 0 #f4a460, 5px 6px 0 #1e1e1e, 6px 6px 0 #f4a460, 7px 6px 0 #f4a460, 8px 6px 0 #f4a460, 9px 6px 0 #f4a460, 10px 6px 0 #1e1e1e, 11px 6px 0 #f4a460, 12px 6px 0 #d2691e, 13px 6px 0 #1e1e1e,
-        2px 7px 0 #1e1e1e, 3px 7px 0 #d2691e, 4px 7px 0 #f4a460, 5px 7px 0 #f4a460, 6px 7px 0 #f4a460, 7px 7px 0 #f4a460, 8px 7px 0 #f4a460, 9px 7px 0 #f4a460, 10px 7px 0 #f4a460, 11px 7px 0 #f4a460, 12px 7px 0 #d2691e, 13px 7px 0 #1e1e1e,
-        /* Black Eyes Row Positions */
-        3px 8px 0 #1e1e1e, 4px 8px 0 #d2691e, 5px 8px 0 #f4a460, 6px 8px 0 #1e1e1e, 7px 8px 0 #f4a460, 8px 8px 0 #1e1e1e, 9px 8px 0 #f4a460, 10px 8px 0 #1e1e1e, 11px 8px 0 #f4a460, 12px 8px 0 #d2691e, 13px 8px 0 #1e1e1e,
-        /* Dark Snout Details Layout */
-        3px 9px 0 #1e1e1e, 4px 9px 0 #d2691e, 5px 9px 0 #f4a460, 6px 9px 0 #f4a460, 7px 9px 0 #d2691e, 8px 9px 0 #d2691e, 9px 9px 0 #d2691e, 10px 9px 0 #f4a460, 11px 9px 0 #d2691e, 12px 9px 0 #1e1e1e,
-        4px 10px 0 #1e1e1e, 5px 10px 0 #d2691e, 6px 10px 0 #d2691e, 7px 10px 0 #d2691e, 8px 10px 0 #1e1e1e, 9px 10px 0 #d2691e, 10px 10px 0 #d2691e, 11px 10px 0 #1e1e1e,
-        5px 11px 0 #1e1e1e, 6px 11px 0 #1e1e1e, 7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e, 9px 11px 0 #1e1e1e, 10px 11px 0 #1e1e1e, 11px 11px 0 #1e1e1e !important;
+        /* --- MANE COORD LAYER --- */
+        5px 2px 0 #281d1a, 6px 2px 0 #281d1a, 7px 2px 0 #281d1a, 8px 2px 0 #281d1a, 9px 2px 0 #281d1a, 10px 2px 0 #281d1a,
+        4px 3px 0 #281d1a, 5px 3px 0 #b35924, 6px 3px 0 #b35924, 7px 3px 0 #b35924, 8px 3px 0 #b35924, 9px 3px 0 #b35924, 10px 3px 0 #b35924, 11px 3px 0 #281d1a,
+        3px 4px 0 #281d1a, 4px 4px 0 #b35924, 5px 4px 0 #b35924, 10px 4px 0 #b35924, 11px 4px 0 #b35924, 12px 4px 0 #281d1a,
+        2px 5px 0 #281d1a, 3px 5px 0 #b35924, 12px 5px 0 #b35924, 13px 5px 0 #281d1a,
+        2px 6px 0 #281d1a, 3px 6px 0 #b35924, 12px 6px 0 #b35924, 13px 6px 0 #281d1a,
+        /* --- FACE COORD MAP --- */
+        4px 5px 0 #e6a845, 5px 5px 0 #e6a845, 6px 5px 0 #e6a845, 7px 5px 0 #e6a845, 8px 5px 0 #e6a845, 9px 5px 0 #e6a845, 10px 5px 0 #e6a845, 11px 5px 0 #e6a845,
+        4px 6px 0 #e6a845, 5px 6px 0 #281d1a, 6px 6px 0 #e6a845, 7px 6px 0 #e6a845, 8px 6px 0 #e6a845, 9px 6px 0 #e6a845, 10px 6px 0 #281d1a, 11px 6px 0 #e6a845, /* Eyes */
+        4px 7px 0 #e6a845, 5px 7px 0 #e6a845, 6px 7px 0 #e6a845, 7px 7px 0 #e6a845, 8px 7px 0 #e6a845, 9px 7px 0 #e6a845, 10px 7px 0 #e6a845, 11px 7px 0 #e6a845,
+        4px 8px 0 #e6a845, 5px 8px 0 #e6a845, 6px 8px 0 #e6a845, 7px 8px 0 #281d1a, 8px 8px 0 #281d1a, 9px 8px 0 #e6a845, 10px 8px 0 #e6a845, 11px 8px 0 #e6a845, /* Nose */
+        3px 9px 0 #281d1a, 4px 9px 0 #b35924, 5px 9px 0 #e6a845, 6px 9px 0 #ffcad4, 7px 9px 0 #e6a845, 8px 9px 0 #e6a845, 9px 9px 0 #ffcad4, 10px 9px 0 #e6a845, 11px 9px 0 #b35924, 12px 9px 0 #281d1a, /* Cheeks */
+        4px 10px 0 #281d1a, 5px 10px 0 #b35924, 6px 10px 0 #b35924, 7px 10px 0 #b35924, 8px 10px 0 #b35924, 9px 10px 0 #b35924, 10px 10px 0 #b35924, 11px 10px 0 #281d1a,
+        5px 11px 0 #281d1a, 6px 11px 0 #281d1a, 7px 11px 0 #281d1a, 8px 11px 0 #281d1a, 9px 11px 0 #281d1a, 10px 11px 0 #281d1a !important;
 }
 
 
