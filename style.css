@@ -696,28 +696,25 @@ body {
 }
 
 /* 👾 RETRO PIXEL ART COMPANION GRAPHICS CONFIGURATION */
+/* 👾 ENHANCED PIXEL SPRITE RENDER NODE */
 .sandbox-companion.pixel-sprite-buddy-node {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     
-    /* Forces big, visible bounding box sizes so they don't load at 0px */
-    width: 32px !important;
-    height: 32px !important;
+    /* Configures the base block engine to 1px wide */
+    width: 1px !important;
+    height: 1px !important;
     
     position: absolute !important;
-    transform: translate(-50%, -50%) !important; 
+    /* 🔍 SCALER: Centers the click coordinate and blows up the pixel shapes cleanly by 4x */
+    transform: translate(-50%, -50%) scale(4) !important; 
     cursor: pointer !important;
     pointer-events: auto !important;
     
-    /* Injects crisp retro scaling engines */
+    /* Forces crisp retro pixel rendering rules */
     image-rendering: pixelated !important;
     image-rendering: crisp-edges !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    
-    /* Forces the animals to sit on top of your grid backgrounds instead of under them */
     z-index: 9999 !important; 
 }
 
