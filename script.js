@@ -1130,3 +1130,14 @@ window.hideCalendarReminderModalSheet = function() {
 // Alternate shortcut reference name layout fallback to handle both versions perfectly
 window.hideCalendarReminderModalSheetAction = window.hideCalendarReminderModalSheet;
 
+
+// --- 🔌 AUTOMATED SANDBOX BOOTSTRAPPER TRIGGER ---
+setTimeout(() => {
+    // Verifies the engine functions are configured properly before execution
+    if (typeof setupSandboxEngine === 'function') {
+        setupSandboxEngine();
+        console.log("SproutOS Sandbox Engine linked successfully.");
+    }
+}, 800); // Waits a split second to guarantee your HTML elements are ready
+
+
