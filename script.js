@@ -424,9 +424,10 @@ function setupSandboxEngine() {
         const y = e.clientY - rect.top;
         
         // Randomly picks 1 of your 6 new pixel art drawings
-        const totalSpritesCount = 6; 
+               // 🔄 UPDATE: Changes 6 to 9 to let the new elephant, lion, and bear spawn!
+        const totalSpritesCount = 9; 
         const randomizedIndexId = Math.floor(Math.random() * totalSpritesCount) + 1;
-        
+
         const node = document.createElement('div');
         // Injects classes that draw the pixel backgrounds instead of innerText emojis!
         node.className = `sandbox-companion pixel-sprite-buddy-node sprite-id-${randomizedIndexId}`;
