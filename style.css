@@ -894,45 +894,50 @@ body {
 }
 /* 👾 PREMIUM PIXEL ART COMPANIONS (PART 4: THREE NEW BUDDIES) */
 
-/* 🐶 Companion #10: FIXED Cute Floppy-Ear Puppy */
+/* 🐶 Companion #10: PERFECT UN-CURSED PUPPY (NO SHADOW GLITCHES) */
 .sprite-id-10 {
-    background: transparent !important;
-    width: 1px !important;
-    height: 1px !important;
-    box-shadow:
-        /* Dark brown floppy ears on the sides */
-        4px 3px 0 #1e1e1e, 5px 3px 0 #1e1e1e, 11px 3px 0 #1e1e1e, 12px 3px 0 #1e1e1e,
-        3px 4px 0 #1e1e1e, 4px 4px 0 #6d4c41, 5px 4px 0 #1e1e1e, 11px 4px 0 #1e1e1e, 12px 4px 0 #6d4c41, 13px 4px 0 #1e1e1e,
-        3px 5px 0 #1e1e1e, 4px 5px 0 #6d4c41, 5px 5px 0 #1e1e1e, 11px 5px 0 #1e1e1e, 12px 5px 0 #6d4c41, 13px 5px 0 #1e1e1e,
-        /* Golden tan face filling the gaps completely */
-        3px 6px 0 #1e1e1e, 4px 6px 0 #ffb74d, 5px 6px 0 #ffb74d, 6px 6px 0 #ffb74d, 7px 6px 0 #ffb74d, 8px 6px 0 #ffb74d, 9px 6px 0 #ffb74d, 10px 6px 0 #ffb74d, 11px 6px 0 #ffb74d, 12px 6px 0 #1e1e1e,
-        4px 7px 0 #1e1e1e, 5px 7px 0 #1e1e1e, 6px 7px 0 #ffb74d, 7px 7px 0 #ffb74d, 8px 7px 0 #ffb74d, 9px 7px 0 #ffb74d, 10px 7px 0 #ffb74d, 11px 7px 0 #1e1e1e, /* Beady Eyes */
-        4px 8px 0 #1e1e1e, 5px 8px 0 #ffb74d, 6px 8px 0 #ffb74d, 7px 8px 0 #1e1e1e, 8px 8px 0 #1e1e1e, 9px 8px 0 #ffb74d, 10px 8px 0 #ffb74d, 11px 8px 0 #1e1e1e, /* Nose */
-        4px 9px 0 #1e1e1e, 5px 9px 0 #ffb74d, 6px 9px 0 #ffffff, 7px 9px 0 #ffffff, 8px 9px 0 #ffffff, 9px 9px 0 #ffffff, 10px 9px 0 #ffb74d, 11px 9px 0 #1e1e1e, /* Muzzle */
-        5px 10px 0 #1e1e1e, 6px 10px 0 #1e1e1e, 7px 10px 0 #1e1e1e, 8px 10px 0 #1e1e1e, 9px 10px 0 #1e1e1e, 10px 10px 0 #1e1e1e !important;
+    width: 14px !important;
+    height: 11px !important;
+    background: 
+        /* Top Row (Ears Only) */
+        linear-gradient(to right, #1e1e1e 2px, transparent 2px 10px, #1e1e1e 10px) 0px 0px/14px 1px,
+        linear-gradient(to right, #1e1e1e 1px, #6d4c41 1px 3px, #1e1e1e 3px 9px, #6d4c41 9px 11px, #1e1e1e 11px) 0px 1px/14px 1px,
+        linear-gradient(to right, #1e1e1e 1px, #6d4c41 1px 2px, #1e1e1e 2px 10px, #6d4c41 10px 11px, #1e1e1e 11px) 0px 2px/14px 1px,
+        /* Face Rows (Welded Clean) */
+        linear-gradient(to right, #1e1e1e 2px, #ffb74d 2px 10px, #1e1e1e 10px) 0px 3px/14px 1px,
+        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 3px, #1e1e1e 3px 4px, #ffb74d 4px 8px, #1e1e1e 8px 9px, #ffb74d 9px 11px, #1e1e1e 11px) 0px 4px/14px 1px, /* Eyes */
+        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 5px, #1e1e1e 5px 7px, #ffb74d 7px 11px, #1e1e1e 11px) 0px 5px/14px 1px, /* Nose */
+        linear-gradient(to right, #1e1e1e 1px, #ffb74d 1px 3px, #ffffff 3px 9px, #ffb74d 9px 11px, #1e1e1e 11px) 0px 6px/14px 1px, /* Muzzle */
+        /* Chin Base */
+        linear-gradient(to right, transparent 2px, #1e1e1e 2px 10px, transparent 10px) 0px 7px/14px 1px !important;
+    background-repeat: no-repeat !important;
+    box-shadow: none !important;
 }
 
-/* 🐥 Companion #11: FIXED Baby Chick (Beard Removed!) */
+/* 🐥 Companion #11: PERFECT CHICK (BEARD REMOVED & BIG BEAK) */
 .sprite-id-11 {
-    background: transparent !important;
-    width: 1px !important;
-    height: 1px !important;
-    box-shadow:
-        /* Top head curve */
-        5px 3px 0 #1e1e1e, 6px 3px 0 #1e1e1e, 7px 3px 0 #1e1e1e, 8px 3px 0 #1e1e1e, 9px 3px 0 #1e1e1e, 10px 3px 0 #1e1e1e,
-        4px 4px 0 #1e1e1e, 5px 4px 0 #ffd54f, 6px 4px 0 #ffd54f, 7px 4px 0 #ffd54f, 8px 4px 0 #ffd54f, 9px 4px 0 #ffd54f, 10px 4px 0 #ffd54f, 11px 4px 0 #1e1e1e,
-        /* Eyes row */
-        3px 5px 0 #1e1e1e, 4px 5px 0 #ffd54f, 5px 5px 0 #1e1e1e, 6px 5px 0 #ffd54f, 7px 5px 0 #ffd54f, 8px 5px 0 #ffd54f, 9px 5px 0 #ffd54f, 10px 5px 0 #1e1e1e, 11px 5px 0 #ffd54f, 12px 5px 0 #1e1e1e,
-        3px 6px 0 #1e1e1e, 4px 6px 0 #ffd54f, 5px 6px 0 #ffd54f, 6px 6px 0 #ffd54f, 7px 6px 0 #ffd54f, 8px 6px 0 #ffd54f, 9px 6px 0 #ffd54f, 10px 6px 0 #ffd54f, 11px 6px 0 #ffd54f, 12px 6px 0 #1e1e1e,
-        /* Orange beak row */
-        4px 7px 0 #1e1e1e, 5px 7px 0 #ffd54f, 6px 7px 0 #ffd54f, 7px 7px 0 #ff9800, 8px 7px 0 #ff9800, 9px 7px 0 #ffd54f, 10px 7px 0 #ffd54f, 11px 7px 0 #1e1e1e,
-        /* Yellow lower belly (Wipes out the black beard!) */
-        4px 8px 0 #1e1e1e, 5px 8px 0 #ffd54f, 6px 8px 0 #ffd54f, 7px 8px 0 #ffd54f, 8px 8px 0 #ffd54f, 9px 8px 0 #ffd54f, 10px 8px 0 #ffd54f, 11px 8px 0 #1e1e1e,
-        5px 9px 0 #1e1e1e, 6px 9px 0 #ffd54f, 7px 9px 0 #ffd54f, 8px 9px 0 #ffd54f, 9px 9px 0 #ffd54f, 10px 9px 0 #1e1e1e,
-        /* Tiny orange feet row */
-        6px 10px 0 #1e1e1e, 7px 10px 0 #ff9800, 8px 10px 0 #ff9800, 9px 10px 0 #1e1e1e,
-        7px 11px 0 #1e1e1e, 8px 11px 0 #1e1e1e !important;
+    width: 14px !important;
+    height: 11px !important;
+    background: 
+        /* Head Top Curve */
+        linear-gradient(to right, transparent 3px, #1e1e1e 3px 9px, transparent 9px) 0px 0px/14px 1px,
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 10px, #1e1e1e 10px) 0px 1px/14px 1px,
+        /* Eyes Row */
+        linear-gradient(to right, #1e1e1e 1px, #ffd54f 1px 3px, #1e1e1e 3px 4px, #ffd54f 4px 8px, #1e1e1e 8px 9px, #ffd54f 9px 11px, #1e1e1e 11px) 0px 2px/14px 1px,
+        linear-gradient(to right, #1e1e1e 1px, #ffd54f 1px 11px, #1e1e1e 11px) 0px 3px/14px 1px,
+        /* 🍊 BIG BEAK LAYER (Stretches clear across the middle) */
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 4px, #ff9800 4px 8px, #ffd54f 8px 10px, #1e1e1e 10px) 0px 4px/14px 1px,
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 4px, #ff9800 4px 8px, #ffd54f 8px 10px, #1e1e1e 10px) 0px 5px/14px 1px,
+        /* Yellow Belly Layer (Pure color—wipes beard completely!) */
+        linear-gradient(to right, #1e1e1e 2px, #ffd54f 2px 10px, #1e1e1e 10px) 0px 6px/14px 1px,
+        linear-gradient(to right, transparent 3px, #1e1e1e 3px 9px, transparent 9px) 0px 7px/14px 1px,
+        /* Orange Feet Base */
+        linear-gradient(to right, transparent 4px, #ff9800 4px 5px, transparent 5px 7px, #ff9800 7px 8px, transparent 8px) 0px 8px/14px 1px,
+        linear-gradient(to right, transparent 4px, #1e1e1e 4px 5px, transparent 5px 7px, #1e1e1e 7px 8px, transparent 8px) 0px 9px/14px 1px !important;
+    background-repeat: no-repeat !important;
+    box-shadow: none !important;
 }
+
 
 
 
