@@ -1060,26 +1060,3 @@ body {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
-/* 👑 Custom Attached Accessory Layers */
-.pet-sprite-base::before {
-    content: attr(data-item);
-    position: absolute;
-    top: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    pointer-events: none;
-}
-
-.shop-items-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin: 8px 0;
-}
-
-.pet-shop-drawer {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
