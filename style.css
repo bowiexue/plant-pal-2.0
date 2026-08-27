@@ -914,3 +914,12 @@ body {
         4px 9px 0 #1e1e1e, 5px 9px 0 #b0b0b0, 6px 9px 0 #b0b0b0, 7px 9px 0 #b0b0b0, 8px 9px 0 #b0b0b0, 9px 9px 0 #b0b0b0, 10px 9px 0 #b0b0b0, 11px 9px 0 #1e1e1e,
         5px 10px 0 #1e1e1e, 6px 10px 0 #1e1e1e, 7px 10px 0 #1e1e1e, 8px 10px 0 #1e1e1e, 9px 10px 0 #1e1e1e, 10px 10px 0 #1e1e1e, 11px 10px 0 #1e1e1e !important;
 }
+/* 🔄 THEME RESPONSIVE FONT CARD HEADER BAR */
+.font-variance-engine-card-selector, 
+div:has(> .pixel-deco-icon) + .piggy-panel-header,
+.dashboard-layout-grid .layout-column:nth-child(2) .pixel-piggy-card:nth-child(2) .piggy-panel-header,
+.pixel-piggy-card:has(.kaomoji-grid-layout) .piggy-panel-header {
+    /* Dynamic variable link hooks into all 6 variant color mutations automatically! */
+    background-color: var(--sage-green) !important;
+    transition: background-color 0.3s ease !important;
+}
