@@ -940,3 +940,76 @@ body {
 .pixel-piggy-card:has(.kaomoji-grid-layout) .fonts-workspace-body {
     background-color: var(--card-surface, #ffffff) !important;
 }
+/* 🎮 DYNAMIC INTERACTIVE VIRTUAL PET WIDGET GRAPHICS STYLING */
+.system-pet-widget {
+    position: relative;
+    width: 100%;
+}
+
+.pet-widget-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: var(--linen-white, #f7f9f7);
+}
+
+.pet-stats-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: #ffffff;
+    padding: 6px 12px;
+    border: 2px solid var(--border-charcoal);
+    border-radius: 6px;
+}
+
+.pet-display-screen {
+    height: 140px;
+    background-color: #fffefa;
+    border: 3px solid #1a1a1a;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 🐰 Base Matrix Asset Drawing for the Pet */
+.pet-sprite-base {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    transform: scale(2.5);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" fill="%23fecaca"/><rect x="5" y="6" width="2" height="2" fill="%23222"/><rect x="9" y="6" width="2" height="2" fill="%23222"/><rect x="6" y="9" width="4" height="1" fill="%23222"/><rect x="3" y="3" width="3" height="3" fill="%23fecaca"/><rect x="10" y="3" width="3" height="3" fill="%23fecaca"/></svg>');
+}
+
+/* 👑 Custom Attached Accessory Layers */
+.pet-sprite-base::before {
+    content: attr(data-item);
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.shop-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.pet-shop-drawer {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
