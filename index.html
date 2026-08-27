@@ -265,44 +265,6 @@
             </div>
         </main>
         <!-- 🎮 VIRTUAL PIXEL PET CARD CONTAINER -->
-<div class="pixel-piggy-card system-pet-widget">
-    <div class="card-header-bar">
-        <h2>🎮 Pixel Pet Companion</h2>
-        <span class="level-indicator-badge" id="pet-mood-badge">😊 Happy</span>
-    </div>
-    
-    <div class="fonts-workspace-body pet-widget-body">
-        <!-- Interactive Stat Bars -->
-        <div class="pet-stats-container">
-            <div class="stat-row">🍔 Hunger: <span id="pet-hunger-text">Full</span></div>
-            <div class="stat-row">👑 Clothes: <span id="pet-clothing-text">None</span></div>
-        </div>
-
-        <!-- 📟 Center Console Screen Grid Screen -->
-        <div class="pet-display-screen">
-            <div id="virtual-pet-avatar" class="pet-sprite-base look-idle"></div>
-        </div>
-
-        <!-- 🕹️ Console Button Dock System -->
-        <div class="pixel-control-dock pet-actions-row">
-            <button class="pixel-action-btn btn-deposit" onclick="handleFeedVirtualPetTrigger()">🍪 Feed (5 🪙)</button>
-            <button class="pixel-action-btn btn-primary" onclick="toggleVirtualPetShopMenu()">🛍️ Shop Clothes</button>
-        </div>
-
-        <!-- 🛒 Hidden Shop Overlay Screen Slider Row -->
-        <div id="pet-shop-overlay-drawer" class="calendar-reminder-editor hidden-layout pet-shop-drawer">
-            <h4>🛍️ Accessory Shop (15 🪙 each)</h4>
-            <div class="shop-items-grid">
-                <button class="modal-btn" onclick="buyPetAccessoryItem('👑 Crown')">👑 Crown</button>
-                <button class="modal-btn" onclick="buyPetAccessoryItem('🧙 Hat')">🧙 Wizard Hat</button>
-                <button class="modal-btn" onclick="buyPetAccessoryItem('🕶️ Glasses')">🕶️ Sunglasses</button>
-            </div>
-            <div class="modal-action-row">
-                <button class="modal-btn close-btn" onclick="toggleVirtualPetShopMenu()">Close Shop</button>
-            </div>
-        </div>
-    </div>
-</div>
 
    <!-- 🐷 RETRO GAME STYLED PIXEL PIGGY BANK -->
 <!-- 🐷 SproutOS THEMED PIXEL PIGGY BANK PANEL -->
@@ -362,6 +324,44 @@
             <button onclick="window.resetPiggyBankData()" class="pixel-btn-reset">Reset Coin Storage</button>
         </div>
     </div>
+    <div class="pixel-piggy-card system-pet-widget">
+    <div class="card-header-bar">
+        <h2>🎮 Pixel Pet Companion</h2>
+        <span class="level-indicator-badge" id="pet-mood-badge">😊 Happy</span>
+    </div>
+    
+    <div class="fonts-workspace-body pet-widget-body">
+        <!-- Interactive Stat Bars -->
+        <div class="pet-stats-container">
+            <div class="stat-row">🍔 Hunger: <span id="pet-hunger-text">Full</span></div>
+            <div class="stat-row">👑 Clothes: <span id="pet-clothing-text">None</span></div>
+        </div>
+
+        <!-- 📟 Center Console Screen Grid Screen -->
+        <div class="pet-display-screen">
+            <div id="virtual-pet-avatar" class="pet-sprite-base look-idle"></div>
+        </div>
+
+        <!-- 🕹️ Console Button Dock System -->
+        <div class="pixel-control-dock pet-actions-row">
+            <button class="pixel-action-btn btn-deposit" onclick="handleFeedVirtualPetTrigger()">🍪 Feed (5 🪙)</button>
+            <button class="pixel-action-btn btn-primary" onclick="toggleVirtualPetShopMenu()">🛍️ Shop Clothes</button>
+        </div>
+
+        <!-- 🛒 Hidden Shop Overlay Screen Slider Row -->
+        <div id="pet-shop-overlay-drawer" class="calendar-reminder-editor hidden-layout pet-shop-drawer">
+            <h4>🛍️ Accessory Shop (15 🪙 each)</h4>
+            <div class="shop-items-grid">
+                <button class="modal-btn" onclick="buyPetAccessoryItem('👑 Crown')">👑 Crown</button>
+                <button class="modal-btn" onclick="buyPetAccessoryItem('🧙 Hat')">🧙 Wizard Hat</button>
+                <button class="modal-btn" onclick="buyPetAccessoryItem('🕶️ Glasses')">🕶️ Sunglasses</button>
+            </div>
+            <div class="modal-action-row">
+                <button class="modal-btn close-btn" onclick="toggleVirtualPetShopMenu()">Close Shop</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 
