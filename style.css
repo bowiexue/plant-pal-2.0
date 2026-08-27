@@ -1101,31 +1101,23 @@ body {
 }
 .shop-items-grid .modal-btn:hover { background: #e9ecef; }
 
-/* 🎮 NESTLES THE PET COMPANION WIDGET FLUSH TO THE RIGHT SIDE COLUMN GUIDELINES */
+/* 🎮 NESTLES THE PET COMPANION WIDGET FLUSH TO THE RIGHT SIDE CANVAS */
 .system-pet-widget {
     position: relative !important;
     display: block !important;
+    width: 100% !important;
+    max-width: 480px !important; /* Locks its box width parameters to match your font cards */
     
-    /* 📐 ALIGNMENT SNAP: Constrains width and forces it to hug the right layout boundary */
-    float: right !important;
-    width: 46% !important; /* Perfectly matches the right column width guidelines */
-    max-width: 530px !important;
+    /* 📐 POSITIONING ACCENT: Pushes the container box straight to the right side of the screen */
+    margin-left: auto !important;
+    margin-right: 0 !important;
     
-    /* Clears any vertical stacks so it stops stretching all the way across your screen */
-    clear: none !important; 
+    /* Adds clean separating vertical space below your coin manager panel rows */
     margin-top: 24px !important;
     margin-bottom: 24px !important;
     box-shadow: var(--neo-flat-shadow, 3px 3px 0px #222222) !important;
 }
 
-/* 🧹 CLEANUP TRACK: Forces the black log registry at the bottom to reset itself cleanly */
-#history-log-box, 
-.pixel-piggy-card:has(#history-log-box),
-div:has(> #history-log-box) {
-    clear: both !important;
-    width: 100% !important;
-    margin-top: 20px !important;
-}
 
 /* 🪙 PET WALLET TOKEN BADGE STYLING */
 .pet-token-wallet-banner {
