@@ -1101,29 +1101,16 @@ body {
 }
 .shop-items-grid .modal-btn:hover { background: #e9ecef; }
 
-/* 📅 RESET CALENDAR: Stops it from floating so it leaves the right-side layout clear */
-.system-calendar-widget {
-    float: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
-}
-
-/* 🎮 PERFECT POSITIONING FOR THE INTERACTIVE PET WIDGET */
+/* 🎮 DYNAMIC INTERACTIVE VIRTUAL PET CARD ALIGNMENT */
 .system-pet-widget {
     position: relative !important;
-    display: block !important;
     width: 100% !important;
-    max-width: 480px !important;
-    
-    /* 📐 SNAP RULE: Clears any hidden sideways blocks to sit perfectly inside your blue circled zone */
-    clear: both !important;
-    float: right !important;
-    
-    /* Adds clean separating vertical space so it never mashes into your top coin panels */
-    margin-top: 40px !important; 
-    margin-bottom: 40px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: var(--neo-flat-shadow, 3px 3px 0px #222222) !important;
+    margin-top: 10px !important;
 }
+
 
 /* 🪙 PET WALLET TOKEN BADGE STYLING */
 .pet-token-wallet-banner {
