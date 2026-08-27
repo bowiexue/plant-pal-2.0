@@ -951,61 +951,36 @@ body {
     flex-direction: column;
     gap: 12px;
     padding: 16px;
-    background: var(--linen-white, #f7f9f7);
-}
-
-.pet-stats-container {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    font-weight: bold;
-    background: #ffffff;
-    padding: 6px 12px;
-    border: 2px solid var(--border-charcoal);
-    border-radius: 6px;
-}
-
-.pet-display-screen {
-    height: 140px;
-    background-color: #fffefa;
-    border: 3px solid #1a1a1a;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-/* 🎮 DYNAMIC INTERACTIVE VIRTUAL PET WIDGET GRAPHICS STYLING */
-.system-pet-widget {
-    position: relative;
-    width: 100%;
-    margin: 0;
-}
-
-.pet-widget-body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px;
     background: var(--linen-white, #f7f9f7) !important;
 }
 
+/* 📊 STATS DASHBOARD READOUT CHANNELS */
 .pet-stats-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     text-align: center;
-    font-size: 0.85rem;
-    font-weight: bold;
+    gap: 6px;
     background: #ffffff;
-    padding: 6px 12px;
-    border: 2px solid var(--border-charcoal);
-    border-radius: 6px;
+    padding: 8px;
+    border: 2.5px solid var(--border-charcoal);
+    border-radius: 8px;
+}
+
+.stat-box-node {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.stat-val-readout {
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
 
 .pet-display-screen {
-    height: 140px;
+    height: 150px;
     background-color: #fffefa;
     border: 3px solid #1a1a1a;
     border-radius: 12px;
@@ -1016,47 +991,113 @@ body {
     overflow: hidden;
 }
 
-/* 🐰 PURE CSS DRAWN PIXEL PET BUNNY (NO LINEMAPS - ALWAYS VISIBLE) */
+/* 🐰 GIANT VISIBLE CSS PIXEL PET COMPANION */
 .pet-sprite-base {
     width: 1px !important;
     height: 1px !important;
     background: transparent !important;
-    position: relative;
-    /* Scales up the tiny pixel art points into a beautifully visible pet console */
-    transform: scale(4.5) translate(-6px, -4px); 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* 🔍 SCALE BOOST: Blows up the bunny coordinates to be massive and perfectly centered! */
+    transform: scale(8) translate(-6px, -4px) !important;
+}
+
+/* Core Pixel Bunny Coordinate Stack */
+.pet-sprite-base.draw-bunny {
     box-shadow:
-        /* Pink Bunny Ears Coords */
+        /* Ears */
         3px 1px 0 #fecaca, 3px 2px 0 #fecaca, 3px 3px 0 #fecaca,
         9px 1px 0 #fecaca, 9px 2px 0 #fecaca, 9px 3px 0 #fecaca,
-        /* Bunny Head Outline & Base Base */
+        /* Head Structure */
         4px 4px 0 #fecaca, 5px 4px 0 #fecaca, 6px 4px 0 #fecaca, 7px 4px 0 #fecaca, 8px 4px 0 #fecaca,
         3px 5px 0 #fecaca, 4px 5px 0 #fecaca, 5px 5px 0 #fecaca, 6px 5px 0 #fecaca, 7px 5px 0 #fecaca, 8px 5px 0 #fecaca, 9px 5px 0 #fecaca,
-        /* Beady Eyes Rows */
+        /* Beady Eyes */
         3px 6px 0 #fecaca, 4px 6px 0 #222222, 5px 6px 0 #fecaca, 6px 6px 0 #fecaca, 7px 6px 0 #fecaca, 8px 6px 0 #222222, 9px 6px 0 #fecaca,
         3px 7px 0 #fecaca, 4px 7px 0 #fecaca, 5px 7px 0 #fecaca, 6px 7px 0 #222222, 7px 7px 0 #fecaca, 8px 7px 0 #fecaca, 9px 7px 0 #fecaca,
-        /* Cheeks and Lower Jaw */
+        /* Lower Muzzle */
         4px 8px 0 #fecaca, 5px 8px 0 #fecaca, 6px 8px 0 #fecaca, 7px 8px 0 #fecaca, 8px 8px 0 #fecaca,
         5px 9px 0 #1e1e1e, 6px 9px 0 #1e1e1e, 7px 9px 0 #1e1e1e !important;
 }
 
-/* 👑 Custom Floating Accessory Outfits Positioner */
-.pet-sprite-base::before {
-    content: attr(data-item);
-    position: absolute;
-    top: -12px;
-    left: 6px;
-    font-size: 3px;
-    pointer-events: none;
+/* 👗 PURE PIXEL DRAWN CLOTHING ACCESSORY OVERLAYS (NO MORE EMOJIS!) */
+.pet-sprite-base::before { content: none !important; } /* Erases the old floating emoji system */
+
+/* 👑 Item 1: Royal Crown Coords */
+.pet-sprite-base.wear-crown::after {
+    content: "" !important; position: absolute; width: 1px; height: 1px;
+    box-shadow: 
+        5px 2px 0 #ffd700, 7px 2px 0 #ffd700, 9px 2px 0 #ffd700,
+        5px 3px 0 #ffd700, 6px 3px 0 #ffd700, 7px 3px 0 #ffd700, 8px 3px 0 #ffd700, 9px 3px 0 #ffd700,
+        4px 4px 0 #b39200, 5px 4px 0 #ffd700, 6px 4px 0 #ffd700, 7px 4px 0 #ffd700, 8px 4px 0 #ffd700, 9px 4px 0 #ffd700, 10px 4px 0 #b39200 !important;
+}
+
+/* 🧙 Item 2: Sorcerer Wizard Hat Coords */
+.pet-sprite-base.wear-hat::after {
+    content: "" !important; position: absolute; width: 1px; height: 1px;
+    box-shadow: 
+        7px 0px 0 #5c5887,
+        6px 1px 0 #5c5887, 7px 1px 0 #ffdb4d, 8px 1px 0 #5c5887,
+        6px 2px 0 #5c5887, 7px 2px 0 #5c5887, 8px 2px 0 #5c5887,
+        5px 3px 0 #444163, 6px 3px 0 #5c5887, 7px 3px 0 #ffdb4d, 8px 3px 0 #5c5887, 9px 3px 0 #444163,
+        3px 4px 0 #1e1e1e, 4px 4px 0 #444163, 5px 4px 0 #444163, 6px 4px 0 #444163, 7px 4px 0 #444163, 8px 4px 0 #444163, 9px 4px 0 #444163, 10px 4px 0 #444163, 11px 4px 0 #1e1e1e !important;
+}
+
+/* 🕶️ Item 3: Cool Matrix Sunglasses Coords */
+.pet-sprite-base.wear-shades::after {
+    content: "" !important; position: absolute; width: 1px; height: 1px;
+    box-shadow: 
+        3px 6px 0 #111, 4px 6px 0 #111, 5px 6px 0 #111, 6px 6px 0 #111, 7px 6px 0 #111, 8px 6px 0 #111, 9px 6px 0 #111,
+        4px 7px 0 #1e1e1e, 5px 7px 0 #1e1e1e, 8px 7px 0 #1e1e1e, 9px 7px 0 #1e1e1e !important;
+}
+
+/* 🎀 Item 4: Business Dapper Neck Tie Coords */
+.pet-sprite-base.wear-tie::after {
+    content: "" !important; position: absolute; width: 1px; height: 1px;
+    box-shadow: 
+        6px 9px 0 #d96262, 7px 9px 0 #d96262,
+        6px 10px 0 #960018, 7px 10px 0 #960018,
+        6px 11px 0 #d96262, 7px 11px 0 #d96262,
+        6px 12px 0 #960018 !important;
+}
+
+/* 🛒 UPGRADED WALLET PREVIEW SHOP COMPONENT */
+.pet-shop-drawer {
+    border-top: 3px solid var(--border-charcoal) !important;
+    padding: 14px !important;
+    background: #ffffff !important;
+}
+
+.shop-header-wallet-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed #ddd;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+}
+
+.shop-wallet-badge {
+    background: #fff9db;
+    border: 2px solid #f59f00;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 800;
 }
 
 .shop-items-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 6px;
-    margin: 8px 0;
+    margin-bottom: 10px;
 }
 
-.pet-shop-drawer {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+.shop-items-grid .modal-btn {
+    text-align: left;
+    padding: 6px 10px;
+    background: #f8f9fa;
+    transition: background 0.1s;
 }
+.shop-items-grid .modal-btn:hover { background: #e9ecef; }
+
