@@ -324,44 +324,53 @@
             <button onclick="window.resetPiggyBankData()" class="pixel-btn-reset">Reset Coin Storage</button>
         </div>
     </div>
-    <div class="pixel-piggy-card system-pet-widget">
+    <!-- 🎮 VIRTUAL PIXEL PET CARD CONTAINER -->
+<div class="pixel-piggy-card system-pet-widget">
     <div class="card-header-bar">
-        <h2>🎮 Pixel Pet Companion</h2>
+        <h2>🎮 Pixel Pet Station</h2>
         <span class="level-indicator-badge" id="pet-mood-badge">😊 Happy</span>
     </div>
     
     <div class="fonts-workspace-body pet-widget-body">
-        <!-- Interactive Stat Bars -->
+        <!-- 📊 TRIPLE STATS DASHBOARD SCREEN ROW -->
         <div class="pet-stats-container">
-            <div class="stat-row">🍔 Hunger: <span id="pet-hunger-text">Full</span></div>
-            <div class="stat-row">👑 Clothes: <span id="pet-clothing-text">None</span></div>
+            <div class="stat-box-node">🍪 Hunger<span class="stat-val-readout" id="pet-hunger-text">Full (100%)</span></div>
+            <div class="stat-box-node">✨ Mood<span class="stat-val-readout" id="pet-mood-text">Joyful</span></div>
+            <div class="stat-box-node">👕 Clothing<span class="stat-val-readout" id="pet-clothing-text">None</span></div>
         </div>
 
         <!-- 📟 Center Console Screen Grid Screen -->
         <div class="pet-display-screen">
-            <div id="virtual-pet-avatar" class="pet-sprite-base look-idle"></div>
+            <!-- Injects base class drawing wrappers -->
+            <div id="virtual-pet-avatar" class="pet-sprite-base draw-bunny"></div>
         </div>
 
         <!-- 🕹️ Console Button Dock System -->
         <div class="pixel-control-dock pet-actions-row">
-            <button class="pixel-action-btn btn-deposit" onclick="handleFeedVirtualPetTrigger()">🍪 Feed (5 🪙)</button>
-            <button class="pixel-action-btn btn-primary" onclick="toggleVirtualPetShopMenu()">🛍️ Shop Clothes</button>
+            <button class="pixel-action-btn btn-deposit" onclick="handleFeedVirtualPetTrigger()">🍪 Feed Pet (5 🪙)</button>
+            <button class="pixel-action-btn btn-primary" onclick="toggleVirtualPetShopMenu()">🛍️ Open Boutique</button>
         </div>
 
-        <!-- 🛒 Hidden Shop Overlay Screen Slider Row -->
+        <!-- 🛒 SHOPPING OVERLAY SCREEN SLIDER DRAWER CONTAINER -->
         <div id="pet-shop-overlay-drawer" class="calendar-reminder-editor hidden-layout pet-shop-drawer">
-            <h4>🛍️ Accessory Shop (15 🪙 each)</h4>
+            <div class="shop-header-wallet-row">
+                <h4>🛍️ Accessory Boutique (15 🪙)</h4>
+                <div class="shop-wallet-badge">Your Balance: <span id="shop-wallet-coin-count">0</span> 🪙</div>
+            </div>
+            
             <div class="shop-items-grid">
-                <button class="modal-btn" onclick="buyPetAccessoryItem('👑 Crown')">👑 Crown</button>
-                <button class="modal-btn" onclick="buyPetAccessoryItem('🧙 Hat')">🧙 Wizard Hat</button>
-                <button class="modal-btn" onclick="buyPetAccessoryItem('🕶️ Glasses')">🕶️ Sunglasses</button>
+                <button class="modal-btn" onclick="buyPetAccessoryItem('crown')">👑 Royal Crown</button>
+                <button class="modal-btn" onclick="buyPetAccessoryItem('hat')">🧙 Wizard Hat</button>
+                <button class="modal-btn" onclick="buyPetAccessoryItem('shades')">🕶️ Sunglasses</button>
+                <button class="modal-btn" onclick="buyPetAccessoryItem('tie')">👔 Dapper Tie</button>
             </div>
             <div class="modal-action-row">
-                <button class="modal-btn close-btn" onclick="toggleVirtualPetShopMenu()">Close Shop</button>
+                <button class="modal-btn close-btn" onclick="toggleVirtualPetShopMenu()">Exit Boutique</button>
             </div>
         </div>
     </div>
 </div>
+
 </div>
 
 
