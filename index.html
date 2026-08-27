@@ -325,6 +325,7 @@
         </div>
     </div>
     <!-- 🎮 VIRTUAL PIXEL PET CARD CONTAINER -->
+<!-- 🎮 VIRTUAL PIXEL PET CARD CONTAINER -->
 <div class="pixel-piggy-card system-pet-widget">
     <div class="card-header-bar">
         <h2>🎮 Pixel Pet Station</h2>
@@ -332,30 +333,32 @@
     </div>
     
     <div class="fonts-workspace-body pet-widget-body">
-        <!-- 📊 TRIPLE STATS DASHBOARD SCREEN ROW -->
+        <!-- 🪙 DEDICATED INLINE PET BANK TOKEN WALLET BAR -->
+        <div class="pet-token-wallet-banner">
+            Pet Bank: <span id="pet-token-balance-text">10</span> 🪙 (Earned from happiness!)
+        </div>
+
+        <!-- 📊 STATS DASHBOARD SCREEN ROW -->
         <div class="pet-stats-container">
             <div class="stat-box-node">🍪 Hunger<span class="stat-val-readout" id="pet-hunger-text">Full (100%)</span></div>
             <div class="stat-box-node">✨ Mood<span class="stat-val-readout" id="pet-mood-text">Joyful</span></div>
-            <div class="stat-box-node">👕 Clothing<span class="stat-val-readout" id="pet-clothing-text">None</span></div>
+            <div class="stat-box-node">👕 Clothing<span class="stat-val-readout" id="pet-clothing-text">Wizard Hat 🧙</span></div>
         </div>
 
-        <!-- 📟 Center Console Screen Grid Screen -->
         <div class="pet-display-screen">
-            <!-- Injects base class drawing wrappers -->
-            <div id="virtual-pet-avatar" class="pet-sprite-base draw-bunny"></div>
+            <div id="virtual-pet-avatar" class="pet-sprite-base draw-bunny wear-hat"></div>
         </div>
 
-        <!-- 🕹️ Console Button Dock System -->
         <div class="pixel-control-dock pet-actions-row">
             <button class="pixel-action-btn btn-deposit" onclick="handleFeedVirtualPetTrigger()">🍪 Feed Pet (5 🪙)</button>
             <button class="pixel-action-btn btn-primary" onclick="toggleVirtualPetShopMenu()">🛍️ Open Boutique</button>
         </div>
 
-        <!-- 🛒 SHOPPING OVERLAY SCREEN SLIDER DRAWER CONTAINER -->
+        <!-- 🛒 BOUTIQUE DRAWER OVERLAY -->
         <div id="pet-shop-overlay-drawer" class="calendar-reminder-editor hidden-layout pet-shop-drawer">
             <div class="shop-header-wallet-row">
                 <h4>🛍️ Accessory Boutique (15 🪙)</h4>
-                <div class="shop-wallet-badge">Your Balance: <span id="shop-wallet-coin-count">0</span> 🪙</div>
+                <div class="shop-wallet-badge">Your Pet Tokens: <span id="shop-wallet-coin-count">10</span> 🪙</div>
             </div>
             
             <div class="shop-items-grid">
@@ -370,6 +373,7 @@
         </div>
     </div>
 </div>
+
 
 </div>
 
