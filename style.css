@@ -926,13 +926,17 @@ body {
     background-color: var(--sage-green) !important;
     transition: background-color 0.3s ease-in-out !important;
 }
-/* 🔄 CONNECTS THE FONT ENGINE TO YOUR ACTIVE ENVIRONMENT PALETTES */
-.fonts-workspace-body,
-.fonts-workspace-body ~ .card-header-bar,
-.pixel-piggy-card:has(.kaomoji-grid-layout) .card-header-bar,
-.workspace-card:has(.kaomoji-grid-layout) .card-header-bar {
-    /* Instantly switches out the static light purple for your live variable palettes! */
-    background-color: var(--sage-green) !important;
+/* 🔄 CONNECTS THE FONT ENGINE TO YOUR ACTIVE ENVIRONMENT PALETTES (SURFACE FIXED) */
+.workspace-card:has(.kaomoji-grid-layout) .card-header-bar,
+.pixel-piggy-card:has(.kaomoji-grid-layout) .card-header-bar {
+    /* 🟢 Only targets the header bar row block for color transitions! */
     background: var(--sage-green) !important;
+    background-color: var(--sage-green) !important;
     transition: background-color 0.3s ease-in-out !important;
+}
+
+/* 🤍 GUARANTEES THE FONT PREVIEW CONTROLS SECTION STAYS SOLID WHITE */
+.workspace-card:has(.kaomoji-grid-layout) .fonts-workspace-body,
+.pixel-piggy-card:has(.kaomoji-grid-layout) .fonts-workspace-body {
+    background-color: var(--card-surface, #ffffff) !important;
 }
