@@ -977,18 +977,88 @@ body {
     overflow: hidden;
 }
 
-/* 🐰 Base Matrix Asset Drawing for the Pet */
-.pet-sprite-base {
-    width: 32px;
-    height: 32px;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+/* 🎮 DYNAMIC INTERACTIVE VIRTUAL PET WIDGET GRAPHICS STYLING */
+.system-pet-widget {
     position: relative;
-    transform: scale(2.5);
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" fill="%23fecaca"/><rect x="5" y="6" width="2" height="2" fill="%23222"/><rect x="9" y="6" width="2" height="2" fill="%23222"/><rect x="6" y="9" width="4" height="1" fill="%23222"/><rect x="3" y="3" width="3" height="3" fill="%23fecaca"/><rect x="10" y="3" width="3" height="3" fill="%23fecaca"/></svg>');
+    width: 100%;
+    margin: 0;
+}
+
+.pet-widget-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: var(--linen-white, #f7f9f7) !important;
+}
+
+.pet-stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: #ffffff;
+    padding: 6px 12px;
+    border: 2px solid var(--border-charcoal);
+    border-radius: 6px;
+}
+
+.pet-display-screen {
+    height: 140px;
+    background-color: #fffefa;
+    border: 3px solid #1a1a1a;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 🐰 PURE CSS DRAWN PIXEL PET BUNNY (NO LINEMAPS - ALWAYS VISIBLE) */
+.pet-sprite-base {
+    width: 1px !important;
+    height: 1px !important;
+    background: transparent !important;
+    position: relative;
+    /* Scales up the tiny pixel art points into a beautifully visible pet console */
+    transform: scale(4.5) translate(-6px, -4px); 
+    box-shadow:
+        /* Pink Bunny Ears Coords */
+        3px 1px 0 #fecaca, 3px 2px 0 #fecaca, 3px 3px 0 #fecaca,
+        9px 1px 0 #fecaca, 9px 2px 0 #fecaca, 9px 3px 0 #fecaca,
+        /* Bunny Head Outline & Base Base */
+        4px 4px 0 #fecaca, 5px 4px 0 #fecaca, 6px 4px 0 #fecaca, 7px 4px 0 #fecaca, 8px 4px 0 #fecaca,
+        3px 5px 0 #fecaca, 4px 5px 0 #fecaca, 5px 5px 0 #fecaca, 6px 5px 0 #fecaca, 7px 5px 0 #fecaca, 8px 5px 0 #fecaca, 9px 5px 0 #fecaca,
+        /* Beady Eyes Rows */
+        3px 6px 0 #fecaca, 4px 6px 0 #222222, 5px 6px 0 #fecaca, 6px 6px 0 #fecaca, 7px 6px 0 #fecaca, 8px 6px 0 #222222, 9px 6px 0 #fecaca,
+        3px 7px 0 #fecaca, 4px 7px 0 #fecaca, 5px 7px 0 #fecaca, 6px 7px 0 #222222, 7px 7px 0 #fecaca, 8px 7px 0 #fecaca, 9px 7px 0 #fecaca,
+        /* Cheeks and Lower Jaw */
+        4px 8px 0 #fecaca, 5px 8px 0 #fecaca, 6px 8px 0 #fecaca, 7px 8px 0 #fecaca, 8px 8px 0 #fecaca,
+        5px 9px 0 #1e1e1e, 6px 9px 0 #1e1e1e, 7px 9px 0 #1e1e1e !important;
+}
+
+/* 👑 Custom Floating Accessory Outfits Positioner */
+.pet-sprite-base::before {
+    content: attr(data-item);
+    position: absolute;
+    top: -12px;
+    left: 6px;
+    font-size: 3px;
+    pointer-events: none;
+}
+
+.shop-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.pet-shop-drawer {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 /* 👑 Custom Attached Accessory Layers */
