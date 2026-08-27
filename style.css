@@ -1101,23 +1101,23 @@ body {
 }
 .shop-items-grid .modal-btn:hover { background: #e9ecef; }
 
-/* 🎮 FORCE THE PET WIDGET TO NESTLE PERFECTLY IN COLUMN 2 RIGHT TRACK */
+//* 🎮 SNAPS THE PET WIDGET PERFECTLY IN ITS RIGHT COLUMN SPACE */
 .system-pet-widget {
     position: relative !important;
-    display: block !important;
+    display: inline-block !important; /* Stops it from acting like a massive full-screen divider block */
     width: 100% !important;
-    max-width: 480px !important;
+    max-width: 470px !important; /* Perfectly matches the width of your other right-side panels! */
     
-    /* 📐 GRID MAP STICK: Tells the browser layout engine to anchor this card inside the second column track */
-    grid-column: 2 !important;
+    /* 📐 ALIGNMENT SNAP: Pulls the card to the right side layout lane walls cleanly */
+    float: right !important; 
+    clear: right !important; /* Welds it right underneath your coin panel, leaving the log box space free */
     
-    /* Lets the card flow naturally to the right layout block boundary lines */
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    margin-top: 24px !important;
-    margin-bottom: 24px !important;
+    /* Adds clean separating vertical space around the box boundaries */
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     box-shadow: var(--neo-flat-shadow, 3px 3px 0px #222222) !important;
 }
+
 
 /* 🧱 PARENT ALIGNMENT REINFORCEMENT */
 .dashboard-layout-grid {
