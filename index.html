@@ -265,6 +265,29 @@
             </div>
         </main>
         <!-- 🎮 VIRTUAL PIXEL PET CARD CONTAINER -->
+        <div class="pixel-piggy-card system-pet-widget">
+            <div class="card-header-bar">
+                <h2>🎮 Pixel Pet Station</h2>
+                <span class="level-indicator-badge" id="pet-mood-badge">😊 Happy</span>
+            </div>
+            <div class="fonts-workspace-body pet-widget-body">
+                <div class="pet-token-wallet-banner">
+                    Pet Bank: <span id="pet-token-balance-text">10</span> 🪙 (Earned from happiness!)
+                </div>
+                <div class="pet-stats-container">
+                    <div class="stat-box-node">🍪 Hunger<span class="stat-val-readout" id="pet-hunger-text">Full (100%)</span></div>
+                    <div class="stat-box-node">✨ Mood<span class="stat-val-readout" id="pet-mood-text">Joyful</span></div>
+                    <div class="stat-box-node">👕 Clothing<span class="stat-val-readout" id="pet-clothing-text">Wizard Hat 🧙</span></div>
+                </div>
+                <div class="pet-display-screen">
+                    <div id="virtual-pet-avatar" class="pet-sprite-base draw-bunny wear-hat"></div>
+                </div>
+                <div class="pixel-control-dock pet-actions-row">
+                    <button class="pixel-action-btn btn-deposit" onclick="handleFeedVirtualPetTrigger()">🍪 Feed Pet (5 🪙)</button>
+                    <button class="pixel-action-btn btn-primary" onclick="toggleVirtualPetShopMenu()">🛍️ Open Boutique</button>
+                </div>
+            </div>
+        </div>
 
    <!-- 🐷 RETRO GAME STYLED PIXEL PIGGY BANK -->
 <!-- 🐷 SproutOS THEMED PIXEL PIGGY BANK PANEL -->
@@ -324,56 +347,6 @@
             <button onclick="window.resetPiggyBankData()" class="pixel-btn-reset">Reset Coin Storage</button>
         </div>
     </div>
- </div>
-    <!-- 🎮 VIRTUAL PIXEL PET CARD CONTAINER -->
-<!-- 🎮 VIRTUAL PIXEL PET CARD CONTAINER -->
-<div class="pixel-piggy-card system-pet-widget">
-    <div class="card-header-bar">
-        <h2>🎮 Pixel Pet Station</h2>
-        <span class="level-indicator-badge" id="pet-mood-badge">😊 Happy</span>
-    </div>
-    
-    <div class="fonts-workspace-body pet-widget-body">
-        <!-- 🪙 DEDICATED INLINE PET BANK TOKEN WALLET BAR -->
-        <div class="pet-token-wallet-banner">
-            Pet Bank: <span id="pet-token-balance-text">10</span> 🪙 (Earned from happiness!)
-        </div>
-
-        <!-- 📊 STATS DASHBOARD SCREEN ROW -->
-        <div class="pet-stats-container">
-            <div class="stat-box-node">🍪 Hunger<span class="stat-val-readout" id="pet-hunger-text">Full (100%)</span></div>
-            <div class="stat-box-node">✨ Mood<span class="stat-val-readout" id="pet-mood-text">Joyful</span></div>
-            <div class="stat-box-node">👕 Clothing<span class="stat-val-readout" id="pet-clothing-text">Wizard Hat 🧙</span></div>
-        </div>
-
-        <div class="pet-display-screen">
-            <div id="virtual-pet-avatar" class="pet-sprite-base draw-bunny wear-hat"></div>
-        </div>
-
-        <div class="pixel-control-dock pet-actions-row">
-            <button class="pixel-action-btn btn-deposit" onclick="handleFeedVirtualPetTrigger()">🍪 Feed Pet (5 🪙)</button>
-            <button class="pixel-action-btn btn-primary" onclick="toggleVirtualPetShopMenu()">🛍️ Open Boutique</button>
-        </div>
-
-        <!-- 🛒 BOUTIQUE DRAWER OVERLAY -->
-        <div id="pet-shop-overlay-drawer" class="calendar-reminder-editor hidden-layout pet-shop-drawer">
-            <div class="shop-header-wallet-row">
-                <h4>🛍️ Accessory Boutique (15 🪙)</h4>
-                <div class="shop-wallet-badge">Your Pet Tokens: <span id="shop-wallet-coin-count">10</span> 🪙</div>
-            </div>
-            
-            <div class="shop-items-grid">
-                <button class="modal-btn" onclick="buyPetAccessoryItem('crown')">👑 Royal Crown</button>
-                <button class="modal-btn" onclick="buyPetAccessoryItem('hat')">🧙 Wizard Hat</button>
-                <button class="modal-btn" onclick="buyPetAccessoryItem('shades')">🕶️ Sunglasses</button>
-                <button class="modal-btn" onclick="buyPetAccessoryItem('tie')">👔 Dapper Tie</button>
-            </div>
-            <div class="modal-action-row">
-                <button class="modal-btn close-btn" onclick="toggleVirtualPetShopMenu()">Exit Boutique</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 </div>
