@@ -1101,21 +1101,29 @@ body {
 }
 .shop-items-grid .modal-btn:hover { background: #e9ecef; }
 
-/* 🎮 NESTLES THE PET COMPANION WIDGET FLUSH TO THE RIGHT SIDE CANVAS */
+/* 🎮 FORCE THE PET WIDGET TO NESTLE PERFECTLY IN COLUMN 2 RIGHT TRACK */
 .system-pet-widget {
     position: relative !important;
     display: block !important;
     width: 100% !important;
-    max-width: 480px !important; /* Locks its box width parameters to match your font cards */
+    max-width: 480px !important;
     
-    /* 📐 POSITIONING ACCENT: Pushes the container box straight to the right side of the screen */
+    /* 📐 GRID MAP STICK: Tells the browser layout engine to anchor this card inside the second column track */
+    grid-column: 2 !important;
+    
+    /* Lets the card flow naturally to the right layout block boundary lines */
     margin-left: auto !important;
     margin-right: 0 !important;
-    
-    /* Adds clean separating vertical space below your coin manager panel rows */
     margin-top: 24px !important;
     margin-bottom: 24px !important;
     box-shadow: var(--neo-flat-shadow, 3px 3px 0px #222222) !important;
+}
+
+/* 🧱 PARENT ALIGNMENT REINFORCEMENT */
+.dashboard-layout-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Forces the viewport to stay divided into two equal columns */
+    gap: 20px !important;
 }
 
 
