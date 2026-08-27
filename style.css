@@ -191,11 +191,6 @@ body {
 
 .kaomoji-grid-layout { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
 .kaomoji-pill { background: white; border: 2px solid var(--border-charcoal); border-radius: 20px; padding: 4px 10px; font-size: 0.8rem; cursor: pointer; user-select: none; }
-/* 🔄 THEME RESPONSIVE FONT CARD HEADER BAR */
-.pixel-piggy-card:has(.kaomoji-grid-layout) .piggy-panel-header {
-    background-color: var(--sage-green) !important;
-    transition: background-color 0.3s ease !important;
-}
 .font-previewer-input-column { display: flex; flex-direction: column; gap: 6px; }
 .font-rendered-preview-box { background-color: #fafafa; border: 2px solid var(--border-charcoal); border-radius: 6px; padding: 6px; font-size: 0.9rem; cursor: pointer; min-height: 34px; }
 .style-standard { font-family: 'Fredoka', sans-serif; font-weight: 600; }
@@ -918,4 +913,11 @@ body {
         4px 8px 0 #1e1e1e, 5px 8px 0 #b0b0b0, 6px 8px 0 #b0b0b0, 7px 8px 0 #505050, 8px 8px 0 #505050, 9px 8px 0 #b0b0b0, 10px 8px 0 #b0b0b0, 11px 8px 0 #1e1e1e,
         4px 9px 0 #1e1e1e, 5px 9px 0 #b0b0b0, 6px 9px 0 #b0b0b0, 7px 9px 0 #b0b0b0, 8px 9px 0 #b0b0b0, 9px 9px 0 #b0b0b0, 10px 9px 0 #b0b0b0, 11px 9px 0 #1e1e1e,
         5px 10px 0 #1e1e1e, 6px 10px 0 #1e1e1e, 7px 10px 0 #1e1e1e, 8px 10px 0 #1e1e1e, 9px 10px 0 #1e1e1e, 10px 10px 0 #1e1e1e, 11px 10px 0 #1e1e1e !important;
+}
+/* 🔄 ADAPTIVE THEME CONNECTOR FOR THE FONT VARIANCE HEADER */
+.kaomoji-grid-layout ~ div,
+.pixel-piggy-card:has(.kaomoji-grid-layout) .piggy-panel-header {
+    /* Hooks your font generation card's header into your 6 active JavaScript variable color rules! */
+    background-color: var(--sage-green) !important;
+    transition: background-color 0.3s ease-in-out !important;
 }
