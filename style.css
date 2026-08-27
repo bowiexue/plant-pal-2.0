@@ -191,6 +191,11 @@ body {
 
 .kaomoji-grid-layout { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
 .kaomoji-pill { background: white; border: 2px solid var(--border-charcoal); border-radius: 20px; padding: 4px 10px; font-size: 0.8rem; cursor: pointer; user-select: none; }
+/* ðŸ”„ THEME RESPONSIVE FONT CARD HEADER BAR */
+.pixel-piggy-card:has(.kaomoji-grid-layout) .piggy-panel-header {
+    background-color: var(--sage-green) !important;
+    transition: background-color 0.3s ease !important;
+}
 .font-previewer-input-column { display: flex; flex-direction: column; gap: 6px; }
 .font-rendered-preview-box { background-color: #fafafa; border: 2px solid var(--border-charcoal); border-radius: 6px; padding: 6px; font-size: 0.9rem; cursor: pointer; min-height: 34px; }
 .style-standard { font-family: 'Fredoka', sans-serif; font-weight: 600; }
@@ -919,5 +924,15 @@ body {
 .pixel-piggy-card:has(.kaomoji-grid-layout) .piggy-panel-header {
     /* Hooks your font generation card's header into your 6 active JavaScript variable color rules! */
     background-color: var(--sage-green) !important;
+    transition: background-color 0.3s ease-in-out !important;
+}
+/* 🔄 CONNECTS THE FONT ENGINE TO YOUR ACTIVE ENVIRONMENT PALETTES */
+.fonts-workspace-body,
+.fonts-workspace-body ~ .card-header-bar,
+.pixel-piggy-card:has(.kaomoji-grid-layout) .card-header-bar,
+.workspace-card:has(.kaomoji-grid-layout) .card-header-bar {
+    /* Instantly switches out the static light purple for your live variable palettes! */
+    background-color: var(--sage-green) !important;
+    background: var(--sage-green) !important;
     transition: background-color 0.3s ease-in-out !important;
 }
