@@ -1101,3 +1101,22 @@ body {
 }
 .shop-items-grid .modal-btn:hover { background: #e9ecef; }
 
+/* 🎮 NESTLES THE PET COMPANION WIDGET FLUSH TO THE RIGHT SIDE */
+.system-pet-widget {
+    position: relative !important;
+    width: 100% !important;
+    clear: both !important;
+    display: block !important;
+    
+    /* 📐 ALIGNMENT SNAP: Pulls the pet console out of the center stack and lines it up on the right */
+    float: right !important;
+    max-width: 480px !important; /* Matches the exact width constraint of your font panel rows */
+    margin-top: -10px !important; /* Pulls it up snug so there's no massive gaps */
+    margin-bottom: 24px !important;
+}
+
+/* Fixes the popup shop window drawer so it doesn't leak out of the card layout borders */
+.pet-widget-body {
+    position: relative !important;
+    overflow: hidden !important;
+}
