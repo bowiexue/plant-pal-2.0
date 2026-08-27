@@ -1101,18 +1101,30 @@ body {
 }
 .shop-items-grid .modal-btn:hover { background: #e9ecef; }
 
-/* 🎮 NESTLES THE PET COMPANION WIDGET FLUSH TO THE RIGHT SIDE */
+/* 🎮 NESTLES THE PET COMPANION WIDGET FLUSH TO THE RIGHT SIDE (ALIGNMENT FIX) */
 .system-pet-widget {
     position: relative !important;
     width: 100% !important;
     clear: both !important;
     display: block !important;
-    
-    /* 📐 ALIGNMENT SNAP: Pulls the pet console out of the center stack and lines it up on the right */
     float: right !important;
-    max-width: 480px !important; /* Matches the exact width constraint of your font panel rows */
-    margin-top: -10px !important; /* Pulls it up snug so there's no massive gaps */
+    max-width: 480px !important;
+    /* 📐 REMOVED THE NEGATIVE MARGIN: This pushes it down cleanly so it stops overlapping the coin panels */
+    margin-top: 24px !important; 
     margin-bottom: 24px !important;
+}
+
+/* 🪙 PET WALLET TOKEN BADGE STYLING */
+.pet-token-wallet-banner {
+    background: #eef2ff;
+    border: 2px solid #4f46e5;
+    color: #4f46e5;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 /* Fixes the popup shop window drawer so it doesn't leak out of the card layout borders */
