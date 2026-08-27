@@ -1140,90 +1140,88 @@ setTimeout(() => {
 }, 800); // Waits a split second to guarantee your HTML elements are ready
 
 /* 🎮 STANDALONE VIRTUAL PET GAME SIMULATOR MODULE */
+/* 🎮 STANDALONE VIRTUAL PET GAME SIMULATOR MODULE (SEPARATE WALLET) */
 let virtualPetStateConfig = {
     hungerPoints: 100,
-    activeOutfitKey: 'none',
-    happinessScore: 100
+    activeOutfitKey: 'hat',
+    happinessScore: 100,
+    petTokensPool: 10 // Starts your pet off with a small allowance!
 };
 
-// Auto-sync wrapper method to update inside boutique menus
-function syncBoutiqueShopWalletDisplay() {
-    let mainWalletRef = document.getElementById('piggy-balance-display');
-    let shopWalletCount = document.getElementById('shop-wallet-coin-count');
-    if (mainWalletRef && shopWalletCount) {
-        shopWalletCount.innerText = parseInt(mainWalletRef.innerText) || 0;
+// Background loop scheduler ticker: Awards free tokens for high happiness!
+setInterval(() => {
+    if (virtualPetStateConfig.happinessScore >= 75) {
+        // Earns 2 independent tokens automatically for staying joyful
+        virtualPetStateConfig.petTokensPool += 2;
+        refreshVirtualPetEcosystemInterface();
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("✨ Your pet played happily and earned <strong>+2 Pet Tokens!</strong>");
+        }
     }
+}, 20000); // Ticks and awards currency every 20 seconds!
+
+function refreshVirtualPetEcosystemInterface() {
+    const mainWallet = document.getElementById('pet-token-balance-text');
+    const shopWallet = document.getElementById('shop-wallet-coin-count');
+    if (mainWallet) mainWallet.innerText = virtualPetStateConfig.petTokensPool;
+    if (shopWallet) shopWallet.innerText = virtualPetStateConfig.petTokensPool;
 }
 
 function handleFeedVirtualPetTrigger() {
-    let coinDisplayNode = document.getElementById('piggy-balance-display');
-    let currentWalletBalance = coinDisplayNode ? parseInt(coinDisplayNode.innerText) || 0 : 0;
-    
-    if (currentWalletBalance < 5) {
-        alert("❌ Not enough coins! Take care of your tasks or feed your savings vault to earn more cash!");
+    if (virtualPetStateConfig.petTokensPool < 5) {
+        alert("❌ Not enough Pet Tokens! Wait for your pet to generate more from being happy!");
         return;
     }
     
-    if (coinDisplayNode) {
-        coinDisplayNode.innerText = currentWalletBalance - 5;
-    }
-    
+    // Deducts cleanly from pet's wallet, leaving chore money completely untouched!
+    virtualPetStateConfig.petTokensPool -= 5;
     virtualPetStateConfig.hungerPoints = Math.min(100, virtualPetStateConfig.hungerPoints + 20);
     virtualPetStateConfig.happinessScore = Math.min(100, virtualPetStateConfig.happinessScore + 10);
     
     document.getElementById('pet-hunger-text').innerText = `${virtualPetStateConfig.hungerPoints}% 🍪`;
+    refreshVirtualPetEcosystemInterface();
     
-    // Animate jump bounce trigger sequence effect
     const petInstance = document.getElementById('virtual-pet-avatar');
     if (petInstance) {
         petInstance.style.marginTop = "-15px";
         setTimeout(() => petInstance.style.marginTop = "0px", 180);
     }
-    
-    syncBoutiqueShopWalletDisplay();
 }
 
 function toggleVirtualPetShopMenu() {
     const shopDrawerNode = document.getElementById('pet-shop-overlay-drawer');
     if (shopDrawerNode) {
         shopDrawerNode.classList.toggle('hidden-layout');
-        syncBoutiqueShopWalletDisplay();
+        refreshVirtualPetEcosystemInterface();
     }
 }
 
 function buyPetAccessoryItem(outfitKeyId) {
-    let coinDisplayNode = document.getElementById('piggy-balance-display');
-    let currentWalletBalance = coinDisplayNode ? parseInt(coinDisplayNode.innerText) || 0 : 0;
-    
-    if (currentWalletBalance < 15) {
-        alert("❌ You don't have enough coins in your balance yet!");
+    if (virtualPetStateConfig.petTokensPool < 15) {
+        alert("❌ You don't have enough Pet Tokens in your boutique balance yet!");
         return;
     }
     
-    if (coinDisplayNode) {
-        coinDisplayNode.innerText = currentWalletBalance - 15;
-    }
-    
+    // Deducts from independent pet bank pool
+    virtualPetStateConfig.petTokensPool -= 15;
     virtualPetStateConfig.activeOutfitKey = outfitKeyId;
     
     const petInstance = document.getElementById('virtual-pet-avatar');
     if (petInstance) {
-        // Clears out previous active clothes styles completely before applying new one
         petInstance.classList.remove('wear-crown', 'wear-hat', 'wear-shades', 'wear-tie');
-        
-        // Dynamically appends the active class matching our new pure-pixel shadow definitions!
         if (outfitKeyId !== 'none') {
             petInstance.classList.add(`wear-${outfitKeyId}`);
         }
     }
     
-    // Updates text label indicators on screen
     const labelsMap = { crown: 'Crown 👑', hat: 'Wizard Hat 🧙', shades: 'Sunglasses 🕶️', tie: 'Tie 👔' };
     document.getElementById('pet-clothing-text').innerText = labelsMap[outfitKeyId] || 'None';
     
     virtualPetStateConfig.happinessScore = Math.min(100, virtualPetStateConfig.happinessScore + 15);
     document.getElementById('pet-mood-text').innerText = "Joyful ✨";
     
+    refreshVirtualPetEcosystemInterface();
     toggleVirtualPetShopMenu();
 }
 
