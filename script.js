@@ -1138,3 +1138,107 @@ setTimeout(() => {
         console.log("SproutOS Sandbox Engine linked successfully.");
     }
 }, 800); // Waits a split second to guarantee your HTML elements are ready
+// --- 🏆 HOLIDAY PERSISTENT VAULT TRANSACTION ENGINE ---
+
+// Core dictionary map tracking seasonal parameters, labels, and emoji prize designs
+const holidayEventConfigMatrix = {
+    9:  { name: "Spooky Season", item: "🎃", desc: "Halloween Jack-o'-Lantern" },
+    11: { name: "Festive Winter", item: "🎄", desc: "Holiday Evergreen Pine" },
+    1:  { name: "Love Spells", item: "💝", desc: "Valentine Heart Box" },
+    3:  { name: "Spring Equinox", item: "🥚", desc: "Easter Painted Pixel Egg" }
+};
+
+// Main state controller tracking unlocked items array lists
+let unlockedHolidayTrophyStash = [];
+
+function loadAndScanHolidayVaultEngine() {
+    // 1. Pull existing collections from deep storage memory rows safely
+    const storedStash = localStorage.getItem('sproutOS_vault_trophies_v1');
+    if (storedStash) {
+        try {
+            unlockedHolidayTrophyStash = JSON.parse(storedStash);
+        } catch(e) {
+            console.error("Vault fallback reset triggered.", e);
+            unlockedHolidayTrophyStash = [];
+        }
+    }
+
+    // 2. Identify the active browser system month index (0-11 context)
+    const currentMonthNum = new Date().getMonth(); // January is 0, October is 9, December is 11
+    const activeBadge = document.getElementById('active-holiday-badge');
+    
+    // Check if the current calendar month triggers an award profile
+    if (holidayEventConfigMatrix[currentMonthNum]) {
+        const activeHoliday = holidayEventConfigMatrix[currentMonthNum];
+        
+        if (activeBadge) {
+            activeBadge.innerText = `${activeHoliday.name} Active!`;
+            activeBadge.className = "status-badge state-active";
+        }
+
+        // If the award token doesn't already exist inside our permanent inventory, save it permanently!
+        if (!unlockedHolidayTrophyStash.some(t => t.item === activeHoliday.item)) {
+            unlockedHolidayTrophyStash.push({
+                item: activeHoliday.item,
+                desc: activeHoliday.desc,
+                unlockedAt: new Date().toLocaleDateString()
+            });
+            // Instantly commit data alterations down to local memory limits
+            localStorage.setItem('sproutOS_vault_trophies_v1', JSON.stringify(unlockedHolidayTrophyStash));
+            
+            if (typeof logWorkspaceEvent === 'function') {
+                logWorkspaceEvent(`🏆 <strong>NEW HOLIDAY VALUATION!</strong> Permanently locked ${activeHoliday.item} into your trophy stash!`);
+            }
+        }
+    } else {
+        if (activeBadge) {
+            activeBadge.innerText = "Off-Season Standby";
+            activeBadge.className = "status-badge state-idle";
+        }
+    }
+
+    // 3. Force the visual elements to sync with current data blocks
+    renderTrophyShelfVisualLayout();
+}
+
+function renderTrophyShelfVisualLayout() {
+    const rackContainer = document.getElementById('trophy-shelf-rack');
+    const statusTextReadout = document.getElementById('vault-summary-status');
+    if (!rackContainer) return;
+
+    rackContainer.innerHTML = '';
+
+    if (unlockedHolidayTrophyStash.length === 0) {
+        rackContainer.innerHTML = `<div class="sandbox-hint" style="font-size: 0.78rem;">The display shelf is clean. Earn permanent trophies by logging in during holiday events!</div>`;
+        if (statusTextReadout) statusTextReadout.innerText = "0 Trophies Vaulted";
+        return;
+    }
+
+    // Render out every token currently trapped inside deep local array state storage
+    unlockedHolidayTrophyStash.forEach(trophy => {
+        const itemNode = document.createElement('div');
+        itemNode.className = 'vault-trophy-token';
+        itemNode.innerText = trophy.item;
+        itemNode.title = `${trophy.desc} (Claimed: ${trophy.unlockedAt})`;
+        rackContainer.appendChild(itemNode);
+    });
+
+    if (statusTextReadout) {
+        statusTextReadout.innerText = `${unlockedHolidayTrophyStash.length} / 4 Trophies Stashed`;
+    }
+}
+
+// Manual reset function bound directly to the user interaction click valve button
+window.clearEntireHolidayTrophyVault = function() {
+    if (confirm("Are you sure you want to clean out your trophy vault? This permanently sweeps your locked event prizes away!")) {
+        unlockedHolidayTrophyStash = [];
+        localStorage.removeItem('sproutOS_vault_trophies_v1');
+        
+        // Redraw views instantly reflecting modifications
+        renderTrophyShelfVisualLayout();
+        
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("🚨 <strong>Trophy Vault Swept!</strong> All event metrics purged.");
+        }
+    }
+};
