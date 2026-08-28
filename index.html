@@ -322,6 +322,35 @@
             <button onclick="window.resetPiggyBankData()" class="pixel-btn-reset">Reset Coin Storage</button>
         </div>
     </div>
+  </div>
+    <!-- 🏆 HOLIDAY TROPHY VAULT COMPONENT CARD -->
+<div class="workspace-card theme-lavender pixel-piggy-card">
+    <div class="piggy-panel-header">
+        <div class="piggy-header-title">
+            <span>🏆</span> Holiday Trophy Vault
+        </div>
+        <span class="status-badge state-active" id="active-holiday-badge">Checking Season...</span>
+    </div>
+    <div class="piggy-header-separator"></div>
+    <div class="piggy-panel-body">
+        
+        <!-- Retro Trophy Display Shelf Area -->
+        <div class="trophy-shelf-display-rack" id="trophy-shelf-rack">
+            <!-- Dynamic pixel trophies will inject here permanently -->
+        </div>
+
+        <!-- System Controls Dock -->
+        <div class="pixel-control-dock" style="margin-top: 15px; justify-content: space-between;">
+            <div class="pixel-text-label" style="font-size: 0.85rem;" id="vault-summary-status">
+                0 / 4 Vault Trophies Collected
+            </div>
+            <button class="action-btn btn-danger btn-sm" onclick="clearEntireHolidayTrophyVault()">
+                🧹 Clear Vault Stash
+            </button>
+        </div>
+    </div>
+</div>
+
 </div>
 
 
