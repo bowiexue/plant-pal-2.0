@@ -1140,54 +1140,51 @@ setTimeout(() => {
 }, 800); // Waits a split second to guarantee your HTML elements are ready
 // --- 🏆 HOLIDAY PERSISTENT VAULT TRANSACTION ENGINE ---
 
-// Core dictionary map tracking seasonal parameters, labels, and emoji prize designs
+// --- 🏆 COMPLETE 12-MONTH PIXEL ART TROPHY VAULT MATRIX ---
 const holidayEventConfigMatrix = {
-    9:  { name: "Spooky Season", item: "🎃", desc: "Halloween Jack-o'-Lantern" },
-    11: { name: "Festive Winter", item: "🎄", desc: "Holiday Evergreen Pine" },
-    1:  { name: "Love Spells", item: "💝", desc: "Valentine Heart Box" },
-    3:  { name: "Spring Equinox", item: "🥚", desc: "Easter Painted Pixel Egg" }
+    0:  { name: "New Year Bash", class: "pixel-trophy-star", desc: "Pixel Celebration Star" },
+    1:  { name: "Love Spells", class: "pixel-trophy-heart", desc: "Pixel Sweetheart Box" },
+    2:  { name: "Lucky Clover", class: "pixel-trophy-clover", desc: "Pixel Golden Leprechaun Coin" },
+    3:  { name: "Spring Equinox", class: "pixel-trophy-egg", desc: "Pixel Decorated Easter Egg" },
+    4:  { name: "May Flowers", class: "pixel-trophy-flower", desc: "Pixel Blooming Blossom" },
+    5:  { name: "Midsummer", class: "pixel-trophy-sun", desc: "Pixel Solstice Sun" },
+    6:  { name: "Retro Sparks", class: "pixel-trophy-firework", desc: "Pixel Neon Firework Rocket" },
+    7:  { name: "Campfire", class: "pixel-trophy-tent", desc: "Pixel Wilderness Tent" },
+    8:  { name: "Harvest Moon", class: "pixel-trophy-leaf", desc: "Pixel Autumn Maple Leaf" },
+    9:  { name: "Spooky Season", class: "pixel-trophy-pumpkin", desc: "Pixel Jack-o'-Lantern" },
+    10: { name: "Thanks Feast", class: "pixel-trophy-pie", desc: "Pixel Fresh Baked Pie" },
+    11: { name: "Festive Winter", class: "pixel-trophy-tree", desc: "Pixel Winter Evergreen Tree" }
 };
 
-// Main state controller tracking unlocked items array lists
 let unlockedHolidayTrophyStash = [];
 
 function loadAndScanHolidayVaultEngine() {
-    // 1. Pull existing collections from deep storage memory rows safely
-    const storedStash = localStorage.getItem('sproutOS_vault_trophies_v1');
+    const storedStash = localStorage.getItem('sproutOS_vault_trophies_v2');
     if (storedStash) {
-        try {
-            unlockedHolidayTrophyStash = JSON.parse(storedStash);
-        } catch(e) {
-            console.error("Vault fallback reset triggered.", e);
-            unlockedHolidayTrophyStash = [];
-        }
+        try { unlockedHolidayTrophyStash = JSON.parse(storedStash); } 
+        catch(e) { unlockedHolidayTrophyStash = []; }
     }
 
-    // 2. Identify the active browser system month index (0-11 context)
-    const currentMonthNum = new Date().getMonth(); // January is 0, October is 9, December is 11
+    const currentMonthNum = new Date().getMonth(); 
     const activeBadge = document.getElementById('active-holiday-badge');
     
-    // Check if the current calendar month triggers an award profile
     if (holidayEventConfigMatrix[currentMonthNum]) {
         const activeHoliday = holidayEventConfigMatrix[currentMonthNum];
-        
         if (activeBadge) {
             activeBadge.innerText = `${activeHoliday.name} Active!`;
             activeBadge.className = "status-badge state-active";
         }
 
-        // If the award token doesn't already exist inside our permanent inventory, save it permanently!
-        if (!unlockedHolidayTrophyStash.some(t => t.item === activeHoliday.item)) {
+        // Check uniqueness by matching the drawing class asset identifier
+        if (!unlockedHolidayTrophyStash.some(t => t.class === activeHoliday.class)) {
             unlockedHolidayTrophyStash.push({
-                item: activeHoliday.item,
+                class: activeHoliday.class,
                 desc: activeHoliday.desc,
                 unlockedAt: new Date().toLocaleDateString()
             });
-            // Instantly commit data alterations down to local memory limits
-            localStorage.setItem('sproutOS_vault_trophies_v1', JSON.stringify(unlockedHolidayTrophyStash));
-            
+            localStorage.setItem('sproutOS_vault_trophies_v2', JSON.stringify(unlockedHolidayTrophyStash));
             if (typeof logWorkspaceEvent === 'function') {
-                logWorkspaceEvent(`🏆 <strong>NEW HOLIDAY VALUATION!</strong> Permanently locked ${activeHoliday.item} into your trophy stash!`);
+                logWorkspaceEvent(`🏆 <strong>TROPHY LOCKED!</strong> Vaulted pixel artwork: <strong>${activeHoliday.desc}</strong>`);
             }
         }
     } else {
@@ -1196,8 +1193,6 @@ function loadAndScanHolidayVaultEngine() {
             activeBadge.className = "status-badge state-idle";
         }
     }
-
-    // 3. Force the visual elements to sync with current data blocks
     renderTrophyShelfVisualLayout();
 }
 
@@ -1210,35 +1205,36 @@ function renderTrophyShelfVisualLayout() {
 
     if (unlockedHolidayTrophyStash.length === 0) {
         rackContainer.innerHTML = `<div class="sandbox-hint" style="font-size: 0.78rem;">The display shelf is clean. Earn permanent trophies by logging in during holiday events!</div>`;
-        if (statusTextReadout) statusTextReadout.innerText = "0 Trophies Vaulted";
+        if (statusTextReadout) statusTextReadout.innerText = "0 / 12 Trophies Stashed";
         return;
     }
 
-    // Render out every token currently trapped inside deep local array state storage
     unlockedHolidayTrophyStash.forEach(trophy => {
-        const itemNode = document.createElement('div');
-        itemNode.className = 'vault-trophy-token';
-        itemNode.innerText = trophy.item;
-        itemNode.title = `${trophy.desc} (Claimed: ${trophy.unlockedAt})`;
-        rackContainer.appendChild(itemNode);
+        // Creates the main wrapper node that bounces and holds titles
+        const elementWrapper = document.createElement('div');
+        elementWrapper.className = 'vault-trophy-wrapper-node';
+        elementWrapper.title = `${trophy.desc} (Claimed: ${trophy.unlockedAt})`;
+
+        // Creates the absolute 1px anchor node that renders your custom shadow matrices
+        const drawingNode = document.createElement('div');
+        drawingNode.className = `pixel-trophy-base-sprite ${trophy.class}`;
+
+        elementWrapper.appendChild(drawingNode);
+        rackContainer.appendChild(elementWrapper);
     });
 
     if (statusTextReadout) {
-        statusTextReadout.innerText = `${unlockedHolidayTrophyStash.length} / 4 Trophies Stashed`;
+        statusTextReadout.innerText = `${unlockedHolidayTrophyStash.length} / 12 Trophies Stashed`;
     }
 }
 
-// Manual reset function bound directly to the user interaction click valve button
 window.clearEntireHolidayTrophyVault = function() {
     if (confirm("Are you sure you want to clean out your trophy vault? This permanently sweeps your locked event prizes away!")) {
         unlockedHolidayTrophyStash = [];
-        localStorage.removeItem('sproutOS_vault_trophies_v1');
-        
-        // Redraw views instantly reflecting modifications
+        localStorage.removeItem('sproutOS_vault_trophies_v2');
         renderTrophyShelfVisualLayout();
-        
         if (typeof logWorkspaceEvent === 'function') {
-            logWorkspaceEvent("🚨 <strong>Trophy Vault Swept!</strong> All event metrics purged.");
+            logWorkspaceEvent("🚨 <strong>Trophy Vault Swept!</strong> All event matrices purged.");
         }
     }
 };
