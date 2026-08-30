@@ -264,6 +264,57 @@
                 </div>
             </div>
         </main>
+    <!-- 🥛 SPROUT-OS H2O HYDRATION ENGINE WIDGET -->
+<div class="workspace-card system-hydration-widget">
+    <div class="card-header-bar theme-sage" id="hydration-header">
+        <h2>🥛 H2O Hydration Station</h2>
+        <span class="status-badge state-idle" id="hydration-status">THIRSTY</span>
+    </div>
+    
+    <div class="piggy-panel-body">
+        <!-- Progress Scoreboard Screen -->
+        <div class="pixel-balance-screen">
+            <div class="screen-content-wrapper">
+                <span class="pixel-gold-coin-icon" style="background-color: #a5f3fc; box-shadow: inset -3px -3px 0px #0284c7;"></span>
+                <span id="h2o-current-display">0</span>
+                <span class="pixel-text-label">/ <span id="h2o-goal-display">8</span> Glasses</span>
+            </div>
+        </div>
+
+        <!-- Controls Dock Frame -->
+        <div class="chore-logging-tracker-box">
+            <div class="chore-control-select-row">
+                <label>Set Target:</label>
+                <div class="dual-input-wrapper">
+                    <select id="h2o-goal-select" class="clean-select-menu" onchange="syncH2OGoalDropdown(this)">
+                        <option value="4">4 Glasses</option>
+                        <option value="8" selected>8 Glasses</option>
+                        <option value="12">12 Glasses</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                    <input type="number" id="h2o-custom-goal-input" class="clean-text-input small-num-input" value="8" min="1" oninput="syncH2OGoalInput(this)">
+                </div>
+            </div>
+
+            <div class="chore-buttons-row">
+                <button class="action-btn btn-primary" onclick="logWaterGlassIntake()">💧 Drink 1 Glass</button>
+                <button class="action-btn btn-danger" onclick="resetHydrationTracker()">🔄 Reset Day</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Persistent Vault Area -->
+        <div class="ecosystem-impact-profile-box" style="margin-top: 16px; border-top: 2.5px dashed var(--border-charcoal);">
+            <div class="impact-header-row">
+                <h3>🏆 Unlocked Botanical Badges</h3>
+                <button class="pixel-btn-reset" onclick="purgeHydrationAwardsVault()">Wipe Badges</button>
+            </div>
+            <div id="h2o-awards-vault" class="kaomoji-grid-layout" style="min-height: 38px; padding-top: 4px;">
+                <!-- Persistent milestone stickers render sequentially here -->
+            </div>
+        </div>
+    </div>
+</div>
+
    <!-- 🐷 RETRO GAME STYLED PIXEL PIGGY BANK -->
 <!-- 🐷 SproutOS THEMED PIXEL PIGGY BANK PANEL -->
 <div class="panel-card-container pixel-piggy-card">
