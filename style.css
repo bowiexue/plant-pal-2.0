@@ -967,3 +967,135 @@ body {
     background-color: var(--sage-green) !important;
     transition: background-color 0.3s ease-in-out !important;
 }
+/* 👾 RETRO PIXEL TROPHY GRID ENGINE FRAMEWORK */
+.pixel-trophy-item-container {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    background: #fffefa;
+    border: 2px solid #222222;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #222222;
+    margin: 4px;
+}
+
+.pixel-trophy-item-container:hover {
+    background-color: var(--sage-green);
+}
+
+/* 🏷️ RETRO FLOATING CSS TOOLTIP ON MOUSE HOVER */
+.pixel-trophy-item-container::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 74px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222222;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, bottom 0.15s ease;
+    z-index: 10000;
+}
+.pixel-trophy-item-container:hover::after {
+    opacity: 1;
+    bottom: 70px;
+}
+
+.pixel-drawn-trophy-node {
+    display: block !important;
+    width: 1px !important;
+    height: 1px !important;
+    transform: scale(3.5) !important; 
+    image-rendering: pixelated !important;
+    image-rendering: crisp-edges !important;
+}
+
+/* 🧪 PREMIUM CORES BOX SHADOW MATRICES */
+
+/* Trophy #1: Aqua Sprout Seal */
+.h2o-trophy-1 {
+    box-shadow:
+        4px 2px 0 #222, 5px 2px 0 #222, 6px 2px 0 #222,
+        3px 3px 0 #222, 4px 3px 0 #7dd3fc, 5px 3px 0 #38bdf8, 6px 3px 0 #0284c7, 7px 3px 0 #222,
+        3px 4px 0 #222, 4px 4px 0 #38bdf8, 5px 4px 0 #0284c7, 6px 4px 0 #0369a1, 7px 4px 0 #222,
+        4px 5px 0 #222, 5px 5px 0 #222, 6px 5px 0 #222;
+}
+
+/* Trophy #2: Glacial Crystal Core */
+.h2o-trophy-2 {
+    box-shadow:
+        5px 1px 0 #222,
+        4px 2px 0 #222, 5px 2px 0 #e0f2fe, 6px 2px 0 #222,
+        3px 3px 0 #222, 4px 3px 0 #bae6fd, 5px 3px 0 #7dd3fc, 6px 3px 0 #38bdf8, 7px 3px 0 #222,
+        4px 4px 0 #222, 5px 4px 0 #0284c7, 6px 4px 0 #222,
+        5px 5px 0 #222;
+}
+
+/* Trophy #3: Fountain of Focus */
+.h2o-trophy-3 {
+    box-shadow:
+        3px 1px 0 #222, 7px 1px 0 #222,
+        3px 2px 0 #38bdf8, 4px 2px 0 #222, 5px 2px 0 #7dd3fc, 6px 2px 0 #222, 7px 2px 0 #38bdf8,
+        2px 3px 0 #222, 3px 3px 0 #0284c7, 4px 3px 0 #bae6fd, 5px 3px 0 #bae6fd, 6px 3px 0 #bae6fd, 7px 3px 0 #0284c7, 8px 3px 0 #222,
+        3px 4px 0 #222, 4px 4px 0 #8a8a8a, 5px 4px 0 #8a8a8a, 6px 4px 0 #8a8a8a, 7px 4px 0 #222,
+        4px 5px 0 #222, 5px 5px 0 #5a5a5a, 6px 5px 0 #222;
+}
+
+/* Trophy #4: Oceanic Matrix Leaf */
+.h2o-trophy-4 {
+    box-shadow:
+        6px 1px 0 #222,
+        5px 2px 0 #222, 6px 2px 0 #4ade80, 7px 2px 0 #222,
+        4px 3px 0 #222, 5px 3px 0 #22c55e, 6px 3px 0 #16a34a,
+        3px 4px 0 #222, 4px 4px 0 #15803d, 5px 4px 0 #222,
+        4px 5px 0 #222;
+}
+
+/* Trophy #5: Poseidon's Bonsai */
+.h2o-trophy-5 {
+    box-shadow:
+        4px 1px 0 #222, 6px 1px 0 #222,
+        3px 2px 0 #222, 4px 2px 0 #0284c7, 5px 2px 0 #222, 6px 2px 0 #0284c7, 7px 2px 0 #222,
+        4px 3px 0 #222, 5px 3px 0 #8b5a2b, 6px 3px 0 #222,
+        3px 4px 0 #222, 4px 4px 0 #a1705a, 5px 4px 0 #a1705a, 6px 4px 0 #a1705a, 7px 4px 0 #222,
+        4px 5px 0 #222, 5px 5px 0 #222, 6px 5px 0 #222;
+}
+
+/* Trophy #6: Zen Oasis Lily */
+.h2o-trophy-6 {
+    box-shadow:
+        5px 1px 0 #222,
+        4px 2px 0 #222, 5px 2px 0 #f472b6, 6px 2px 0 #222,
+        3px 3px 0 #222, 4px 3px 0 #ec4899, 5px 3px 0 #f472b6, 6px 3px 0 #ec4899, 7px 3px 0 #222,
+        2px 4px 0 #222, 3px 4px 0 #4ade80, 4px 4px 0 #22c55e, 5px 4px 0 #16a34a, 6px 4px 0 #22c55e, 7px 4px 0 #4ade80, 8px 4px 0 #222,
+        3px 5px 0 #222, 4px 5px 0 #222, 5px 5px 0 #222, 6px 5px 0 #222, 7px 5px 0 #222;
+}
+
+/* Trophy #7: Bioluminescent Bubble */
+.h2o-trophy-7 {
+    box-shadow:
+        4px 2px 0 #222, 5px 2px 0 #222, 6px 2px 0 #222,
+        3px 3px 0 #222, 4px 3px 0 #ffffff, 5px 3px 0 #e0f2fe, 6px 3px 0 #bae6fd, 7px 3px 0 #222,
+        3px 4px 0 #222, 4px 4px 0 #bae6fd, 5px 4px 0 #7dd3fc, 6px 4px 0 #38bdf8, 7px 4px 0 #222,
+        4px 5px 0 #222, 5px 5px 0 #222, 6px 5px 0 #222;
+}
+
+/* Trophy #8: Triton's Greenhouse Warden */
+.h2o-trophy-8 {
+    box-shadow:
+        5px 1px 0 #222,
+        4px 2px 0 #222, 5px 2px 0 #fbbf24, 6px 2px 0 #222,
+        3px 3px 0 #222, 4px 3px 0 #f59e0b, 5px 3px 0 #60a5fa, 6px 3px 0 #f59e0b, 7px 3px 0 #222,
+        4px 4px 0 #222, 5px 4px 0 #3b82f6, 6px 4px 0 #222,
+        5px 5px 0 #222;
+}
