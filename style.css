@@ -940,3 +940,30 @@ body {
 .pixel-piggy-card:has(.kaomoji-grid-layout) .fonts-workspace-body {
     background-color: var(--card-surface, #ffffff) !important;
 }
+/* 🥛 SPROUT-OS HYDRO MODULE STYLING */
+.system-hydration-widget {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#h2o-current-display {
+    color: #0284c7 !important; /* Rich aquatic water blue tint */
+    font-size: 2.5rem;
+    font-family: inherit !important;
+    font-weight: 800 !important;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.status-badge.state-hydrated {
+    background-color: #bae6fd;
+    color: #0369a1;
+    font-weight: bold;
+}
+
+/* 🔄 DYNAMIC RE-THEME ANCHOR FOR HYDRATION HEADERS */
+.workspace-card:has(#h2o-awards-vault) .card-header-bar {
+    background-color: var(--sage-green) !important;
+    transition: background-color 0.3s ease-in-out !important;
+}
