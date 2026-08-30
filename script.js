@@ -1161,17 +1161,18 @@ let hydrationStateMemory = {
 };
 
 // Sequential non-repeating prize matrix pools
+// --- 🏆 HIGH-FIDELITY RETRO PIXEL ART CODES SYSTEM ---
 const botanicalMilestonePrizes = [
-    { icon: "🐳", name: "Aqua Sprout Seal" },
-    { icon: "🧊", name: "Glacial Crystal Core" },
-    { icon: "⛲", name: "Fountain of Focus" },
-    { icon: "🌊", name: "Oceanic Matrix Leaf" },
-    { icon: "🔱", name: "Poseidon's Bonsai" },
-    { icon: "Lotus", icon: "🪷", name: "Zen Oasis Lily" },
-    { icon: "🫧", name: "Bioluminescent Bubble" },
-    { icon: "🧜‍♂️", name: "Triton's Greenhouse Warden" },
-    { icon: "🌧️", name: "Nimbus Cloud Crest" }
+    { classId: "h2o-trophy-1", name: "Aqua Sprout Seal" },
+    { classId: "h2o-trophy-2", name: "Glacial Crystal Core" },
+    { classId: "h2o-trophy-3", name: "Fountain of Focus" },
+    { classId: "h2o-trophy-4", name: "Oceanic Matrix Leaf" },
+    { classId: "h2o-trophy-5", name: "Poseidon's Bonsai" },
+    { classId: "h2o-trophy-6", name: "Zen Oasis Lily" },
+    { classId: "h2o-trophy-7", name: "Bioluminescent Bubble" },
+    { classId: "h2o-trophy-8", name: "Triton's Greenhouse Warden" }
 ];
+
 
 document.addEventListener("DOMContentLoaded", () => {
     loadHydrationSystemMetrics();
@@ -1201,7 +1202,6 @@ function redrawHydrationInterfaceDisplays() {
     document.getElementById('h2o-goal-display').innerText = hydrationStateMemory.targetGoal;
     document.getElementById('h2o-custom-goal-input').value = hydrationStateMemory.targetGoal;
     
-    // Auto sync select box dropdown option tags
     const select = document.getElementById('h2o-goal-select');
     if (select) {
         select.value = ["4", "8", "12"].includes(hydrationStateMemory.targetGoal.toString()) ? hydrationStateMemory.targetGoal.toString() : "custom";
@@ -1217,6 +1217,33 @@ function redrawHydrationInterfaceDisplays() {
             statusBadge.className = "status-badge state-idle";
         }
     }
+
+    // 📦 RE-RENDER RETRO PIXEL CANVAS GRID
+    const vaultContainer = document.getElementById('h2o-awards-vault');
+    if (vaultContainer) {
+        vaultContainer.innerHTML = '';
+        if (hydrationStateMemory.unlockedAwardIndexes.length === 0) {
+            vaultContainer.innerHTML = '<span style="font-size:0.8rem; color:var(--text-muted); font-style:italic;">No milestones achieved today yet.</span>';
+            return;
+        }
+
+        hydrationStateMemory.unlockedAwardIndexes.forEach(indexId => {
+            const prizeObj = botanicalMilestonePrizes[indexId];
+            if (prizeObj) {
+                // Wrapper shell box for the pixel art engine scaling framework
+                const iconFrame = document.createElement('div');
+                iconFrame.className = `pixel-trophy-item-container`;
+                iconFrame.setAttribute('data-title', prizeObj.name); // Native floating text labels
+
+                const artNode = document.createElement('div');
+                artNode.className = `pixel-drawn-trophy-node ${prizeObj.classId}`;
+                
+                iconFrame.appendChild(artNode);
+                vaultContainer.appendChild(iconFrame);
+            }
+        });
+    }
+}
 
     // Refresh structural badges inside the vault panel matrix
     const vaultContainer = document.getElementById('h2o-awards-vault');
