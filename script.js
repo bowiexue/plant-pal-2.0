@@ -1138,3 +1138,18 @@ setTimeout(() => {
         console.log("SproutOS Sandbox Engine linked successfully.");
     }
 }, 800); // Waits a split second to guarantee your HTML elements are ready
+function clearSandboxPlaygroundArea() {
+    const sandboxContainer = document.getElementById('sandbox-container');
+    if (!sandboxContainer) return;
+
+    // Purges every child node loop safely
+    const companions = sandboxContainer.querySelectorAll('.sandbox-companion');
+    companions.forEach(buddy => buddy.remove());
+
+    const sparkles = sandboxContainer.querySelectorAll('.sparkle');
+    sparkles.forEach(s => s.remove());
+
+    if (typeof logWorkspaceEvent === 'function') {
+        logWorkspaceEvent("Sandbox playground cleared of all companion entities.");
+    }
+}
