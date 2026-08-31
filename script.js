@@ -1169,3 +1169,167 @@ function clearSandboxPlaygroundArea() {
     }
 }
 
+// --- 🥛 INDEPENDENT H2O HYDRATION ENGINE ENGINE ---
+let hydrationStateMemory = {
+    currentGlasses: 0,
+    targetGoal: 8,
+    unlockedAwardIndexes: []
+};
+
+// Sequential non-repeating prize matrix pools
+const botanicalMilestonePrizes = [
+    { icon: "🐳", name: "Aqua Sprout Seal" },
+    { icon: "🧊", name: "Glacial Crystal Core" },
+    { icon: "⛲", name: "Fountain of Focus" },
+    { icon: "🌊", name: "Oceanic Matrix Leaf" },
+    { icon: "🔱", name: "Poseidon's Bonsai" },
+    { icon: "Lotus", icon: "🪷", name: "Zen Oasis Lily" },
+    { icon: "🫧", name: "Bioluminescent Bubble" },
+    { icon: "🧜‍♂️", name: "Triton's Greenhouse Warden" },
+    { icon: "🌧️", name: "Nimbus Cloud Crest" }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadHydrationSystemMetrics();
+});
+
+function loadHydrationSystemMetrics() {
+    const savedMetrics = localStorage.getItem('sproutOS_hydration_state_v1');
+    if (savedMetrics) {
+        try {
+            hydrationStateMemory = JSON.parse(savedMetrics);
+            if (!Array.isArray(hydrationStateMemory.unlockedAwardIndexes)) {
+                hydrationStateMemory.unlockedAwardIndexes = [];
+            }
+        } catch (e) {
+            console.error("Hydration fallback bypassed.", e);
+        }
+    }
+    redrawHydrationInterfaceDisplays();
+}
+
+function saveHydrationSystemMetrics() {
+    localStorage.setItem('sproutOS_hydration_state_v1', JSON.stringify(hydrationStateMemory));
+}
+
+function redrawHydrationInterfaceDisplays() {
+    document.getElementById('h2o-current-display').innerText = hydrationStateMemory.currentGlasses;
+    document.getElementById('h2o-goal-display').innerText = hydrationStateMemory.targetGoal;
+    document.getElementById('h2o-custom-goal-input').value = hydrationStateMemory.targetGoal;
+    
+    // Auto sync select box dropdown option tags
+    const select = document.getElementById('h2o-goal-select');
+    if (select) {
+        select.value = ["4", "8", "12"].includes(hydrationStateMemory.targetGoal.toString()) ? hydrationStateMemory.targetGoal.toString() : "custom";
+    }
+
+    const statusBadge = document.getElementById('hydration-status');
+    if (statusBadge) {
+        if (hydrationStateMemory.currentGlasses >= hydrationStateMemory.targetGoal) {
+            statusBadge.innerText = "HYDRATED";
+            statusBadge.className = "status-badge state-hydrated";
+        } else {
+            statusBadge.innerText = "THIRSTY";
+            statusBadge.className = "status-badge state-idle";
+        }
+    }
+
+    // Refresh structural badges inside the vault panel matrix
+    const vaultContainer = document.getElementById('h2o-awards-vault');
+    if (vaultContainer) {
+        vaultContainer.innerHTML = '';
+        if (hydrationStateMemory.unlockedAwardIndexes.length === 0) {
+            vaultContainer.innerHTML = '<span style="font-size:0.8rem; color:var(--text-muted); font-style:italic;">No milestones achieved today yet.</span>';
+            return;
+        }
+
+        hydrationStateMemory.unlockedAwardIndexes.forEach(indexId => {
+            const prizeObj = botanicalMilestonePrizes[indexId];
+            if (prizeObj) {
+                const badgeSpan = document.createElement('span');
+                badgeSpan.className = 'kaomoji-pill';
+                badgeSpan.style.background = '#e0f2fe';
+                badgeSpan.style.borderColor = '#0284c7';
+                badgeSpan.title = prizeObj.name;
+                badgeSpan.innerText = `${prizeObj.icon} ${prizeObj.name}`;
+                vaultContainer.appendChild(badgeSpan);
+            }
+        });
+    }
+}
+
+function syncH2OGoalDropdown(dropdownElement) {
+    const customInputField = document.getElementById('h2o-custom-goal-input');
+    if (dropdownElement.value !== "custom") {
+        customInputField.value = dropdownElement.value;
+        hydrationStateMemory.targetGoal = parseInt(dropdownElement.value);
+        saveHydrationSystemMetrics();
+        redrawHydrationInterfaceDisplays();
+    }
+}
+
+function syncH2OGoalInput(inputElement) {
+    let parsedVal = parseInt(inputElement.value);
+    if (isNaN(parsedVal) || parsedVal <= 0) parsedVal = 8;
+    
+    hydrationStateMemory.targetGoal = parsedVal;
+    saveHydrationSystemMetrics();
+    
+    const dropdown = document.getElementById('h2o-goal-select');
+    if (dropdown) {
+        dropdown.value = ["4", "8", "12"].includes(parsedVal.toString()) ? parsedVal.toString() : "custom";
+    }
+    
+    // Updates UI live on keypress adjustments
+    document.getElementById('h2o-goal-display').innerText = parsedVal;
+}
+
+function logWaterGlassIntake() {
+    const previousStateCompleted = hydrationStateMemory.currentGlasses >= hydrationStateMemory.targetGoal;
+    
+    hydrationStateMemory.currentGlasses += 1;
+    
+    if (typeof logWorkspaceEvent === 'function') {
+        logWorkspaceEvent(`💧 Logged <strong>1 Glass</strong> of water intake.`);
+    }
+
+    // Award allocation calculations loop when threshold matches
+    if (!previousStateCompleted && hydrationStateMemory.currentGlasses >= hydrationStateMemory.targetGoal) {
+        // Pick the next unassigned prize profile sequentially to prevent duplicates entirely
+        const nextPrizeIndexId = hydrationStateMemory.unlockedAwardIndexes.length;
+        
+        if (nextPrizeIndexId < botanicalMilestonePrizes.length) {
+            hydrationStateMemory.unlockedAwardIndexes.push(nextPrizeIndexId);
+            if (typeof logWorkspaceEvent === 'function') {
+                logWorkspaceEvent(`🏆 ── GOAL REACHED! ── 🎉 Hydration target achieved! Awarded badge: <strong>${botanicalMilestonePrizes[nextPrizeIndexId].name}</strong>! 🥛✨`);
+            }
+        } else {
+            if (typeof logWorkspaceEvent === 'function') {
+                logWorkspaceEvent("🎉 Hydration target reached! You've already unlocked all elite botanical trophies!");
+            }
+        }
+    }
+
+    saveHydrationSystemMetrics();
+    redrawHydrationInterfaceDisplays();
+}
+
+function resetHydrationTracker() {
+    hydrationStateMemory.currentGlasses = 0;
+    saveHydrationSystemMetrics();
+    redrawHydrationInterfaceDisplays();
+    if (typeof logWorkspaceEvent === 'function') {
+        logWorkspaceEvent("🔄 Daily liquid counter reset back to zero.");
+    }
+}
+
+function purgeHydrationAwardsVault() {
+    if (confirm("Permanently wipe your achieved milestone badge vault?")) {
+        hydrationStateMemory.unlockedAwardIndexes = [];
+        saveHydrationSystemMetrics();
+        redrawHydrationInterfaceDisplays();
+        if (typeof logWorkspaceEvent === 'function') {
+            logWorkspaceEvent("🚨 Hydration award badges registry cleared.");
+        }
+    }
+}
